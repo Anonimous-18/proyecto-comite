@@ -90,7 +90,7 @@ const navigation = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-white" aria-labelledby="footer-heading">
+    <footer className="bg-gradient-to-r from-blue-800 from-10% via-sky-400 via-30% to-blue-700 to-90%">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
