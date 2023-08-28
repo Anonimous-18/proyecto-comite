@@ -19,7 +19,6 @@ export const Register = () => {
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
-                    for="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Your email
                   </label>
@@ -34,7 +33,6 @@ export const Register = () => {
                 </div>
                 <div>
                   <label
-                    for="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Password
                   </label>
@@ -49,7 +47,6 @@ export const Register = () => {
                 </div>
                 <div>
                   <label
-                    for="confirm-password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Confirm password
                   </label>
@@ -74,7 +71,6 @@ export const Register = () => {
                   </div>
                   <div className="ml-3 text-sm">
                     <label
-                      for="terms"
                       className="font-light text-gray-500 dark:text-gray-300">
                       I accept the{" "}
                       <a
