@@ -1,21 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
 
 export const Login = () => {
+  const { isLogged, protectedRoutes } = useContextApp();
+  const tokenExist = protectedRoutes();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (tokenExist) {
+      navigate(`/home`);
+    }
+  }, [navigate, tokenExist]);
+
   const [data, setData] = useState({
     email: "",
     contrasenia: "",
   });
   const [err, setErr] = useState(false);
 
-  const navigate = useNavigate();
-  const { isLogged } = useContextApp();
+  console.log(`LOGIN: ${localStorage.getItem("newToken")}`);
+  console.log(localStorage.getItem("newToken"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await isLogged(data);
-    if (response) navigate(`/home`);
+    if (response) {
+      navigate(`/home`);
+    }
     setErr(true);
     setTimeout(() => {
       setErr(false);
@@ -44,7 +56,8 @@ export const Login = () => {
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a
               href="#"
-              className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+              className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
+            >
               <img
                 className="w-11 h-11 mr-2"
                 src="https://placekitten.com/100/100"
@@ -61,7 +74,8 @@ export const Login = () => {
                 </h1>
                 <form
                   onSubmit={(e) => handleSubmit(e)}
-                  className="space-y-4 md:space-y-6">
+                  className="space-y-4 md:space-y-6"
+                >
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Correo:
@@ -107,13 +121,15 @@ export const Login = () => {
                     </div>
                     <a
                       href="#"
-                      className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                      className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    >
                       ¿Olvidaste tu contraseña?
                     </a>
                   </div>
                   <button
                     type="submit"
-                    className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
+                    className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                  >
                     <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                       Inicio de Sesion
                     </span>
@@ -122,7 +138,8 @@ export const Login = () => {
                     Tienes cuenta?{" "}
                     <Link
                       to={`/register`}
-                      className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                      className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    >
                       Registrarse
                     </Link>
                   </p>

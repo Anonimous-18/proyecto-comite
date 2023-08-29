@@ -2,6 +2,9 @@ import { NavBar } from "../Layout/NavBar";
 import { Footer } from "../Layout/Footer";
 
 export const Home = () => {
+  console.log(`HOME: ${localStorage.getItem("newToken")}`);
+  console.log(localStorage.getItem("newToken"));
+
   return (
     <div>
       <NavBar />

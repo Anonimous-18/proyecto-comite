@@ -1,13 +1,22 @@
-import { createContext, useContext } from "react";
 import { login } from "../api/inicioSesion";
+import { createContext, useContext } from "react";
 
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
+  console.log(`CONTEXT: ${localStorage.getItem("newToken")}`);
+  console.log(localStorage.getItem("newToken"));
+
   const isLogged = async (data) => {
     try {
       const response = await login(data);
       if (response.status === 200 && response.data) {
+        const token = JSON.parse(localStorage.getItem("newToken"));
+        if (token !== null) {
+          console.log("Eliminando: ", token);
+          localStorage.removeItem("newToken");
+        }
+        localStorage.setItem("newToken", JSON.stringify(response.data));
         return true;
       }
       return false;
@@ -16,8 +25,19 @@ export const ContextAppProvider = ({ children }) => {
       return false;
     }
   };
+
+  const protectedRoutes = () => {
+    const token = JSON.parse(localStorage.getItem("newToken"));
+    if (token !== null) {
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <ContextApp.Provider value={{ isLogged }}>{children}</ContextApp.Provider>
+    <ContextApp.Provider value={{ isLogged, protectedRoutes }}>
+      {children}
+    </ContextApp.Provider>
   );
 };
 
