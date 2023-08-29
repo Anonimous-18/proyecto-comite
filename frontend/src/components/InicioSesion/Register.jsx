@@ -50,7 +50,6 @@ export const Register = () => {
                 </div>
                 <div>
                   <label
-                    
                     className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">
                     Correo
                   </label>
@@ -81,6 +80,7 @@ export const Register = () => {
                   <label
                     className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">
                     Confirmar contraseña
+
                   </label>
                   <input
                     type="confirm-password"
@@ -102,9 +102,9 @@ export const Register = () => {
                   </div>
                   <div className="ml-3 text-sm">
                     <label
-                
                       className="font-light text-gray-100 dark:text-gray-300">
                       Acepta los{" "}
+
                       <a
                         className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                         href="#">

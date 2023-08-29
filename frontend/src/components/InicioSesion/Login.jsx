@@ -1,6 +1,31 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Login = () => {
+  const [data, setData] = useState({
+    email: "",
+    contrasenia: "",
+  });
+
+  const navigate = useNavigate();
+  const { isLogged } = useContextApp();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await isLogged(data);
+    if (response) navigate(`/home`);
+    console.log("RESPONSE: ", response);
+  };
+
+  // const { email, contrasenia } = data;
+
+  const onChange = (e) =>
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -17,14 +42,17 @@ export const Login = () => {
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white italic underline uppercase">
                 Inicio de sesion
               </h1>
-              <form className="space-y-4 md:space-y-6">
+              <form
+                onSubmit={(e) => handleSubmit(e)}
+                className="space-y-4 md:space-y-6"
+              >
                 <div>
                   <label
                     
                     className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">
                     Correo:
                   </label>
-                  <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required=""/>
+                  <input type="email" name="email" onChange={(e) => onChange(e)} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required=""/>
                 </div>
                 <div>
                   <label
@@ -32,12 +60,18 @@ export const Login = () => {
                     className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">
                     Contraseña:
                   </label>
-                  <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                  <input type="password" name="contrasenia" onChange={(e) => onChange(e)} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
-                      <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required=""/>
+                      <input
+                        id="remember"
+                        aria-describedby="remember"
+                        type="checkbox"
+                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                        required=""
+                      />
                     </div>
                     <div className="ml-3 text-sm">
                       <label
