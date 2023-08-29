@@ -1,4 +1,8 @@
 const pool = require("../database/db.js");
+const { v4 } = require("uuid");
+const jwt = require("jsonwebtoken");
+
+const secretKey = v4();
 
 const login = async (req, res) => {
   try {
@@ -14,7 +18,20 @@ const login = async (req, res) => {
         .status(404)
         .json({ message: `No se encontro al usuario con esos datos` });
 
-    res.json(result[0])
+    const user = result[0];
+
+    /**-----------------------------------------------------
+     * |  Creamos el Token de sesión con el tiempo de expiración
+     * |  y mandamos el usuario logueado.
+     -----------------------------------------------------*/
+    const token = jwt.sign({ user }, secretKey, {
+      expiresIn: "1h"
+    });
+
+    /**-----------------------------------------------------
+     * |  El token esta codificado
+     -----------------------------------------------------*/
+    res.json({ token });
   } catch (error) {
     res.status(500).json({
       message: `Error al intentar logearse detalles: ${error.message}`,
@@ -24,4 +41,5 @@ const login = async (req, res) => {
 
 module.exports = {
   login,
+  secretKey,
 };

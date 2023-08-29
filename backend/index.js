@@ -1,12 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 
-const { v4 } = require("uuid");
-
 const { PORT } = require("./config.js");
-
-// Generamos una clave secreta de sesión
-const secretKey = v4();
 
 // Rutas
 const inicio_sesion = require("./routes/inicio_sesion.routes.js");
