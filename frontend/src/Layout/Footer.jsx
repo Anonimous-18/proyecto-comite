@@ -90,13 +90,13 @@ const navigation = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-blue-800 from-10% via-sky-400 via-30% to-blue-700 to-90%">
+    <footer className="bg-gradient-to-r from-blue-900 from-10% via-blue-700 via-30% to-blue-900 to-90%">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-6xl py-12 px-4 sm:px-6 lg:py-11 lg:px-6">
+      <div className="mx-auto max-w-6xl py-12 px-4 sm:px-9 lg:py-11 lg:px-6">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8 xl:col-span-1">
+          <div className="space-y-4 xl:col-span-1">
             <img
               className="h-10"
               src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
@@ -105,9 +105,9 @@ export const Footer = () => {
             
           </div>
           <div className=" mt-16 grid  gap-10 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
+            <div className="md:grid md:grid-cols-1 md:gap-8 text-gray-100">
               <div>
-                <h3 className="text-base font-medium text-gray-900">
+                <h3 className="text-base font-medium text-gray-100">
                 Servicion Nacional de Aprendizaje SENA
                 </h3>
                 <p>Centro de Automatización Industrial-Regional Caldas</p>
@@ -116,23 +116,6 @@ export const Footer = () => {
                 <p>El SENA brinda a la ciudadanía, atención presencial en las 33 Regionales y 117 Centros de Formación</p>
                 <p>Atención al ciudadano: Bogotá (601) 3430111 - Línea gratuita y resto del país 018000 910270</p>
                 <p>Atención al empresario: Bogotá (601) 3430101 - Línea gratuita y resto del país 018000 910682</p> 
-              </div>
-              
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-base font-medium text-gray-900">Company</h3>
-                <ul role="list" className="mt-4 space-y-4">
-                  {navigation.company.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-base text-gray-500 hover:text-gray-900">
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
               </div>
               
             </div>

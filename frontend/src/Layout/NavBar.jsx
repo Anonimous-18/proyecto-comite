@@ -72,10 +72,10 @@ export const NavBar = () => {
   return (
     // Con id queremos identificar cada vez que hacemos scroll
 
-    <nav id="navbar" className="bg-gradient-to-r from-blue-800 from-10% via-sky-400 via-30% to-blue-700 to-90% h-20">
+    <nav id="navbar" className="bg-gradient-to-r from-blue-900 from-10% via-blue-700 via-30% to-blue-900 to-90% h-20">
       <div className="px-4 sm:px-6">
         {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
-        <div className="-ml-4 -mt-2 hidden lg:flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
+        <div className="-ml-4 -mt-2 hidden lg:flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
           <div className="ml-4 mt-2">
             <Link to="/">
               <img
@@ -120,7 +120,7 @@ export const NavBar = () => {
             <button
               to="/register"
                     type="submit"
-                    className=" text-lg inline-flex font-medium leading-6 place-items-center flex flex-col items-center justify-center p-0.5 overflow-hidden  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
+                    className=" text-lg inline-flex font-medium leading-6 place-items-center flex-col items-center justify-center p-0.5 overflow-hidden  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
                     <span className="relative px-8 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     Cerrar Sesion
                       <PulseLoader
@@ -135,7 +135,7 @@ export const NavBar = () => {
         </div>
 
         {/* Este es el navLink cuando el de arriba se esconde */}
-        <div className="-ml-4 -mt-2 lg:hidden flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
+        <div className="-ml-4 -mt-2 lg:hidden  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
           <div className="ml-4 mt-2">
             <Link to="/">
               {/* src={logo} */}

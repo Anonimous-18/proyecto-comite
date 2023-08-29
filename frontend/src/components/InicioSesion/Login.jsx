@@ -9,19 +9,19 @@ export const Login = () => {
             href="#"
             className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
             <img className="w-11 h-11 mr-2" src="https://placekitten.com/100/100" alt="logo"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-300 from-blue-800">SE-JustApp</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-300 from-blue-900">SE-JustApp</span>
             
           </a>
-          <div className="w-full bg-gradient-to-r from-cyan-200 to-blue-700 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full bg-gradient-to-r from-blue-600 to-blue-900 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white italic underline">
+              <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white italic underline uppercase">
                 Inicio de sesion
               </h1>
               <form className="space-y-4 md:space-y-6">
                 <div>
                   <label
                     
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">
                     Correo:
                   </label>
                   <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required=""/>
@@ -29,7 +29,7 @@ export const Login = () => {
                 <div>
                   <label
                     
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    className="block mb-2 text-sm font-medium text-gray-100 dark:text-white">
                     Contraseña:
                   </label>
                   <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
@@ -42,14 +42,14 @@ export const Login = () => {
                     <div className="ml-3 text-sm">
                       <label
                         
-                        className="text-gray-500 dark:text-gray-300">
+                        className="text-gray-100 dark:text-gray-300">
                         Recuerdame
                       </label>
                     </div>
                   </div>
                   <a
                     href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 text-gray-100">
                     ¿Olvidaste tu contraseña?
                   </a>
                 </div>
@@ -60,7 +60,7 @@ export const Login = () => {
                   Inicio de Sesion
                   </span>
                 </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className="text-sm font-light text-gray-100 dark:text-gray-400">
                   Tienes cuenta?{" "}
                   <Link
                     to={`/register`}
