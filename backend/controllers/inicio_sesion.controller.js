@@ -14,8 +14,7 @@ const login = async (req, res) => {
         .status(404)
         .json({ message: `No se encontro al usuario con esos datos` });
 
-    req.session.user = result[0];
-    res.json(req.session.user)
+    res.json(result[0])
   } catch (error) {
     res.status(500).json({
       message: `Error al intentar logearse detalles: ${error.message}`,
