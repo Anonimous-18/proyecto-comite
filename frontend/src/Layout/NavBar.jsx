@@ -117,18 +117,20 @@ export const NavBar = () => {
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3">
               Contacto
             </NavLink>
-            <Link
-              to="/"
-              // Transicion transition duration-300 ease-in-out ...
-              className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-black px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2">
-              Hire us
-              <PulseLoader
-                className="ml-3"
-                loading={loading}
-                size={5}
-                color="#ffffff"
-              />
-            </Link>
+            <button
+              to="/register"
+                    type="submit"
+                    className=" text-lg inline-flex font-medium leading-6 place-items-center flex flex-col items-center justify-center p-0.5 overflow-hidden  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
+                    <span className="relative px-8 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    Cerrar Sesion
+                      <PulseLoader
+                    className="ml-3"
+                    loading={loading}
+                    size={5}
+                    color="#000000"
+                    />
+                    </span>
+                  </button>
           </div>
         </div>
 
