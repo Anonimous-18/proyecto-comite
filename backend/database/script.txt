@@ -68,3 +68,37 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `contrasenia`, `creado`, `rol_id`) VALUES
 (1, 'admin', 'admin@gmail.com', 'admin', '2023-08-28 20:59:55', 1);
+
+--
+-- Reglamento
+--
+
+CREATE TABLE capitulos 
+(
+	cap_id INT PRIMARY KEY NOT NULL ,
+	cap_titulo VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE articulos 
+(
+    art_id INT PRIMARY KEY NOT NULL ,
+    art_titulo VARCHAR (100) NOT NULL,
+    art_descripcion VARCHAR (250) NOT NULL,
+    cap_id INT NOT NULL,
+    FOREIGN KEY (cap_id) REFERENCES capitulos (cap_id)
+);
+
+CREATE TABLE paragrafos 
+(
+    par_id INT PRIMARY KEY NOT NULL ,
+    par_descripcion VARCHAR (250) NOT NULL,
+    art_id INT NOT NULL,
+    FOREIGN KEY (art_id) REFERENCES articulos (art_id)
+);
+
+CREATE TABLE  normas_infligidas
+(
+    nor_id INT PRIMARY KEY NOT NULL ,
+    art_id INT NOT NULL,
+    FOREIGN KEY (art_id) REFERENCES articulos (art_id)
+);
