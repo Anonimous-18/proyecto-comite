@@ -25,13 +25,13 @@ const login = async (req, res) => {
      * |  y mandamos el usuario logueado.
      -----------------------------------------------------*/
     const token = jwt.sign({ user }, secretKey, {
-      expiresIn: "1h"
+      expiresIn: "1h",
     });
 
     /**-----------------------------------------------------
      * |  El token esta codificado
      -----------------------------------------------------*/
-    res.json({ token });
+    res.json({ user, token });
   } catch (error) {
     res.status(500).json({
       message: `Error al intentar logearse detalles: ${error.message}`,
