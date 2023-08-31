@@ -47,12 +47,6 @@ const login = async (req, res) => {
  * |  Remitente del email
  --------------------------------*/
 const transport = nodemailer.createTransport({
-  // host: "sandbox.smtp.mailtrap.io",
-  // port: 587,
-  // auth: {
-  //   user: "98c0ccbf2a2e00",
-  //   pass: "1fec752047758a",
-  // },
   host: "smtp.gmail.com",
   port: 587,
   auth: {
@@ -75,7 +69,7 @@ const recoveryEmail = (req, res) => {
     <strong>${secretKey}</strong>`, // Genera una nueva contraseña
   };
 
-  transport.sendMail(mailOptions, (error, info) => {
+  transport.sendMail(mailOptions, (error) => {
     if (error) {
       res
         .status(500)
