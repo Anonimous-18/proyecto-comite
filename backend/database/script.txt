@@ -271,3 +271,111 @@ definitiva de la falta en uno de los  tres grados señalados anteriormente. ', 6
 --
 -- articulos cap 7
 --
+
+INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(30, 'Medidas formativas.','Las medidas formativas son acciones 
+para corregir o prevenir faltas leves o mejorar el rendimiento o 
+la conducta del Aprendiz Sena.', 7),
+(31, 'Tipos de medidas formativas.','Se aplican distintos tipos de 
+medidas según el caso:  académicas y/o disciplinarias. 
+', 7),
+(32, 'Medidas formativas Académicas','Son medidas adoptadas por el 
+SENA de carácter  pedagógico, para garantizar el logro de los resultados 
+de aprendizaje. Se adoptan con el fin de prevenir  
+el abandono del proceso formativo y para lograr avances académicos 
+acordes con el desarrollo del  programa de formación. 
+', 7),
+(33, 'Medidas formativas disciplinarias','Son medidas adoptadas por el 
+SENA de carácter  comportamental, actitudinal o social, para 
+propiciar en el Aprendiz cambios en su conducta. 
+', 7),
+(34, 'Medidas Sancionatorias.','Las sanciones son medidas por 
+faltas graves del Aprendiz Sena; se aplican según la gravedad 
+y se registran en los sistemas de gestión de la Institución.', 7),
+(35, 'Instancias de evaluación y aplicación de las medidasformativas y sanciones',
+'En el debido proceso, hay dos instancias que proponen las medidas a aplicar 
+al Aprendiz Sena; la subdirección del Centro es la que decide. Las instancias 
+son: el equipo ejecutor y el comité de evaluación y seguimiento.', 7),
+(36, 'Equipo ejecutor del programa de formación',
+'El comité es el encargado de analizar y plantear rutas de manejo para 
+casos académicos de los aprendices y remitir al comité de seguimiento y 
+evaluación. Está conformado por el Coordinador académico, los Instructores 
+y el Aprendiz Vocero.', 7),
+(37, ' Comité de evaluación y seguimiento del Centro de formación.',
+'El Comité de Evaluación y Seguimiento es la segunda instancia de 
+las medidas formativas académicas y la primera de las disciplinarias 
+y sanciones. Sus recomendaciones se entregan a la Subdirección 
+del Centro para su decisión final.', 7),
+(38, 'Criterios para aplicación de sanciones',
+'publicidad, contradicción, presunción de inocencia, valoración integral de las pruebas 
+y descargos, motivación de la decisión, proporcionalidad, impugnación y oportunidad. Estos principios 
+buscan garantizar el debido proceso y el respeto por los derechos del Aprendiz.', 7),
+(39, 'Procedimiento para la aplicación de sanciones. ',
+'El procedimiento se inicia con el informe o queja de cualquier persona que conozca 
+la falta disciplinaria o académica. Se debe abrir un expediente con los documentos y pruebas del caso.
+ El informe o queja se puede radicar por los canales institucionales.', 7),
+ (40, 'Citación al Aprendiz','La Coordinación Académica citará al (los) Aprendiz 
+ (ces) al Comité de Evaluación y Seguimiento dentro de los tres días hábiles 
+ de recibir el informe o queja. La comunicación se enviará al domicilio 
+ o correo electrónico del Aprendiz o su representante legal.
+', 7),
+(41, 'Sesión del Comité de Evaluación y Seguimiento','El Comité de Evaluación y 
+Seguimiento se reúne cuando sea necesario con quórum de la mitad más uno. 
+El (los) Aprendiz (ces) puede(n) presentar descargos, pruebas y testimonios 
+o no asistir por decisión propia. Si no asiste(n) sin justificación o fuerza 
+mayor, el Comité recomendará la sanción a la Subdirección de Centro.', 7),
+(42, 'Acto administrativo sancionatorio','La Subdirección de Centro puede solicitar 
+al(los) Aprendiz (ces) que amplíe(n) sus descargos y pruebas. Luego, decidirá 
+y expedirá el acto administrativo motivado en cinco días hábiles o se apartará 
+de la recomendación del Comité con razones.', 7),
+(43, 'Notificacion al aprendiz','El acto administrativo se notificará al 
+Aprendiz personalmente o por aviso al domicilio registrado. 
+El aviso contendrá la información del acto, los recursos, las autoridades 
+y los plazos. La notificación se surtirá al día siguiente de la entrega 
+del aviso.', 7),
+(44, 'Delegación','Se delega en los Subdirectores de Centro 
+conocer del recurso de reposición  interpuesto por los aprendices
+ contra el acto administrativo que resuelve una situación académica o  
+ disciplinaria. ', 7),
+ (45, 'Recurso de reposición','El Aprendiz puede presentar el Recurso 
+ de Reposición contra el acto administrativo de la Subdirección del 
+ Centro. El recurso se rige por la Ley 1437 de 2011 y debe ser resuelto 
+ sin agravar la sanción.', 7),
+ (46, 'Firmeza del acto administrativo','El acto administrativo se registra en 
+ el Sistema de Gestión Académica y se informa a las instancias pertinentes. 
+ El Aprendiz pierde los estímulos e incentivos, entrega el carné y se pone a 
+ paz y salvo.', 7);
+
+ --
+ -- articulos cap 8
+ --
+
+ INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(47, 'Evaluación del Aprendizaje.','La Evaluación del Aprendizaje en el SENA 
+se basa en evidencias de aprendizaje comprobables y en la aplicación práctica 
+del conocimiento.', 8),
+(48, 'Las evidencias de aprendizaje.','Las evidencias son los referentes que 
+permiten identificar los logros de los aprendices en relación con los resultados 
+de aprendizaje y el saber, el saber hacer y el ser. Las evidencias son de 
+conocimiento, de desempeño y de producto y se complementan entre sí.', 8),
+(49, 'Transparencia de la evaluación de aprendizaje','Hace referencia a la claridad de 
+los  parámetros de evaluación y los criterios para valorar las evidencias, que 
+los aprendices, deben conocer  y tener claro previamente al desarrollo de las mismas. 
+', 8),
+(50, 'Acompañamiento en el proceso evaluativo.','El instructor o responsable evalúa 
+el proceso de formación con el aprendiz, basándose en los criterios de evaluación y 
+la ruta de aprendizaje, y retroalimenta y ajusta las estrategias según lo concertado.
+', 8),
+(51, ' Acompañamiento en el proceso evaluativo.','En el SENA se utilizan dos tipos de 
+juicios de evaluación para  expresar el logro del aprendizaje o la carencia del logro', 8),
+(52, 'Seguimiento de los resultados.','El instructor o co-formador hace 
+hasta dos planes de mejoramiento para el aprendiz que no logre el resultado 
+de aprendizaje y los registra en el portafolio de evidencias.', 8),
+(53, 'Inconformidad con la evaluación','El aprendiz que esté en desacuerdo con la 
+evaluación  aplicada por el Instructor, podrá solicitar la revisión de 
+los resultados', 8);
+
+--
+-- Articulos cap 9
+--
+
