@@ -82,7 +82,7 @@ CREATE TABLE capitulos
 CREATE TABLE articulos 
 (
     art_id INT PRIMARY KEY NOT NULL ,
-    art_titulo VARCHAR (100) NOT NULL,
+    art_titulo VARCHAR (250) NOT NULL,
     art_descripcion VARCHAR (500) NOT NULL,
     cap_id INT NOT NULL,
     FOREIGN KEY (cap_id) REFERENCES capitulos (cap_id)
@@ -379,3 +379,83 @@ los resultados', 8);
 -- Articulos cap 9
 --
 
+INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(54, 'Representatividad de los aprendices','Es una estrategia institucional 
+que permite a los aprendices de formación titulada elegir representantes 
+de ficha o de Centro por modalidad y jornada, para participar en la 
+comunidad SENA.', 9),
+(55, 'Representantes voceros de ficha.','Son aprendices de formación titulada 
+que se destacan por su desempeño y actitudes y que facilitan la interacción 
+con la comunidad educativa. Cada grupo tiene un vocero principal y uno suplente, 
+elegidos por el grupo en el primer mes de formación.', 9),
+(56, 'Requisitos y condiciones para ser Vocero de ficha','Los requisitos para ser Vocero de Ficha son:Ser postulado o aceptar ser postulado por los aprendices del mismo grupo.
+Estar activo en su programa de formación.', 9),
+(57, 'Responsabilidades del Vocero de ficha.','Las funciones de los Voceros de Ficha
+Promover la participación de los aprendices en el proyecto formativo y en el Plan de Bienestar al aprendiz.', 9),
+(58, 'Elección de los voceros de ficha','La elección de vocero de ficha se hace por 
+postulación libre y voluntaria de los aprendices en el primer mes de formación. Los 
+aprendices eligen democráticamente al vocero y suplente que los representará. El 
+proceso se registra en un acta firmada por los aprendices y el instructor. El 
+instructor entrega el acta a Bienestar al aprendiz. El vocero puede ser reelegido 
+si cumple con su rol y el grupo lo aprueba.', 9),
+(59, 'Revocatoria de la designación de los voceros','Los voceros de ficha pueden 
+ser relevados por sus compañeros si incumplen sus responsabilidades o 
+faltas académicas o disciplinarias, o si se postulan como candidatos a 
+representantes de centro. El proceso se documenta en un acta firmada por 
+los aprendices y el instructor.', 9),
+(60, 'Suplencia de voceros','En el caso que se requiera suplir o remover al vocero 
+de ficha, el  vocero suplente asumirá las responsabilidades de vocero de ficha 
+(grupo). La suplencia durará el  tiempo que le faltaba al vocero principal 
+revocado para concluir el periodo.', 9),
+(61, 'Representantes de Centro','Son aprendices de formación titulada que se 
+destacan por su desempeño, liderazgo y trabajo en equipo y que son elegidos 
+democráticamente para representar los intereses de los aprendices del Centro 
+de Formación ante las instancias del SENA.', 9),
+(62, 'Número de Representantes por Centro de Formación.','Cada centro de formación tendrá  un (1) 
+representante principal y un (1) representante suplente por modalidad y jornada 
+de formación.  Las instituciones en convenio de ampliación de cobertura tendrán 
+también un (1) representante principal y un (1) representante suplente por
+ modalidad y jornada de formación, en las que desarrollen  los programas SENA. ', 9),
+(63, 'Representantes de Centro','El periodo de representación de los aprendices electos 
+será  de un (1) año de duración, contado a partir de suscrita la 
+resolución de designación del o los  representantes. 
+', 9),
+(64, 'Requisitos y condiciones para postularse como Representante de los 
+Aprendices del  Centro',
+'Para ser representante de aprendices SENA se requiere: Estar matriculado en un 
+programa de formación titulada de más de 15 meses en el Centro de 
+Formación, modalidad y jornada que se postula, Estar cursando o haber cursado el 
+primer trimestre y tener mínimo 13 meses pendientes por cursar.
+Diligenciar el formulario de inscripción.', 9),
+(65, ' Verificación de requisitos y condiciones para postularse como Representante de los  Aprendices del Centro',
+'Los Centros de Formación verificarán el cumplimiento de los requisitos de 
+los aprendices inscritos y harán acta con los conceptos de verificación. 
+Los resultados se informarán a los aprendices y a la 
+comunidad educativa por medios institucionales.', 9),
+(66, 'Responsabilidades del Representante de Aprendices en el Centro',
+'El representante de aprendices SENA debe presentar una propuesta 
+programática que se ajuste a los principios, valores y procederes éticos 
+institucionales, al Plan Nacional Integral de Bienestar al Aprendiz y a este 
+reglamento. La propuesta debe tener un plan de acción.', 9),
+(67, 'Dependencia responsable del proceso de Elección de Representantes de aprendices',
+'Las Subdirecciones de Centro o la entidad conviniente se encargan de la elección 
+de representantes de aprendices. Las evidencias del proceso son responsabilidad 
+de las Subdirecciones y deben seguir las normas de gestión documental del SENA.', 9),
+(68, 'Procedimiento para elegir Representante de los Aprendices por Centro.',
+'La elección de representantes de aprendices se hace entre marzo y abril de 
+cada año. Cada centro de formación define el cronograma y la forma de cada 
+actividad electoral.', 9),
+(69, 'Revocatoria de la designación del Representante de Aprendiz SENA.',
+'Los  representantes principales electos del Centro de Formación, pueden 
+ser removidos de su  representación perdiendo su investidura y 
+representatividad ante la Comunidad Educativa', 9),
+(70, 'Suplencia de Representante de aprendices',
+'Cuando se haga efectiva la revocatoria a la  elección de los 
+representantes, asumirá el cargo el Suplente respectivo.  
+', 9),
+(71, 'La Dirección de Formación Profesional desarrollará un plan para divulgar el presente  reglamento en la comunidad educativa. ',
+'.  
+', 9),
+(72, 'El presente Acuerdo rige a partir de la fecha de su publicación en el Diario Oficial y deroga  ',
+'.  
+', 9);
