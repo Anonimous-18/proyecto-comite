@@ -1,9 +1,13 @@
+const jwt = require("jsonwebtoken");
 const pool = require("../database/db.js");
 const { v4 } = require("uuid");
-const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const secretKey = v4();
 
+/**------------------------------
+ * |  Controlador del logueo
+ ------------------------------*/
 const login = async (req, res) => {
   try {
     const { email, contrasenia } = req.body;
@@ -39,7 +43,51 @@ const login = async (req, res) => {
   }
 };
 
+/**--------------------------------
+ * |  Remitente del email
+ --------------------------------*/
+const transport = nodemailer.createTransport({
+  // host: "sandbox.smtp.mailtrap.io",
+  // port: 587,
+  // auth: {
+  //   user: "98c0ccbf2a2e00",
+  //   pass: "1fec752047758a",
+  // },
+  host: "smtp.gmail.com",
+  port: 587,
+  auth: {
+    user: "richardospina18@gmail.com",
+    pass: "bklzkodrqernvxae",
+  },
+});
+
+/**----------------------------------
+ * |  Controlador del envio del email
+ ----------------------------------*/
+const recoveryEmail = (req, res) => {
+  const email = req.body.email;
+
+  const mailOptions = {
+    from: "98c0ccbf2a2e00",
+    to: email,
+    subject: "Recuperación de Contraseña",
+    html: `<h1 style="color: red;">Recuperacion de Contrase</h1>
+    <strong>${secretKey}</strong>`, // Genera una nueva contraseña
+  };
+
+  transport.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res
+        .status(500)
+        .send(`Error al enviar el correo de recuperación a ${email}.`);
+    } else {
+      res.status(200).send("Correo de recuperación enviado.");
+    }
+  });
+};
+
 module.exports = {
   login,
+  recoveryEmail,
   secretKey,
 };

@@ -1,14 +1,25 @@
 const { Router } = require("express");
-const { login } = require("../controllers/inicio_sesion.controller.js");
 const { verifyToken } = require("../middlewares/session.meddleware.js");
+const {
+  login,
+  recoveryEmail,
+} = require("../controllers/inicio_sesion.controller.js");
 
 const router = Router();
 
+/**----------------------------------
+ * |  Ruta de logueo
+ ----------------------------------*/
 router.post("/api/login", login);
 
 /**----------------------------------
- * |  Uso del Middleware VerifyToken
+ * |  Ruta de logueo
  ----------------------------------*/
+router.post("/api/reset-password", recoveryEmail);
+
+/**---------------------------------------------
+ * |  Ejemplo del uso del Middleware VerifyToken
+ ---------------------------------------------*/
 router.get("/api/test", verifyToken, (req, res) => {
   const { id, nombre, email, creado, rol_id } = req.userData.user;
   if (req.userData.user) {
