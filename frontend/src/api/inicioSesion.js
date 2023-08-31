@@ -11,16 +11,15 @@ await axios.post(`${API}/api/login`, data);
 
 
 // Obtén el token de autenticación almacenado en tu aplicación
-// const token = "tu_token_aqui"; // Obtén el token de donde lo hayas guardado (estado, contexto, local storage, etc.)
+const token = JSON.parse(localStorage.getItem("newToken")); // Obtén el token de donde lo hayas guardado (estado, contexto, local storage, etc.)
 
 // Configura el encabezado de autorización con el token
-// const axiosInstance = axios.create({
-//   baseURL: API,
-//   headers: {
-//     "Authorization": `Bearer ${token}`
-//   }
-// });
+const axiosInstance = axios.create({
+  baseURL: API,
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+});
 
-// Inicio de sesión
-// export const funcion = async (data) =>
-//   await axiosInstance.post("/api/algo", data);
+export const instructor = async (data) =>
+  await axiosInstance.post("/api/verificar-rol", data);
