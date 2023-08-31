@@ -42,4 +42,31 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken };
+const filtrarRol = (req, res, next) => {
+  const key = secretKey;
+  const token = req.headers.authorization?.split(" ")[1];
+  const {rol} = req.body
+
+  if (!token) {
+    return res.status(401).json({ message: "Token no proporcionado" });
+  }
+
+  try {
+    // Verificar el token y obtener los datos decodificados
+    const decodedToken = jwt.verify(token, key);
+    req.userData = decodedToken;
+  
+    const getRol = async () => {
+      const [result] = await pool.query("SELECT * FROM roles WHERE roles.id = ?", [decodedToken.user.rol_id] );
+      if (result[0].nombre === rol) {
+        next()
+      }
+      return res.status(403).json({message:"Usuario no autorizado"})
+    };
+    getRol();
+  } catch (error) {
+    return res.status(401).json({ message: "Token no válido" });
+  }
+};
+
+module.exports = { verifyToken, filtrarRol };

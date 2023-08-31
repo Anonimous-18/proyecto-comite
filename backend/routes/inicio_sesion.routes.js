@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { verifyToken } = require("../middlewares/session.meddleware.js");
+const { verifyToken, filtrarRol } = require("../middlewares/session.meddleware.js");
 const {
   login,
   recoveryEmail,
@@ -27,5 +27,7 @@ router.get("/api/test", verifyToken, (req, res) => {
   }
   return res.status(500).json(user);
 });
+
+router.post("/api/verificar-rol", filtrarRol);
 
 module.exports = router;

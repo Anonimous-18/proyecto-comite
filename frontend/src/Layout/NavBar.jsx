@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 
@@ -98,19 +98,19 @@ export const NavBar = () => {
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
             >
-              Casos
+              comites
             </NavLink>
             <NavLink
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
             >
-              Servicios
+              reglamento
             </NavLink>
             <NavLink
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
             >
-              Nosotros
+             roles
             </NavLink>
             <NavLink
               to="/"

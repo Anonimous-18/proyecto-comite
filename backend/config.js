@@ -9,6 +9,8 @@ const DB_USER = process.env.DB_USER;
 const DB_DATABASE = process.env.DB_DATABASE;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_PORT = process.env.DB_PORT;
+const EMAIL = process.env.EMAIL;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
 module.exports = {
   PORT,
@@ -17,4 +19,6 @@ module.exports = {
   DB_DATABASE,
   DB_PASSWORD,
   DB_PORT,
+  EMAIL,
+  EMAIL_PASSWORD
 };

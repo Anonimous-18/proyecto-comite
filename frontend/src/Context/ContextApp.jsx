@@ -34,6 +34,7 @@ export const ContextAppProvider = ({ children }) => {
     return false;
   };
 
+
   return (
     <ContextApp.Provider value={{ isLogged, protectedRoutes }}>
       {children}

@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const pool = require("../database/db.js");
 const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
+const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
 
 const secretKey = v4();
 
@@ -35,7 +36,7 @@ const login = async (req, res) => {
     /**-----------------------------------------------------
      * |  El token esta codificado
      -----------------------------------------------------*/
-    res.json({ user, token });
+    res.json({ token });
   } catch (error) {
     res.status(500).json({
       message: `Error al intentar logearse detalles: ${error.message}`,
@@ -50,8 +51,8 @@ const transport = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   auth: {
-    user: "richardospina18@gmail.com",
-    pass: "bklzkodrqernvxae",
+    user: `${EMAIL}`,
+    pass: `${EMAIL_PASSWORD}`,
   },
 });
 
