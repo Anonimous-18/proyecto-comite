@@ -120,7 +120,7 @@ INSERT INTO capitulos (cap_id, cap_titulo) VALUES
 (9, 'REPRESENTATIVIDAD DE LOS APRENDICESS');
 
 --
---Articulos cap 1
+-- Articulos cap 1
 --
 
 INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
@@ -162,7 +162,7 @@ de la Institución', 2);
 
 
 --
---Articulos cap 3
+-- Articulos cap 3
 --
 
 INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
@@ -174,3 +174,100 @@ según los criterios y normas vigentes.', 3),
 SENA.', 3);
 
 
+--
+-- Articulos cap 4
+--
+
+INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(10, 'Ingreso','La edad mínima de ingreso a la formación profesional 
+integral del SENA es de 14  años. ', 4),
+(11, ' Registro en el sistema de gestión académica','Es el procedimiento 
+mediante el cual el  usuario ingresa la relación de sus datos personales 
+y de contacto en el sistema de gestión académico  bajo su responsabilidad 
+y aceptando las políticas de seguridad y confidencialidad. ', 4),
+(12, 'Matricula',' Es la formalización del ingreso del aspirante 
+seleccionado mediante el registro  de la matrícula en el sistema de 
+gestión académico administrativo, previo el cumplimiento de los  
+requisitos de ingreso establecidos en el respectivo diseño curricular 
+y el diligenciamiento y firma del  compromiso del aprendiz. ', 4),
+(13, 'Tramite de las novedades académicas y administrativa','Las 
+novedades en trámites  académicos y administrativos que requiere 
+hacer el aprendiz durante su proceso de formación, 
+ante la  entidad. ', 4),
+(14, 'Gestión de Novedades','El Aprendiz puede solicitar autorización 
+para las novedades. ', 4),
+(15, 'Certificación','La certificación es el procedimiento mediante el 
+cual, la entidad hace el  reconocimiento formal de los resultados y 
+competencias aprobadas de aprendizaje obtenidos por el  aprendiz SENA 
+durante su proceso formativo. ', 4),
+(16, 'Expedición de documentos académicos','El Centro de Formación 
+emite documentos sin costo para el Aprendiz. Títulos, Actas de grado, 
+constancias de notas y Certificados desde 2010 se obtienen gratis 
+en formato digital desde la web. Las constancias del SENA se 
+descargan del Sistema de Gestión Académica con usuario y contraseña 
+del Aprendiz.', 4),
+(17, 'Verificación de documentos académicos SENA para trámites de apostilla',
+'El proceso verifica documentos académicos presentados por el aprendiz en 
+el SENA. La autenticidad se garantiza con sello y firma reconocida por el 
+Ministerio de Relaciones Exteriores. Luego, se procede a legalizar o apostillar 
+en la Cancillería. Esto es necesario para validar los documentos en el extranjero. 
+La verificación no tiene costo.', 4),
+(18, 'Solicitudes','Los Centros de Formación serán responsables de gestionar
+ los trámites académicos y administrativos para atender las diferentes solicitudes 
+de los aprendices durante su  proceso formativo', 4);
+
+--
+-- articulos cap 5
+--
+
+INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(19, 'Participación y Cumplimiento','El Aprendiz SENA es responsable de su 
+formación y debe involucrarse en actividades presenciales o virtuales. Debe 
+cumplir con criterios y evidencias de aprendizaje establecidos en la ruta 
+de aprendizaje, que incluye etapas lectivas y productivas en programas de 
+titulación.', 5),
+(20, 'Incumplimientos','se configuran cuando el aprendiz no presenta evidencias 
+de aprendizaje  en las fechas establecidas, no asiste o deja de participar 
+en actividades presenciales o virtuales,  pactadas en la ruta de aprendizaje. 
+Los incumplimientos se catalogan en dos: justificados y no  justificados. Además, 
+se constituyen en faltas académicas o disciplinarias según sea el caso.  
+', 5),
+(21, 'Incumplimiento justificado','Se configura incumplimiento justificado por 
+alguna de las  siguientes causas con sus respectivos soportes', 5),
+(22, 'Incumplimiento injustificado','Se aplica en las siguientes situaciones: 
+1. El aprendiz no informa o justifica incumplimientos ante el instructor, 
+ya sea antes o en los tres (3) días hábiles siguientes, con pruebas justificativas. 
+2. Aunque el aprendiz informa a tiempo, las razones o pruebas no respaldan el 
+incumplimiento.', 5),
+(23, 'Deserción',' Es el abandono de la formación por parte del aprendiz', 5),
+(24, 'Procedimiento en caso de deserción','El aprendiz que no justifica sus faltas 
+o no presenta las evidencias de su formación puede ser cancelado por deserción por 
+el comité de evaluación y seguimiento del Centro.', 5);
+
+--
+-- articulos cap 6
+--
+
+INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(25, 'Faltas',' Se consideran faltas las acciones u omisiones que alteran 
+el normal desarrollo de la  formación, la convivencia en la comunidad educativa, 
+el desempeño académico de sus compañeros, y  que al presentarse originan la 
+necesidad de una medida formativa y/o sancionatoria. 
+', 6),
+(26, 'Faltas academicas',' Están relacionadas directamente con las actuaciones 
+u omisiones del  aprendiz con relación al cumplimiento de los deberes de índole 
+académico. Al presentarse la falta, se  aplican medidas formativas o sancionatorias.
+', 6),
+(27, 'Faltas disciplinarias',' stán relacionadas directamente con factores 
+comportamentales del  Aprendiz. Se configura la falta disciplinaria cuando 
+el Aprendiz incurre con su actuación u omisión en  una de las prohibiciones, 
+incumple un deber o se extralimita en el ejercicio de sus derechos de carácter 
+ comportamental.', 6),
+(28, 'Calificación de las faltas',' Las faltas académicas y disciplinarias deben 
+calificarse como: Leves, Graves y Gravísimas. ', 6),
+(29, 'Criterios para calificar la falta','  Para hacer la calificación 
+definitiva de la falta en uno de los  tres grados señalados anteriormente. ', 6);
+
+--
+-- articulos cap 7
+--
