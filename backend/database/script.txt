@@ -90,15 +90,15 @@ CREATE TABLE articulos
 
 CREATE TABLE paragrafos 
 (
-    par_id INT PRIMARY KEY NOT NULL ,
-    par_descripcion VARCHAR (250) NOT NULL,
+    par_id INT PRIMARY KEY NOT NULL  AUTO_INCREMENT,
+    par_descripcion VARCHAR (500) NOT NULL,
     art_id INT NOT NULL,
     FOREIGN KEY (art_id) REFERENCES articulos (art_id)
 );
 
 CREATE TABLE  normas_infligidas
 (
-    nor_id INT PRIMARY KEY NOT NULL ,
+    nor_id INT PRIMARY KEY NOT NULL  AUTO_INCREMENT,
     art_id INT NOT NULL,
     FOREIGN KEY (art_id) REFERENCES articulos (art_id)
 );
