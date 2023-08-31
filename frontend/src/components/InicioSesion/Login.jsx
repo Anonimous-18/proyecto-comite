@@ -60,14 +60,14 @@ export const Login = () => {
             >
               <img
                 className="w-11 h-11 mr-2"
-                src="https://placekitten.com/100/100"
+                src=""
                 alt="logo"
               />
               <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-300 from-blue-800">
                 SE-JustApp
               </span>
             </a>
-            <div className="w-full bg-gradient-to-r from-cyan-200 to-blue-700 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="w-full bg-gradient-to-r from-blue-500 to-blue-900 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white italic underline">
                   Inicio de sesion
@@ -78,7 +78,7 @@ export const Login = () => {
                 >
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Correo:
+                      Tipo de documento:
                     </label>
                     <input
                       type="email"
@@ -88,6 +88,7 @@ export const Login = () => {
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required=""
                     />
+            
                   </div>
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -121,7 +122,7 @@ export const Login = () => {
                     </div>
                     <a
                       href="#"
-                      className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                      className=" text-gray-100 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                     >
                       ¿Olvidaste tu contraseña?
                     </a>
@@ -134,7 +135,7 @@ export const Login = () => {
                       Inicio de Sesion
                     </span>
                   </button>
-                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  <p className="text-sm font-light text-gray-100 dark:text-gray-100">
                     Tienes cuenta?{" "}
                     <Link
                       to={`/register`}

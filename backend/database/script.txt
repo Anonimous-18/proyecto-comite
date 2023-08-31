@@ -102,3 +102,24 @@ CREATE TABLE  normas_infligidas
     art_id INT NOT NULL,
     FOREIGN KEY (art_id) REFERENCES articulos (art_id)
 );
+
+--
+-- iNGRESO DE VALORES
+--
+
+INSERT INTO capitulos (cap_id, cap_titulo) VALUES (1, 'PRINCIPIOS GENERALES');
+
+INSERT INTO capitulos (cap_id, cap_titulo) VALUES 
+(2, 'DERECHOS, ESTIMULOS DEL APRENDIZ SENA'),
+(3, 'DEBERES Y PROHIBICIONES DEL APRENDIZ SENA'),
+(4, 'TRAMITES ACADEMICOS Y ADMINISTRATIVOS'),
+(5, 'PROCESO DE FORMACION, INCUMPLIMIENTO Y DESERCION.'),
+(6, 'FALTAS ACADÉMICAS Y DISCIPLINARIAS'),
+(7, 'MEDIDAS FORMATIVAS Y SANCIONES'),
+(8, 'EVALUACIÓN'),
+(9, 'REPRESENTATIVIDAD DE LOS APRENDICESS');
+
+INSERT INTO articulos (art_id, art_titulo, art_descripcion, cap_id) VALUES 
+(1, 'Formación profesional integral.' , 'La formación profesional que imparte el SENA, constituye
+actuar crítica y creativamente en el mundo del trabajo y de la vida.', 1);
+
