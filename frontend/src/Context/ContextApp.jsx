@@ -1,4 +1,4 @@
-import { login } from "../api/inicioSesion";
+import { login, resetPass } from "../api/inicioSesion";
 import { createContext, useContext } from "react";
 
 export const ContextApp = createContext();
@@ -34,9 +34,23 @@ export const ContextAppProvider = ({ children }) => {
     return false;
   };
 
+  const resetPassword = async (email) => {
+    try {
+      const response = await resetPass(email);
+      if (response.status === "204") {
+        return true;
+      }
+      return false;
+      console.log("RESPONSE", response);
+    } catch (error) {
+      console.log("ENTRO");
+      console.log(error.message);
+      return false;
+    }
+  };
 
   return (
-    <ContextApp.Provider value={{ isLogged, protectedRoutes }}>
+    <ContextApp.Provider value={{ isLogged, protectedRoutes, resetPassword }}>
       {children}
     </ContextApp.Provider>
   );
