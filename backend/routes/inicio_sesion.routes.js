@@ -29,5 +29,8 @@ router.get("/api/test", verifyToken, (req, res) => {
 });
 
 router.post("/api/verificar-rol", filtrarRol);
+/**
+ * --------------------------------------------
+ */
 
 module.exports = router;
