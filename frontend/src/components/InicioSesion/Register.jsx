@@ -21,14 +21,7 @@ export const Register = () => {
               href="#"
               className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
             >
-              <img
-                className="w-11 h-11 mr-2"
-                src=""
-                alt="logo"
-              />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-300 from-blue-800">
-                SE-JustApp
-              </span>
+              
             </a>
           <div className="w-full bg-gradient-to-r from-blue-500 to-blue-900 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

@@ -54,22 +54,10 @@ export const Login = () => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <a
-              href="#"
-              className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
-            >
-              <img
-                className="w-11 h-11 mr-2"
-                src=""
-                alt="logo"
-              />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-300 from-blue-800">
-                SE-JustApp
-              </span>
-            </a>
-            <div className="w-full bg-gradient-to-r from-blue-500 to-blue-900 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            
+            <div className="w-full bg-gradient-to-r from-white   rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 shadow-xl dark:bg-gray-800 ">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white italic underline">
+                <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white italic text-center">
                   Inicio de sesion
                 </h1>
                 <form
@@ -104,38 +92,23 @@ export const Login = () => {
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-start">
-                      <div className="flex items-center h-5">
-                        <input
-                          id="remember"
-                          aria-describedby="remember"
-                          type="checkbox"
-                          className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                          required=""
-                        />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <label className="text-gray-500 dark:text-gray-300">
-                          Recuerdame
-                        </label>
-                      </div>
-                    </div>
+                    
                     <a
                       href="#"
-                      className=" text-gray-100 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                      className=" text-gray-700 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 pt-3 pb-4"
                     >
                       ¿Olvidaste tu contraseña?
                     </a>
                   </div>
                   <button
                     type="submit"
-                    className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                    className="place-items-center flex flex-col bg-blue-700 items-center border justify-center  mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 bg- rounded-lg "
                   >
-                    <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-600 text-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                       Inicio de Sesion
                     </span>
                   </button>
-                  <p className="text-sm font-light text-gray-100 dark:text-gray-100">
+                  <p className="text-sm font-light text-gray-700 dark:text-gray-100 pt-1 pb-2">
                     Tienes cuenta?{" "}
                     <Link
                       to={`/register`}
