@@ -44,6 +44,16 @@ const login = async (req, res) => {
   }
 };
 
+// const register = async (req, res) => {
+//   try {
+//     const { tipo_docu, documento, nombre_com, telefono, correo, contrasenia } = req.body;
+//   } catch (error) {
+//     res.status(500).json({
+//       message: `Error al intentar registrarse detalles: ${error.message}`,
+//     });
+//   }
+// }
+
 /**--------------------------------
  * |  Remitente del email
  --------------------------------*/

@@ -63,14 +63,33 @@ INSERT INTO `roles_permisos` (`id`, `rol_id`, `permisos_id`) VALUES
 -- Estructura de tabla para la tabla `usuarios`
 --
 
+-- CREATE TABLE `usuarios` (
+--   `id` int(11) NOT NULL,
+--   `nombre` varchar(200) NOT NULL,
+--   `email` varchar(200) NOT NULL,
+--   `contrasenia` varchar(255) NOT NULL,
+--   `creado` timestamp NULL DEFAULT current_timestamp(),
+--   `rol_id` int(11) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(200) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `contrasenia` varchar(255) NOT NULL,
-  `creado` timestamp NULL DEFAULT current_timestamp(),
-  `rol_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`nombre_completo` VARCHAR(200) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`email` VARCHAR(200) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`contrasenia` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tipo_documento` VARCHAR(30) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`documento` VARCHAR(30) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`telefono` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`creado` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	`correo` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`rol_id` INT(10) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `rol_id` (`rol_id`) USING BTREE,
+	CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=3
+;
 
 --
 -- Volcado de datos para la tabla `usuarios`
