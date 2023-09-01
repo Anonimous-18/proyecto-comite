@@ -41,7 +41,7 @@ export const Login = () => {
     setData({
       ...data,
       [e.target.name]: e.target.value,
-    });
+  });
 
   return (
     <>
@@ -93,12 +93,13 @@ export const Login = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     
-                    <a
-                      href="#"
+                    
+                    <Link
+                      to={`/recuperacion-contraseña`}
                       className=" text-gray-700 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 pt-3 pb-4"
                     >
                       ¿Olvidaste tu contraseña?
-                    </a>
+                    </Link>
                   </div>
                   <button
                     type="submit"
