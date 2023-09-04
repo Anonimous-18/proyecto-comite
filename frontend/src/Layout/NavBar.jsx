@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+//import logo from"../../img/logo-sena-negro-png-2022"
 
 // ver https://www.npmjs.com/package/react-spinners | https://www.davidhu.io/react-spinners/
 import PulseLoader from "react-spinners/PulseLoader"; // ...
@@ -79,61 +80,50 @@ export const NavBar = () => {
   return (
     // Con id queremos identificar cada vez que hacemos scroll
 
-    <nav id="navbar" className="w-full py-4 top-0 z-40 fixed bg-blue-700 border-2 border-blue-900">
+    <nav id="navbar" className="w-full py-4 top-0 z-40 fixed bg-blue-800 border-2 border-blue-900" >
       <div className="px-4 sm:px-6">
         {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
         <div className="-ml-4 -mt-2 hidden lg:flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
           <div className="ml-4 mt-2">
             <Link to="/home">
+              
               <img
-                src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
-                width={70}
+              
+                src={`../../img/logo-sena-negro-png-2022.png` } className=" w-10 h-9"
+                
                 height={60}
                 // src="https://placekitten.com/100/100"
               />
             </Link>
-          </div>
+              </div>
           <div className="ml-4 mt-2 flex-shrink-0">
+            
             <NavLink
               to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
-            >
-              comites
-            </NavLink>
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
+              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
             >
               reglamento
             </NavLink>
             <NavLink
               to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
+              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3 col-auto"
             >
-             roles
-            </NavLink>
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
-            >
-              Carreras
-            </NavLink>
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
-            >
-              Blog
-            </NavLink>
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-purple-800 transition duration-200 ease-in-out mx-3"
-            >
-              Contacto
+              <div className="text-center">
+  <div className="mb-2">
+    <img 
+    src={`../../img/logo-sena-negro-png-2022.png` } className=" w-10 h-9"/>
+
+    <i className="fas fa-icon text-4xl text-blue-500"></i>
+  </div>
+  <p className="text-gray-600">Tu párrafo aquí</p>
+</div>
+
+              Nombre de usuario
             </NavLink>
             <button
               onClick={() => handleClick()}
               // Transicion transition duration-300 ease-in-out ...
-              className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-black px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+              className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-black px-10 py-2 text-lg font-bold text-white hover:text-black shadow-xl transition duration-300 ease-in-out hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
             >
               Cerrar sesion
               <PulseLoader
