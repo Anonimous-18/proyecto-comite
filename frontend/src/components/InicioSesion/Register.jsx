@@ -15,7 +15,7 @@ export const Register = () => {
 
   return (
     <>
-      <section className="bg-gray-50 dark:bg-gray-900">
+     * <section className="bg-while-500 dark:bg--900">  {/* color de fondo de toda la pagina */}  
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
               href="#"
@@ -23,9 +23,12 @@ export const Register = () => {
             >
               
             </a>
-          <div className="w-full bg-gradient-to-r from-blue-500 to-blue-900 border-4  border-x-sky-300  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          
+          {/* borde del registro de lados derecho e izquierdo    tambien se puiede el fondo de todo*/}
+          <div className="bg- w-full  border-4  border-x-sky-800 bg-sky-600 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white italic underline">
+                {/* color de texto del titulo del  regiistro */}
+              <h1 className="text-3xl font-bold leading-tight tracking-tight text-black-400 md:text-2xl dark:text-white italic underline">
                 Registro invitado
               </h1>
               <form className="space-y-4 md:space-y-6" action="#">
@@ -52,6 +55,7 @@ export const Register = () => {
                     id="documento"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Numero de documento"
                     required=""
                   />
                 </div>
@@ -65,6 +69,7 @@ export const Register = () => {
                     id="nom"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Nombre"
                     required=""
                   />
                 </div>
@@ -78,6 +83,7 @@ export const Register = () => {
                     id="ape"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Apellidoo"
                     required=""
                   />
                 </div>
@@ -91,6 +97,7 @@ export const Register = () => {
                     id="cargo"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Cargo"
                     required=""
                   />
                 </div>
@@ -104,6 +111,7 @@ export const Register = () => {
                     id="dep"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Dependencia"
                     required=""
                   />
                 </div>
@@ -117,6 +125,7 @@ export const Register = () => {
                     id="contra"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Contraseña"
                     required=""
                   />
                 </div>
@@ -130,6 +139,7 @@ export const Register = () => {
                     id="con_contra"
                     placeholder=""
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Confirmar"
                     required=""
                   />
                 </div>
@@ -145,10 +155,10 @@ export const Register = () => {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label className="font-light text-gray-500 dark:text-gray-300">
+                    <label className="font-light text-gray-200 dark:text-gray-300 ">
                       Acepta los{" "}
                       <a
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="font-medium text-primary-600 hover:underline dark:text-primary-500  text-gray-900 "
                         href="#"
                       >
                         Terminos y Condiciones
@@ -158,17 +168,20 @@ export const Register = () => {
                 </div>
                 <button
                     type="submit"
-                    className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-400 to-blue-600 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                    className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900
+                     rounded-lg group bg-gradient-to-br from-sk-600 to-blue-700 group-hover:from-cyan-400 group-hover:to-blue-600 hover:text-white dark:text-black focus:ring-4 
+                     focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
                   >
                     <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                       Crear cuenta invitado
                     </span>
                   </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    {/*  */}+
+                <p className="text-sm font-light text-gray-200 dark:text-gray-400">
                   ¿Tienes cuanta?{" "}
                   <Link
                     to={`/`}
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500  text-gray-800"
                   >
                     ingresar
                   </Link>
