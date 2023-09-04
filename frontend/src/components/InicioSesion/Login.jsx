@@ -95,16 +95,16 @@ export const Login = () => {
                       
                       <Link
                         to={`/recuperacion-contraseña`}
-                        className=" text-gray-700 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 pt-3 pb-4"
+                        className=" text-blue-800 text-sm font-medium text-primary-600 hover:underline pt-3 pb-4"
                       >
                         ¿Olvidaste tu contraseña?
                       </Link>
                     </div>
                     <button
                       type="submit"
-                      className="place-items-center flex flex-col bg-blue-700 items-center border justify-center  mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 bg- rounded-lg "
+                      className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
                     >
-                      <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-600 text-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                      <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
                         Inicio de Sesion
                       </span>
                     </button>
@@ -112,7 +112,7 @@ export const Login = () => {
                       Tienes cuenta?{" "}
                       <Link
                         to={`/register`}
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="font-medium text-primary-600 hover:underline text-blue-800"
                       >
                         Registrarse
                       </Link>
