@@ -64,7 +64,7 @@ export const Login = () => {
                 >
                   <div className="bg-white w-full h-full sm:p-7 border-blue-700 border-2 rounded-lg">
                     <div>
-                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 ">
                         Correo
                       </label>
                       <input
@@ -72,13 +72,13 @@ export const Login = () => {
                         name="email"
                         onChange={(e) => onChange(e)}
                         id="email"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         required=""
                       />
               
                     </div>
                     <div>
-                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 ">
                         Contraseña:
                       </label>
                       <input
@@ -86,7 +86,7 @@ export const Login = () => {
                         name="contrasenia"
                         onChange={(e) => onChange(e)}
                         id="password"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         required=""
                       />
                     </div>
@@ -108,7 +108,7 @@ export const Login = () => {
                         Inicio de Sesion
                       </span>
                     </button>
-                    <p className="text-sm font-light text-gray-700 dark:text-gray-100 pt-1 pb-2">
+                    <p className="text-sm font-light text-gray-700  pt-1 pb-2">
                       Tienes cuenta?{" "}
                       <Link
                         to={`/register`}
