@@ -7,7 +7,6 @@ import Recuperacion from "./components/InicioSesion/Recuperacion";
 
 import { Home } from "./pages/Home";
 import { ContextAppProvider } from "./context/ContextApp";
-import { Reglamento } from "./components/reglamento/Reglamento";
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-        <Route path="/reglamento" element={<Reglamento/>}/>
       </Routes>
     </ContextAppProvider>
   );

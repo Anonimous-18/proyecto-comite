@@ -730,3 +730,41 @@ funciones señaladas en los artículos anteriormente mencionados.','70'),
 ('El nuevo Representante del Aprendiz SENA que asuma la suplencia, ejercerá durante el 
 tiempo que le faltaba al representante revocado para concluir el periodo, o por el tiempo que dure la 
 ausencia del Representante. Los periodos son de carácter institucional y no personal','70');
+
+
+
+
+________________________________________________________________________
+consulata por id del capitulo
+________________________________________________________________________
+SELECT
+    capitulos.cap_id,
+    capitulos.cap_titulo,
+    articulos.art_id,
+    articulos.art_titulo,
+    articulos.art_descripcion,
+    paragrafos.par_id,
+    paragrafos.par_descripcion
+FROM
+    capitulos
+INNER JOIN
+    articulos ON capitulos.cap_id =  AND articulos.cap_id = 5
+LEFT JOIN
+    paragrafos ON articulos.art_id = paragrafos.art_id;
+________________________________________________________________________
+Consulta general
+________________________________________________________________________
+SELECT
+    capitulos.cap_id,
+    capitulos.cap_titulo,
+    articulos.art_id,
+    articulos.art_titulo,
+    articulos.art_descripcion,
+    paragrafos.par_id,
+    paragrafos.par_descripcion
+FROM
+    capitulos
+INNER JOIN
+    articulos ON capitulos.cap_id = articulos.cap_id
+LEFT JOIN
+    paragrafos ON articulos.art_id = paragrafos.art_id;
