@@ -79,7 +79,7 @@ export const NavBar = () => {
   return (
     // Con id queremos identificar cada vez que hacemos scroll
 
-    <nav id="navbar" className="w-full py-4 top-0 z-40 fixed">
+    <nav id="navbar" className="w-full py-4 top-0 z-40 fixed bg-blue-700 border-2 border-blue-900">
       <div className="px-4 sm:px-6">
         {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
         <div className="-ml-4 -mt-2 hidden lg:flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
