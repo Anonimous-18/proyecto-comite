@@ -9,38 +9,34 @@ export const Reglamento = () => {
   const [reglamento, setReglamento] = useState([]);
   const { getReglamento, orderReglamento, protectedRoutes, validateToken } =
     useContextApp();
-  // const navigate = useNavigate();
-  // const tokenExist = protectedRoutes();
+  const navigate = useNavigate();
+  const tokenExist = protectedRoutes();
 
   useEffect(() => {
-    // if (tokenExist && validateToken()) {
-    //   navigate(`/`);
-    // } else if (!tokenExist) {
-    //   navigate(`/`);
-    // } else if (tokenExist && !validateToken()) {
+    if (tokenExist && validateToken()) {
+      navigate(`/`);
+    } else if (!tokenExist) {
+      navigate(`/`);
+    } else if (tokenExist && !validateToken()) {
       const Reglamento = async () => {
         const res = await getReglamento();
-        console.log(res, " 1")
+
         if (res !== null || res !== undefined) {
-          console.log(res, " 2")
           setReglamento(res);
         }
-        console.log(res, " 3")
       };
 
       Reglamento();
-    // }
-  }, [getReglamento, validateToken]);
+    }
+  }, [getReglamento, validateToken, navigate, tokenExist]);
 
   if (reglamento === null || reglamento === undefined) {
-    console.log(reglamento, " 1");
     return <div>Loading...</div>;
   } else if (reglamento.length === 0) {
-    console.log(reglamento, " 2");
     return <div>Loading...</div>;
   }
   const result = orderReglamento(reglamento);
-  console.log(result, " 3");
+  console.log(result);
 
   return (
     <div>
