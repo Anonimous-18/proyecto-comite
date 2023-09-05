@@ -6,7 +6,8 @@ import { Register } from "./components/InicioSesion/Register";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
 
 import { Home } from "./pages/Home";
-import { ContextAppProvider } from "./context/ContextApp";
+import { ContextAppProvider } from "./Context/ContextApp";
+import { Reglamento } from "./components/Reglamento/Reglamento";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/reglamento" element={<Reglamento />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
       </Routes>
     </ContextAppProvider>

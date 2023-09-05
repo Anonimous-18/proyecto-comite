@@ -12,9 +12,9 @@ export const NavBar = () => {
 
   const handleClick = () => {
     console.log("ANTES ", localStorage.getItem("newToken"));
-    localStorage.removeItem("newToken")
+    localStorage.removeItem("newToken");
     console.log("DESPUES", localStorage.getItem("newToken"));
-    navigate(`/`)
+    navigate(`/`);
   };
 
   // Funcion para identificar el scroll
@@ -80,26 +80,26 @@ export const NavBar = () => {
   return (
     // Con id queremos identificar cada vez que hacemos scroll
 
-    <nav id="navbar" className="w-full py-4 top-0 z-40 fixed bg-blue-800 border-2 border-blue-900" >
+    <nav
+      id="navbar"
+      className="w-full py-4 top-0 z-40 fixed bg-blue-800 border-2 border-blue-900"
+    >
       <div className="px-4 sm:px-6">
         {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
         <div className="-ml-4 -mt-2 hidden lg:flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
           <div className="ml-4 mt-2">
             <Link to="/home">
-              
               <img
-              
-                src={`../../img/logo-sena-negro-png-2022.png` } className=" w-10 h-9"
-                
+                src={`../../img/logo-sena-negro-png-2022.png`}
+                className=" w-10 h-9"
                 height={60}
                 // src="https://placekitten.com/100/100"
               />
             </Link>
-              </div>
+          </div>
           <div className="ml-4 mt-2 flex-shrink-0">
-            
             <NavLink
-              to="/"
+              to="/reglamento"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
             >
               reglamento
@@ -109,15 +109,16 @@ export const NavBar = () => {
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3 col-auto"
             >
               <div className="text-center">
-  <div className="mb-2">
-    <img 
-    src={`../../img/logo-sena-negro-png-2022.png` } className=" w-10 h-9"/>
+                <div className="mb-2">
+                  <img
+                    src={`../../img/logo-sena-negro-png-2022.png`}
+                    className=" w-10 h-9"
+                  />
 
-    <i className="fas fa-icon text-4xl text-blue-500"></i>
-  </div>
-  <p className="text-gray-600">Tu párrafo aquí</p>
-</div>
-
+                  <i className="fas fa-icon text-4xl text-blue-500"></i>
+                </div>
+                <p className="text-gray-600">Tu párrafo aquí</p>
+              </div>
               Nombre de usuario
             </NavLink>
             <button

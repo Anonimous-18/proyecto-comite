@@ -1,6 +1,6 @@
 import { GrYoutube } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import { AiFillFacebook } from "react-icons/ai"
+import { AiFillFacebook } from "react-icons/ai";
 const navigation = {
   solutions: [
     { name: "Marketing", href: "#" },
@@ -100,22 +100,49 @@ export const Footer = () => {
       <div>
         <div className="grid grid-cols-3 gap-4 p-24">
           <div>
-            <img src={`../../img/logo-sena-negro-png-2022.png`} alt="Logo Sena" className=" w-36 h-36 items-center m-20" />
+            <img
+              src={`../../img/logo-sena-negro-png-2022.png`}
+              alt="Logo Sena"
+              className=" w-36 h-36 items-center m-20"
+            />
           </div>
           <div>
-            <h2 class="text-2xl font-extrabold ">Servicio Nacional de aprendiz SENA</h2>
+            <h2 className="text-2xl font-extrabold ">
+              Servicio Nacional de aprendiz SENA
+            </h2>
             <p>Centro de Automatización Industrial-Regional Caldas</p>
             <p>Dirección: Dirección del centro-Telefono</p>
             <p>Conmutador Nacional (601) 5461500 - Extensiones</p>
-            <p>El SENA brinda a la ciudadanía, atención presencial en las 33 Regionales y 117 Centros de Formación.</p>
-            <p>Atención al ciudadano: Bogotá (601) 3430111 - Línea gratuita y resto del país 018000910270</p>
-            <p>Atención al empresario: Bogotá (601) 3430101 - Línea gratuita y resto del país 018000 910682</p>
+            <p>
+              El SENA brinda a la ciudadanía, atención presencial en las 33
+              Regionales y 117 Centros de Formación.
+            </p>
+            <p>
+              Atención al ciudadano: Bogotá (601) 3430111 - Línea gratuita y
+              resto del país 018000910270
+            </p>
+            <p>
+              Atención al empresario: Bogotá (601) 3430101 - Línea gratuita y
+              resto del país 018000 910682
+            </p>
           </div>
           <div>
-            <Link target="_blank" to ={"https://www.youtube.com/@senaregionalcaldas321"}><GrYoutube className=" w-11 h-11" />Sena Regional Caldas</Link>
+            <Link
+              target="_blank"
+              to={"https://www.youtube.com/@senaregionalcaldas321"}
+            >
+              <GrYoutube className=" w-11 h-11" />
+              Sena Regional Caldas
+            </Link>
           </div>
           <div>
-            <Link target="_blank" to ={"https://m.facebook.com/profile.php?id=418504764840330"}><AiFillFacebook className=" w-11 h-11" />Sena Regional Caldas</Link>
+            <Link
+              target="_blank"
+              to={"https://m.facebook.com/profile.php?id=418504764840330"}
+            >
+              <AiFillFacebook className=" w-11 h-11" />
+              Sena Regional Caldas
+            </Link>
           </div>
         </div>
         <div className="mt-12 border-t border-gray-200 pt-8">
