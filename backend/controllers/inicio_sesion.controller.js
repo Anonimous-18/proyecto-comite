@@ -44,7 +44,7 @@ const login = async (req, res) => {
   }
 };
 
-/**--------------------------------------------- 
+/**---------------------------------------------
  * |  Funcion para recuperar la contraseña
  ---------------------------------------------*/
 const resetPass = async (email) => {
@@ -189,7 +189,7 @@ const recoveryEmail = async (req, res) => {
             </h3>
           </footer>
         </article>
-      </body>`, // Genera una nueva contraseña
+      </body>`,
       };
 
       transport.sendMail(mailOptions, (error) => {

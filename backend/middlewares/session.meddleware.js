@@ -22,21 +22,9 @@ const verifyToken = (req, res, next) => {
     // Verificar el token y obtener los datos decodificados
     const decodedToken = jwt.verify(token, key);
     req.userData = decodedToken; // Guardar los datos del usuario en el objeto de solicitud
-    const getType = async () => {
-      const [result] = await pool.query(
-        `SELECT * from roles WHERE id = ${decodedToken.user.rol_id}`
-      );
-      console.log(result[0]);
-      if (result[0].nombre !== "Administrador") {
-        console.log("Entro");
-        return res
-          .status(401)
-          .json({ message: `Acceso solo para administradores.` });
-      } else {
-        next();
-      }
-    };
-    getType();
+    if (decodedToken) {
+      next();
+    }
   } catch (error) {
     return res.status(401).json({ message: "Token no válido" });
   }
@@ -45,7 +33,7 @@ const verifyToken = (req, res, next) => {
 const filtrarRol = (req, res, next) => {
   const key = secretKey;
   const token = req.headers.authorization?.split(" ")[1];
-  const {rol} = req.body
+  const { rol } = req.body;
 
   if (!token) {
     return res.status(401).json({ message: "Token no proporcionado" });
@@ -55,13 +43,17 @@ const filtrarRol = (req, res, next) => {
     // Verificar el token y obtener los datos decodificados
     const decodedToken = jwt.verify(token, key);
     req.userData = decodedToken;
-  
+
     const getRol = async () => {
-      const [result] = await pool.query("SELECT * FROM roles WHERE roles.id = ?", [decodedToken.user.rol_id] );
+      const [result] = await pool.query(
+        "SELECT * FROM roles WHERE roles.id = ?",
+        [decodedToken.user.rol_id]
+      );
       if (result[0].nombre === rol) {
-        next()
+        next();
+      } else {
+        return res.status(403).json({ message: "Usuario no autorizado" });
       }
-      return res.status(403).json({message:"Usuario no autorizado"})
     };
     getRol();
   } catch (error) {
