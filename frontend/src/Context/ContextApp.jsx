@@ -11,13 +11,9 @@ export const ContextAppProvider = ({ children }) => {
 
   const isLogged = async (data) => {
     try {
+      deleteToken();
       const response = await login(data);
       if (response.status === 200 && response.data) {
-        const token = JSON.parse(localStorage.getItem("newToken"));
-        if (token !== null) {
-          console.log("Eliminando: ", token);
-          localStorage.removeItem("newToken");
-        }
         localStorage.setItem("newToken", JSON.stringify(response.data));
         return true;
       }
