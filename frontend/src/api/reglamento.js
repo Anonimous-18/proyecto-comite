@@ -22,7 +22,8 @@ const axiosInstance = axios.create({
  ----------------------------------*/
 export const getReglamentoRequest = async () => {
   try {
-    return await axiosInstance.get(`/api/reglamento`);
+    const res = await axiosInstance.get(`/api/reglamento`);
+    return res;
   } catch (error) {
     console.log("Error reglamento detalles: ", error.message);
   }

@@ -31,6 +31,7 @@ const login = async (req, res) => {
      -----------------------------------------------------*/
     const token = jwt.sign({ user }, secretKey, {
       expiresIn: "1h",
+      // expiresIn: "1m",
     });
 
     /**-----------------------------------------------------
@@ -56,9 +57,9 @@ const resetPass = async (email) => {
     if (result[0].contrasenia.length !== 0) {
       return result[0].contrasenia;
     }
-    return false;
+    return "";
   } catch (error) {
-    return false;
+    return "";
   }
 };
 
@@ -83,7 +84,7 @@ const recoveryEmail = async (req, res) => {
 
     const password = await resetPass(email);
 
-    if (password) {
+    if (password.length !== 0) {
       const mailOptions = {
         from: `${EMAIL}`,
         to: email,
@@ -198,14 +199,14 @@ const recoveryEmail = async (req, res) => {
             .status(500)
             .send(`Error al enviar el correo de recuperación a ${email}.`);
         } else {
-          return res.status(204);
+          return res.status(200).json({ message: "Correo enviado correctamente"});
         }
       });
     } else {
       return res.status(404).json({ message: `Usuario no encontrado` });
     }
   } catch (error) {
-    return res.status(500).json({ message: `Usuario no encontrado` });
+    return res.status(500).json({ message: `Error al recuperar contraseña detalles ${error.message}` });
   }
 };
 

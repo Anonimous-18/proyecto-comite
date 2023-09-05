@@ -24,7 +24,7 @@ const verifyToken = (req, res, next) => {
     /**-------------------------------------------------------
      * |  Verificar el token y obtener los datos decodificados
      -------------------------------------------------------*/
-    const decodedToken = jwt.verify(token, key);
+    let decodedToken = jwt.verify(token, key);
 
     /**---------------------------------------------
      * |  Guardamos los datos del usuario logueado

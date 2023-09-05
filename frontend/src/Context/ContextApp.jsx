@@ -135,14 +135,13 @@ export const ContextAppProvider = ({ children }) => {
   const resetPassword = async (email) => {
     try {
       const response = await resetPass(email);
-      if (response.status === "204") {
+      if (response !== undefined) {
         return true;
+      } else {
+        return false;
       }
-      return false;
-      console.log("RESPONSE", response);
     } catch (error) {
-      console.log("ENTRO");
-      console.log(error.message);
+      console.log("Error al recuperar contraseña ", error.message);
       return false;
     }
   };

@@ -13,11 +13,9 @@ export const Reglamento = () => {
   const tokenExist = protectedRoutes();
 
   useEffect(() => {
-    if (tokenExist && validateToken()) {
+    if (!tokenExist || validateToken()) {
       navigate(`/`);
-    } else if (!tokenExist) {
-      navigate(`/`);
-    } else if (tokenExist && !validateToken()) {
+    } else {
       const Reglamento = async () => {
         const res = await getReglamento();
 
