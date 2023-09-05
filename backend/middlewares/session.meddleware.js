@@ -1,17 +1,19 @@
 /**-------------------------------------------------------------------
  * |  jwt es el encargado de encriptar los datos de un inicio de sesión
  -------------------------------------------------------------------*/
-const pool = require("../database/db.js");
 const jwt = require("jsonwebtoken");
+const pool = require("../database/db.js");
 const { secretKey } = require("../controllers/inicio_sesion.controller.js");
 
-/**---------------------------------------------
- * |  Middleware para verificar el rol del
- * |  usuario autenticado
- ---------------------------------------------*/
+/**------------------------------------------------------------
+ * |  Middleware para verificar el rol del usuario autenticado
+ ------------------------------------------------------------*/
 const verifyToken = (req, res, next) => {
   const key = secretKey;
-  // Obtener el token del encabezado
+
+  /**-----------------------------------
+   * |  Obtiene el token del encabezado
+   -----------------------------------*/
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
@@ -19,9 +21,15 @@ const verifyToken = (req, res, next) => {
   }
 
   try {
-    // Verificar el token y obtener los datos decodificados
+    /**-------------------------------------------------------
+     * |  Verificar el token y obtener los datos decodificados
+     -------------------------------------------------------*/
     const decodedToken = jwt.verify(token, key);
-    req.userData = decodedToken; // Guardar los datos del usuario en el objeto de solicitud
+
+    /**---------------------------------------------
+     * |  Guardamos los datos del usuario logueado
+     ---------------------------------------------*/
+    req.userData = decodedToken;
     if (decodedToken) {
       next();
     }
@@ -30,6 +38,9 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+/**---------------------------------------------------------------
+ * |  Middleware para dejarlo seguir si tiene un rol en especifico
+ ---------------------------------------------------------------*/
 const filtrarRol = (req, res, next) => {
   const key = secretKey;
   const token = req.headers.authorization?.split(" ")[1];
@@ -40,7 +51,6 @@ const filtrarRol = (req, res, next) => {
   }
 
   try {
-    // Verificar el token y obtener los datos decodificados
     const decodedToken = jwt.verify(token, key);
     req.userData = decodedToken;
 
