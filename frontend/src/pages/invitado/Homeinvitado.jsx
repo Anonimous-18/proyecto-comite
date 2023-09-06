@@ -1,5 +1,6 @@
 import { NavBar } from "../../Layout/NavBar";
 import { Footer } from "../../Layout/Footer";
+import { Link } from "react-router-dom";
 
 
 
@@ -9,7 +10,8 @@ export const Homeinvitado= () => {
         <div>
             <NavBar /> 
             <div className="mx-auto max-w-lg pt-20 pb-32 sm:pt-48 sm:pb-40 ">
-                <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
+                <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl" >
+                    <Link to={"/novedadinvitado"}>
                     <button className=" hover:bg-blue-200 rounded-xl border-blue-500 shadow-xl ">
                         <figure className="md:flex border-gray-200 border-2 rounded-xl p-3 md:p-0 max-w-md" >
                         <img src={"../../img/logo-sena-negro-png-2022.png"} alt="" className=" w-36 h-24 md:h-auto  rounded-xl mx-auto border-2  bg-gray-200" width="350" height="350"/>
@@ -38,7 +40,10 @@ export const Homeinvitado= () => {
                         </div>
                         </figure>   
                     </button>
+                    </Link>
+                    
                     <br /><br />
+                    <Link to={"/reglamento"}>
                     <button className="hover:bg-blue-200 rounded-xl border-blue-500 shadow-xl">
                         <figure className="md:flex border-gray-200 border-2 rounded-xl p-3 md:p-0 max-w-md" >
                         <img src={"../../img/logo-sena-negro-png-2022.png"} alt="" className=" w-36 h-24 md:h-auto  rounded-xl mx-auto border-2  bg-gray-200" width="350" height="350"/>
@@ -67,6 +72,8 @@ export const Homeinvitado= () => {
                         </div>
                         </figure>   
                     </button>
+                    </Link>
+                    
                     
                 </div>
             </div>
@@ -75,3 +82,4 @@ export const Homeinvitado= () => {
         
     );
 };
+
