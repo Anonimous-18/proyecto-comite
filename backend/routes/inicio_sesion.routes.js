@@ -3,6 +3,7 @@ const { verifyToken, filtrarRol } = require("../middlewares/session.meddleware.j
 const {
   login,
   recoveryEmail,
+  registerUser
 } = require("../controllers/inicio_sesion.controller.js");
 
 const router = Router();
@@ -16,6 +17,11 @@ router.post("/api/login", login);
  * |  Ruta de logueo
  ----------------------------------*/
 router.post("/api/reset-password", recoveryEmail);
+
+/**----------------------------------
+ * |  Ruta de registro
+ ----------------------------------*/
+router.post("/api/register", registerUser);
 
 /**---------------------------------------------
  * |  Ejemplo del uso del Middleware VerifyToken
