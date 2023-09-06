@@ -134,8 +134,7 @@ export const Footer = () => {
               <GrYoutube className=" w-11 h-11" />
               Sena Regional Caldas
             </Link>
-          </div>
-          <div>
+         
             <Link
               target="_blank"
               to={"https://m.facebook.com/profile.php?id=418504764840330"}
