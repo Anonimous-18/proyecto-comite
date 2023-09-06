@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, resetPass } from "../api/inicioSesion";
+import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 import { getReglamentoRequest } from "../api/reglamento";
 import { createContext, useContext } from "react";
 
@@ -23,6 +23,15 @@ export const ContextAppProvider = ({ children }) => {
       return false;
     }
   };
+
+  const registerUser = async (data) => {
+    try {
+      const res = await registerUserRequest(data);
+      return res
+    } catch (error) {
+      console.log("Error al registrarse desde context");
+    }
+  }
 
   const deleteToken = () => {
     try {
@@ -155,6 +164,7 @@ export const ContextAppProvider = ({ children }) => {
         getReglamento,
         orderReglamento,
         validateToken,
+        registerUser,
       }}
     >
       {children}
