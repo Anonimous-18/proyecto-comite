@@ -21,13 +21,13 @@ const Recuperacion = () => {
       const result = await resetPassword(email);
       console.log(result);
 
-      // if (result) {
-      //   setLoading(false);
-      //   alert("MIRE SU CORREO");
-      // } else {
-      //   setLoading(false);
-      //   alert("EL CORREO NO EXISTE");
-      // }
+      if (result) {
+        setLoading(false);
+        alert("MIRE SU CORREO");
+      } else {
+        setLoading(false);
+        alert("EL CORREO NO EXISTE");
+      }
     }
   };
   return (

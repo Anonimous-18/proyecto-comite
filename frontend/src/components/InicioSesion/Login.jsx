@@ -54,22 +54,9 @@ export const Login = () => {
             <div className="text-ls font-bold w-96 h-60 flex flex-col justify-center items-center text-center">
               <div
                 id="alert-additional-content-2"
-                className="p-0 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                role="alert"
-              >
+                className="px-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                role="alert">
                 <BiErrorAlt className=" w-64 h-36 md:h-auto  rounded-xl mx-auto border-2 " />
-                <div className="flex items-center">
-                  <svg
-                    className="flex-shrink-0 w-4 h-4 mr-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                  </svg>
-                  <span className="sr-only">Info</span>
-                </div>
                 <div className="mt-2 mb-4 text-sm">
                   Correo o contraseña incorrectas intente nuevamente
                 </div>
@@ -89,8 +76,7 @@ export const Login = () => {
                 </h3>
                 <form
                   onSubmit={(e) => handleSubmit(e)}
-                  className="space-y-4 md:space-y-6"
-                >
+                  className="space-y-4 md:space-y-6">
                   <div className="bg-white w-full h-full sm:p-7 border-blue-700 border-2 rounded-lg">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 ">
@@ -121,15 +107,13 @@ export const Login = () => {
                     <div className="flex items-center justify-between">
                       <Link
                         to={`/recuperacion-contraseña`}
-                        className=" text-blue-800 text-sm font-medium text-primary-600 hover:underline pt-3 pb-4"
-                      >
+                        className=" text-blue-800 text-sm font-medium text-primary-600 hover:underline pt-3 pb-4">
                         ¿Olvidaste tu contraseña?
                       </Link>
                     </div>
                     <button
                       type="submit"
-                      className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-                    >
+                      className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
                       <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
                         Inicio de Sesion
                       </span>
@@ -138,8 +122,7 @@ export const Login = () => {
                       Tienes cuenta?{" "}
                       <Link
                         to={`/register`}
-                        className="font-medium text-primary-600 hover:underline text-blue-800"
-                      >
+                        className="font-medium text-primary-600 hover:underline text-blue-800">
                         Registrarse
                       </Link>
                     </p>
