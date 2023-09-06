@@ -8,10 +8,10 @@ import Recuperacion from "./components/InicioSesion/Recuperacion";
 import { Home } from "./pages/Home";
 import { ContextAppProvider } from "./Context/ContextApp";
 import { Reglamento } from "./components/Reglamento/Reglamento";
-import { Home_Aprendiz } from "./pages/home_Aprendiz";
-import { Homeinvitado } from "./pages/Homeinvitado";
-import { NovedadInvitado } from "./pages/NovedadInvitado";
-import { ImpugnacionesAprendiz } from "./pages/ImpugnacionesAprendiz";
+import { Home_Aprendiz } from "./pages/aprendiz/home_Aprendiz";
+import { Homeinvitado } from "./pages/invitado/Homeinvitado";
+import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
+import {ImpugnacionesAprendiz} from "./pages/aprendiz/ImpugnacionesAprendiz";
 
 function App() {
   return (

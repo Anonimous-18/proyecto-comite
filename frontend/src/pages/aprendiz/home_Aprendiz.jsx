@@ -1,6 +1,6 @@
-import { NavBar } from "../Layout/NavBar";
-import { Footer } from "../Layout/Footer";
-import React from "react";
+import { NavBar } from "../../Layout/NavBar";
+import { Footer } from "../../Layout/Footer";
+
 
 export const Home_Aprendiz = () => {
   return (

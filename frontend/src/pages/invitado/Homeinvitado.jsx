@@ -1,5 +1,5 @@
-import { NavBar } from "../Layout/NavBar";
-import { Footer } from "../Layout/Footer";
+import { NavBar } from "../../Layout/NavBar";
+import { Footer } from "../../Layout/Footer";
 
 
 
