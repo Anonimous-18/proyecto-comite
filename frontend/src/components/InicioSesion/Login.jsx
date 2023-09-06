@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
+import { BiErrorAlt } from "react-icons/bi";
 
 export const Login = () => {
   const { isLogged, protectedRoutes, validateToken } = useContextApp();
@@ -33,7 +34,7 @@ export const Login = () => {
     setErr(true);
     setTimeout(() => {
       setErr(false);
-    }, 2000);
+    }, 2100);
     console.log(err);
   };
 

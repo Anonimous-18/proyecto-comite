@@ -99,7 +99,7 @@ export const NavBar = () => {
           <div className="ml-4 mt-2 flex-shrink-0">
             <NavLink
               to="/reglamento"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
+              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
               reglamento
             </NavLink>

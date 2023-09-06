@@ -93,13 +93,13 @@ const navigation = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-blue-800" aria-labelledby="footer-heading">
+    <footer className="bg-blue-800 text-white font-serif" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
       <div>
         <div className="grid grid-cols-3 gap-4 p-24">
-          <div>
+          <div className="h-auto max-w-full rounded-lg flex flex-col items-center">
             <img
               src={`../../img/logo-sena-negro-png-2022.png`}
               alt="Logo Sena"
@@ -110,6 +110,7 @@ export const Footer = () => {
             <h2 className="text-2xl font-extrabold ">
               Servicio Nacional de aprendiz SENA
             </h2>
+            <br />
             <p>Centro de Automatización Industrial-Regional Caldas</p>
             <p>Dirección: Dirección del centro-Telefono</p>
             <p>Conmutador Nacional (601) 5461500 - Extensiones</p>
@@ -126,7 +127,7 @@ export const Footer = () => {
               resto del país 018000 910682
             </p>
           </div>
-          <div>
+          <div className="h-auto max-w-full rounded-lg flex flex-col items-center">
             <Link
               target="_blank"
               to={"https://www.youtube.com/@senaregionalcaldas321"}
@@ -134,7 +135,7 @@ export const Footer = () => {
               <GrYoutube className=" w-11 h-11" />
               Sena Regional Caldas
             </Link>
-         
+            <br /><br /><br />
             <Link
               target="_blank"
               to={"https://m.facebook.com/profile.php?id=418504764840330"}
