@@ -10,7 +10,8 @@ import { ContextAppProvider } from "./Context/ContextApp";
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import { Home_Aprendiz } from "./pages/home_Aprendiz";
 import { Homeinvitado } from "./pages/Homeinvitado";
-import { NovedadInvitado} from "./pages/NovedadInvitado";
+import { NovedadInvitado } from "./pages/NovedadInvitado";
+import { ImpugnacionesAprendiz } from "./pages/ImpugnacionesAprendiz";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/homeinvitado" element={<Homeinvitado />} />
-        <Route path="/novedadinvitado" element={< NovedadInvitado/>}/>
+        <Route path="/impugnacionesaprendiz" element={< ImpugnacionesAprendiz />} />
+        <Route path="/novedadinvitado" element={<NovedadInvitado />} />
 
       </Routes>
     </ContextAppProvider>

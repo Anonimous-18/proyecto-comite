@@ -3,7 +3,7 @@ import { Footer } from "../Layout/Footer";
 
 export const NovedadInvitado = () => {
     return (
-        <div className=" bg-white">
+        <div>
             <NavBar />
             <div className="mx-auto max-w-lg pt-20 pb-32 sm:pt-48 sm:pb-40 ">
                 <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
@@ -90,7 +90,7 @@ export const NovedadInvitado = () => {
                                     className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
                                 >
                                     <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
-                                        Inicio de Sesion
+                                        Enviar
                                     </span>
                                 </button>
                             </div>
@@ -99,8 +99,6 @@ export const NovedadInvitado = () => {
                     </div>
                 </div>
             </div>
-
-
             <Footer />
         </div>
     );
