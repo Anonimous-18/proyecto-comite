@@ -19,6 +19,7 @@ const Recuperacion = () => {
     if (email) {
       setLoading(true);
       const result = await resetPassword(email);
+      console.log(result);
 
       if (result) {
         setLoading(false);

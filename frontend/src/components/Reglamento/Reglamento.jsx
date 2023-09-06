@@ -43,16 +43,18 @@ export const Reglamento = () => {
         <div className="mx-auto max-w-7xl pt-20 pb-32 sm:pt-48 sm:pb-40 ">
           <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
             <div className="relative px-6 lg:px-8 ">
-              <div className="mx-auto max-w-7xl pt-20 pb-32 sm:pt-48 sm:pb-40">
-                <div className="h-auto max-w-full rounded-lg flex flex-col items-center">
+              <div className="mx-auto max-w-7xl pt-0 pb-32 sm:pt-0 sm:pb-40">
+                <div className="h-auto max-w-full rounded-lg flex flex-col items-center bg-slate-200 p-2">
                   <img
                     src={"../../../img/logo-sena-negro-png-2022.png"}
                     alt="logo"
                     width="350"
                     height="350"
                   />
+                  
                 </div>
-                <div className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
+                <br />
+                <div className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">
                   <h2>Reglamento del aprendiz SENA</h2>
                 </div>
 
@@ -61,7 +63,7 @@ export const Reglamento = () => {
                     <li key={index}>
                       <br />
                       <article>
-                        <h1 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
+                        <h1 className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">
                           <strong>
                             Capitulo
                             <strong>{capitulo.cap_id}</strong>

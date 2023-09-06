@@ -12,6 +12,7 @@ import { Home_Aprendiz } from "./pages/aprendiz/home_Aprendiz";
 import { Homeinvitado } from "./pages/invitado/Homeinvitado";
 import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 import {ImpugnacionesAprendiz} from "./pages/aprendiz/ImpugnacionesAprendiz";
+import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="/homeinvitado" element={<Homeinvitado />} />
         <Route path="/impugnacionesaprendiz" element={< ImpugnacionesAprendiz />} />
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
-
+        <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />}/>
       </Routes>
     </ContextAppProvider>
   );

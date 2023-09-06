@@ -18,3 +18,15 @@ export const resetPass = async (email) => {
     console.log("Error enpoint restPass", error.message);
   }
 };
+
+/**-----------------------------------------------
+  * |  Consumiendo enpoint del registro de usuario
+  -----------------------------------------------*/
+export const registerUserRequest = async (data) => {
+  try {
+    const res = await axios.post(`${API}/api/register`, data);
+    return res;
+  } catch (error) {
+    console.log("Error enpoint restPass", error.message);
+  }
+};

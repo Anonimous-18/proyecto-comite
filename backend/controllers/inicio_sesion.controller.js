@@ -220,21 +220,24 @@ const recoveryEmail = async (req, res) => {
 const registerUser = async (req, res) => {
   try {
     const {
-      nombre_completo,
-      email,
-      contrasenia,
       tipo_documento,
       documento,
+      nombre_completo,
+      cargo,
+      email,
       telefono,
+      dependencia,
+      contrasenia,
+      rol_id,
     } = req.body;
 
     const [result] = await pool.query(
-      "INSERT INTO usuarios(nombre_completo, email, contrasenia, tipo_documento, documento, telefono)VALUES(?, ?, ?, ?, ?, ?)",
-      [nombre_completo, email, contrasenia, tipo_documento, documento, telefono]
+      "INSERT INTO usuarios(nombre_completo, email, contrasenia, tipo_documento, documento, telefono, cargo, dependencia, rol_id)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [nombre_completo, email, contrasenia, tipo_documento, documento, telefono, cargo, dependencia, rol_id]
     );
 
     if (result.affectedRows !== 0) {
-      res.status(204);
+      res.status(200).json({ messge: "Registro agregado exitosamente." });
     } else {
       return res
         .status(500)
