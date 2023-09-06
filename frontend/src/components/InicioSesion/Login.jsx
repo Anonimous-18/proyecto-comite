@@ -34,7 +34,7 @@ export const Login = () => {
     setErr(true);
     setTimeout(() => {
       setErr(false);
-    }, 2100);
+    }, 3000);
     console.log(err);
   };
 
