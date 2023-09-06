@@ -199,19 +199,57 @@ const recoveryEmail = async (req, res) => {
             .status(500)
             .send(`Error al enviar el correo de recuperación a ${email}.`);
         } else {
-          return res.status(200).json({ message: "Correo enviado correctamente"});
+          return res
+            .status(200)
+            .json({ message: "Correo enviado correctamente" });
         }
       });
     } else {
       return res.status(404).json({ message: `Usuario no encontrado` });
     }
   } catch (error) {
-    return res.status(500).json({ message: `Error al recuperar contraseña detalles ${error.message}` });
+    return res.status(500).json({
+      message: `Error al recuperar contraseña detalles ${error.message}`,
+    });
+  }
+};
+
+/**------------------------------------------
+ * |  Controlador del registro de usuario
+ ------------------------------------------*/
+const registerUser = async (req, res) => {
+  try {
+    const {
+      nombre_completo,
+      email,
+      contrasenia,
+      tipo_documento,
+      documento,
+      telefono,
+    } = req.body;
+
+    const [result] = await pool.query(
+      "INSERT INTO usuarios(nombre_completo, email, contrasenia, tipo_documento, documento, telefono)VALUES(?, ?, ?, ?, ?, ?)",
+      [nombre_completo, email, contrasenia, tipo_documento, documento, telefono]
+    );
+
+    if (result.affectedRows !== 0) {
+      res.status(204);
+    } else {
+      return res
+        .status(500)
+        .json({ message: "Error al intentar registrarse." });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: `Error al intentar registrarse detalles: ${error.message}`,
+    });
   }
 };
 
 module.exports = {
   login,
   recoveryEmail,
+  registerUser,
   secretKey,
 };
