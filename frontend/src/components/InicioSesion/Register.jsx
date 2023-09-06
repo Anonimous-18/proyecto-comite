@@ -41,18 +41,19 @@ export const Register = () => {
 
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Tipo de documento
-                  </label>
-                  <input
-                    type="text"
-                    name="tipo_documento"
-                    id="tipo_documento"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5
-                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Cedula de Ciudadania / cedula de extrangeria / ..."
-                    required=""
-                  />
+                  
+                  <label for="category" className="block mb-2 text-sm font-medium text-gray-900 ">Tipo de Documento</label>
+                  <select id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+                      <option selected="">Selecionar</option>
+                      <option value="CC">Cedula de Ciudadania</option>
+                      <option value="TI">Tarjeta de Identidad</option>
+                      <option value="CE">Cedula de Extranjeria</option>
+                      <option value="PASAPORTE">Pasaporte</option>
+
+                  </select>
+                               
+                
+                  
                 </div>
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
