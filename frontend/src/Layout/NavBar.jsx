@@ -10,10 +10,8 @@ export const NavBar = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log("ANTES ", localStorage.getItem("newToken"));
-    localStorage.removeItem("newToken")
-    console.log("DESPUES", localStorage.getItem("newToken"));
-    navigate(`/`)
+    localStorage.clear();
+    navigate("/");
   };
 
   // Funcion para identificar el scroll
@@ -315,10 +313,8 @@ function IconThree() {
 }
 
 <NavLink
-to="/reglamento"
-className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
+  to="/reglamento"
+  className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
 >
-reglamento
-</NavLink>
-
-
+  reglamento
+</NavLink>;

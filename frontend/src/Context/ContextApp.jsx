@@ -9,6 +9,14 @@ export const ContextAppProvider = ({ children }) => {
   console.log(`CONTEXT: ${localStorage.getItem("newToken")}`);
   console.log(localStorage.getItem("newToken"));
 
+  const deleteToken = () => {
+    try {
+      localStorage.removeItem("newToken");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const isLogged = async (data) => {
     try {
       deleteToken();
@@ -27,17 +35,9 @@ export const ContextAppProvider = ({ children }) => {
   const registerUser = async (data) => {
     try {
       const res = await registerUserRequest(data);
-      return res
+      return res;
     } catch (error) {
       console.log("Error al registrarse desde context");
-    }
-  }
-
-  const deleteToken = () => {
-    try {
-      localStorage.removeItem("newToken");
-    } catch (error) {
-      console.log(error.message);
     }
   };
 
@@ -129,9 +129,9 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
-  const getReglamento = async () => {
+  const getReglamento = async (token) => {
     try {
-      const response = await getReglamentoRequest();
+      const response = await getReglamentoRequest(token);
       if (response === undefined) {
         return null;
       }

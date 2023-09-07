@@ -11,8 +11,6 @@ export const Login = () => {
   useEffect(() => {
     if (tokenExist && !validateToken()) {
       navigate(`/home`);
-    } else {
-      navigate(`/`);
     }
   }, [navigate, tokenExist, validateToken]);
 
@@ -31,11 +29,13 @@ export const Login = () => {
     if (response) {
       navigate(`/home`);
     }
-    setErr(true);
-    setTimeout(() => {
-      setErr(false);
-    }, 3000);
-    console.log(err);
+    else {
+      setErr(true);
+      setTimeout(() => {
+        setErr(false);
+      }, 3000);
+      console.log(err);
+    }
   };
 
   // const { email, contrasenia } = data;

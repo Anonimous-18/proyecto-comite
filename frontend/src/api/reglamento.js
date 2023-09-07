@@ -2,29 +2,21 @@ import axios from "axios";
 
 const API = import.meta.env.VITE_API_URL;
 
-/**------------------------------------------
- * |    Obtenemos el token de autenticación
- ------------------------------------------*/
-const token = JSON.parse(localStorage.getItem("newToken"));
-
-/**--------------------------------------------------
- * |    Configurar el encabezado de la autorización
- --------------------------------------------------*/
-const axiosInstance = axios.create({
-  baseURL: API,
-  headers: {
-    Authorization: `Bearer ${token ? token.token : null}`,
-  },
-});
-
-/**----------------------------------
- * |    Aqui obtenemos el reglamento
- ----------------------------------*/
-export const getReglamentoRequest = async () => {
+/**------------------------------------------------
+ * |  Aqui obtenemos el reglamento
+ * |  Configurar el encabezado de la autorización
+ ------------------------------------------------*/
+export const getReglamentoRequest = async (token) => {
   try {
-    const res = await axiosInstance.get(`/api/reglamento`);
-    return res;
+    const res = await axios.get(`${API}/api/reglamento`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res) {
+      return res;
+    }
   } catch (error) {
-    console.log("Error reglamento detalles: ", error.message);
+    console.log("Error al obtener el reglamento detalles: ", error.message);
   }
 };

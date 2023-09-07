@@ -13,11 +13,14 @@ export const Reglamento = () => {
   const tokenExist = protectedRoutes();
 
   useEffect(() => {
-    if (!tokenExist || validateToken()) {
+    if (!tokenExist) {
+      navigate(`/`);
+    } else if (validateToken()) {
       navigate(`/`);
     } else {
       const Reglamento = async () => {
-        const res = await getReglamento();
+        const token = JSON.parse(localStorage.getItem("newToken"));
+        const res = await getReglamento(token.token);
 
         if (res !== null || res !== undefined) {
           setReglamento(res);
@@ -51,7 +54,6 @@ export const Reglamento = () => {
                     width="350"
                     height="350"
                   />
-                  
                 </div>
                 <br />
                 <div className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">

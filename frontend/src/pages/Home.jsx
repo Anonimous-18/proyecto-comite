@@ -13,7 +13,9 @@ export const Home = () => {
   const tokenExist = protectedRoutes();
 
   useEffect(() => {
-    if (!tokenExist || validateToken()) {
+    if (!tokenExist) {
+      navigate(`/`);
+    } else if (validateToken()){
       navigate(`/`);
     }
   }, [navigate, tokenExist, validateToken]);
