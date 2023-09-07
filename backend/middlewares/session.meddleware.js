@@ -59,7 +59,13 @@ const filtrarRol = (req, res, next) => {
         "SELECT * FROM roles WHERE roles.id = ?",
         [decodedToken.user.rol_id]
       );
-      if (result[0].nombre === rol) {
+      if (result.length === 0 && rol === "Invitado") {
+        req.rol = "Invitado";
+        next();
+      } else if (result.length === 0) {
+        return res.status(403).json({ message: "Usuario no autorizado" });
+      } else if (result[0].nombre === rol) {
+        req.rol = result[0].nombre;
         next();
       } else {
         return res.status(403).json({ message: "Usuario no autorizado" });

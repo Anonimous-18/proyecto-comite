@@ -1,13 +1,12 @@
 import jwt_decode from "jwt-decode";
-import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 import { getReglamentoRequest } from "../api/reglamento";
+import { filterRolRequest } from "../api/filtrarRol";
 import { createContext, useContext } from "react";
+import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
-  console.log(`CONTEXT: ${localStorage.getItem("newToken")}`);
-  console.log(localStorage.getItem("newToken"));
 
   const deleteToken = () => {
     try {
@@ -155,6 +154,19 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const filterRol = async (token, rol) => {
+    try {
+      const res = await filterRolRequest(token, { rol });
+      if (res === undefined) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (error) {
+      console.log("Error al filtrar el rol: ", error.message);
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -165,6 +177,7 @@ export const ContextAppProvider = ({ children }) => {
         orderReglamento,
         validateToken,
         registerUser,
+        filterRol,
       }}
     >
       {children}

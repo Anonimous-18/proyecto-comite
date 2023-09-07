@@ -17,6 +17,14 @@ export const Home = () => {
       navigate(`/`);
     } else if (validateToken()){
       navigate(`/`);
+    } else if (localStorage.getItem("admin")) {
+      navigate(`/home`);
+    } else if (localStorage.getItem("invitado")) {
+      navigate(`/homeinvitado`);
+    } else if (localStorage.getItem("instructor")) {
+      navigate(`/homeinstructor`);
+    } else if (localStorage.getItem("aprendiz")) {
+      navigate(`/homeaprendiz`);
     }
   }, [navigate, tokenExist, validateToken]);
 

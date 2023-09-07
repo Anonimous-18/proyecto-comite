@@ -35,10 +35,10 @@ router.get("/api/test", verifyToken, (req, res) => {
 });
 
 /**---------------------------------------------
- * |  Ejemplo del uso del Middleware filtrarRol
+ * |  Middleware para filtrarRol
 ---------------------------------------------*/
 router.post("/api/verificar-rol", filtrarRol, (req, res) => {
-  res.json({ message: "Entro" })
+  res.status(200).json({ rol: req.rol })
 });
 
 module.exports = router;

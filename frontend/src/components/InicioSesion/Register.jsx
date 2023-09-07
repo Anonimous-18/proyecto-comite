@@ -33,7 +33,6 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data)
     if (data) {
       const result = await registerUser(data);
 
@@ -42,7 +41,6 @@ export const Register = () => {
       }
     }
   };
-  console.log(data)
 
   return (
     <>
