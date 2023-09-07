@@ -11,7 +11,7 @@ import { Reglamento } from "./components/Reglamento/Reglamento";
 import { Home_Aprendiz } from "./pages/aprendiz/home_Aprendiz";
 import { Homeinvitado } from "./pages/invitado/Homeinvitado";
 import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
-import {ImpugnacionesAprendiz} from "./pages/aprendiz/ImpugnacionesAprendiz";
+import { ImpugnacionesAprendiz } from "./pages/aprendiz/ImpugnacionesAprendiz";
 import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
 import { Homeinstructor } from "./pages/instructor/homeinstructor";
 
@@ -21,15 +21,22 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/reglamento" element={<Reglamento />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
+
+        <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/homeinvitado" element={<Homeinvitado />} />
-        <Route path="/impugnacionesaprendiz" element={< ImpugnacionesAprendiz />} />
+        <Route path="/homeinstructor" element={<Homeinstructor />} />
+
+        <Route path="/reglamento" element={<Reglamento />} />
+
+        <Route
+          path="/impugnacionesaprendiz"
+          element={<ImpugnacionesAprendiz />}
+        />
+        <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
+
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
-        <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />}/>
-        <Route path="/homeinstructor" element={<Homeinstructor />}/>
       </Routes>
     </ContextAppProvider>
   );
