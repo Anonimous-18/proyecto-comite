@@ -308,6 +308,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `contrasenia` varchar(255) NOT NULL,
   `tipo_documento` varchar(30) NOT NULL,
   `documento` varchar(30) NOT NULL,
+  `cargo` varchar(30) NOT NULL,
+  `dependencia` varchar(40) NOT NULL,
   `telefono` varchar(15) NOT NULL,
   `creado` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `rol_id` int DEFAULT NULL,
