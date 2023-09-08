@@ -249,10 +249,15 @@ const registerUser = async (req, res) => {
     });
   }
 };
+const registerUsers = async (req, res) => {
+  
+};
 
 module.exports = {
   login,
   recoveryEmail,
   registerUser,
+  recoveryEmail,
+  registerUsers,
   secretKey,
 };
