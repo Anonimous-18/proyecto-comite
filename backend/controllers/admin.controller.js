@@ -1,14 +1,83 @@
-const express = require("express");
-const router = express.Router();
-const Roles = require("../models/paragrafos.js");
+const { roles } = require("../models");
 
-router.get("/listar", async (req, res) => {
+/**--------------------------------
+ * Controlador para crear un rol
+ --------------------------------*/
+const createRol = async (req, res) => {
   try {
-    const roles = await Roles.findAll();
-    res.json(roles);
+    const result = await roles.create(req.body);
+
+    if (result.dataValues.id !== 0) {
+      return res.status(200).json(result);
+    }
+    return res.status(500).json({ message: "Error al crear un nuevo rol." });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error al crear un nuevo rol: ${error.message}` });
+  }
+};
+
+/**-----------------------------------------
+ * Controlador para obtener todos los roles
+ -----------------------------------------*/
+const getRol = async (req, res) => {
+  try {
+    const result = await roles.findAll();
+
+    if (result.length !== 0) {
+      return res.status(200).json(result);
+    }
+    return res.status(404).json({ message: "No hay roles" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error al obtener todos los roles detalles: ${error.message}` });
+  }
+};
+
+/**----------------------------------
+ * Controlador para actualizar un rol
+ ----------------------------------*/
+const updateRol = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [updated] = await roles.update(req.body, {
+      where: { id },
+    });
+    if (updated) {
+      const actualizado = await roles.findOne({ where: { id } });
+      return res.status(200).json(actualizado);
+    } else {
+      return res.status(404).json({ message: "No existe un usuario con este id." });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+};
 
-module.exports = router;
+/**--------------------------------
+ * Controlador para delete un rol
+ --------------------------------*/
+const deleteRol = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleted = await roles.destroy({
+      where: { id },
+    });
+    if (deleted) {
+      return res.json({ message: 'rol eliminado' });
+    } else {
+      return res.status(404).json({ message: "No existe un usuario con este id." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  createRol,
+  getRol,
+  updateRol,
+  deleteRol,
+};
