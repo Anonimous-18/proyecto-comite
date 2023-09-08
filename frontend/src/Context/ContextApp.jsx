@@ -7,7 +7,6 @@ import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
-
   const deleteToken = () => {
     try {
       localStorage.removeItem("newToken");
@@ -178,8 +177,7 @@ export const ContextAppProvider = ({ children }) => {
         validateToken,
         registerUser,
         filterRol,
-      }}
-    >
+      }}>
       {children}
     </ContextApp.Provider>
   );

@@ -3,8 +3,12 @@ import { Footer } from "../../Layout/Footer";
 import { Link } from "react-router-dom";
 import { GrBook } from "react-icons/gr";
 import {GrDocumentUser} from "react-icons/gr"
+import { useEffect } from "react";
 
 export const Homeinvitado = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [])
   return (
     <div>
       <NavBar />
