@@ -24,7 +24,7 @@ export const Login = () => {
   }, [navigate, tokenExist, validateToken, filterRol]);
 
   const [data, setData] = useState({
-    email: "",
+    documento: "",
     contrasenia: "",
   });
   const [err, setErr] = useState(false);
@@ -110,13 +110,13 @@ export const Login = () => {
                   <div className="bg-white w-full h-full sm:p-7 border-blue-700 border-2 rounded-lg">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                        Correo
+                        Documento
                       </label>
                       <input
-                        type="email"
-                        name="email"
+                        type="number"
+                        name="documento"
                         onChange={(e) => onChange(e)}
-                        id="email"
+                        id="documento"
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         required
                       />

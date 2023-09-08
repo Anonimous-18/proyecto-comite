@@ -11,11 +11,11 @@ const secretKey = v4();
  ------------------------------*/
 const login = async (req, res) => {
   try {
-    const { email, contrasenia } = req.body;
+    const { documento, contrasenia } = req.body;
 
     const [result] = await pool.query(
-      "SELECT * FROM usuarios WHERE email = ? AND contrasenia = ?",
-      [email, contrasenia]
+      "SELECT * FROM usuarios WHERE documento = ? AND contrasenia = ?",
+      [documento, contrasenia]
     );
 
     if (result.length === 0)
