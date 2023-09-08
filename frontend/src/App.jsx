@@ -5,7 +5,7 @@ import { Login } from "./components/InicioSesion/Login";
 import { Register } from "./components/InicioSesion/Register";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
 
-import { Home } from "./pages/Home";
+import { Home } from "./pages/admin/Home";
 import { ContextAppProvider } from "./Context/ContextApp";
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import { Home_Aprendiz } from "./pages/aprendiz/home_Aprendiz";
@@ -14,7 +14,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 import { ImpugnacionesAprendiz } from "./pages/aprendiz/ImpugnacionesAprendiz";
 import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
 import { Homeinstructor } from "./pages/instructor/homeinstructor";
-import { Table } from "./components/Tabla/Table";
+import { Roles } from "./pages/admin/Roles";
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
 
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
 
-        <Route path="/tabla" element={<Table />} />
+        <Route path="/roles" element={<Roles />} />
       </Routes>
     </ContextAppProvider>
   );

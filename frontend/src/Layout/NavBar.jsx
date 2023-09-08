@@ -99,14 +99,18 @@ export const NavBar = () => {
               to="/reglamento"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
-              reglamento
+              Reglamento
             </NavLink>
-            <NavLink
-              to="/tabla"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Roles
-            </NavLink>
+            {localStorage.getItem("admin") ? (
+              <NavLink
+                to="/roles"
+                className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+              >
+                Roles
+              </NavLink>
+            ) : (
+              <></>
+            )}
             <NavLink
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"

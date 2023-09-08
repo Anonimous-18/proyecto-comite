@@ -1,8 +1,8 @@
-import { NavBar } from "../Layout/NavBar";
-import { Footer } from "../Layout/Footer";
+import { NavBar } from "../../Layout/NavBar";
+import { Footer } from "../../Layout/Footer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContextApp } from "../Context/ContextApp";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Home = () => {
   console.log(`HOME: ${localStorage.getItem("newToken")}`);
