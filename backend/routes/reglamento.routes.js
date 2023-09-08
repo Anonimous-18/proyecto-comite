@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { getReglamento } = require("../controllers/reglamento.controller.js");
 const { verifyToken } = require("../middlewares/session.meddleware.js");
+
 // const { paragrafos } = require("../models");
 
 const router = Router();
