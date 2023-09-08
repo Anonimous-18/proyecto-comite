@@ -1,36 +1,77 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class usuarios extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('usuarios', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    nombre_completo: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+    contrasenia: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    tipo_documento: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    documento: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    telefono: {
+      type: DataTypes.STRING(15),
+      allowNull: false
+    },
+    creado: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    cargo: {
+      type: DataTypes.STRING(200),
+      allowNull: true
+    },
+    dependencia: {
+      type: DataTypes.STRING(200),
+      allowNull: true
+    },
+    rol_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'roles',
+        key: 'id'
+      }
     }
-  }
-  usuarios.init({
-    nombre_completo: DataTypes.STRING,
-    email: DataTypes.STRING,
-    contrasenia: DataTypes.STRING,
-    creado: DataTypes.DATE,
-    rol_id: DataTypes.INTEGER,
-    tipo_documento: DataTypes.STRING,
-    documento: DataTypes.STRING,
-    cargo: DataTypes.STRING,
-    telefono: DataTypes.STRING,
-    dependencia: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'usuarios',
+    tableName: 'usuarios',
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id" },
+        ]
+      },
+      {
+        name: "rol_id",
+        using: "BTREE",
+        fields: [
+          { name: "rol_id" },
+        ]
+      },
+    ]
   });
-
-
-  // Definir la relación con Roles
-  usuarios.belongsTo(sequelize.models.roles, { foreignKey: 'rol_id' });
-  return usuarios;
 };

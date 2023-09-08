@@ -6,6 +6,7 @@ const { PORT } = require("./config.js");
 // Rutas
 const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
+const adminRoutes = require("./controllers/admin.controller.js")
 
 const app = express();
 
@@ -17,5 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(inicio_sesionRoutes);
 app.use(reglamentoRoutes);
+app.use(adminRoutes);
 
 app.listen(PORT, () => console.log(`Server on port ${PORT}`));

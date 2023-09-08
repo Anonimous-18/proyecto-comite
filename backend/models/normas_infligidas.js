@@ -1,24 +1,23 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('permisos', {
-    id: {
+  return sequelize.define('normas_infligidas', {
+    nor_id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nombre: {
-      type: DataTypes.STRING(200),
-      allowNull: false
-    },
-    creado: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+    art_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'articulos',
+        key: 'art_id'
+      }
     }
   }, {
     sequelize,
-    tableName: 'permisos',
+    tableName: 'normas_infligidas',
     timestamps: false,
     indexes: [
       {
@@ -26,7 +25,14 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
+          { name: "nor_id" },
+        ]
+      },
+      {
+        name: "art_id",
+        using: "BTREE",
+        fields: [
+          { name: "art_id" },
         ]
       },
     ]

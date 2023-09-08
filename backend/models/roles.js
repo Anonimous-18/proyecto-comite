@@ -1,26 +1,34 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class roles extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('roles', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    nombre: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+    creado: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
-  }
-  roles.init({
-    nombre: DataTypes.STRING,
-    creado: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'roles',
+    tableName: 'roles',
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id" },
+        ]
+      },
+    ]
   });
-  // Definir la relación inversa con Usuarios
-  roles.hasMany(sequelize.models.usuarios, { foreignKey: 'rol_id' });
-  return roles;
 };
