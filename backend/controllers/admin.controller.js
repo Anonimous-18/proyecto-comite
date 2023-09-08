@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const Roles = require("../models/roles.js");
+const Roles = require("../models/paragrafos.js");
 
-// ESTO ES PARA BORRAR:
 router.get("/listar", async (req, res) => {
   try {
-    const roles = await Roles.create({ nombre: "Test" });
-    res.json({message: "entro"});
+    const roles = await Roles.findAll();
+    res.json(roles);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
