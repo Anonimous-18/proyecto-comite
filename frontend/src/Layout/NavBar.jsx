@@ -83,7 +83,7 @@ export const NavBar = () => {
     >
       <div className="px-4 sm:px-6 ">
         {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
-        <div className="-ml-4 -mt-2 hidden lg:flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2 ">
+        <div className="-ml-4 -mt-2 hidden lg:flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2 ">
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
@@ -102,28 +102,28 @@ export const NavBar = () => {
               reglamento
             </NavLink>
             <NavLink
-              to="/"
+              to="/tabla"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
-              Servicios
+              Roles
             </NavLink>
             <NavLink
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
-              Nosotros
+              Instructores
             </NavLink>
             <NavLink
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
-              Carreras
+              Permisos
             </NavLink>
             <NavLink
               to="/"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
-              Blog
+              Apredices
             </NavLink>
             <NavLink
               to="/"
@@ -148,7 +148,7 @@ export const NavBar = () => {
         </div>
 
         {/* Este es el navLink cuando el de arriba se esconde */}
-        <div className="-ml-4 -mt-2 lg:hidden flex  flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
+        <div className="-ml-4 -mt-2 lg:hidden flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
           <div className="ml-4 mt-2">
             <Link to="/home">
               {/* src={logo} */}

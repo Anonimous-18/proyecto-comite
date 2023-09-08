@@ -1,6 +1,7 @@
 import jwt_decode from "jwt-decode";
-import { getReglamentoRequest } from "../api/reglamento";
+import { getRolesRequest } from "../api/roles";
 import { filterRolRequest } from "../api/filtrarRol";
+import { getReglamentoRequest } from "../api/reglamento";
 import { createContext, useContext } from "react";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 
@@ -166,6 +167,15 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getRoles = async (token) => {
+    try {
+      const res = await getRolesRequest(token);
+      return res;
+    } catch (error) {
+      console.log("Error al filtrar el rol: ", error.message);
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -177,6 +187,7 @@ export const ContextAppProvider = ({ children }) => {
         validateToken,
         registerUser,
         filterRol,
+        getRoles,
       }}>
       {children}
     </ContextApp.Provider>

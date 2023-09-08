@@ -14,6 +14,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 import { ImpugnacionesAprendiz } from "./pages/aprendiz/ImpugnacionesAprendiz";
 import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
 import { Homeinstructor } from "./pages/instructor/homeinstructor";
+import { Table } from "./components/Tabla/Table";
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
 
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
+
+        <Route path="/tabla" element={<Table />} />
       </Routes>
     </ContextAppProvider>
   );

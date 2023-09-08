@@ -46,6 +46,9 @@ const filtrarRol = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   const { rol } = req.body;
 
+  console.log("BACKEND TOKEN: ", token);
+  console.log("ROL : ", rol);
+
   if (!token) {
     return res.status(401).json({ message: "Token no proporcionado" });
   }
