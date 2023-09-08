@@ -6,7 +6,7 @@ const { PORT } = require("./config.js");
 // Rutas
 const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
-const adminRoutes = require("./controllers/admin.controller.js")
+const adminRoutes = require("./routes/admin.routes.js")
 
 const app = express();
 
