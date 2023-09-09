@@ -4,9 +4,9 @@ const { createRol, getRol, updateRol, deleteRol } = require("../controllers/admi
 
 const router = Router();
 
-router.post("/api/create-rol", verifyToken, filtrarRol, createRol);
+router.post("/api/create-rol", verifyToken, createRol);
 router.get("/api/get-rol", verifyToken, getRol);
-router.put("/api/update-rol/:id", updateRol);
-router.delete("/api/delete-rol/:id", deleteRol);
+router.put("/api/update-rol/:id", verifyToken, updateRol);
+router.delete("/api/delete-rol/:id", verifyToken, deleteRol);
 
 module.exports = router;

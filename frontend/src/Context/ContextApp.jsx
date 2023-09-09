@@ -1,9 +1,9 @@
 import jwt_decode from "jwt-decode";
-import { getRolesRequest } from "../api/roles";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { createContext, useContext } from "react";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
+import { getRolesRequest, createRolRequest, deleteRolRequest, updateRolRequest } from "../api/roles";
 
 export const ContextApp = createContext();
 
@@ -176,6 +176,36 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const createRoles = async (token, data) => {
+    try {
+      const res = await createRolRequest(token, data);
+      return res;
+    } catch (error) {
+      console.log("Error al crear un rol: ", error.message);
+    }
+  };
+
+  const deleteRoles = async (token, data) => {
+    try {
+      const res = await deleteRolRequest(token, data);
+      return res.status;
+    } catch (error) {
+      console.log("Error al eliminar un rol: ", error.message);
+    }
+  };
+
+  const updateRoles = async (token, id, data) => {
+    try {
+      console.log("ID: ", id)
+      console.log("DATA: ",  data)
+      console.log("TOKEN: ",  token)
+      const res = await updateRolRequest(token, id, data);
+      return res;
+    } catch (error) {
+      console.log("Error actualizar un rol: ", error.message);
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -188,6 +218,9 @@ export const ContextAppProvider = ({ children }) => {
         registerUser,
         filterRol,
         getRoles,
+        createRoles,
+        deleteRoles,
+        updateRoles
       }}>
       {children}
     </ContextApp.Provider>

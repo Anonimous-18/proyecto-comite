@@ -1,22 +1,61 @@
-import { NavBar } from "../../Layout/NavBar";
-import { Footer } from "../../Layout/Footer";
 import { useEffect, useState } from "react";
+import { useContextApp } from "../../Context/ContextApp";
+import { Link, useNavigate } from "react-router-dom";
 
-export const Table = ({ datos }) => {
+export const Table = ({
+  datos,
+  fun_ver,
+  fun_eliminar,
+  nombre_tabla,
+}) => {
   const [data, setData] = useState([]);
+  const { validateToken } = useContextApp();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (datos) {
+    if (validateToken()) {
+      navigate(`/`);
+    } else if (datos) {
       setData(datos);
     }
-  }, [datos]);
+  }, [datos, navigate, validateToken]);
 
-  if (datos.length === 0) {
+  if (datos === null || datos === undefined) {
+    return <div>Loading...</div>;
+  } else if (datos.length === 0) {
     return <div>Loading...</div>;
   }
+
+  const handleView = async () => {
+    console.log("VER ");
+    // const response = await
+  };
+
+  const handleDelete = async (id) => {
+    console.log("ELIMINAR");
+    const admin = localStorage.getItem("admin");
+    const token = JSON.parse(localStorage.getItem("newToken"));
+
+    if (admin) {
+      await fun_eliminar(token.token, id);
+      navigate(0);
+    } else {
+      navigate(`/home`);
+    }
+  };
+
   return (
     <>
-      <NavBar />
       <div className="h-full w-full mt-28">
+        <div>
+          <Link
+            to={`/form-${nombre_tabla}`}
+            className="bg-cyan-600 p-2"
+            type="button"
+          >
+            CREAR
+          </Link>
+        </div>
         {data.map((dato, index) => {
           const columnas = Object.keys(dato);
           return (
@@ -36,9 +75,26 @@ export const Table = ({ datos }) => {
                       {dato[columna]}
                     </td>
                   ))}
-                  <td>
-                    <button className="bg-cyan-600 p-2" type="button">
+                  <td className="">
+                    <button
+                      onClick={() => handleView()}
+                      className="bg-cyan-600 p-2"
+                      type="button"
+                    >
                       Ver
+                    </button>
+                    <Link
+                      to={`/form-${nombre_tabla}/update/${dato.id}`}
+                      className="bg-purple-800 p-2"
+                    >
+                      Actualizar
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(dato.id)}
+                      className="bg-orange-900 p-2"
+                      type="button"
+                    >
+                      Eliminar
                     </button>
                   </td>
                 </tr>
@@ -47,7 +103,6 @@ export const Table = ({ datos }) => {
           );
         })}
       </div>
-      <Footer />
     </>
   );
 };

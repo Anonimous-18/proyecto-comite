@@ -1,11 +1,13 @@
 import { Table } from "../../components/Tabla/Table";
+import { NavBar } from "../../Layout/NavBar";
+import { Footer } from "../../Layout/Footer";
 import { useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
 import { useEffect, useState } from "react";
 
 export const Roles = () => {
   const [roles, setRoles] = useState([]);
-  const { getRoles, filterRol, protectedRoutes, validateToken } =
+  const { getRoles, filterRol, protectedRoutes, validateToken, deleteRoles } =
     useContextApp();
   const navigate = useNavigate();
   const tokenExist = protectedRoutes();
@@ -36,7 +38,13 @@ export const Roles = () => {
   }, [navigate, tokenExist, filterRol, getRoles, validateToken]);
 
   if (roles.length !== 0) {
-    return <Table datos={roles} />;
+    return (
+      <>
+        <NavBar />
+        <Table datos={roles} fun_ver={null} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>;
+        <Footer />
+      </>
+    );
   } else {
     return <div>NO AUTORIZADO</div>;
   }

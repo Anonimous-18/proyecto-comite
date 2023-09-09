@@ -28,9 +28,8 @@ export const NovedadInvitado = () => {
             </h2>
             <form action="#">
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                <div class="sm:col-span-2 ">
+                <div className="sm:col-span-2 ">
                   <label
-                    for="name"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Nombre y Apellido
@@ -45,7 +44,6 @@ export const NovedadInvitado = () => {
                 </div>
                 <div>
                   <label
-                    for="category"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Tipo de Documento
@@ -54,7 +52,7 @@ export const NovedadInvitado = () => {
                     id="category"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
                   >
-                    <option selected="">Selecionar</option>
+                    <option>Selecionar</option>
                     <option value="CC">Cedula de Ciudadania</option>
                     <option value="TI">Tarjeta de Identidad</option>
                     <option value="CE">Cedula de Extranjeria</option>
@@ -63,7 +61,6 @@ export const NovedadInvitado = () => {
                 </div>
                 <div className="w-full">
                   <label
-                    for="brand"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Numero Documento{" "}
@@ -72,7 +69,7 @@ export const NovedadInvitado = () => {
                     type="text"
                     name="brand"
                     id="brand"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                     required=""
                   />
                 </div>
@@ -83,7 +80,6 @@ export const NovedadInvitado = () => {
                 </div>
                 <div className="sm:col-span-2">
                   <label
-                    for="category"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Capitulo
@@ -106,7 +102,6 @@ export const NovedadInvitado = () => {
                 </div>
                 <div>
                   <label
-                    for="category"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Articulo
@@ -122,7 +117,6 @@ export const NovedadInvitado = () => {
                 </div>
                 <div>
                   <label
-                    for="category"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Paragrafo
@@ -136,9 +130,8 @@ export const NovedadInvitado = () => {
                     <option value="par">Paragrafo ...</option>
                   </select>
                 </div>
-                <div class="sm:col-span-2">
+                <div className="sm:col-span-2">
                   <label
-                    for="description"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Descripcion
@@ -152,7 +145,6 @@ export const NovedadInvitado = () => {
                 </div>
                 <div className="w-full">
                   <label
-                    for="brand"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Fecha de la falta
@@ -161,13 +153,12 @@ export const NovedadInvitado = () => {
                     type="date"
                     name="brand"
                     id="brand"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                     required=""
                   />
                 </div>
                 <div className="w-full">
                   <label
-                    for="brand"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Adjuntar evidencias
@@ -176,7 +167,7 @@ export const NovedadInvitado = () => {
                     type="file"
                     name="brand"
                     id="brand"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   />
                 </div>
               </div>
