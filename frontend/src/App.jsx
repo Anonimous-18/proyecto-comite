@@ -20,6 +20,8 @@ import { Home } from "./pages/admin/Home";
 import { Roles } from "./pages/admin/Roles";
 import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
 
+import { Table } from "./components/Tabla/Table";
+import Prueba from "./components/pruebas/Prueba";
 function App() {
   return (
     <ContextAppProvider>
@@ -27,6 +29,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
+        <Route path="/pruebas" element={<Prueba />} />
 
         <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
