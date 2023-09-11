@@ -11,7 +11,6 @@ const Prueba = () => {
   };
   const [persona, setPersona] = useState(camposIniciales);
   const [excelData, setExcelData] = useState([]); // Estado para almacenar los datos del archivo Excel
-  
   const onFileUpload = (event) => {
     const data = handleFileUpload(event);
     console.log(data);

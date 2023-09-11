@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
+import { RolesDetails } from "../Roles/RolesDetails";
 
-export const Table = ({ datos, fun_ver, fun_eliminar, nombre_tabla }) => {
+export const Table = ({ datos, fun_eliminar, nombre_tabla }) => {
   const [data, setData] = useState([]);
-  const [dataById, setDataById] = useState([]);
   const { validateToken } = useContextApp();
   const navigate = useNavigate();
 
@@ -21,21 +21,6 @@ export const Table = ({ datos, fun_ver, fun_eliminar, nombre_tabla }) => {
   } else if (datos.length === 0) {
     return <div>Loading...</div>;
   }
-
-  const handleView = async (id) => {
-    console.log("VER ");
-    const admin = localStorage.getItem("admin");
-    const token = JSON.parse(localStorage.getItem("newToken"));
-
-    if (admin) {
-      const res = await fun_ver(token.token, id);
-      if (isNaN(res)) {
-        setDataById(res);
-      }
-    } else {
-      navigate(`/home`);
-    }
-  };
 
   const handleDelete = async (id) => {
     console.log("ELIMINAR");
@@ -81,12 +66,12 @@ export const Table = ({ datos, fun_ver, fun_eliminar, nombre_tabla }) => {
                     </td>
                   ))}
                   <td className="">
-                    <button
-                      onClick={() => handleView(dato.id)}
+                    <Link
+                    to={`/see-${nombre_tabla}/${dato.id}`}
                       className="bg-cyan-600 p-2"
                       type="button">
                       Ver
-                    </button>
+                    </Link>
                     <Link
                       to={`/form-${nombre_tabla}/update/${dato.id}`}
                       className="bg-purple-800 p-2">

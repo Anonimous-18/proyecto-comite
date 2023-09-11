@@ -20,8 +20,9 @@ import { Home } from "./pages/admin/Home";
 import { Roles } from "./pages/admin/Roles";
 import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
 
-import { Table } from "./components/Tabla/Table";
 import Prueba from "./components/pruebas/Prueba";
+import { RolesDetails } from "./components/Roles/RolesDetails";
+
 function App() {
   return (
     <ContextAppProvider>
@@ -49,6 +50,7 @@ function App() {
         <Route path="/roles" element={<Roles />} />
         <Route path="/form-roles" element={<FormularioRoles />} />
         <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
+        <Route path="/see-roles/:id" element={<RolesDetails />} />
       </Routes>
     </ContextAppProvider>
   );
