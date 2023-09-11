@@ -15,5 +15,6 @@ export const handleFileUpload = (event) => {
     };
     reader.readAsArrayBuffer(file);
   }
+  // console.log(excelData[0]);
   return excelData; 
 };
