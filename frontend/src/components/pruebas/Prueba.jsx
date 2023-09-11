@@ -6,8 +6,8 @@ import { handleFileUpload } from "../../execelJson/xlsxJson";
 const Prueba = () => {
   const [excelData, setExcelData] = useState([]); // Estado para almacenar los datos del archivo Excel
   console.log(excelData)
-  const onFileUpload = (event) => {
-    const data =  handleFileUpload(event); // Llama a la función handleFileUpload
+  const onFileUpload = async (event) => {
+    const data = await handleFileUpload(event); // Llama a la función handleFileUpload
     setExcelData(data);
     console.log(excelData)
   };
