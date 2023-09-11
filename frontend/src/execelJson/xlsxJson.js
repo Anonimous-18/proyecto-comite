@@ -1,8 +1,8 @@
 import * as XLSX from 'xlsx';
 
 export const handleFileUpload = (event) => {
-  let excelData = null;
   const file = event.target.files[0];
+  const excelData = []; 
   if (file) {
     alert("existe un archivo excel");
     const reader = new FileReader();
@@ -11,9 +11,8 @@ export const handleFileUpload = (event) => {
       const data = new Uint8Array(e.target.result);
       const workbook = XLSX.read(data, { type: "array" });
       const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-      excelData = XLSX.utils.sheet_to_json(firstSheet);
+      excelData.push(XLSX.utils.sheet_to_json(firstSheet));
     };
-
     reader.readAsArrayBuffer(file);
   }
   return excelData; 
