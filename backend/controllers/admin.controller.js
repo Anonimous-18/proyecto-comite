@@ -30,9 +30,32 @@ const getRol = async (req, res) => {
     }
     return res.status(404).json({ message: "No hay roles" });
   } catch (error) {
+    res.status(500).json({
+      message: `Error al obtener todos los roles detalles: ${error.message}`,
+    });
+  }
+};
+
+/**-----------------------------------------
+ * Controlador para obtener un rol por id
+ -----------------------------------------*/
+const getRolbyId = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const rol = await roles.findOne({ where: { id } });
+
+    if (rol) {
+      return res.status(200).json(rol);
+    } else {
+      return res
+        .status(404)
+        .json({ message: `No se encontraron roles con ese id.` });
+    }
+  } catch (error) {
     res
       .status(500)
-      .json({ message: `Error al obtener todos los roles detalles: ${error.message}` });
+      .json({ message: `Error al obtener un rol detalles: ${error.message}` });
   }
 };
 
@@ -49,7 +72,9 @@ const updateRol = async (req, res) => {
       const actualizado = await roles.findOne({ where: { id } });
       return res.status(200).json(actualizado);
     } else {
-      return res.status(404).json({ message: "No existe un usuario con este id." });
+      return res
+        .status(404)
+        .json({ message: "No existe un usuario con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -66,9 +91,11 @@ const deleteRol = async (req, res) => {
       where: { id },
     });
     if (deleted) {
-      return res.json({ message: 'rol eliminado' });
+      return res.json({ message: "rol eliminado" });
     } else {
-      return res.status(404).json({ message: "No existe un usuario con este id." });
+      return res
+        .status(404)
+        .json({ message: "No existe un usuario con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -80,4 +107,5 @@ module.exports = {
   getRol,
   updateRol,
   deleteRol,
+  getRolbyId,
 };

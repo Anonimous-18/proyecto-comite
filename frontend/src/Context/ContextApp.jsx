@@ -3,7 +3,7 @@ import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { createContext, useContext } from "react";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
-import { getRolesRequest, createRolRequest, deleteRolRequest, updateRolRequest } from "../api/roles";
+import { getRolesRequest, createRolRequest, deleteRolRequest, updateRolRequest, getRolByIdRequest } from "../api/roles";
 
 export const ContextApp = createContext();
 
@@ -176,6 +176,15 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getRolesById = async (token, id) => {
+    try {
+      const res = await getRolByIdRequest(token,id);
+      return res;
+    } catch (error) {
+      console.log("Error al filtrar el rol por id: ", error.message);
+    }
+  };
+
   const createRoles = async (token, data) => {
     try {
       const res = await createRolRequest(token, data);
@@ -220,7 +229,8 @@ export const ContextAppProvider = ({ children }) => {
         getRoles,
         createRoles,
         deleteRoles,
-        updateRoles
+        updateRoles,
+        getRolesById,
       }}>
       {children}
     </ContextApp.Provider>

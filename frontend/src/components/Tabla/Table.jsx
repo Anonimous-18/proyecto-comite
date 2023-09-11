@@ -2,13 +2,9 @@ import { useEffect, useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Table = ({
-  datos,
-  fun_ver,
-  fun_eliminar,
-  nombre_tabla,
-}) => {
+export const Table = ({ datos, fun_ver, fun_eliminar, nombre_tabla }) => {
   const [data, setData] = useState([]);
+  const [dataById, setDataById] = useState([]);
   const { validateToken } = useContextApp();
   const navigate = useNavigate();
 
@@ -26,9 +22,19 @@ export const Table = ({
     return <div>Loading...</div>;
   }
 
-  const handleView = async () => {
+  const handleView = async (id) => {
     console.log("VER ");
-    // const response = await
+    const admin = localStorage.getItem("admin");
+    const token = JSON.parse(localStorage.getItem("newToken"));
+
+    if (admin) {
+      const res = await fun_ver(token.token, id);
+      if (isNaN(res)) {
+        setDataById(res);
+      }
+    } else {
+      navigate(`/home`);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -51,8 +57,7 @@ export const Table = ({
           <Link
             to={`/form-${nombre_tabla}`}
             className="bg-cyan-600 p-2"
-            type="button"
-          >
+            type="button">
             CREAR
           </Link>
         </div>
@@ -77,23 +82,20 @@ export const Table = ({
                   ))}
                   <td className="">
                     <button
-                      onClick={() => handleView()}
+                      onClick={() => handleView(dato.id)}
                       className="bg-cyan-600 p-2"
-                      type="button"
-                    >
+                      type="button">
                       Ver
                     </button>
                     <Link
                       to={`/form-${nombre_tabla}/update/${dato.id}`}
-                      className="bg-purple-800 p-2"
-                    >
+                      className="bg-purple-800 p-2">
                       Actualizar
                     </Link>
                     <button
                       onClick={() => handleDelete(dato.id)}
                       className="bg-orange-900 p-2"
-                      type="button"
-                    >
+                      type="button">
                       Eliminar
                     </button>
                   </td>

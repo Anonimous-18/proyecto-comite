@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export const Roles = () => {
   const [roles, setRoles] = useState([]);
-  const { getRoles, filterRol, protectedRoutes, validateToken, deleteRoles } =
+  const { getRoles, filterRol, protectedRoutes, validateToken, deleteRoles, getRolesById } =
     useContextApp();
   const navigate = useNavigate();
   const tokenExist = protectedRoutes();
@@ -41,7 +41,7 @@ export const Roles = () => {
     return (
       <>
         <NavBar />
-        <Table datos={roles} fun_ver={null} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>;
+        <Table datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>;
         <Footer />
       </>
     );

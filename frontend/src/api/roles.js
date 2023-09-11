@@ -73,3 +73,21 @@ export const updateRolRequest = async (token, id, data) => {
     console.log("Error al actualizar un rol detalles: ", error.message);
   }
 };
+
+/**----------------------------------------
+ * |  Enpoint para obtener un rol por id
+ ----------------------------------------*/
+export const getRolByIdRequest = async (token, id) => {
+  try {
+    const res = await axios.get(`${API}/api/get-rol/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res) {
+      return res.data;
+    }
+  } catch (error) {
+    console.log("Error al obtener los roles detalles: ", error.message);
+  }
+};
