@@ -36,13 +36,10 @@ function App() {
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/homeinvitado" element={<Homeinvitado />} />
         <Route path="/homeinstructor" element={<Homeinstructor />} />
-
+       
         <Route path="/reglamento" element={<Reglamento />} />
 
-        <Route
-          path="/impugnacionesaprendiz"
-          element={<ImpugnacionesAprendiz />}
-        />
+        <Route path="/impugnacionesaprendiz"element={<ImpugnacionesAprendiz />}/>
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
 
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
