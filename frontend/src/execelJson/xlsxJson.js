@@ -2,7 +2,7 @@ import * as XLSX from 'xlsx';
 
 export const handleFileUpload = (event) => {
   const file = event.target.files[0];
-  const excelData = []; 
+  let excelData = []; 
   if (file) {
     alert("existe un archivo excel");
     const reader = new FileReader();
@@ -15,7 +15,7 @@ export const handleFileUpload = (event) => {
     };
     reader.readAsArrayBuffer(file);
   }
-
-  console.log(excelData);
+  
   return excelData; 
+  
 };
