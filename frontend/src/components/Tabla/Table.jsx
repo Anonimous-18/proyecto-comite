@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
-import { RolesDetails } from "../Roles/RolesDetails";
 
 export const Table = ({ datos, fun_eliminar, nombre_tabla }) => {
   const [data, setData] = useState([]);
@@ -67,9 +66,8 @@ export const Table = ({ datos, fun_eliminar, nombre_tabla }) => {
                   ))}
                   <td className="">
                     <Link
-                    to={`/see-${nombre_tabla}/${dato.id}`}
-                      className="bg-cyan-600 p-2"
-                      type="button">
+                      to={`/see-${nombre_tabla}/${dato.id}`}
+                      className="bg-cyan-600 p-2">
                       Ver
                     </Link>
                     <Link
