@@ -247,10 +247,40 @@ const registerUser = async (req, res) => {
     res.status(500).json({
       message: `Error al intentar registrarse detalles: ${error.message}`,
     });
-  }
+  } 
 };
+
 const registerUsers = async (req, res) => {
-  
+  const buscarRolAprendiz = async () => {
+    try {
+      if(req.body.cargo !== "Aprendiz"){
+        return
+      }
+      const [rows] = await pool.execute("SELECT * FROM roles");
+      const registrosAprendiz = rows.filter(item => item.nombre === req.body.cargo);
+      return registrosAprendiz[0].id;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  try {
+    // const data = await buscarRolAprendiz();
+    const {data} = req.body;
+
+    if (data) {
+      console.log(data);
+      res.status(200).json({ datos: data });
+    } else {
+      return res
+        .status(500)
+        .json({ message: "Error al intentar registrarse." });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: `Error al intentar registrarse detalles: ${error.message}`,
+    });
+  }
 };
 
 module.exports = {
