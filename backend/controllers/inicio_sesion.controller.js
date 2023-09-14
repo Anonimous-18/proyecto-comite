@@ -3,6 +3,9 @@ const pool = require("../database/db.js");
 const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
+const sequelize = require('../sequelize-config.js')
+const {usuarios} = require('../models')
+
 
 const secretKey = v4();
 
@@ -251,6 +254,15 @@ const registerUser = async (req, res) => {
 };
 
 const registerUsers = async (req, res) => {
+  
+  sequelize.sync()
+  .then(() => {
+    console.log('');
+  })
+  .catch((error) => {
+    console.error('Error al conectar a la base de datos:', error);
+  });
+
   const buscarRolAprendiz = async () => {
     try {
       if(req.body.cargo !== "Aprendiz"){

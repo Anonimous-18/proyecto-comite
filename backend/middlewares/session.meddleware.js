@@ -4,6 +4,7 @@
 const jwt = require("jsonwebtoken");
 const pool = require("../database/db.js");
 const { secretKey } = require("../controllers/inicio_sesion.controller.js");
+const { body, validationResult } = require('express-validator');
 
 /**------------------------------------------------------------
  * |  Middleware para verificar el rol del usuario autenticado
@@ -79,5 +80,9 @@ const filtrarRol = (req, res, next) => {
     return res.status(401).json({ message: "Token no válido" });
   }
 };
+
+
+
+
 
 module.exports = { verifyToken, filtrarRol };
