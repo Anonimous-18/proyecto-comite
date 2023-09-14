@@ -252,7 +252,9 @@ const registerUser = async (req, res) => {
     });
   } 
 };
-
+/**------------------------------------------
+ * |  Controlador del registro de usuarios 
+ ------------------------------------------*/
 const registerUsers = async (req, res) => {
   
   sequelize.sync()
