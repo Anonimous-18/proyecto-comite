@@ -80,9 +80,43 @@ const filtrarRol = (req, res, next) => {
     return res.status(401).json({ message: "Token no válido" });
   }
 };
+// Regla personalizada para verificar si un objeto tiene las propiedades requeridas
+const hasRequiredProperties = (value) => {
+  if (!Array.isArray(value)) {
+    throw new Error('El campo debe ser un arreglo de objetos.');
+  }
 
+  const requiredProperties = ['Nombre Completo', 'Documento', 'Email', 'Telefono'];
 
+  for (const obj of value) {
+    for (const prop of requiredProperties) {
+      if (!obj.hasOwnProperty(prop)) {
+        throw new Error(`El objeto debe tener la propiedad "${prop}".`);
+      }
+    }
+  }
+  return true;
+};
+// Middleware para validar la estructura del cuerpo de la solicitud
+const validateRequestBody = [
+  // Verifica si 'data' está presente y es un arreglo de objetos con propiedades requeridas
+  body('data').custom(hasRequiredProperties).withMessage('El campo "data" debe ser un arreglo de objetos con propiedades requeridas.'),
 
+  // Verifica si 'cargo' está presente y es una cadena de texto
+  body('cargo').isString().withMessage('El campo "cargo" debe ser una cadena de texto.'),
 
+  // Maneja errores de validación
+  (req, res, next) => {
+    const errors = validationResult(req);
 
-module.exports = { verifyToken, filtrarRol };
+    if (!errors.isEmpty()) {
+      // Si hay errores de validación, devuelve una respuesta de error
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    // Si no hay errores, continúa con la siguiente función de middleware
+    next();
+  },
+];
+
+module.exports = { verifyToken, filtrarRol, validateRequestBody };

@@ -277,12 +277,29 @@ const registerUsers = async (req, res) => {
   };
 
   try {
-    // const data = await buscarRolAprendiz();
+    const rolAprendiz = await buscarRolAprendiz();
     const {data} = req.body;
-
     if (data) {
-      console.log(data);
-      res.status(200).json({ datos: data });
+      data.map((usuario,index) => {
+        usuarios
+          .create({
+            nombre_completo: usuario["Nombre Completo"],
+            telefono: usuario.Telefono,
+            tipo_documento: usuario["Tipo documento"],
+            email: usuario.Email,
+            cargo: usuario.Cargo,
+            dependencia: usuario.Dependencia,
+            documento: usuario.Documento,
+            contrasenia: v4().substring(0, 8),
+            rol_id: rolAprendiz
+          })
+          .then((usuarioCreado) => {
+            console.log("Registro creado con éxito:", usuarioCreado.toJSON());
+          })
+          .catch((error) => {
+            console.error("Error al crear el registro:", error);
+          });
+      });
     } else {
       return res
         .status(500)

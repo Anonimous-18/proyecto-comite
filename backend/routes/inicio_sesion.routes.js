@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { verifyToken, filtrarRol } = require("../middlewares/session.meddleware.js");
+const { verifyToken, filtrarRol , validateRequestBody } = require("../middlewares/session.meddleware.js");
 const {
   login,
   recoveryEmail,
@@ -23,7 +23,7 @@ router.post("/api/reset-password", recoveryEmail);
  * |  Ruta de registro
  ----------------------------------*/
 router.post("/api/register", registerUser);
-router.post("/api/register/users", registerUsers);
+router.post("/api/register/users", validateRequestBody, registerUsers);
 
 /**---------------------------------------------
  * |  Ejemplo del uso del Middleware VerifyToken
