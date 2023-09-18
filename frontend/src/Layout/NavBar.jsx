@@ -1,5 +1,5 @@
-import { SlMenu } from "react-icons/sl"
-import { GiCancel } from "react-icons/gi"
+import { SlMenu } from "react-icons/sl";
+import { GiCancel } from "react-icons/gi";
 import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
@@ -43,12 +43,6 @@ export const NavBar = () => {
       description: "Measure actions your users take",
       href: "/reglamento",
       icon: IconOne,
-    },
-    {
-      name: "Roles",
-      description: "Create your own targeted content",
-      href: "/roles",
-      icon: IconTwo,
     },
     {
       name: "Nosotros",
@@ -177,7 +171,7 @@ export const NavBar = () => {
                   >
                     {open ? (
                       <GiCancel className="text-4xl" />
-                      ) : (
+                    ) : (
                       <SlMenu className="text-4xl" />
                     )}
                   </Popover.Button>
@@ -212,6 +206,26 @@ export const NavBar = () => {
                               </div>
                             </NavLink>
                           ))}
+                          {localStorage.getItem("admin") ? (
+                            <NavLink
+                              to="/roles"
+                              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                                <IconOne aria-hidden="true" />
+                              </div>
+                              <div className="ml-4">
+                                <p className="text-sm font-medium text-gray-900">
+                                  Roles
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  Roles solo admin
+                                </p>
+                              </div>
+                            </NavLink>
+                          ) : (
+                            <></>
+                          )}
                         </div>
                         <div className="bg-gray-50 p-4">
                           <button
