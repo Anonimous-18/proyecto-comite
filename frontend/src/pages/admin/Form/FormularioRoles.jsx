@@ -54,7 +54,7 @@ export const FormularioRoles = () => {
   return (
     <>
       <NavBar />
-      <main className="mt-28 h-full w-full">
+      <main className="mt-28 h-full w-full flex">
         <h1>{params ? <>{params} Rol</> : <>crear Rol</>}</h1>
         <form
           className="bg-rose-500 flex flex-col items-center"
