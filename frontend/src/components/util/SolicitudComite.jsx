@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
 import { Footer } from "../../Layout/Footer";
 import { NavBar } from "../../Layout/NavBar";
+import { Semaforo } from "./semaforo";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const SolicitudComite = () => {
   const [reglamento, setReglamento] = useState([]);
@@ -145,9 +146,11 @@ export const SolicitudComite = () => {
   return (
     <main className="mt-24 h-full w-full">
       <NavBar />
+      <h1>Solicitudes de Comité</h1>
+      <Semaforo />
       <div className="h-full w-full">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <h1>Crear Solicitud Comite</h1>
+        <form onSubmit={(e) => handleSubmit(e)} className="border border-black">
+          <h2 className="font-bold">Crear Solicitud Comite</h2>
           <div>
             <label className="">Capitulo del Reglamento</label>
             <select
