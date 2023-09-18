@@ -6,7 +6,7 @@ import { Reglamento } from "./components/Reglamento/Reglamento";
 import { Login } from "./components/InicioSesion/Login";
 import { Register } from "./components/InicioSesion/Register";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
-
+import { Votoinstructor } from "./pages/instructor/votoinstructor";
 import { Homeinvitado } from "./pages/invitado/Homeinvitado";
 import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 
@@ -32,7 +32,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
         <Route path="/pruebas" element={<Prueba />} />
-
+        <Route path="/votoinstructor" element={<Votoinstructor/>} />
         <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/homeinvitado" element={<Homeinvitado />} />
