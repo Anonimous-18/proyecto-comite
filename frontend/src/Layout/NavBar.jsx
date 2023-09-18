@@ -1,3 +1,5 @@
+import { SlMenu } from "react-icons/sl"
+import { GiCancel } from "react-icons/gi"
 import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
@@ -37,15 +39,15 @@ export const NavBar = () => {
 
   const solutions = [
     {
-      name: "Casos",
+      name: "Reglamento",
       description: "Measure actions your users take",
-      href: "/casos",
+      href: "/reglamento",
       icon: IconOne,
     },
     {
-      name: "Servicios",
+      name: "Roles",
       description: "Create your own targeted content",
-      href: "/servicios",
+      href: "/roles",
       icon: IconTwo,
     },
     {
@@ -158,6 +160,7 @@ export const NavBar = () => {
               {/* src={logo} */}
               <img
                 src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
+                // src="https://placekitten.com/100/100"
                 width={70}
                 height={60}
               />
@@ -173,9 +176,9 @@ export const NavBar = () => {
                 focus:ring-none focus:outline-none`}
                   >
                     {open ? (
-                      <i className="bx bx-x text-4xl"></i>
-                    ) : (
-                      <i className="bx bx-menu text-4xl"></i>
+                      <GiCancel className="text-4xl" />
+                      ) : (
+                      <SlMenu className="text-4xl" />
                     )}
                   </Popover.Button>
                   <Transition
