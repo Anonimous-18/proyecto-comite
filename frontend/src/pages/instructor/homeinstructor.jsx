@@ -10,6 +10,7 @@ export const Homeinstructor = () => {
             <div className="mx-auto max-w-screen-xl pt-20 pb-32 sm:pt-48 sm:pb-40 ">
                 <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
                     <div className=" flex space-x-2">
+                       {/* flex space-x-4 para columas */}
                         <Semaforo />
                         <div className=" border-2 p-2  rounded-2xl flex flex-col items-center justify-center text-blue-800">
                             
