@@ -3,6 +3,9 @@ const pool = require("../database/db.js");
 const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
+const sequelize = require('../sequelize-config.js')
+const {usuarios} = require('../models')
+
 
 const secretKey = v4();
 
@@ -247,10 +250,72 @@ const registerUser = async (req, res) => {
     res.status(500).json({
       message: `Error al intentar registrarse detalles: ${error.message}`,
     });
-  }
+  } 
 };
+/**------------------------------------------
+ * |  Controlador del registro de usuarios 
+ ------------------------------------------*/
 const registerUsers = async (req, res) => {
-  
+  const buscarRolAprendiz = async () => {
+    try {
+      if(req.body.cargo !== "Aprendiz"){
+        return
+      }
+      const [rows] = await pool.execute("SELECT * FROM roles");
+      const registrosAprendiz = rows.filter(item => item.nombre === req.body.cargo);
+      return registrosAprendiz[0].id;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  try {
+    // Conecta a la base de datos
+    await sequelize.sync();
+    const rolAprendiz = await buscarRolAprendiz();
+    // Función asincrónica para crear usuarios y manejar errores
+    const crearUsuarioConErrorHandling = async (usuario) => {
+      try {
+        const usuarioCreado = await usuarios.create({
+          nombre_completo: usuario["Nombre Completo"],
+          telefono: usuario.Telefono,
+          tipo_documento: usuario["Tipo documento"],
+          email: usuario.Email,
+          cargo: usuario.Cargo,
+          dependencia: usuario.Dependencia,
+          documento: usuario.Documento,
+          contrasenia: v4().substring(0, 8),
+          rol_id: rolAprendiz,
+        });
+
+        return { usuarioCreado, error: null };
+      } catch (error) {
+        return { usuarioCreado: null, error };
+      }
+    };
+
+    const { data } = req.body;
+
+    if (data && Array.isArray(data)) {
+      // Crear un arreglo de promesas usando async/await
+      const promesasInsercion = data.map(crearUsuarioConErrorHandling);
+
+      // Esperar a que todas las inserciones se completen
+      const resultadosInsercion = await Promise.all(promesasInsercion);
+
+      // Envía una respuesta con información sobre los resultados de la inserción
+      res.status(200).json({ resultadosInsercion });
+    } else {
+      return res
+        .status(400)
+        .json({ message: "Datos inválidos o faltantes en la solicitud." });
+    }
+  } catch (error) {
+    console.error('Error al conectar a la base de datos:', error);
+    res.status(500).json({
+      message: `Error al intentar registrarse: ${error.message}`,
+    });
+  }
 };
 
 module.exports = {
