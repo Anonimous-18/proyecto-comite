@@ -7,8 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 export const RolesDetails = () => {
   const navigate = useNavigate();
   const [data, setData] = useState();
-  const token = JSON.parse(localStorage.getItem("newToken"));
   const admin = localStorage.getItem("admin");
+  const token = JSON.parse(localStorage.getItem("newToken"));
 
   const { id } = useParams();
   const { getRolesById } = useContextApp();
@@ -17,21 +17,36 @@ export const RolesDetails = () => {
     if (admin) {
       const getDetails = async () => {
         const response = await getRolesById(token.token, id);
-        setData(response);
-      }
+        console.log(response);
+        if (response !== undefined) {
+          setData(response);
+        }
+      };
       getDetails();
     } else {
-      navigate(`/home`)
+      navigate(`/home`);
     }
-  }, [getRolesById, navigate])
+  }, [getRolesById, navigate]);
+
+  // console.log(data);
 
   return (
     <>
       <NavBar />
-      <div className="h-full w-full mt-4">
-        <h1 className="mt-5">
-          {data?<h1>Existen</h1>:<>No existen</>}
-        </h1>
+      <div className="h-full w-full">
+        <div className="mt-24 bg-red-600">
+          {data ? (
+            <div className="h-full w-full">
+              <article className="mt-5 bg-cyan-600">
+                <p>{data.id}</p>
+                <p>{data.nombre}</p>
+                <p>{data.creado}</p>
+              </article>
+            </div>
+          ) : (
+            <h1>No existen error</h1>
+          )}
+        </div>
       </div>
       <Footer />
     </>
