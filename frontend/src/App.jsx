@@ -22,6 +22,7 @@ import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
 
 import Prueba from "./components/pruebas/Prueba";
 import { RolesDetails } from "./components/Roles/RolesDetails";
+import { SolicitudComite } from "./components/util/SolicitudComite";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/form-roles" element={<FormularioRoles />} />
         <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
         <Route path="/see-roles/:id" element={<RolesDetails />} />
+        <Route path="/solicitud-comite" element={<SolicitudComite />} />
       </Routes>
     </ContextAppProvider>
   );
