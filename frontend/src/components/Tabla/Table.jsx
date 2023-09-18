@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
+import { AiFillDelete } from"react-icons/ai";
+import {GrUpdate} from"react-icons/gr"
+import {AiOutlineEye} from"react-icons/ai"
 
 export const Table = ({ datos, fun_eliminar, nombre_tabla }) => {
   const [data, setData] = useState([]);
@@ -36,57 +39,65 @@ export const Table = ({ datos, fun_eliminar, nombre_tabla }) => {
 
   return (
     <>
-      <div className="h-full w-full mt-28">
-        <div>
-          <Link
-            to={`/form-${nombre_tabla}`}
-            className="bg-cyan-600 p-2"
-            type="button">
-            CREAR
-          </Link>
+      <div className="mx-auto max-w-screen-sm pb-32 sm:pt-20 sm:pb-40 ">
+        <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
+          <div className="h-full w-full mt-28">
+            <div className="p-2">
+              <Link
+                to={`/form-${nombre_tabla}`}
+                className="bg-cyan-600 p-2"
+                type="button"
+              >
+                CREAR
+              </Link>
+            </div>
+            {data.map((dato, index) => {
+              const columnas = Object.keys(dato);
+              return (
+                <table key={index} className="bg-rose-500 border border-black max-w-full flex flex-col">
+                  <thead>
+                    <tr className="h-auto max-w-full flex flex-row items-center ">
+                      {columnas.map((columna) => (
+                        <th className="px-5" key={columna}>{columna.toUpperCase()}</th>
+                      ))}
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {columnas.map((columna) => (
+                        <td className=" px-5" key={columna}>
+                          {dato[columna]}
+                        </td>
+                      ))}
+                      <td className="flex flex-row-reverse">
+                        <Link
+                          to={`/see-${nombre_tabla}/${dato.id}`}
+                          className=" p-2"
+                        >
+                          <AiOutlineEye/>
+                        </Link>
+                        <Link
+                          to={`/form-${nombre_tabla}/update/${dato.id}`}
+                          className="p-2"
+                        >
+                          <GrUpdate />
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(dato.id)}
+                          className="p-2"
+                          type="button"
+                        >
+                          <AiFillDelete/>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              );
+            })}
+          </div>
         </div>
-        {data.map((dato, index) => {
-          const columnas = Object.keys(dato);
-          return (
-            <table key={index} className="bg-rose-500 border border-black">
-              <thead>
-                <tr>
-                  {columnas.map((columna) => (
-                    <th key={columna}>{columna.toUpperCase()}</th>
-                  ))}
-                  <th>ACCIONES</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {columnas.map((columna) => (
-                    <td className="px-11" key={columna}>
-                      {dato[columna]}
-                    </td>
-                  ))}
-                  <td className="">
-                    <Link
-                      to={`/see-${nombre_tabla}/${dato.id}`}
-                      className="bg-cyan-600 p-2">
-                      Ver
-                    </Link>
-                    <Link
-                      to={`/form-${nombre_tabla}/update/${dato.id}`}
-                      className="bg-purple-800 p-2">
-                      Actualizar
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(dato.id)}
-                      className="bg-orange-900 p-2"
-                      type="button">
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          );
-        })}
       </div>
     </>
   );
