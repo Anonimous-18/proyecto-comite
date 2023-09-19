@@ -9,7 +9,7 @@ import Recuperacion from "./components/InicioSesion/Recuperacion";
 import { Votoinstructor } from "./pages/instructor/votoinstructor";
 import { Homeinvitado } from "./pages/invitado/Homeinvitado";
 import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
-
+import { Informacioncomiteinst } from "./pages/instructor/informacioncomiteinst";
 import { Home_Aprendiz } from "./pages/aprendiz/home_Aprendiz";
 import { ImpugnacionesAprendiz } from "./pages/aprendiz/ImpugnacionesAprendiz";
 import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
@@ -39,7 +39,7 @@ function App() {
         <Route path="/homeinstructor" element={<Homeinstructor />} />
         <Route path="/homesubdirector" element={<Homesubdirector />}/>
         <Route path="/reglamento" element={<Reglamento />} />
-
+        <Route path="/infocomiteinstrutor" element={<Informacioncomiteinst/>}/>
         <Route path="/impugnacionesaprendiz"element={<ImpugnacionesAprendiz />}/>
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
 
