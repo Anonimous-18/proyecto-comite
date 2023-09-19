@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { ContextAppProvider } from "./Context/ContextApp";
 import { Reglamento } from "./components/Reglamento/Reglamento";
-
+import { Homesubdirector } from "./pages/subdirector/homesubdirector";
 import { Login } from "./components/InicioSesion/Login";
 import { Register } from "./components/InicioSesion/Register";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
@@ -37,7 +37,7 @@ function App() {
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/homeinvitado" element={<Homeinvitado />} />
         <Route path="/homeinstructor" element={<Homeinstructor />} />
-       
+        <Route path="/homesubdirector" element={<Homesubdirector />}/>
         <Route path="/reglamento" element={<Reglamento />} />
 
         <Route path="/impugnacionesaprendiz"element={<ImpugnacionesAprendiz />}/>
