@@ -29,10 +29,26 @@ const Prueba = () => {
   };
   return (
     <div>
-      <input type="file" accept=".xlsx" onChange={(e) => onFileUpload(e)} />
+      
+      <label
+        htmlFor="archivo"
+        className="cursor-pointer flex items-center justify-center w-full md:w-64 h-12 md:h-16 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:bg-blue-600 text-2xl"
+      >
+        <span>Seleccionar archivo</span>
+      </label>
+      {/* Elemento de entrada oculto para seleccionar archivos */}
+      <input
+        type="file"
+        id="archivo"
+        name="archivo"
+        accept=".xlsx"
+        className="hidden"
+        onChange={(e) => onFileUpload(e)}
+      />
       <pre>{JSON.stringify(excelData[0], null, 2)}</pre>
       <button onClick={()=>{ forceRender();enviarUsuarios(); }}>Enviar</button>
     </div>
+    
   );
 };
 
