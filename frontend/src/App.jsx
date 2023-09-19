@@ -13,7 +13,7 @@ import { Informacioncomiteinst } from "./pages/instructor/informacioncomiteinst"
 import { Home_Aprendiz } from "./pages/aprendiz/home_Aprendiz";
 import { ImpugnacionesAprendiz } from "./pages/aprendiz/ImpugnacionesAprendiz";
 import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
-
+import { SolicitudIntructor } from "./pages/instructor/solicitudinstructor";
 import { Homeinstructor } from "./pages/instructor/homeinstructor";
 
 import { Home } from "./pages/admin/Home";
@@ -42,7 +42,7 @@ function App() {
         <Route path="/infocomiteinstrutor" element={<Informacioncomiteinst/>}/>
         <Route path="/impugnacionesaprendiz"element={<ImpugnacionesAprendiz />}/>
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
-
+        <Route path="/solicitudinstructor" element={<SolicitudIntructor/>}/>
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
 
         <Route path="/roles" element={<Roles />} />

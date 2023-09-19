@@ -1,5 +1,4 @@
-import { Footer } from "../../Layout/Footer";
-import { NavBar } from "../../Layout/NavBar";
+
 import { Semaforo } from "./semaforo";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
@@ -144,8 +143,7 @@ export const SolicitudComite = () => {
   };
 
   return (
-    <main className="mt-24 h-full w-full">
-      <NavBar />
+    <main className="mt-24 h-full w-full flex flex-col items-center">
       <h1>Solicitudes de Comité</h1>
       <Semaforo />
       <div className="h-full w-full">
@@ -187,7 +185,7 @@ export const SolicitudComite = () => {
               </select>
               <button
                 type="button"
-                className="bg-cyan-800"
+                className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
                 onClick={agregarArticulo}
               >
                 Agregar Articulo
@@ -230,7 +228,7 @@ export const SolicitudComite = () => {
             ))}
             <button
               type="button"
-              className="bg-yellow-400"
+              className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
               onClick={agregarIdentificacion}
             >
               {data.identificaciones.length !== 0 ? (
@@ -276,14 +274,13 @@ export const SolicitudComite = () => {
           </div>
           <Link
             to={`/home`}
-            className="bg-rose-500 inline-block cursor-pointer"
+            className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
           >
             Cancelar
           </Link>
-          <button className="bg-blue-500">Crear Solicitud</button>
+          <button className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">Crear Solicitud</button>
         </form>
       </div>
-      <Footer />
     </main>
   );
 };
