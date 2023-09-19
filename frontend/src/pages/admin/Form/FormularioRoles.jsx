@@ -54,19 +54,23 @@ export const FormularioRoles = () => {
   return (
     <>
       <NavBar />
-      
+
       <main className="mt-28 h-full w-full flex flex-col">
-        <h1>{params ? <>{params} Rol</> : <>crear Rol</>}</h1>
-        <form
-          className="bg-rose-500 flex flex-col items-center"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <label>Nombre: </label>
-          <input name="nombre" onChange={(e) => onChange(e)} type="text" />
-          <button className="bg-green-500 p-3" type="submit">
-            {params ? <>{params}</> : <>crear</>}
-          </button>
-        </form>
+        <div className="mx-auto max-w-screen-xl pt-20 pb-32 sm:pt-48 sm:pb-40 ">
+          <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
+            <h1 className="mt-2  p-2 text-lg font-bold  text-blue-800  w-36 h-7 flex flex-col items-center rounded-l-lg pb-8">{params ? <>{params} Rol</> : <>Crear Rol</>}</h1>
+            <form
+              className="bg-gray-300 border-2 flex flex-col items-center p-2 rounded-lg "
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              <label>Nombre: </label>
+              <input name="nombre" onChange={(e) => onChange(e)} type="text" className="rounded-lg p-2"/>
+              <button className=" mt-2 place-items-center flex flex-col items-center justify-center p-2 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800" type="submit">
+                {params ? <>{params}</> : <>Crear</>}
+              </button>
+            </form>
+          </div>
+        </div>
       </main>
       <Footer />
     </>
