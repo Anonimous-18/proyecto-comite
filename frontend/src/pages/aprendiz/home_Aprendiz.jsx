@@ -1,117 +1,34 @@
 import { NavBar } from "../../Layout/NavBar";
 import { Footer } from "../../Layout/Footer";
 
+import { BiBell} from "react-icons/bi";
+
 
 export const Home_Aprendiz = () => {
   return (
     <div>
-      
       <NavBar />
-      <div className=" border-2 border-blue-400">
-      <div className=" mx-auto max-w-3x1 pt-20 pb-32 sm:pt-48 sm:pb-40  p-96 ">
-        <div className="ml-40 ">
-        <button className="place-content-stretch ">
-          <figure className=" bg-slate-100 rounded-xl p-8 md:p-0  border-2 border-sky-400 ring-offset-2 ring-2">
-            <img className="w-24 h-24 md:w-35 md:h-auto md:rounded-none rounded-full mx-auto" src="../../img/logo-sena-negro-png-2022.png" alt=""/>
-           
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <brockquote>
-                
-              </brockquote>
-              <br />
-              <figcaption className=" font-medium">
-                <div className=" text-black text-center ">Subir Pruebas</div>
-              </figcaption>
-            </div>
-          </figure>
-        </button>
-        <button className="place-content-stretch ml-40">
-          <figure className=" bg-slate-100 rounded-xl p-8 md:p-0  border-2 border-sky-400 ring-offset-2 ring-2">
-            <img className="w-24 h-24 md:w-35 md:h-auto md:rounded-none rounded-full mx-auto" src="../../img/logo-sena-negro-png-2022.png" alt=""/>
-           
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <brockquote>
-                
-              </brockquote>
-              <br />
-              <figcaption className=" font-medium">
-                <div className=" text-black text-center ">Subir Pruebas</div>
-              </figcaption>
-            </div>
-          </figure>
-        </button>
-        <button className="place-content-stretch ml-40">
-          <figure className=" bg-slate-100 rounded-xl p-8 md:p-0 border-2 border-sky-400 ring-offset-2 ring-2">
-            <img className="w-24 h-24 md:w-35 md:h-auto md:rounded-none rounded-full mx-auto" src="../../img/logo-sena-negro-png-2022.png" alt=""/>
-           
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <brockquote>
-                
-              </brockquote>
-              <br />
-              <figcaption className=" font-medium">
-                <div className=" text-black text-center ">Subir Pruebas</div>
-              </figcaption>
-            </div>
-          </figure>
-          <div>
-          </div>
-        </button>
-        </div>
-      </div>
-      {/* separacion */}
-      <div className="mx-auto max-w-3x1 pt-20 pb-32 sm:pt-48 sm:pb-40  p-96">
-      <div className="ml-40 ">
-        <button className="place-content-stretch ">
-          <figure className=" bg-slate-100 rounded-xl p-8 md:p-0  border-2 border-sky-400 ring-offset-2 ring-2">
-            <img className="w-24 h-24 md:w-35 md:h-auto md:rounded-none rounded-full mx-auto" src="../../img/logo-sena-negro-png-2022.png" alt=""/>
-           
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <brockquote>
-                
-              </brockquote>
-              <br />
-              <figcaption className=" font-medium">
-                <div className=" text-black text-center ">Subir Pruebas</div>
-              </figcaption>
-            </div>
-          </figure>
-        </button>
-        <button className="place-content-stretch ml-40">
-          <figure className=" bg-slate-100 rounded-xl p-8 md:p-0  border-2 border-sky-400 ring-offset-2 ring-2">
-            <img className="w-24 h-24 md:w-35 md:h-auto md:rounded-none rounded-full mx-auto" src="../../img/logo-sena-negro-png-2022.png" alt=""/>
-           
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <brockquote>
-                
-              </brockquote>
-              <br />
-              <figcaption className=" font-medium">
-                <div className=" text-black text-center ">Subir Pruebas</div>
-              </figcaption>
-            </div>
-          </figure>
-        </button>
-        <button className="place-content-stretch ml-40">
-          <figure className=" bg-slate-100 rounded-xl p-8 md:p-0 border-2 border-sky-400 ring-offset-2 ring-2">
-            <img className="w-24 h-24 md:w-35 md:h-auto md:rounded-none rounded-full mx-auto" src="../../img/logo-sena-negro-png-2022.png" alt=""/>
-           
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <brockquote>
-                
-              </brockquote>
-              <br />
-              <figcaption className=" font-medium">
-                <div className=" text-black text-center ">Subir Pruebas</div>
-              </figcaption>
-            </div>
-          </figure>
-          <div>
-          </div>
-        </button>
-        </div>
-      </div>
 
+      <div className=" mx-auto w-96  pt-0 pb-32 sm:pt-48 sm:pb-40">
+        <div className=" bg-white border-2 h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl space-y-2">
+          <div className="flex flex-row p-3  space-x-2 border-blue-400 border-2 rounded-t-lg rounded-r-lg rounded-l-lg ">
+            <button className=" bg-fuchsia-700 p-2  ">
+            <BiBell className=" w-8 h-8  flex flex-col items-center text-red-600" />Subir prueba</button>
+            <button className=" bg-blue-400 p-2"> 
+            <BiBell className=" w-8 h-8  flex flex-col items-center text-red-600" /> Subir impugnacion</button>
+            <button className=" bg-neutral-800 p-2"> 
+            <BiBell className=" w-8 h-8  flex flex-col items-center text-red-600" /> Notificacion </button>
+          </div>
+          <hr />
+          <div className="flex flex-row p-3 space-x-2  border-blue-400 border-2 rounded-t-lg rounded-r-lg rounded-l-lg">
+            <button className=" bg-fuchsia-700 p-2"> 
+            <BiBell className=" w-8 h-8  flex flex-col items-center text-red-600" />plan de mejoramiento </button>
+            <button className=" bg-blue-400 p-2"> 
+            <BiBell className=" w-8 h-8  flex flex-col items-center text-red-600" /> Notificacion dvfddfhjjjjjjjjjjjjjjjjjjj</button>
+            <button className=" bg-neutral-800 p-2"> 
+            <BiBell className=" w-8 h-8  flex flex-col items-center text-red-600" /> Notificacion </button>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
