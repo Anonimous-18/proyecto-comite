@@ -19,7 +19,7 @@ import { Homeinstructor } from "./pages/instructor/homeinstructor";
 import { Home } from "./pages/admin/Home";
 import { Roles } from "./pages/admin/Roles";
 import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
-
+import { Infocomitesub } from "./pages/subdirector/infocomitesub";
 import Prueba from "./components/pruebas/Prueba";
 import { RolesDetails } from "./components/Roles/RolesDetails";
 import { SolicitudComite } from "./components/util/SolicitudComite";
@@ -44,7 +44,7 @@ function App() {
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
         <Route path="/solicitudinstructor" element={<SolicitudIntructor/>}/>
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
-
+        <Route path="/infocomitesub" element={<Infocomitesub/>}/>
         <Route path="/roles" element={<Roles />} />
         <Route path="/form-roles" element={<FormularioRoles />} />
         <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
