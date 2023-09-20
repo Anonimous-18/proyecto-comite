@@ -47,7 +47,7 @@ const Prueba = () => {
         onChange={(e) => {onFileUpload(e)}}
       />
       <pre>{JSON.stringify(excelData[0], null, 2)}</pre>
-      <button className="cursor-pointer flex items-center justify-center w-55 m-6 sm:w-64 sm:text-3xl  h-12 sm:h-16 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:bg-blue-600 text-xl" onClick={()=>{ forceRender();enviarUsuarios(); }} >Enviar</button>
+      <button className="cursor-pointer flex items-center justify-center w-55 m-6 sm:w-64 sm:text-4xl  h-12 sm:h-16 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:bg-blue-600 text-xl" onClick={()=>{ forceRender();enviarUsuarios(); }} >Enviar</button>
     </div>
     
   );
