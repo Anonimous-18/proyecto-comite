@@ -270,46 +270,50 @@ const registerUsers = async (req, res) => {
   };
   const enviarUsuario = (resultadosInsercion) => {
     try {
-      resultadosInsercion.map((usuarioEstado) => {
-        if (usuarioEstado.usuarioCreado) {
-          console.log(usuarioEstado.usuarioCreado.dataValues);
-          const email = usuarioEstado.usuarioCreado.dataValues.email;
-          const documento = usuarioEstado.usuarioCreado.dataValues.documento;
-          const contrasenia =
-            usuarioEstado.usuarioCreado.dataValues.contrasenia;
-          const mailOptions = {
-            from: `${EMAIL}`,
-            to: email,
-            subject: "Recuperación de Contraseña",
-            html: `<div id=":o0" class="a3s aiL" style="font-family: Arial, sans-serif; background-color: #ffffff; width: 100%; padding: 1.75rem; border: 2px solid #1e3a8a; border-radius: 0.5rem;">
-            Estimado(a) NOMBRE, hemos creado tu usuario en nuestro aplicativo para que sigas tu proceso de
-            comité. Intenta ingresar nuevamente con tu respectivo nombre de usuario y contraseña.<br><br>
-            Usuario: <b>${documento}</b><br>
-            Contraseña: <b>${contrasenia}</b><br><br>
-            Le recordamos que esta dirección de e-mail es utilizada solamente para los envíos de la información
-            solicitada. Por favor, no responda con consultas personales, ya que no podrán ser respondidas.<br>
-            Cordialmente.<br><br>
-            SE-JustAPP
-        </div>`,
-          };
+      const errorUsuarios = resultadosInsercion.reduce((acumulador, usuarioEstado) => {
+          if (usuarioEstado.usuarioCreado) {
+            const email = usuarioEstado.usuarioCreado.dataValues.email;
+            const documento = usuarioEstado.usuarioCreado.dataValues.documento;
+            const contrasenia = usuarioEstado.usuarioCreado.dataValues.contrasenia;
+            const nombre = usuarioEstado.usuarioCreado.dataValues.nombre_completo;
+            const mailOptions = {
+              from: `${EMAIL}`,
+              to: email,
+              subject: "Creacion de usuario",
+              html: `<div id="m_4509833478349836683:o0" style="font-family:Arial,sans-serif;background-color:#ffffff;width:100%;padding:1.75rem;border:2px solid #1e3a8a;border-radius:0.5rem">
+              Estimado(a) ${nombre}, hemos creado tu usuario en nuestro aplicativo para que sigas tu proceso de
+              comité. Intenta ingresar con tu respectivo nombre de usuario y contraseña.<br><br>
+              Usuario: <b>${documento}</b><br>
+              Contraseña: <b>${contrasenia}</b><br><br>
+              Le recordamos que esta dirección de e-mail es utilizada solamente para los envíos de la información
+              solicitada. Por favor, no responda con consultas personales, ya que no podrán ser respondidas.<br>
+              Cordialmente.<br><br>
+              SE-JustAPP
+          </div>`,
+            };
+            transport.sendMail(mailOptions, (error) => {
+              if (error) {
+                return res
+                  .status(500)
+                  .send(
+                    `Error al enviar el correo de recuperación a ${email}.`
+                  );
+              } else {
+                return res
+                  .status(200)
+                  .json({ message: "Correo enviado correctamente" });
+              }
+            });
 
-          transport.sendMail(mailOptions, (error) => {
-            if (error) {
-              return res
-                .status(500)
-                .send(`Error al enviar el correo de recuperación a ${email}.`);
-            } else {
-              return res
-                .status(200)
-                .json({ message: "Correo enviado correctamente" });
-            }
-          });
-
-          console.log("prueba");
-        } else {
-          console.log(usuarioEstado.usuarioCreado);
-        }
-      }); 
+            console.log("prueba");
+          }else if (usuarioEstado.error) {
+            acumulador.push(usuarioEstado.error)
+          }
+          return acumulador;
+        },
+        []
+      );
+      console.log(errorUsuarios);
     } catch (error) {
       return res.status(500).json({
         message: `Error al recuperar contraseña detalles ${error.message}`,
