@@ -43,7 +43,7 @@ export const Roles = () => {
       <div className="flex flex-col space-y-40 justify-between h-full">
         <NavBar />
         <Table datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>;
-        <Tab/>
+        <Tab datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
         <Footer/>
       </div>
     );
