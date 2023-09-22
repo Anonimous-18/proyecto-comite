@@ -1,4 +1,5 @@
 import { Table } from "../../components/Tabla/Table";
+import { Tab } from "../../components/Tabla/Tab";
 import { NavBar } from "../../Layout/NavBar";
 import { Footer } from "../../Layout/Footer";
 import { useNavigate } from "react-router-dom";
@@ -39,11 +40,12 @@ export const Roles = () => {
 
   if (roles.length !== 0) {
     return (
-      <>
+      <div className="flex flex-col space-y-40 justify-between h-full">
         <NavBar />
         <Table datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>;
-        <Footer />
-      </>
+        <Tab/>
+        <Footer/>
+      </div>
     );
   } else {
     return <div>NO AUTORIZADO</div>;
