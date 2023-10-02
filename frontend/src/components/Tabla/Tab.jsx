@@ -6,17 +6,40 @@ import { GrUpdate } from "react-icons/gr";
 import { AiOutlineEye } from "react-icons/ai";
 
 export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
-  // const [data, setData] = useStateate([]);
-  // const { validateToken } = useContextApptApp();
-  // const navigate = useNavigatete();
+  // datos = null
+  const [data, setData] = useState([]);
+  const { validateToken } = useContextApp();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (validateToken()) {
+      navigate(`/`);
+    } else if (datos) {
+      setData(datos);
+    }
+  }, [datos, navigate, validateToken]);
+  if (datos === null || datos === undefined) {
+    return <div className="">Cargando...</div>;
+  } else if (datos.length === 0) {
+    return <div>Cargando...</div>;
+  }
+  const handleDelete = async (id) => {
+    console.log("ELIMINAR");
+    const admin = localStorage.getItem("admin");
+    const token = JSON.parse(localStorage.getItem("newToken"));
+
+    if (admin) {
+      await fun_eliminar(token.token, id);
+      navigate(0);
+    } else {
+      navigate(`/home`);
+    }
+  };
   return (
     <div className="flex justify-center items-center">
-      <div className="max-w-2xl mx-auto">
-        <div className="relative overflow-x-auto shadow-lg sm:rounded-lg">
-          <div className="flex p-4">
-            <label htmlFor="table-search" className="sr-only">
-              Search
-            </label>
+      <div className="w-10/12 max-w-2xl mx-auto">
+        <div className="relative overflow-x-auto shadow-lg sm:rounded-lg w-full">
+          <div className="flex justify-between p-4">
+            
             <div className="relative mt-1">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
@@ -39,12 +62,8 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 placeholder="Search for items"
               />
             </div>
-            <div className="ml-3 relative inline-flex items-center rounded-md  t bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none">
-            
-              <Link
-                to={`/form-${nombre_tabla}`}
-                type="button"
-              >
+            <div className="ml-3 relative inline-flex items-center rounded-md w-1/4 bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none text-center">
+              <Link className="text-center w-full" to={`/form-${nombre_tabla}`} type="button">
                 Crear
               </Link>
             </div>
@@ -73,7 +92,7 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
             </thead>
 
             <tbody>
-              {datos.map((item, index) => (
+              {data.map((item, index) => (
                 <tr key={item.id}>
                   <td className="w-4 p-4">
                     <div className="flex items-center"></div>
@@ -82,33 +101,33 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                   >
-                    {index+1}
+                    {index + 1}
                   </th>
                   <td className="px-6 py-4">{item.nombre}</td>
                   <td className="px-6 py-4">{item.creado}</td>
                   <td className="px-6 py-4 text-right flex gap-4">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    <Link
+                      to={`/see-${nombre_tabla}/${item.id}`}
+                      className=" p-2"
                     >
-                      Edit
-                    </a>
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      <AiOutlineEye />
+                    </Link>
+                    <Link
+                      to={`/form-${nombre_tabla}/update/${item.id}`}
+                      className="p-2"
                     >
-                      Edit
-                    </a>
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      <GrUpdate />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="p-2"
+                      type="button"
                     >
-                      Edit
-                    </a>
+                      <AiFillDelete />
+                    </button>
                   </td>
                 </tr>
               ))}
-              
             </tbody>
           </table>
         </div>
