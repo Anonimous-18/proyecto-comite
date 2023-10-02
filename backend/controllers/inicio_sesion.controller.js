@@ -25,8 +25,17 @@ const login = async (req, res) => {
       return res
         .status(404)
         .json({ message: `No se encontro al usuario con esos datos` });
-
-    const user = result[0];
+    
+    const userDB = result[0];
+    console.log(result);
+    const user = {
+      nombre_completo : userDB.nombre_completo,
+      email : userDB.email,
+      creado : userDB.creado,
+      tipo_documento : userDB.tipo_document,
+      documento : userDB.documento,
+      rol_id : userDB.rol_id
+    };
 
     /**-----------------------------------------------------
      * |  Creamos el Token de sesión con el tiempo de expiración
