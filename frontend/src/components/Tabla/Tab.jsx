@@ -1,9 +1,9 @@
-// import { useEffect, useState } from "react";
-// import { useContextApp } from "../../Context/ContextApp";
-// import { Link, useNavigate } from "react-router-dom";
-// import { AiFillDelete } from "react-icons/ai";
-// import { GrUpdate } from "react-icons/gr";
-// import { AiOutlineEye } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { useContextApp } from "../../Context/ContextApp";
+import { Link, useNavigate } from "react-router-dom";
+import { AiFillDelete } from "react-icons/ai";
+import { GrUpdate } from "react-icons/gr";
+import { AiOutlineEye } from "react-icons/ai";
 
 export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
   // const [data, setData] = useStateate([]);
@@ -39,9 +39,15 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 placeholder="Search for items"
               />
             </div>
-            <button className="ml-3 relative inline-flex items-center rounded-md  t bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none  ">
-              Crear
-            </button>
+            <div className="ml-3 relative inline-flex items-center rounded-md  t bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none">
+            
+              <Link
+                to={`/form-${nombre_tabla}`}
+                type="button"
+              >
+                Crear
+              </Link>
+            </div>
           </div>
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-blue-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
@@ -65,49 +71,44 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 </th>
               </tr>
             </thead>
+
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td className="w-4 p-4">
-                  <div className="flex items-center"></div>
-                </td>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                >
-                  2
-                </th>
-                <td className="px-6 py-4">White</td>
-                <td className="px-6 py-4">Laptop PC</td>
-                <td className="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              {datos.map((item, index) => (
+                <tr key={item.id}>
+                  <td className="w-4 p-4">
+                    <div className="flex items-center"></div>
+                  </td>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                   >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td className="w-4 p-4">
-                  <div className="flex items-center"></div>
-                </td>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                >
-                  3
-                </th>
-                <td className="px-6 py-4">Black</td>
-                <td className="px-6 py-4">Accessories</td>
-                <td className="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
-              </tr>
+                    {index+1}
+                  </th>
+                  <td className="px-6 py-4">{item.nombre}</td>
+                  <td className="px-6 py-4">{item.creado}</td>
+                  <td className="px-6 py-4 text-right flex gap-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              ))}
+              
             </tbody>
           </table>
         </div>

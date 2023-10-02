@@ -36,7 +36,7 @@ export const Table = ({ datos, fun_eliminar, nombre_tabla }) => {
       navigate(`/home`);
     }
   };
-
+  console.log(datos);
   return (
     <>
       <div className="mx-auto max-w-screen-sm pb-32 sm:pt-20 sm:pb-40 ">
