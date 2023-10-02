@@ -53,9 +53,6 @@ export const Historiacomite = () => {
               />
             </div>
 
-            dfsdf
-            fdd
-            dddd
 
           </div >
             <div className=" flex flex-row  ">
