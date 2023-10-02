@@ -26,7 +26,7 @@ export const Historiacomite = () => {
     
      Nombre :
 
-        
+        //
 <input className="   " type="text" id="nombre" name="nombre" required placeholder="Darlin Andres"/>
     
    
