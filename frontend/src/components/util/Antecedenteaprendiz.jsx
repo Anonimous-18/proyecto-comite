@@ -5,24 +5,11 @@ import { Link } from "react-router-dom";
 export const Antecedenteaprendiz = () => {
   return (
     <div className="mx-auto max-w-4xl pt-20 pb-32 sm:pt-40 sm:pb-20 rounded-2xl">
-      <h1 className="flex justify-center items-center">Antecedentes Aprendiz </h1>
-      <Link to={"/homeaprendiz"}>
-        <button className="pt-6 md:p-8 text-center md:text-left space-y-4 ">
-          <blockquote>
-            <p
-              className="       bg-gray-500 text-white w-24 h-7 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg"
-            >
-              Volver
-            </p>
-          </blockquote>
-        </button>
+      <h1 className="flex justify-center items-center">  </h1>
+      
 
-      </Link>
-
-  
-
-
-
+      {/* ooooooooooooooooooooooo eeeeeeeeeeeeeeeeeee*/}
+      {/* debo crear el resto de componentes llevo solo 1 */}
         Historia de comites  :
         <div className=" bg-blue-500 h-auto max-w-full flex flex-row items-center border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
           <div className=" h-auto max-w-full flex flex-row items-center  shadow-2xl p-5 place-content-evenly rounded-2xl">
