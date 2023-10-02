@@ -23,7 +23,13 @@ import { Infocomitesub } from "./pages/subdirector/infocomitesub";
 import Prueba from "./components/pruebas/Prueba";
 import { RolesDetails } from "./components/Roles/RolesDetails";
 import { SolicitudComite } from "./components/util/SolicitudComite";
+
 import DefaultLayout from "./Layout/DefaultLayout";
+
+
+import { Antecedente } from "./pages/subdirector/Antecedente";
+import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
+import { Historiacomite } from "./components/util/Historiacomite";
 
 function App() {
   return (
@@ -51,6 +57,10 @@ function App() {
         <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
         <Route path="/see-roles/:id" element={<RolesDetails />} />
         <Route path="/solicitud-comite" element={<SolicitudComite />} />
+        <Route path="/Antecedenteaprendiz" element={<Antecedente />} />
+        <Route path="/notificacionaprendiz" element={<Notificaciones />} />
+        <Route path="/historiasdecomite" element={<Historiacomite />} />
+
       </Routes>
     </ContextAppProvider>
   );
