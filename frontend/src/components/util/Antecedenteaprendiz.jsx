@@ -19,41 +19,7 @@ export const Antecedenteaprendiz = () => {
 
       </Link>
 
-      <div className=" bg-white   h-auto max-w-full flex flex-col ms-center border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
-        <div className=" rounded-xl border-blue-500 shadow-black h-auto max-w-full flex flex-row items-center bg-white  shadow-2xl p-5 place-content-evenly ">
-         
-
-          Nombre :
-          <button className="  items-center  bg-blue-100 justify-center space-y-2 spa hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-
-            <button className=" pt-2 flex flex-col items-center  hover:bg-blue-800 bg-blue-500  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-              Darlin Andres
-            </button>
-          </button>
-          {/*  */}
-          <div className=" space-x-4 rounded-xl border-blue-500 shadow-black h-auto max-w-full flex flex-row items-center bg-white  shadow-2xl p-5 place-content-evenly ">
-
-            Apellido :
-            <button className="  items-center  bg-blue-100 justify-center space-y-2 spa hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-
-              <button className=" pt-2 flex flex-col items-center  hover:bg-blue-800 bg-blue-500   border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                Rivas Lemus
-              </button>
-            </button>
-            {/*  */}
-            <div className="   space-x-4 rounded-xl border-blue-500 shadow-black h-auto max-w-full flex flex-row items-center bg-white  shadow-2xl p-5 place-content-evenly ">
-
-              Identificacion :
-              <button className="  items-center  bg-blue-100 justify-center space-y-2 spa hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-
-                <button className=" pt-2 flex flex-col items-center  hover:bg-blue-800 bg-blue-500  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                  1076815567
-                </button>
-              </button>
-            </div>
-
-          </div>
-        </div>
+  
 
 
 
@@ -120,39 +86,6 @@ export const Antecedenteaprendiz = () => {
         {/* hhhhh */}
 
 
-        <div className=" rounded-xl border-blue-500 shadow-black h-auto max-w-full flex flex-row items-center bg-white  shadow-2xl p-5 place-content-evenly ">
-
-         Direccion :
-          <button className="  items-center  bg-blue-100 justify-center space-y-2 spa hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-
-            <button className=" pt-2 flex flex-col items-center  hover:bg-blue-800 bg-blue-500  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-             Calle 68 # 35 A 128
-            </button>
-          </button>
-          {/*  */}
-          <div className=" rounded-xl border-blue-500 shadow-black h-auto max-w-full flex flex-row items-center bg-white  shadow-2xl p-5 place-content-evenly ">
-
-           correo :
-            <button className="  items-center  bg-blue-100 justify-center space-y-2 spa hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-
-              <button className=" pt-2 flex flex-col items-center  hover:bg-blue-800 bg-blue-500  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                darlinandresrivas@gmail.com
-              </button>
-            </button>
-            {/*  */}
-            <div className=" rounded-xl border-blue-500 shadow-black h-auto max-w-full flex flex-row items-center bg-white  shadow-2xl p-5 place-content-evenly ">
-
-             Telefono :
-              <button className="  items-center  bg-blue-100 justify-center space-y-2 spa hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-
-                <button className=" pt-2 flex flex-col items-center  hover:bg-blue-800 bg-blue-500  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                  3136349798
-                </button>
-              </button>
-            </div>
-
-          </div>
-        </div>
 
 
         Novedades :
@@ -213,7 +146,6 @@ export const Antecedenteaprendiz = () => {
 
 
       </div>
-    </div>
   );
 };
 
