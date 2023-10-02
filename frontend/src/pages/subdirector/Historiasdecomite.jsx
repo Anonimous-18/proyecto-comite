@@ -1,15 +1,14 @@
-import { Footer } from "../../Layout/Footer";
-import { NavBar } from "../../Layout/NavBar";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { Historiacomite } from "../../components/util/Historiacomite";
-// 
+//
 // import { Antecedenteaprendiz } from "../../components/util/Antecedenteaprendiz";
 
 export const Antecedente = () => {
   return (
     <div>
-      <NavBar />
-      <Historiacomite /> 
-      <Footer />
+      <DefaultLayout>
+        <Historiacomite />
+      </DefaultLayout>
     </div>
   );
 };

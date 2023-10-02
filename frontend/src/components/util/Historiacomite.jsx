@@ -1,11 +1,10 @@
-import { Footer } from "../../Layout/Footer";
-import { NavBar } from "../../Layout/NavBar";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { Link } from "react-router-dom";
 
 export const Historiacomite = () => {
   return (
-    <div>
-      <NavBar />
+    <DefaultLayout>
+      <div>
       <div className="mx-auto max-w-4xl pt-20 pb-32 sm:pt-40 sm:pb-20 rounded-2xl">
         <h1 className="flex justify-center items-center">
           Antecedentes Aprendiz{" "}
@@ -78,11 +77,9 @@ export const Historiacomite = () => {
           />
         </div>
 
-        <div></div>
-        <Footer />
-
-        <Footer />
       </div>
     </div>
+    </DefaultLayout>
+    
   );
 };

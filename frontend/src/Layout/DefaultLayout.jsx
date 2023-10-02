@@ -4,7 +4,7 @@ export default function ({ children }) {
   return(
     <div className="flex flex-col space-y-40 justify-between h-full">
     <NavBar />
-    <main>{children}</main>
+    <div>{children}</div>
     <Footer />
   </div>
   );
