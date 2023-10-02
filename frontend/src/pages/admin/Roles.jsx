@@ -1,10 +1,8 @@
-import { Table } from "../../components/Tabla/Table";
 import { Tab } from "../../components/Tabla/Tab";
-import { NavBar } from "../../Layout/NavBar";
-import { Footer } from "../../Layout/Footer";
 import { useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
 import { useEffect, useState } from "react";
+import DefaultLayout from "../../Layout/DefaultLayout";
 
 export const Roles = () => {
   const [roles, setRoles] = useState([]);
@@ -40,12 +38,9 @@ export const Roles = () => {
 
   if (roles.length !== 0) {
     return (
-      <div className="flex flex-col space-y-40 justify-between h-full">
-        <NavBar />
-        <Table datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>;
+      <DefaultLayout>
         <Tab datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
-        <Footer/>
-      </div>
+      </DefaultLayout>
     );
   } else {
     return <div>NO AUTORIZADO</div>;
