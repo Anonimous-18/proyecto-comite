@@ -23,6 +23,7 @@ import { Infocomitesub } from "./pages/subdirector/infocomitesub";
 import Prueba from "./components/pruebas/Prueba";
 import { RolesDetails } from "./components/Roles/RolesDetails";
 import { SolicitudComite } from "./components/util/SolicitudComite";
+import DefaultLayout from "./Layout/DefaultLayout";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-        <Route path="/pruebas" element={<Prueba />} />
+        <Route path="/pruebas" element={< DefaultLayout />} />
         <Route path="/votoinstructor" element={<Votoinstructor/>} />
         <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
