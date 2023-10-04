@@ -15,18 +15,13 @@ import { ImpugnacionesAprendiz } from "./pages/aprendiz/ImpugnacionesAprendiz";
 import { Pruebas_Aprendiz } from "./pages/aprendiz/Pruebas_Aprendiz";
 import { SolicitudIntructor } from "./pages/instructor/solicitudinstructor";
 import { Homeinstructor } from "./pages/instructor/homeinstructor";
-
 import { Home } from "./pages/admin/Home";
 import { Roles } from "./pages/admin/Roles";
 import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
 import { Infocomitesub } from "./pages/subdirector/infocomitesub";
-import Prueba from "./components/pruebas/Prueba";
 import { RolesDetails } from "./components/Roles/RolesDetails";
 import { SolicitudComite } from "./components/util/SolicitudComite";
-
 import DefaultLayout from "./Layout/DefaultLayout";
-
-
 import { Antecedente } from "./pages/subdirector/Antecedente";
 import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
 import { Historiacomite } from "./components/util/Historiacomite";
@@ -60,7 +55,6 @@ function App() {
         <Route path="/Antecedenteaprendiz" element={<Antecedente />} />
         <Route path="/notificacionaprendiz" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />
-
       </Routes>
     </ContextAppProvider>
   );

@@ -7,11 +7,7 @@ export const Antecedente = () => {
   return (
     <div>
       <NavBar />
-      
-      <Historiacomite />
       <Antecedenteaprendiz />
-      
-      <Historiacomite />
 
       <Footer />
     </div>
