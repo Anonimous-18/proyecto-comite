@@ -13,11 +13,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: false,
+      unique: "usuarios_email_unique"
     },
     contrasenia: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      unique: "usuarios_contrasenia_unique"
     },
     tipo_documento: {
       type: DataTypes.STRING(30),
@@ -25,24 +27,26 @@ module.exports = function(sequelize, DataTypes) {
     },
     documento: {
       type: DataTypes.STRING(30),
-      allowNull: false
+      allowNull: false,
+      unique: "usuarios_documento_unique"
     },
     telefono: {
       type: DataTypes.STRING(15),
+      allowNull: false,
+      unique: "usuarios_telefono_unique"
+    },
+    cargo: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    dependencia: {
+      type: DataTypes.STRING(40),
       allowNull: false
     },
     creado: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    cargo: {
-      type: DataTypes.STRING(200),
-      allowNull: true
-    },
-    dependencia: {
-      type: DataTypes.STRING(200),
-      allowNull: true
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
     rol_id: {
       type: DataTypes.INTEGER,
@@ -63,6 +67,70 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "email",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "email" },
+        ]
+      },
+      {
+        name: "contrasenia",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "contrasenia" },
+        ]
+      },
+      {
+        name: "documento",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "documento" },
+        ]
+      },
+      {
+        name: "telefono",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "telefono" },
+        ]
+      },
+      {
+        name: "usuarios_email_unique",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "email" },
+        ]
+      },
+      {
+        name: "usuarios_contrasenia_unique",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "contrasenia" },
+        ]
+      },
+      {
+        name: "usuarios_documento_unique",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "documento" },
+        ]
+      },
+      {
+        name: "usuarios_telefono_unique",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "telefono" },
         ]
       },
       {

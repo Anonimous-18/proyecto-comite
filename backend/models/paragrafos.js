@@ -1,6 +1,4 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../sequelize-config.js');
-
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('paragrafos', {
     par_id: {
