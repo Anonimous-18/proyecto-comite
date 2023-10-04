@@ -1,12 +1,10 @@
-import { NavBar } from "../../Layout/NavBar";
-import { Footer } from "../../Layout/Footer";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { Semaforo } from "../../components/util/semaforo";
 
 export const Informacioncomiteinst = () => {
   return (
-    <div>
-      <NavBar />
-      <div className="mx-auto max-w-screen-xl pt-20 pb-32 sm:pt-20 sm:pb-40 ">
+    <DefaultLayout>
+            <div className="mx-auto max-w-screen-xl pt-20 pb-32 sm:pt-20 sm:pb-40 ">
         <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
           <h1 className="flex flex-col items-center p-2 text-blue-800 mt-5 text-xl">
             Informacion de comite
@@ -178,7 +176,7 @@ export const Informacioncomiteinst = () => {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </DefaultLayout>
+
   );
 };

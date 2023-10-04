@@ -1,10 +1,9 @@
-import { NavBar } from "../../Layout/NavBar";
-import { Footer } from "../../Layout/Footer";
+import DefaultLayout from "../../Layout/DefaultLayout";
 
 export const Pruebas_Aprendiz = () => {
     return (
-        <div>
-            <NavBar />
+        <DefaultLayout>
+             <div>
             <div className="mx-auto max-w-lg pt-20 pb-32 sm:pt-48 sm:pb-40 ">
                 <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
                     <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
@@ -43,7 +42,8 @@ export const Pruebas_Aprendiz = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
+        </DefaultLayout>
+       
     );
 }
