@@ -43,7 +43,7 @@ export const Notificaciones = () => {
         <Link to={"/homeaprendiz"}>
           <button className="pt-6 md:p-8 text-center md:text-left space-y-4 ">
             <blockquote>
-              <p className="       bg-gray-500 text-white w-24 h-7 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg">
+              <p className="       bg-blue-700 text-white w-24 h-7 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg">
                 Volver
               </p>
             </blockquote>
