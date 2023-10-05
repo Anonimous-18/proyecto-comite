@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 export const Home_Aprendiz = () => {
   return (
     <DefaultLayout>
-      <div className="bg-white border-2  max-w-4xl  max-h-screen ">
-        <div className="  mx-auto w-96  pt-0 pb-32 sm:pt-48 sm:pb-46 adsolute transform f ">
+      <div className=" ">
+        <div className=" bg-white border-2  max-w-4xl  max-h-screen pl-4  mx-auto w-96  pr-4 pt-40 pb-20 sm:pt-48 sm:pb-46 adsolute transform f ">
           <div className="  bg-white border-2 h-auto max-w-full max-h-full   items-center  p-5 place-content-evenly rounded-2xl space-y-2">
             <div className="flex flex-col space-y-4">
               <div className=" space-y-10 flex flex-col justify-center items-center  hover:translate-x-2 hover:translate-y-1 translate-x-0 translate-y-0  space-x-2 border-gray-400  rounded-t-lg rounded-r-lg rounded-l-lg ">
@@ -43,7 +43,7 @@ export const Home_Aprendiz = () => {
                 </Link>
               </div>
               <div className=" space-y-2 flex flex-col justify-center items-center">
-                <button className="duration-150  bg-yellow-500  hover:bg-yellow-300  flex flex-col items-center justify-centerrounded-t-lg rounded-r-lg rounded-l-lg ">
+                <button className="duration-150  bg-blue-500  hover:bg-yellow-300  flex flex-col items-center justify-centerrounded-t-lg rounded-r-lg rounded-l-lg ">
                   <BiBell className="  w-60  h-20  flex flex-col items-center text-black" />
                   plan mejoramiento
                 </button>
