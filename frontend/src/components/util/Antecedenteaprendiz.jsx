@@ -5,7 +5,7 @@ export const Antecedenteaprendiz = () => {
     <DefaultLayout>
       <div className=" bg-white border-2 mx-auto max-w-4xl   md:w-auto sm:pt-10 sm:pb-20 rounded-2xl">
         <div className="flex flex-col justify-center items-center    w-f h-16">
-          <h4 className="flex flex-col justify-center items-center border-2  w-96 h-16  hover:text-blue-600 text-black   rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg  ">
+          <h4 className="flex flex-col justify-center items-center border-2  w-96 h-16  hover:bg-blue-500  hover:text-white text-black   rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg  ">
             Antecedentes Aprendiz
           </h4>
         </div>{" "}
