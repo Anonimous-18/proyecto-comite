@@ -20,7 +20,6 @@ import { Roles } from "./pages/admin/Roles";
 import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
 import { Infocomitesub } from "./pages/subdirector/infocomitesub";
 import { RolesDetails } from "./components/Roles/RolesDetails";
-import { SolicitudIntructor } from "./pages/instructor/solicitudinstructor";
 import DefaultLayout from "./Layout/DefaultLayout";
 import { Antecedente } from "./pages/subdirector/Antecedente";
 import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
