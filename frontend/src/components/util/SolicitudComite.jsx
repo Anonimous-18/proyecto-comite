@@ -141,10 +141,12 @@ export const SolicitudComite = () => {
     console.log("ANEXOS ", data.anexos);
 
     const body = {
+      aprendices_implicados: idenRequest,
+      articulos: artRequest,
       instructor_fk: "",
-      tipo_falta: "",
-      descripcion_solicitud: "",
-      carpeta_anexos: "",
+      tipo_falta: data.tipo_falta,
+      descripcion_solicitud: data.descripcion_falta,
+      carpeta_anexos: data.anexos,
       acta: null,
       recomendacion: null,
       anexar_plan_mejoramiento: null,
@@ -156,10 +158,15 @@ export const SolicitudComite = () => {
     <main className=" h-full w-full flex flex-col items-center">
       <Semaforo />
       <div className="h-full w-full flex flex-col items-center ">
-        <form onSubmit={(e) => handleSubmit(e)} className="border border-black  p-2 rounded-xl">
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          className="border border-black  p-2 rounded-xl"
+        >
           <h2 className="font-bold">Crear Solicitud Comite</h2>
           <div>
-            <label className="h-full w-full flex flex-col">Capitulo del Reglamento</label>
+            <label className="h-full w-full flex flex-col">
+              Capitulo del Reglamento
+            </label>
             <div>
               <select
                 onChange={(e) => onChange(e)}
@@ -170,7 +177,11 @@ export const SolicitudComite = () => {
                 className="bg-blue-400 h-100 w-auto flex flex-col rounded-xl border-2"
               >
                 {result.map((capitulo) => (
-                  <option key={capitulo.cap_id} value={`${capitulo.cap_id}`} className="h-100 p-14">
+                  <option
+                    key={capitulo.cap_id}
+                    value={`${capitulo.cap_id}`}
+                    className="h-100 p-14"
+                  >
                     Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
                   </option>
                 ))}
