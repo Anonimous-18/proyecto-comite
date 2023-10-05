@@ -83,7 +83,8 @@ export const NavBar = () => {
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
-                src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
+                // src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
+                src="https://tenor.com/es-419/view/tired-sleepy-gif-27609170.gif"
                 width={70}
                 height={60}
                 // src="https://placekitten.com/100/100"
@@ -153,7 +154,8 @@ export const NavBar = () => {
             <Link to="/home">
               {/* src={logo} */}
               <img
-                src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
+                // src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
+                src="https://tenor.com/es-419/view/tired-sleepy-gif-27609170.gif"
                 // src="https://placekitten.com/100/100"
                 width={70}
                 height={60}
