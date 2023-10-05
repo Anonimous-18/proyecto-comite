@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ficha.init({
-    fic_codigo: DataTypes.STRING,
-    fic_inicioLectiva: DataTypes.DATE,
-    fic_finLectiva: DataTypes.DATE,
-    fic_inicioProductiva: DataTypes.DATE,
-    fic_finProductiva: DataTypes.DATE,
-    fic_modalidad: DataTypes.STRING,
-    fic_jornada: DataTypes.STRING,
+    codigo: DataTypes.STRING,
+    inicioLectiva: DataTypes.DATE,
+    finLectiva: DataTypes.DATE,
+    inicioProductiva: DataTypes.DATE,
+    finProductiva: DataTypes.DATE,
+    modalidad: DataTypes.STRING,
+    jornada: DataTypes.STRING,
     programa: DataTypes.STRING,
     instructor_id: DataTypes.INTEGER
   }, {

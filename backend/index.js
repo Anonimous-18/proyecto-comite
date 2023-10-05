@@ -8,6 +8,7 @@ const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
 const adminRoutes = require("./routes/admin.routes.js")
 const instructorRoutes = require("./routes/instructor.routes.js")
+const fichasRoutes = require("./routes/fichas.routes.js")
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use(inicio_sesionRoutes);
 app.use(reglamentoRoutes);
 app.use(adminRoutes);
 app.use(instructorRoutes);
+app.use(fichasRoutes);
 
 app.listen(PORT, () => console.log(`Server on port ${PORT}`));
