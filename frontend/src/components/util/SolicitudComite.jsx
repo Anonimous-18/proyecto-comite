@@ -1,4 +1,3 @@
-
 import { Semaforo } from "./semaforo";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
@@ -140,7 +139,7 @@ export const SolicitudComite = () => {
     console.log("DESCRIPCIONFALTA ", data.descripcion_falta);
     console.log("TIPOFALTA ", data.tipo_falta);
     console.log("ANEXOS ", data.anexos);
-    
+
     const body = {
       instructor_fk: "",
       tipo_falta: "",
@@ -150,32 +149,33 @@ export const SolicitudComite = () => {
       recomendacion: null,
       anexar_plan_mejoramiento: null,
       resultado_plan_mejoramiento: null,
-    }
+    };
   };
 
   return (
-    <main className="mt-24 h-full w-full flex flex-col items-center">
-      <h1>Solicitudes de Comité</h1>
+    <main className=" h-full w-full flex flex-col items-center">
       <Semaforo />
-      <div className="h-full w-full">
-        <form onSubmit={(e) => handleSubmit(e)} className="border border-black">
+      <div className="h-full w-full flex flex-col items-center ">
+        <form onSubmit={(e) => handleSubmit(e)} className="border border-black  p-2 rounded-xl">
           <h2 className="font-bold">Crear Solicitud Comite</h2>
           <div>
-            <label className="">Capitulo del Reglamento</label>
-            <select
-              onChange={(e) => onChange(e)}
-              id="capitulo"
-              name="capitulo"
-              value={data.capitulo}
-              required
-              className="bg-rose-200"
-            >
-              {result.map((capitulo) => (
-                <option key={capitulo.cap_id} value={`${capitulo.cap_id}`}>
-                  Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
-                </option>
-              ))}
-            </select>
+            <label className="h-full w-full flex flex-col">Capitulo del Reglamento</label>
+            <div>
+              <select
+                onChange={(e) => onChange(e)}
+                id="capitulo"
+                name="capitulo"
+                value={data.capitulo}
+                required
+                className="bg-blue-400 h-100 w-auto flex flex-col rounded-xl border-2"
+              >
+                {result.map((capitulo) => (
+                  <option key={capitulo.cap_id} value={`${capitulo.cap_id}`} className="h-100 p-14">
+                    Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div>
             <label className="">Articulo del Reglamento</label>
@@ -289,7 +289,9 @@ export const SolicitudComite = () => {
           >
             Cancelar
           </Link>
-          <button className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">Crear Solicitud</button>
+          <button className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
+            Crear Solicitud
+          </button>
         </form>
       </div>
     </main>
