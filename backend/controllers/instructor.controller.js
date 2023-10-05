@@ -50,11 +50,30 @@ const comitebyId = async (req, res) => {
       return res.status(404).json({ message: `No se encontraron comites.` });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: `Error al obtener un comite detalles: ${error.message}`,
-      });
+    res.status(500).json({
+      message: `Error al obtener un comite detalles: ${error.message}`,
+    });
+  }
+};
+/**----------------------------------
+ * funcion para actualizar un comite
+ ----------------------------------*/
+const updateComite = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [updated] = await comites.update(req.body, {
+      where: { id },
+    });
+    if (updated) {
+      const actualizado = await comites.findOne({ where: { id } });
+      return res.status(200).json(actualizado);
+    } else {
+      return res
+        .status(404)
+        .json({ message: "No existe un usuario con este id." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -83,5 +102,6 @@ module.exports = {
   createComites,
   getComites,
   deleteComite,
+  updateComite,
   comitebyId,
 };
