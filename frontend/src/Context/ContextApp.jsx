@@ -1,9 +1,16 @@
 import jwt_decode from "jwt-decode";
+import instructorApi from "../api/instructor";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { createContext, useContext } from "react";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
-import { getRolesRequest, createRolRequest, deleteRolRequest, updateRolRequest, getRolByIdRequest } from "../api/roles";
+import {
+  getRolesRequest,
+  createRolRequest,
+  deleteRolRequest,
+  updateRolRequest,
+  getRolByIdRequest,
+} from "../api/roles";
 
 export const ContextApp = createContext();
 
@@ -178,7 +185,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const getRolesById = async (token, id) => {
     try {
-      const res = await getRolByIdRequest(token,id);
+      const res = await getRolByIdRequest(token, id);
       return res;
     } catch (error) {
       console.log("Error al filtrar el rol por id: ", error.message);
@@ -205,13 +212,22 @@ export const ContextAppProvider = ({ children }) => {
 
   const updateRoles = async (token, id, data) => {
     try {
-      console.log("ID: ", id)
-      console.log("DATA: ",  data)
-      console.log("TOKEN: ",  token)
+      console.log("ID: ", id);
+      console.log("DATA: ", data);
+      console.log("TOKEN: ", token);
       const res = await updateRolRequest(token, id, data);
       return res;
     } catch (error) {
       console.log("Error actualizar un rol: ", error.message);
+    }
+  };
+
+  const createComite = async (data) => {
+    try {
+      const response = await instructorApi.createComiteRequest(data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -231,7 +247,9 @@ export const ContextAppProvider = ({ children }) => {
         deleteRoles,
         updateRoles,
         getRolesById,
-      }}>
+        createComite,
+      }}
+    >
       {children}
     </ContextApp.Provider>
   );
