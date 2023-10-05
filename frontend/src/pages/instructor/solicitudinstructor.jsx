@@ -1,5 +1,4 @@
-import { DefaultLayout } from "../../Layout/DefaultLayout";
-import { Semaforo } from "../../components/util/semaforo";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { SolicitudComite } from "../../components/util/SolicitudComite";
 
 export const SolicitudIntructor = () => {
