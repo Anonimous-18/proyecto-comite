@@ -9,36 +9,46 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fic_codigo: {
-        type: Sequelize.STRING
+      codigo: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      fic_inicioLectiva: {
-        type: Sequelize.DATE
+      inicioLectiva: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
-      fic_finLectiva: {
-        type: Sequelize.DATE
+      finLectiva: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
-      fic_inicioProductiva: {
-        type: Sequelize.DATE
+      inicioProductiva: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
-      fic_finProductiva: {
-        type: Sequelize.DATE
+      finProductiva: {
+        type: Sequelize.DATE,
+        allowNull: false
       },
-      fic_modalidad: {
-        type: Sequelize.STRING
+      modalidad: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      fic_jornada: {
-        type: Sequelize.STRING
+      jornada: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       programa: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       instructor_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       updatedAt: {
         allowNull: false,
