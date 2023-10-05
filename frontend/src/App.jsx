@@ -20,7 +20,7 @@ import { Roles } from "./pages/admin/Roles";
 import { FormularioRoles } from "./pages/admin/Form/FormularioRoles";
 import { Infocomitesub } from "./pages/subdirector/infocomitesub";
 import { RolesDetails } from "./components/Roles/RolesDetails";
-import { SolicitudComite } from "./components/util/SolicitudComite";
+import { SolicitudIntructor } from "./pages/instructor/solicitudinstructor";
 import DefaultLayout from "./Layout/DefaultLayout";
 import { Antecedente } from "./pages/subdirector/Antecedente";
 import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
@@ -51,7 +51,7 @@ function App() {
         <Route path="/form-roles" element={<FormularioRoles />} />
         <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
         <Route path="/see-roles/:id" element={<RolesDetails />} />
-        <Route path="/solicitud-comite" element={<SolicitudComite />} />
+        <Route path="/solicitud-comite-instructor" element={<SolicitudIntructor />} />
         <Route path="/Antecedenteaprendiz" element={<Antecedente />} />
         <Route path="/notificacionaprendiz" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />

@@ -22,7 +22,7 @@ export const Homeinstructor = () => {
           </div>
           <div className="p-2">
             <Link
-              to={`/solicitud-comite`}
+              to={`/solicitudinstructor`}
               className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
               type="button"
             >
