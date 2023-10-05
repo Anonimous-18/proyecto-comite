@@ -140,6 +140,17 @@ export const SolicitudComite = () => {
     console.log("DESCRIPCIONFALTA ", data.descripcion_falta);
     console.log("TIPOFALTA ", data.tipo_falta);
     console.log("ANEXOS ", data.anexos);
+    
+    const body = {
+      instructor_fk: "",
+      tipo_falta: "",
+      descripcion_solicitud: "",
+      carpeta_anexos: "",
+      acta: null,
+      recomendacion: null,
+      anexar_plan_mejoramiento: null,
+      resultado_plan_mejoramiento: null,
+    }
   };
 
   return (
