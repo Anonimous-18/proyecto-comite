@@ -12,7 +12,7 @@ export const Login = () => {
   useEffect(() => {
     if (tokenExist && !validateToken()) {
       if (localStorage.getItem("admin")) {
-        navigate(`/home`);
+        navigate(`/roles`);
       } else if (localStorage.getItem("invitado")) {
         navigate(`/homeinvitado`);
       } else if (localStorage.getItem("instructor")) {
@@ -46,7 +46,7 @@ export const Login = () => {
       console.log("admin", admin)
       if (admin) {
         localStorage.setItem("admin", admin);
-        navigate(`/home`);
+        navigate(`/roles`);
       } else if (invitado) {
         localStorage.setItem("invitado", invitado);
         navigate(`/homeinvitado`);
