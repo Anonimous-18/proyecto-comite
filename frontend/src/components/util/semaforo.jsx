@@ -6,7 +6,7 @@ import { BsFillPersonDashFill } from "react-icons/bs";
 
 export const Semaforo = () => {
   return (
-    <div className="p-5 sm:p-48">
+    <div className="p-5 ">
 
       <h2 className="flex flex-col items-center p-2 text-blue-800">
         Estado del comite

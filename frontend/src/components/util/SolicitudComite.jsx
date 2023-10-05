@@ -160,9 +160,9 @@ export const SolicitudComite = () => {
       <div className="h-full w-full flex flex-col items-center ">
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="border border-black  p-2 rounded-xl"
+          className="border border-black  p-2 rounded-xl text-sm font-medium text-gray-900"
         >
-          <h2 className="font-bold">Crear Solicitud Comite</h2>
+          <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">Crear Solicitud Comite</h2>
           <div>
             <label className="h-full w-full flex flex-col">
               Capitulo del Reglamento
@@ -174,7 +174,7 @@ export const SolicitudComite = () => {
                 name="capitulo"
                 value={data.capitulo}
                 required
-                className="bg-blue-400 h-100 w-auto flex flex-col rounded-xl border-2"
+                className="bg-blue-400 h-100 w-full flex flex-col rounded-xl border-2"
               >
                 {result.map((capitulo) => (
                   <option
@@ -196,7 +196,7 @@ export const SolicitudComite = () => {
                 id="articulo"
                 name="articulo"
                 value={data.articulo}
-                className="bg-rose-200"
+                className="bg-blue-400 h-100 w-full flex flex-col rounded-xl border-2"
               >
                 <option value="">Seleccione un Articulo</option>
                 {getArticulos(result).contenido.map((articulo, index) => (
@@ -205,13 +205,16 @@ export const SolicitudComite = () => {
                   </option>
                 ))}
               </select>
-              <button
-                type="button"
-                className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-                onClick={agregarArticulo}
-              >
-                Agregar Articulo
-              </button>
+              <div className="place-content-center flex p-1">
+                <button
+                  type="button"
+                  className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                  onClick={agregarArticulo}
+                >
+                  Agregar Articulo
+                </button>
+              </div>
+
             </div>
           </div>
           {articulosSeleccionados.length > 0 && (
@@ -219,11 +222,11 @@ export const SolicitudComite = () => {
               <h4>Articulos Seleccionados:</h4>
               <ul>
                 {articulosSeleccionados.map((articuloId, index) => (
-                  <li key={index}>
-                    {`Articulo ${articuloId}`}
+                  <li key={index} className="place-content-center flex p-1">
+                    • {`Articulo ${articuloId}`}
                     <button
                       type="button"
-                      className="bg-purple-900"
+                      className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
                       onClick={() => quitarArticulo(index)}
                     >
                       Eliminar
@@ -236,29 +239,32 @@ export const SolicitudComite = () => {
           <div>
             <h4>Aprendices Implicados:</h4>
             {data.identificaciones.map((identificacion, index) => (
-              <div key={index}>
+              <div key={index} className="p-1">
                 <input
                   type="text"
                   value={identificacion}
                   onChange={(e) =>
                     actualizarIdentificacion(index, e.target.value)
                   }
-                  className="border border-black"
+                  className="border border-black  p-2 rounded-xl"
                   placeholder="Identificacion"
                 />
               </div>
             ))}
-            <button
-              type="button"
-              className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-              onClick={agregarIdentificacion}
-            >
-              {data.identificaciones.length !== 0 ? (
-                <>Agregar Otra Identificación</>
-              ) : (
-                <>Agregar Identificación</>
-              )}
-            </button>
+            <div className="place-content-center flex p-1">
+              <button
+                type="button"
+                className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                onClick={agregarIdentificacion}
+              >
+                {data.identificaciones.length !== 0 ? (
+                  <>Agregar Otra Identificación</>
+                ) : (
+                  <>Agregar Identificación</>
+                )}
+              </button>
+            </div>
+
           </div>
           <div>
             <p>Descripcion de la Falta:</p>
@@ -266,7 +272,7 @@ export const SolicitudComite = () => {
               name="descripcion_falta"
               required
               onChange={(e) => onChange(e)}
-              className="border border-black"
+              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
             />
           </div>
           <div>
@@ -277,32 +283,47 @@ export const SolicitudComite = () => {
               name="tipo_falta"
               value={data.tipo_falta}
               required
-              className="bg-rose-200"
+              className="bg-blue-400  h-100 w-full flex flex-col rounded-xl border-2"
             >
               <option value="">Seleccione el Tipo de Falta</option>
               <option value="Academica">Academica</option>
               <option value="Disciplinaria">Disciplinaria</option>
             </select>
           </div>
-          <div>
-            <p>Carpeta Anexos:</p>
+          <div className="w-full">
+            <label
+              for="brand"
+              className="block mb-2 text-sm font-medium text-gray-900 ">
+              Adjuntar evidencias
+            </label>
             <input
-              type="text"
-              name="anexos"
+              type="file"
+              name="brand"
+              id="brand"
               placeholder="Link de la carpeta"
               onChange={(e) => onChange(e)}
-              className="border border-black"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
             />
           </div>
-          <Link
-            to={`/home`}
-            className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-          >
-            Cancelar
-          </Link>
-          <button className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">
-            Crear Solicitud
-          </button>
+          <div className="p-2 sm:col-span-2 flex flex-row place-content-center">
+            <div>
+              <Link
+                to={`/home`}
+                className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+              >
+                Cancelar
+              </Link>
+            </div>
+            <div>
+              <button className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2">
+                Crear Solicitud
+              </button>
+            </div>
+
+
+          </div>
+
+
         </form>
       </div>
     </main>
