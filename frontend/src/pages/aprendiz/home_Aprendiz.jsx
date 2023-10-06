@@ -43,7 +43,7 @@ export const Home_Aprendiz = () => {
                 </Link>
               </div>
               <div className=" space-y-2 flex flex-col justify-center items-center">
-                <button className="duration-150  bg-blue-500  hover:bg-yellow-300  flex flex-col items-center justify-centerrounded-t-lg rounded-r-lg rounded-l-lg ">
+                <button className="duration-150  bg-blue-500  hover:bg-blue-300  flex flex-col items-center justify-centerrounded-t-lg rounded-r-lg rounded-l-lg ">
                   <BiBell className="  w-60  h-20  flex flex-col items-center text-black" />
                   plan mejoramiento
                 </button>
@@ -52,7 +52,7 @@ export const Home_Aprendiz = () => {
           </div>
           <div className="flex flex-col p-3    items-center justify-center   space-y-10">
             <div
-              className=" w-64 flex flex-col  p-3  space-x-6  items-center justify-center  hover:translate-x-4 hover:translate-y-1 translate-x-0 translate-y-0
+              className=" w-64 flex flex-col  p-3  space-x-6  items-center justify-center  hover:translate-x-2 hover:translate-y-1 translate-x-0 translate-y-0
          bg-white h-auto max-w-full max-h-full   place-content-evenly rounded-2xl space-y-2 ">
               <Link to="/home">
                 {
