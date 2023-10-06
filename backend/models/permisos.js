@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { roles,roles_permisos } = require('./');
+// const { roles } = require('./');
 
 module.exports = function(sequelize, DataTypes) {
   const permisos = sequelize.define('permisos', {
@@ -33,6 +33,6 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-  permisos.belongsToMany(roles,{ through:roles_permisos });
+  // permisos.belongsToMany(roles, { through: 'roles_permisos' });
   return permisos;
 };
