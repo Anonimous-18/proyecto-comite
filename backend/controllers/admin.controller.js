@@ -1,4 +1,4 @@
-const { roles } = require("../models");
+const { roles,permisos } = require("../models");
 
 /**--------------------------------
  * Controlador para crear un rol
@@ -66,10 +66,14 @@ const updateRol = async (req, res) => {
   const { id } = req.params;
   try {
     const nombre = (await roles.findOne({ where: { id } })).nombre;
-    if (nombre === 'Instructor' || nombre === 'Aprendiz' || nombre === 'Administrador') { 
-      res.status(403).json({ message: 'No tienes permisos para realizar esta acción.' });
+    if (
+      nombre === "Instructor" ||
+      nombre === "Aprendiz" ||
+      nombre === "Administrador"
+    ) {
+      res.status(403).json({ message: "No es permitido hacer la accion" });
       return;
-    } 
+    }
 
     const [updated] = await roles.update(req.body, {
       where: { id },
@@ -94,11 +98,14 @@ const deleteRol = async (req, res) => {
   const { id } = req.params;
   try {
     const nombre = (await roles.findOne({ where: { id } })).nombre;
-    if (nombre === 'Instructor' || nombre === 'Aprendiz' || nombre === 'Administrador') { 
-      res.status(403).json({ message: 'No tienes permisos para realizar esta acción.' });
+    if (
+      nombre === "Instructor" ||
+      nombre === "Aprendiz" ||
+      nombre === "Administrador"
+    ) {
+      res.status(403).json({ message: "No es permitido hacer la accion" });
       return;
-    } 
-
+    }
 
     const deleted = await roles.destroy({
       where: { id },
@@ -115,10 +122,32 @@ const deleteRol = async (req, res) => {
   }
 };
 
+/**--------------------------------
+ * Controlador para crear un permiso
+ --------------------------------*/
+const createPermiso = async (req, res) => {
+  try {
+    const result = await permisos.create(req.body);
+
+    if (result.dataValues.id !== 0) {
+      return res.status(200).json(result);
+    }
+    return res
+      .status(500)
+      .json({ message: "Error al crear un nuevo permiso." });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error al crear un nuevo permiso: ${error.message}` });
+  }
+};
+
 module.exports = {
   createRol,
   getRol,
   updateRol,
   deleteRol,
   getRolbyId,
+
+  createPermiso,
 };

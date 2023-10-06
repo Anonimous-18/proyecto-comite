@@ -1,6 +1,6 @@
 const { Router } = require("express");
 // const { verifyToken } = require("../middlewares/session.meddleware.js")
-const fichaController = require("../controllers/ficha.controller");
+const fichaController = require("../controllers/fichas.controller");
 
 const router = Router();
 

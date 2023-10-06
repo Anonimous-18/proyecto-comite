@@ -22,7 +22,6 @@ const createFicha = async (req, res) => {
 const getFicha = async (req, res) => {
   try {
     const result = await ficha.findAll();
-
     if (result.length !== 0) {
       return res.status(200).json(result);
     }

@@ -6,7 +6,7 @@ const {
   updateComite,
   deleteComite,
   comitebyId,
-} = require("../controllers/instructor.controller.js");
+} = require("../controllers/comites.controller.js");
 
 const router = Router();
 
