@@ -325,7 +325,7 @@ const registerUsers = async (req, res) => {
       console.log(errorUsuarios);
     } catch (error) {
       return res.status(500).json({
-        message: `Error al recuperar contraseña detalles ${error.message}`,
+        message: `Error detalles ${error.message}`,
       });
     }
   };

@@ -65,6 +65,12 @@ const getRolbyId = async (req, res) => {
 const updateRol = async (req, res) => {
   const { id } = req.params;
   try {
+    const nombre = (await roles.findOne({ where: { id } })).nombre;
+    if (nombre === 'Instructor' || nombre === 'Aprendiz' || nombre === 'Administrador') { 
+      res.status(403).json({ message: 'No tienes permisos para realizar esta acción.' });
+      return;
+    } 
+
     const [updated] = await roles.update(req.body, {
       where: { id },
     });
@@ -87,6 +93,13 @@ const updateRol = async (req, res) => {
 const deleteRol = async (req, res) => {
   const { id } = req.params;
   try {
+    const nombre = (await roles.findOne({ where: { id } })).nombre;
+    if (nombre === 'Instructor' || nombre === 'Aprendiz' || nombre === 'Administrador') { 
+      res.status(403).json({ message: 'No tienes permisos para realizar esta acción.' });
+      return;
+    } 
+
+
     const deleted = await roles.destroy({
       where: { id },
     });
