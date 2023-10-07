@@ -4,7 +4,7 @@ const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
 const sequelize = require('../sequelize-config.js')
-const { usuarios,roles } = require('../models')
+const { usuarios,roles,permisos } = require('../models')
 
 
 const secretKey = v4();
@@ -38,8 +38,13 @@ const login = async (req, res) => {
       tipo_documento: userRes.tipo_documento,
       documento: userRes.documento,
       rol_id: userRes.rol_id,
-      rol: userRes.role
+      rol: userRes.role.dataValues
     };
+    req.userData = user;
+    req.userData.permisos = (await roles.findByPk(req.userData.rol_id, {
+      include: [permisos], // Incluye la relación con el modelo Permisos
+    })).dataValues.permisos;
+    console.log(req.userData);
 
     /**-----------------------------------------------------
      * |  Creamos el Token de sesión con el tiempo de expiración
@@ -49,7 +54,6 @@ const login = async (req, res) => {
       expiresIn: "1h",
       // expiresIn: "1m",
     });
-    console.log(user)
     /**-----------------------------------------------------
      * |  El token esta codificado
      -----------------------------------------------------*/
