@@ -4,7 +4,7 @@ const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
 const sequelize = require('../sequelize-config.js')
-const {usuarios} = require('../models')
+const { usuarios,roles } = require('../models')
 
 
 const secretKey = v4();
@@ -16,25 +16,29 @@ const login = async (req, res) => {
   try {
     const { documento, contrasenia } = req.body;
 
-    const [result] = await pool.query(
-      "SELECT * FROM usuarios WHERE documento = ? AND contrasenia = ?",
-      [documento, contrasenia]
-    );
-
-    if (result.length === 0)
+    const userRes = await usuarios.findOne({
+      where: {
+        documento: documento,
+        contrasenia: contrasenia,
+      },
+      include: [roles],
+    });
+  
+    if (!userRes) {
       return res
         .status(404)
-        .json({ message: `No se encontro al usuario con esos datos` });
-    
-    const userDB = result[0];
-    console.log(result);
+        .json({ message: `No se encontró al usuario con esos datos` });
+    }
+  
+    // Mapea los campos del modelo Usuarios a un objeto user
     const user = {
-      nombre_completo : userDB.nombre_completo,
-      email : userDB.email,
-      creado : userDB.creado,
-      tipo_documento : userDB.tipo_document,
-      documento : userDB.documento,
-      rol_id : userDB.rol_id
+      nombre_completo: userRes.nombre_completo,
+      email: userRes.email,
+      creado: userRes.creado,
+      tipo_documento: userRes.tipo_documento,
+      documento: userRes.documento,
+      rol_id: userRes.rol_id,
+      rol: userRes.role
     };
 
     /**-----------------------------------------------------
@@ -45,7 +49,7 @@ const login = async (req, res) => {
       expiresIn: "1h",
       // expiresIn: "1m",
     });
-
+    console.log(user)
     /**-----------------------------------------------------
      * |  El token esta codificado
      -----------------------------------------------------*/
