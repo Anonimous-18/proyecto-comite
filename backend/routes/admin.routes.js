@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { verifyToken } = require("../middlewares/session.meddleware.js")
 const { createRol, getRol, updateRol, deleteRol, getRolbyId, createPermiso } = require("../controllers/admin.controller.js");
+const { permisosUsuario } = require("../middlewares/permisosUsuario.meddleware.js");
 
 const router = Router();
 
