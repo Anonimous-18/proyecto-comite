@@ -1,5 +1,5 @@
-// const { permisos } = require('./')
 const Sequelize = require('sequelize');
+
 module.exports = function(sequelize, DataTypes) {
   const roles = sequelize.define('roles', {
     id: {
@@ -32,7 +32,12 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-  // roles.belongsToMany(permisos, { through: 'roles_permisos' });
+  //relacion de muchos a muchos se coloca solamente en uno de los modelos sequelize ya se encarga de hacer el resto
+  roles.belongsToMany(sequelize.models.permisos, {
+    through: 'roles_permisos', // Nombre de la tabla intermedia
+    foreignKey: 'rol_id', // Clave externa en roles_permisos que hace referencia a roles
+    otherKey: 'permisos_id', // Clave externa en roles_permisos que hace referencia a permisos
+  });
   return roles;
 };
 
