@@ -300,7 +300,6 @@ export const SolicitudComite = () => {
           </div>
           <div className="w-full">
             <label
-              for="brand"
               className="block mb-2 text-sm font-medium text-gray-900 "
             >
               Adjuntar evidencias
