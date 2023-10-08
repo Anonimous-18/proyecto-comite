@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  const usuario = sequelize.define('usuarios', {
+  return sequelize.define('usuarios', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -110,7 +110,4 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-
-  usuario.belongsTo(sequelize.models.roles, { foreignKey: 'rol_id' });
-  return usuario;
 };
