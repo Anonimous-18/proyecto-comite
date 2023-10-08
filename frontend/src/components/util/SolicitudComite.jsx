@@ -1,7 +1,9 @@
-import { Semaforo } from "./semaforo";
-import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import hooks from "../../hooks/useFunction";
+import { Semaforo } from "./semaforo";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const SolicitudComite = () => {
   const [reglamento, setReglamento] = useState([]);
@@ -16,10 +18,9 @@ export const SolicitudComite = () => {
     identificaciones: [],
   });
 
-  const { getReglamento, orderReglamento, protectedRoutes, validateToken } =
-    useContextApp();
+  const contextApi = useContextApp();
   const navigate = useNavigate();
-  const tokenExist = protectedRoutes();
+  const tokenExist = contextApi.protectedRoutes();
 
   useEffect(() => {
     /**-------------------------------------------------------
@@ -27,12 +28,12 @@ export const SolicitudComite = () => {
      -------------------------------------------------------*/
     if (!tokenExist) {
       navigate(`/`);
-    } else if (validateToken()) {
+    } else if (contextApi.validateToken()) {
       navigate(`/`);
     } else {
       const Reglamento = async () => {
         const token = JSON.parse(localStorage.getItem("newToken"));
-        const res = await getReglamento(token.token);
+        const res = await contextApi.getReglamento(token.token);
 
         if (res !== null || res !== undefined) {
           setReglamento(res);
@@ -41,7 +42,7 @@ export const SolicitudComite = () => {
 
       Reglamento();
     }
-  }, [getReglamento, validateToken, navigate, tokenExist, data.capitulo]);
+  }, [navigate, contextApi, tokenExist]);
 
   const agregarArticulo = () => {
     /**-------------------------------------------------------
@@ -83,7 +84,7 @@ export const SolicitudComite = () => {
   } else if (reglamento.length === 0) {
     return <div>Loading...</div>;
   }
-  const result = orderReglamento(reglamento);
+  const result = contextApi.orderReglamento(reglamento);
 
   const agregarIdentificacion = () => {
     setData({
@@ -116,7 +117,7 @@ export const SolicitudComite = () => {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     /**-------------------------------------------------------
      * |  Eliminamos los elementos repetidos en el array
@@ -140,14 +141,24 @@ export const SolicitudComite = () => {
     console.log("TIPOFALTA ", data.tipo_falta);
     console.log("ANEXOS ", data.anexos);
 
+    const token = JSON.parse(localStorage.getItem("newToken"));
+    const tokenDecoded = hooks.useDecodedToken(token.token);
+
     const body = {
       aprendices_implicados: idenRequest,
       articulos: artRequest,
-      instructor_fk: 191,
+      instructor_fk: tokenDecoded.user.id,
       tipo_falta: data.tipo_falta,
       descripcion_solicitud: data.descripcion_falta,
-      carpeta_anexos: data.anexos,
     };
+
+    if (body) {
+      try {
+        await contextApi.createComite(body);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -158,7 +169,9 @@ export const SolicitudComite = () => {
           onSubmit={(e) => handleSubmit(e)}
           className="border border-black  p-2 rounded-xl text-sm font-medium text-gray-900"
         >
-          <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">Crear Solicitud Comite</h2>
+          <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
+            Crear Solicitud Comite
+          </h2>
           <div>
             <label className="h-full w-full flex flex-col">
               Capitulo del Reglamento
@@ -210,7 +223,6 @@ export const SolicitudComite = () => {
                   Agregar Articulo
                 </button>
               </div>
-
             </div>
           </div>
           {articulosSeleccionados.length > 0 && (
@@ -260,7 +272,6 @@ export const SolicitudComite = () => {
                 )}
               </button>
             </div>
-
           </div>
           <div>
             <p>Descripcion de la Falta:</p>
@@ -289,7 +300,8 @@ export const SolicitudComite = () => {
           <div className="w-full">
             <label
               for="brand"
-              className="block mb-2 text-sm font-medium text-gray-900 ">
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
               Adjuntar evidencias
             </label>
             <input
@@ -315,11 +327,7 @@ export const SolicitudComite = () => {
                 Crear Solicitud
               </button>
             </div>
-
-
           </div>
-
-
         </form>
       </div>
     </main>

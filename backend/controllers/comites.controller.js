@@ -5,18 +5,28 @@ const { comites } = require("../models");
  --------------------------------*/
 const createComites = async (req, res) => {
   try {
-    // const result = await comites.create(req.body);
-    console.log(req.body)
-    // if (result.dataValues.id !== 0) {
-    //   return res.status(200).json(result);
-    // }
-    // return res.status(500).json({ message: "Error al crear un nuevo comite." });
+    const result = await comites.create({
+      articulos: req.body.articulos.toString(),
+      instructor_fk: req.body.instructor_fk,
+      tipo_falta: req.body.tipo_falta,
+      descripcion_solicitud: req.body.descripcion_solicitud,
+    });
+
+    /**----------------------------------------------------------
+     * | Este es id del comite creado: result.dataValues.id
+     * ----------------------------------------------------------*/
+    if (result.dataValues.id !== 0) {
+      return res.sendStatus(204);
+    }
+
+    return res.status(500).json({ message: "Error al crear un nuevo comite." });
   } catch (error) {
     res
       .status(500)
       .json({ message: `Error al crear un nuevo comite: ${error.message}` });
   }
 };
+
 /**-----------------------------------------
  * funcion para obtener todos los comites
  -----------------------------------------*/
@@ -55,6 +65,7 @@ const comitebyId = async (req, res) => {
     });
   }
 };
+
 /**----------------------------------
  * funcion para actualizar un comite
  ----------------------------------*/
@@ -97,6 +108,7 @@ const deleteComite = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 // updatecomite,
 module.exports = {
   createComites,

@@ -224,8 +224,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const createComite = async (data) => {
     try {
-      const response = await instructorApi.createComiteRequest(data);
-      console.log(response);
+      await instructorApi.createComiteRequest(data);
     } catch (error) {
       console.log(error);
     }
