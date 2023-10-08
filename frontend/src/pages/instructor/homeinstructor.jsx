@@ -45,7 +45,7 @@ export const Homeinstructor = () => {
                     tipo_falta={comite.tipo_falta}
                     descripcion_solicitud={comite.descripcion_solicitud}
                     instructor={comite.instructor_fk}
-                    fecha={comite.createdAt}
+                    fecha={comite.createdAt.replace(/T.*/, '')}
                     estado={comite.estado}
                   />
                 ))}
