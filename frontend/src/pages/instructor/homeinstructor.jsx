@@ -13,6 +13,7 @@ export const Homeinstructor = () => {
   const [comites, setComites] = useState([]);
 
   useEffect(() => {
+    window.scroll(0, 0);
     const getAllComites = async () => {
       const response = await contextApi.getComites();
 

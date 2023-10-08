@@ -20,6 +20,7 @@ export const Informacioncomiteinst = () => {
   const contextApi = useContextApp();
 
   useEffect(() => {
+    window.scroll(0, 0);
     const getComiteById = async (id) => {
       const response = await contextApi.getComite(id);
 
