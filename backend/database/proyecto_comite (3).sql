@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-10-2023 a las 18:38:40
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 08-10-2023 a las 16:57:16
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `aprendices_implicados`
+--
+
+CREATE TABLE `aprendices_implicados` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `documento` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `articulos`
 --
 
@@ -32,7 +46,7 @@ CREATE TABLE `articulos` (
   `art_titulo` varchar(250) NOT NULL,
   `art_descripcion` varchar(500) NOT NULL,
   `cap_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `articulos`
@@ -121,7 +135,7 @@ INSERT INTO `articulos` (`art_id`, `art_titulo`, `art_descripcion`, `cap_id`) VA
 CREATE TABLE `capitulos` (
   `cap_id` int(11) NOT NULL,
   `cap_titulo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `capitulos`
@@ -141,13 +155,77 @@ INSERT INTO `capitulos` (`cap_id`, `cap_titulo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comites`
+--
+
+CREATE TABLE `comites` (
+  `id` int(11) NOT NULL,
+  `instructor_fk` int(11) NOT NULL,
+  `tipo_falta` enum('disciplinaria','academica') NOT NULL,
+  `descripcion_solicitud` varchar(255) NOT NULL,
+  `carpeta_anexos` varchar(255) NOT NULL,
+  `acta` text DEFAULT NULL,
+  `estado` enum('espera','rechazado','aceptado','ejecucion') DEFAULT 'espera',
+  `recomendacion` varchar(255) DEFAULT NULL,
+  `anexar_plan_mejoramiento` varchar(255) DEFAULT NULL,
+  `resultado_plan_mejoramiento` enum('D','A') DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `comites`
+--
+
+INSERT INTO `comites` (`id`, `instructor_fk`, `tipo_falta`, `descripcion_solicitud`, `carpeta_anexos`, `acta`, `estado`, `recomendacion`, `anexar_plan_mejoramiento`, `resultado_plan_mejoramiento`, `createdAt`, `updatedAt`) VALUES
+(4, 491, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:15:15', '2023-10-05 00:34:59'),
+(5, 490, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:22:51', '2023-10-04 23:22:51'),
+(7, 490, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:22:53', '2023-10-04 23:22:53'),
+(8, 490, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:22:55', '2023-10-04 23:22:55');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fichas`
+--
+
+CREATE TABLE `fichas` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(255) NOT NULL,
+  `inicioLectiva` datetime NOT NULL,
+  `finLectiva` datetime NOT NULL,
+  `inicioProductiva` datetime NOT NULL,
+  `finProductiva` datetime NOT NULL,
+  `modalidad` varchar(255) NOT NULL,
+  `jornada` varchar(255) NOT NULL,
+  `programa` varchar(255) NOT NULL,
+  `instructor_id` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `fichas`
+--
+
+INSERT INTO `fichas` (`id`, `codigo`, `inicioLectiva`, `finLectiva`, `inicioProductiva`, `finProductiva`, `modalidad`, `jornada`, `programa`, `instructor_id`, `createdAt`, `updatedAt`) VALUES
+(2, 'FIC001', '2023-10-15 00:00:00', '2023-12-15 00:00:00', '2023-12-20 00:00:00', '2024-02-20 00:00:00', 'Presencial', 'Mañana', 'Desarrollo de Software', 490, '2023-10-05 21:06:57', '2023-10-05 21:06:57'),
+(5, 'FIC001', '2023-10-15 00:00:00', '2023-12-15 00:00:00', '2023-12-20 00:00:00', '2024-02-20 00:00:00', 'Presencial', 'Mañana', 'Desarrollo de Software', 491, '2023-10-05 21:51:05', '2023-10-05 21:51:05'),
+(7, 'FIC001', '2023-10-15 00:00:00', '2023-12-15 00:00:00', '2023-12-20 00:00:00', '2024-02-20 00:00:00', 'Presencial', 'Mañana', 'Desarrollo de Software', 491, '2023-10-05 21:51:09', '2023-10-05 21:51:09'),
+(8, 'FIC001', '2023-10-15 00:00:00', '2023-12-15 00:00:00', '2023-12-20 00:00:00', '2024-02-20 00:00:00', 'Presencial', 'Mañana', 'Desarrollo de Software', 491, '2023-10-05 21:51:09', '2023-10-05 21:51:09'),
+(9, 'FIC001', '2023-10-15 00:00:00', '2023-12-15 00:00:00', '2023-12-20 00:00:00', '2024-02-20 00:00:00', 'Presencial', 'Mañana', 'Desarrollo de Software', 491, '2023-10-05 21:51:10', '2023-10-05 21:51:10'),
+(10, 'FIC001', '2023-10-15 00:00:00', '2023-12-15 00:00:00', '2023-12-20 00:00:00', '2024-02-20 00:00:00', 'Presencial', 'Mañana', 'Desarrollo de Software', 491, '2023-10-05 21:51:10', '2023-10-05 21:51:10');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `normas_infligidas`
 --
 
 CREATE TABLE `normas_infligidas` (
   `nor_id` int(11) NOT NULL,
   `art_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -159,7 +237,7 @@ CREATE TABLE `paragrafos` (
   `par_id` int(11) NOT NULL,
   `par_descripcion` varchar(900) NOT NULL,
   `art_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paragrafos`
@@ -239,17 +317,17 @@ CREATE TABLE `permisos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `creado` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `permisos`
 --
 
 INSERT INTO `permisos` (`id`, `nombre`, `creado`) VALUES
-(1, 'list', '2023-08-28 20:58:35'),
-(2, 'create', '2023-08-28 20:58:35'),
-(3, 'edit', '2023-08-28 20:58:35'),
-(4, 'delete', '2023-08-28 20:58:35');
+(1, 'list-fichas', '2023-08-28 20:58:35'),
+(2, 'create-fichas', '2023-08-28 20:58:35'),
+(3, 'edit-fichas', '2023-08-28 20:58:35'),
+(4, 'delete-fichas', '2023-08-28 20:58:35');
 
 -- --------------------------------------------------------
 
@@ -261,7 +339,7 @@ CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `creado` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -281,18 +359,18 @@ INSERT INTO `roles` (`id`, `nombre`, `creado`) VALUES
 CREATE TABLE `roles_permisos` (
   `id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
-  `permisos_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `permisos_id` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles_permisos`
 --
 
-INSERT INTO `roles_permisos` (`id`, `rol_id`, `permisos_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4);
+INSERT INTO `roles_permisos` (`id`, `rol_id`, `permisos_id`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 2, '2023-10-07 20:35:51', '2023-10-07 20:35:51'),
+(2, 1, 3, '2023-10-07 20:35:51', '2023-10-07 20:35:51');
 
 -- --------------------------------------------------------
 
@@ -301,7 +379,7 @@ INSERT INTO `roles_permisos` (`id`, `rol_id`, `permisos_id`) VALUES
 --
 
 CREATE TABLE `SequelizeMeta` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -309,14 +387,17 @@ CREATE TABLE `SequelizeMeta` (
 --
 
 INSERT INTO `SequelizeMeta` (`name`) VALUES
-('20230906150322-create-users.js'),
 ('20230907150132-create-permisos.js'),
 ('20230907150740-create-roles.js'),
 ('20230907150754-create-sessions.js'),
 ('20230907151024-create-usuarios.js'),
 ('20230907154109-add-foreign-keys.js'),
 ('20230907164020-create-roles-permisos.js'),
-('20230914220138-agregar-restricciones-unicidad-usuarios.js');
+('20230914220138-agregar-restricciones-unicidad-usuarios.js'),
+('20231003224924-create-comites.js'),
+('20231004220340-create-aprendices_implicados.js'),
+('20231005141607-create-ficha.js'),
+('20231005150023-add_instructor_foreign_key_to_fichas.js');
 
 -- --------------------------------------------------------
 
@@ -328,7 +409,7 @@ CREATE TABLE `sessions` (
   `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `expires` int(11) UNSIGNED NOT NULL,
   `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `sessions`
@@ -343,51 +424,42 @@ INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Users`
---
-
-CREATE TABLE `Users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre_completo` varchar(200) DEFAULT NULL,
+  `nombre_completo` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `contrasenia` varchar(255) NOT NULL,
+  `tipo_documento` varchar(30) NOT NULL,
+  `documento` varchar(30) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `cargo` varchar(30) NOT NULL,
+  `dependencia` varchar(40) NOT NULL,
   `creado` timestamp NULL DEFAULT current_timestamp(),
-  `rol_id` int(11) DEFAULT NULL,
-  `tipo_documento` varchar(200) DEFAULT NULL,
-  `documento` varchar(200) DEFAULT NULL,
-  `cargo` varchar(200) DEFAULT NULL,
-  `telefono` varchar(15) DEFAULT NULL,
-  `dependencia` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `rol_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre_completo`, `email`, `contrasenia`, `creado`, `rol_id`, `tipo_documento`, `documento`, `cargo`, `telefono`, `dependencia`) VALUES
-(190, 'Brayan', 'brayan6omez@gmail.com', '1', '2023-09-20 12:53:13', 1, 'CC', '1', 'Aprendiz', '3012565', 'CAI'),
-(191, 'santiago', 'begomez1054@gmail.com', '2', '2023-09-20 12:53:13', 2, 'CC', '2', 'Aprendiz', '322525', 'CAI'),
-(192, 'felipe', 'darlinandresrivas@gmail.com', '0dcb5ad6', '2023-09-20 12:53:13', 3, 'CC', '1048', 'Aprendiz', '42312583', 'CAI'),
-(193, 'sergio', 'begomez334@gmail.com', '2534e04a', '2023-09-20 12:53:13', 3, 'CC', '1047', 'Aprendiz', '22447475', 'CAI');
+INSERT INTO `usuarios` (`id`, `nombre_completo`, `email`, `contrasenia`, `tipo_documento`, `documento`, `telefono`, `cargo`, `dependencia`, `creado`, `rol_id`) VALUES
+(489, 'Santiago Gomez Noguera', 'begomez1054@gmail.com', '3', 'TI', '3', '3013816950', 'Aprendiz', 'CAD', '2023-09-20 01:10:49', 3),
+(490, 'Brayan Gomez Noguera', 'begomez334@gmail.com', '1', 'CC', '1', '3206516254', 'Aprendiz', 'CAD', '2023-09-20 01:10:49', 1),
+(491, 'Alejandro Toro', 'karlatrosillo@gmail.com', '2', 'CC', '2', '3106755050', 'Aprendiz', 'CAD', '2023-09-20 01:10:49', 2);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `aprendices_implicados`
+--
+ALTER TABLE `aprendices_implicados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indices de la tabla `articulos`
@@ -401,6 +473,20 @@ ALTER TABLE `articulos`
 --
 ALTER TABLE `capitulos`
   ADD PRIMARY KEY (`cap_id`);
+
+--
+-- Indices de la tabla `comites`
+--
+ALTER TABLE `comites`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `instructor_fk` (`instructor_fk`);
+
+--
+-- Indices de la tabla `fichas`
+--
+ALTER TABLE `fichas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fichas_instructor_fk` (`instructor_id`);
 
 --
 -- Indices de la tabla `normas_infligidas`
@@ -450,17 +536,14 @@ ALTER TABLE `sessions`
   ADD PRIMARY KEY (`session_id`);
 
 --
--- Indices de la tabla `Users`
---
-ALTER TABLE `Users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `contrasenia` (`contrasenia`),
+  ADD UNIQUE KEY `documento` (`documento`),
+  ADD UNIQUE KEY `telefono` (`telefono`),
   ADD UNIQUE KEY `usuarios_email_unique` (`email`),
   ADD UNIQUE KEY `usuarios_contrasenia_unique` (`contrasenia`),
   ADD UNIQUE KEY `usuarios_documento_unique` (`documento`),
@@ -470,6 +553,24 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `aprendices_implicados`
+--
+ALTER TABLE `aprendices_implicados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `comites`
+--
+ALTER TABLE `comites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `fichas`
+--
+ALTER TABLE `fichas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `normas_infligidas`
@@ -487,41 +588,53 @@ ALTER TABLE `paragrafos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `roles_permisos`
 --
 ALTER TABLE `roles_permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `Users`
---
-ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=513;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `aprendices_implicados`
+--
+ALTER TABLE `aprendices_implicados`
+  ADD CONSTRAINT `aprendices_implicados_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `articulos`
 --
 ALTER TABLE `articulos`
   ADD CONSTRAINT `articulos_ibfk_1` FOREIGN KEY (`cap_id`) REFERENCES `capitulos` (`cap_id`);
+
+--
+-- Filtros para la tabla `comites`
+--
+ALTER TABLE `comites`
+  ADD CONSTRAINT `comites_ibfk_1` FOREIGN KEY (`instructor_fk`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `fichas`
+--
+ALTER TABLE `fichas`
+  ADD CONSTRAINT `fichas_instructor_fk` FOREIGN KEY (`instructor_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `normas_infligidas`
@@ -539,8 +652,8 @@ ALTER TABLE `paragrafos`
 -- Filtros para la tabla `roles_permisos`
 --
 ALTER TABLE `roles_permisos`
-  ADD CONSTRAINT `roles_permisos_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`),
-  ADD CONSTRAINT `roles_permisos_ibfk_2` FOREIGN KEY (`permisos_id`) REFERENCES `permisos` (`id`);
+  ADD CONSTRAINT `roles_permisos_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `roles_permisos_ibfk_2` FOREIGN KEY (`permisos_id`) REFERENCES `permisos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
