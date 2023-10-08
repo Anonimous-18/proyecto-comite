@@ -8,6 +8,8 @@ import DefaultLayout from "../../Layout/DefaultLayout";
 
 import { useContextApp } from "../../Context/ContextApp";
 
+import hooks from "../../hooks/useFunction";
+
 export const Homeinstructor = () => {
   const contextApi = useContextApp();
   const [comites, setComites] = useState([]);
@@ -30,12 +32,23 @@ export const Homeinstructor = () => {
       const response = await contextApi.getComites();
 
       if (response && response !== null) {
-        setComites(response);
+        const token = JSON.parse(localStorage.getItem("newToken"));
+
+        if (token) {
+          const decodedToken = hooks.useDecodedToken(token.token);
+
+          const comitesByUser = response.filter(
+            (comite) => comite.instructor_fk === decodedToken.user.id
+          );
+          setComites(comitesByUser);
+        }
       }
     };
 
     getAllComites();
   }, [contextApi]);
+
+  console.log(comites);
 
   return (
     <DefaultLayout>
