@@ -56,7 +56,6 @@ const filtrarRol = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, key);
-    
 
     const getRol = async () => {
       const [result] = await pool.query(

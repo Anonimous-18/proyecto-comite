@@ -45,8 +45,6 @@ const login = async (req, res) => {
     req.userData.permisos = (await roles.findByPk(req.userData.rol_id, {
       include: [permisos], // Incluye la relación con el modelo Permisos
     })).dataValues.permisos;
-    console.log(req.userData);
-
     /**-----------------------------------------------------
      * |  Creamos el Token de sesión con el tiempo de expiración
      * |  y mandamos el usuario logueado.
