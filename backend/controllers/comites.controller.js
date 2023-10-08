@@ -1,4 +1,4 @@
-const { comites } = require("../models");
+const { comites, aprendices_implicados } = require("../models");
 
 /**--------------------------------
  * funcion para crear un comite
