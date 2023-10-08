@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2023 a las 19:13:02
+-- Tiempo de generación: 08-10-2023 a las 19:51:28
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -32,8 +32,16 @@ CREATE TABLE `aprendices_implicados` (
   `usuario_id` int(11) DEFAULT NULL,
   `documento` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT NULL
+  `updatedAt` datetime DEFAULT NULL,
+  `comite_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `aprendices_implicados`
+--
+
+INSERT INTO `aprendices_implicados` (`id`, `usuario_id`, `documento`, `createdAt`, `updatedAt`, `comite_fk`) VALUES
+(18, NULL, '16666256478', '2023-10-08 17:50:58', '2023-10-08 17:50:58', 20);
 
 -- --------------------------------------------------------
 
@@ -183,9 +191,7 @@ INSERT INTO `comites` (`id`, `instructor_fk`, `tipo_falta`, `descripcion_solicit
 (5, 490, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:22:51', '2023-10-04 23:22:51', ''),
 (7, 490, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:22:53', '2023-10-04 23:22:53', ''),
 (8, 490, 'disciplinaria', 'Se requiere una revisión disciplinaria del caso.', 'https://drive.google.com/...', 'Este es el contenido del acta...', 'espera', 'Se recomienda tomar medidas disciplinarias.', 'https://drive.google.com/...', 'A', '2023-10-04 23:22:55', '2023-10-04 23:22:55', ''),
-(11, 491, 'academica', 'Test', NULL, NULL, 'espera', NULL, NULL, NULL, '2023-10-08 16:40:28', '2023-10-08 16:40:28', '5,36'),
-(12, 491, 'academica', 'Test 2', NULL, NULL, 'espera', NULL, NULL, NULL, '2023-10-08 16:45:54', '2023-10-08 16:45:54', '2'),
-(13, 491, 'academica', 'Tesyt', NULL, NULL, 'espera', NULL, NULL, NULL, '2023-10-08 16:57:36', '2023-10-08 16:57:36', '20,21,7,66');
+(20, 491, 'academica', 'Ejemplo comite', NULL, NULL, 'espera', NULL, NULL, NULL, '2023-10-08 17:50:57', '2023-10-08 17:50:57', '14');
 
 -- --------------------------------------------------------
 
@@ -465,7 +471,8 @@ INSERT INTO `usuarios` (`id`, `nombre_completo`, `email`, `contrasenia`, `tipo_d
 --
 ALTER TABLE `aprendices_implicados`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `comite_fk` (`comite_fk`);
 
 --
 -- Indices de la tabla `articulos`
@@ -564,13 +571,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `aprendices_implicados`
 --
 ALTER TABLE `aprendices_implicados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `comites`
 --
 ALTER TABLE `comites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `fichas`
@@ -622,7 +629,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `aprendices_implicados`
 --
 ALTER TABLE `aprendices_implicados`
-  ADD CONSTRAINT `aprendices_implicados_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `aprendices_implicados_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `aprendices_implicados_ibfk_2` FOREIGN KEY (`comite_fk`) REFERENCES `comites` (`id`);
 
 --
 -- Filtros para la tabla `articulos`
