@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     carpeta_anexos: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false
     },
     acta: {
       type: DataTypes.TEXT,
@@ -47,14 +47,6 @@ module.exports = function(sequelize, DataTypes) {
     resultado_plan_mejoramiento: {
       type: DataTypes.ENUM('D','A'),
       allowNull: true
-    },
-    comites_articulos_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'comites_articulos',
-        key: 'com_art_id'
-      }
     }
   }, {
     sequelize,
@@ -74,13 +66,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "instructor_fk" },
-        ]
-      },
-      {
-        name: "comites_articulos_id",
-        using: "BTREE",
-        fields: [
-          { name: "comites_articulos_id" },
         ]
       },
     ]

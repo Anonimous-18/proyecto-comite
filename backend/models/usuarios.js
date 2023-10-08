@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('usuarios', {
+  const usuario =  sequelize.define('usuarios', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     nombre_completo: {
       type: DataTypes.STRING(200),
-      allowNull: true
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING(200),
@@ -20,6 +20,28 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: false,
       unique: "usuarios_contrasenia_unique"
+    },
+    tipo_documento: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    documento: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+      unique: "usuarios_documento_unique"
+    },
+    telefono: {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+      unique: "usuarios_telefono_unique"
+    },
+    cargo: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    dependencia: {
+      type: DataTypes.STRING(40),
+      allowNull: false
     },
     creado: {
       type: DataTypes.DATE,
@@ -33,28 +55,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'roles',
         key: 'id'
       }
-    },
-    tipo_documento: {
-      type: DataTypes.STRING(200),
-      allowNull: true
-    },
-    documento: {
-      type: DataTypes.STRING(200),
-      allowNull: true,
-      unique: "usuarios_documento_unique"
-    },
-    cargo: {
-      type: DataTypes.STRING(200),
-      allowNull: true
-    },
-    telefono: {
-      type: DataTypes.STRING(15),
-      allowNull: true,
-      unique: "usuarios_telefono_unique"
-    },
-    dependencia: {
-      type: DataTypes.STRING(200),
-      allowNull: true
     }
   }, {
     sequelize,
@@ -67,6 +67,38 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "email",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "email" },
+        ]
+      },
+      {
+        name: "contrasenia",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "contrasenia" },
+        ]
+      },
+      {
+        name: "documento",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "documento" },
+        ]
+      },
+      {
+        name: "telefono",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "telefono" },
         ]
       },
       {
@@ -110,4 +142,6 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  usuario.belongsTo(sequelize.models.roles, { foreignKey: 'rol_id' });
+  return usuario;
 };
