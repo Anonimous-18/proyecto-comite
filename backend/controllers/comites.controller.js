@@ -1,4 +1,4 @@
-const { comites, aprendices_implicados, usuarios } = require("../models");
+const { comites, aprendices_implicados } = require("../models");
 
 /**--------------------------------
  * funcion para crear un comite
@@ -123,6 +123,24 @@ const deleteComite = async (req, res) => {
   }
 };
 
+const getAprendicesImplicados = async (req, res) => {
+  try {
+    const { comite_fk } = req.body;
+    const aprendices = await aprendices_implicados.findAll();
+
+    const aprendicesFiltrados = aprendices.filter(aprendiz => aprendiz.comite_fk === comite_fk);
+
+    if (aprendices && aprendicesFiltrados) {
+      return res
+        .status(200)
+        .json(aprendicesFiltrados);
+    }
+    return res.status(404).json({ message: `No se encontraron aprendices para ese comite` });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+
 // updatecomite,
 module.exports = {
   createComites,
@@ -130,4 +148,5 @@ module.exports = {
   deleteComite,
   updateComite,
   comitebyId,
+  getAprendicesImplicados
 };
