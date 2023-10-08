@@ -16,7 +16,18 @@ const createComites = async (req, res) => {
      * | Este es id del comite creado: result.dataValues.id
      * ----------------------------------------------------------*/
     if (result.dataValues.id !== 0) {
-      return res.sendStatus(204);
+      try {
+        const comite = result.dataValues.id;
+        req.body.aprendices_implicados.forEach(async (aprendiz) => {
+          await aprendices_implicados.create({
+            documento: aprendiz,
+            comite_fk: comite,
+          });
+        });
+        return res.sendStatus(204);
+      } catch (error) {
+       return res.status(500).json({ message: error.message });
+      }
     }
 
     return res.status(500).json({ message: "Error al crear un nuevo comite." });

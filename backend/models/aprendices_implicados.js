@@ -18,6 +18,14 @@ module.exports = function(sequelize, DataTypes) {
     documento: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    comite_fk: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'comites',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
@@ -37,6 +45,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "usuario_id" },
+        ]
+      },
+      {
+        name: "comite_fk",
+        using: "BTREE",
+        fields: [
+          { name: "comite_fk" },
         ]
       },
     ]
