@@ -1,31 +1,31 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('roles_permisos', {
-    id: {
+  return sequelize.define('comites_articulos', {
+    com_art_id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    rol_id: {
+    comite_fk: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'roles',
+        model: 'comites',
         key: 'id'
       }
     },
-    permisos_id: {
+    articulo_fk: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'permisos',
-        key: 'id'
+        model: 'articulos',
+        key: 'art_id'
       }
     }
   }, {
     sequelize,
-    tableName: 'roles_permisos',
+    tableName: 'comites_articulos',
     timestamps: false,
     indexes: [
       {
@@ -33,21 +33,21 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
+          { name: "com_art_id" },
         ]
       },
       {
-        name: "rol_id",
+        name: "comite_fk",
         using: "BTREE",
         fields: [
-          { name: "rol_id" },
+          { name: "comite_fk" },
         ]
       },
       {
-        name: "permisos_id",
+        name: "articulo_fk",
         using: "BTREE",
         fields: [
-          { name: "permisos_id" },
+          { name: "articulo_fk" },
         ]
       },
     ]

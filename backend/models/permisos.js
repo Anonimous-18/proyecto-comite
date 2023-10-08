@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
-
 module.exports = function(sequelize, DataTypes) {
-  const permisos = sequelize.define('permisos', {
+  return sequelize.define('permisos', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -32,5 +31,4 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-  return permisos;
 };

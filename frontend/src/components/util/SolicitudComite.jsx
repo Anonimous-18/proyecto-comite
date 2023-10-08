@@ -16,10 +16,9 @@ export const SolicitudComite = () => {
     identificaciones: [],
   });
 
-  const { getReglamento, orderReglamento, protectedRoutes, validateToken } =
-    useContextApp();
+  const contextApi = useContextApp();
   const navigate = useNavigate();
-  const tokenExist = protectedRoutes();
+  const tokenExist = contextApi.protectedRoutes();
 
   useEffect(() => {
     /**-------------------------------------------------------
@@ -27,12 +26,12 @@ export const SolicitudComite = () => {
      -------------------------------------------------------*/
     if (!tokenExist) {
       navigate(`/`);
-    } else if (validateToken()) {
+    } else if (contextApi.validateToken()) {
       navigate(`/`);
     } else {
       const Reglamento = async () => {
         const token = JSON.parse(localStorage.getItem("newToken"));
-        const res = await getReglamento(token.token);
+        const res = await contextApi.getReglamento(token.token);
 
         if (res !== null || res !== undefined) {
           setReglamento(res);
@@ -41,7 +40,7 @@ export const SolicitudComite = () => {
 
       Reglamento();
     }
-  }, [getReglamento, validateToken, navigate, tokenExist, data.capitulo]);
+  }, [contextApi, navigate, tokenExist]);
 
   const agregarArticulo = () => {
     /**-------------------------------------------------------
@@ -83,7 +82,7 @@ export const SolicitudComite = () => {
   } else if (reglamento.length === 0) {
     return <div>Loading...</div>;
   }
-  const result = orderReglamento(reglamento);
+  const result = contextApi.orderReglamento(reglamento);
 
   const agregarIdentificacion = () => {
     setData({
@@ -116,7 +115,7 @@ export const SolicitudComite = () => {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     /**-------------------------------------------------------
      * |  Eliminamos los elementos repetidos en el array
@@ -143,15 +142,17 @@ export const SolicitudComite = () => {
     const body = {
       aprendices_implicados: idenRequest,
       articulos: artRequest,
-      instructor_fk: "",
+      instructor_fk: 191,
       tipo_falta: data.tipo_falta,
       descripcion_solicitud: data.descripcion_falta,
-      carpeta_anexos: data.anexos,
-      acta: null,
-      recomendacion: null,
-      anexar_plan_mejoramiento: null,
-      resultado_plan_mejoramiento: null,
     };
+
+    if (body) {
+      const response = await contextApi.createComite(body);
+      console.log(response);
+    } else {
+      console.log("No existe el body");
+    }
   };
 
   return (
@@ -162,7 +163,9 @@ export const SolicitudComite = () => {
           onSubmit={(e) => handleSubmit(e)}
           className="border border-black  p-2 rounded-xl text-sm font-medium text-gray-900"
         >
-          <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">Crear Solicitud Comite</h2>
+          <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
+            Crear Solicitud Comite
+          </h2>
           <div>
             <label className="h-full w-full flex flex-col">
               Capitulo del Reglamento
@@ -214,7 +217,6 @@ export const SolicitudComite = () => {
                   Agregar Articulo
                 </button>
               </div>
-
             </div>
           </div>
           {articulosSeleccionados.length > 0 && (
@@ -264,7 +266,6 @@ export const SolicitudComite = () => {
                 )}
               </button>
             </div>
-
           </div>
           <div>
             <p>Descripcion de la Falta:</p>
@@ -293,7 +294,8 @@ export const SolicitudComite = () => {
           <div className="w-full">
             <label
               for="brand"
-              className="block mb-2 text-sm font-medium text-gray-900 ">
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
               Adjuntar evidencias
             </label>
             <input
@@ -319,11 +321,7 @@ export const SolicitudComite = () => {
                 Crear Solicitud
               </button>
             </div>
-
-
           </div>
-
-
         </form>
       </div>
     </main>
