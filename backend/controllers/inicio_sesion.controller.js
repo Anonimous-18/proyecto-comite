@@ -32,6 +32,7 @@ const login = async (req, res) => {
   
     // Mapea los campos del modelo Usuarios a un objeto user
     const user = {
+      id: userRes.id,
       nombre_completo: userRes.nombre_completo,
       email: userRes.email,
       creado: userRes.creado,
