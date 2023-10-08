@@ -1,15 +1,28 @@
 import { SlMenu } from "react-icons/sl";
 import { GiCancel } from "react-icons/gi";
-import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
+import { BsFillPersonDashFill } from "react-icons/bs";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import { Fragment, useEffect, useState } from "react";
 
-// ver https://www.npmjs.com/package/react-spinners | https://www.davidhu.io/react-spinners/
-import PulseLoader from "react-spinners/PulseLoader"; // ...
+import PulseLoader from "react-spinners/PulseLoader";
+
+import hooks from "../hooks/useFunction";
 
 export const NavBar = () => {
   const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("newToken"));
+
+    if (token) {
+      const decodedToken = hooks.useDecodedToken(token.token);
+      setUserName(decodedToken.user.nombre_completo);
+    }
+  }, []);
 
   const handleClick = () => {
     localStorage.clear();
@@ -83,11 +96,9 @@ export const NavBar = () => {
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
-                // src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
                 src="https://tenor.com/es-419/view/tired-sleepy-gif-27609170.gif"
                 width={70}
                 height={60}
-                // src="https://placekitten.com/100/100"
               />
             </Link>
           </div>
@@ -126,12 +137,12 @@ export const NavBar = () => {
             >
               Apredices
             </NavLink>
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Contacto
-            </NavLink>
+            <div className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
+              <div className="flex flex-col items-center justify-center">
+                <BsFillPersonDashFill className=" w-10 h-10  text-black" />
+                <div>{userName && userName ? userName : "Sin nombre"}</div>
+              </div>
+            </div>
             <button
               onClick={() => handleClick()}
               // Transicion transition duration-300 ease-in-out ...
