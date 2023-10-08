@@ -1,10 +1,29 @@
-import DefaultLayout from "../../Layout/DefaultLayout";
-import { Semaforo } from "../../components/util/semaforo";
-import { Carta } from "../../components/util/carta";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import { Carta } from "../../components/util/carta";
+import { Semaforo } from "../../components/util/semaforo";
 import { Filtrocomite } from "../../components/util/filtocomite";
+import DefaultLayout from "../../Layout/DefaultLayout";
+
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Homeinstructor = () => {
+  const contextApi = useContextApp();
+  const [comites, setComites] = useState([]);
+
+  useEffect(() => {
+    const getAllComites = async () => {
+      const response = await contextApi.getComites();
+
+      if (response && response !== null) {
+        setComites(response);
+      }
+    };
+
+    getAllComites();
+  }, [contextApi]);
+
   return (
     <DefaultLayout>
       <div>
@@ -18,7 +37,22 @@ export const Homeinstructor = () => {
           </div>
 
           <div className=" border-2">
-            <Carta />
+            {comites && comites.length !== 0 ? (
+              <>
+                {comites.map((comite) => (
+                  <Carta
+                    key={comite.id}
+                    tipo_falta={comite.tipo_falta}
+                    descripcion_solicitud={comite.descripcion_solicitud}
+                    instructor={comite.instructor_fk}
+                    fecha={comite.createdAt}
+                    estado={comite.estado}
+                  />
+                ))}
+              </>
+            ) : (
+              <h1>Sin Comites.</h1>
+            )}
           </div>
           <div className="p-2">
             <Link

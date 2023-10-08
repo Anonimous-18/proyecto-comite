@@ -155,6 +155,7 @@ export const SolicitudComite = () => {
     if (body) {
       try {
         await contextApi.createComite(body);
+        navigate(`/homeinstructor`)
       } catch (error) {
         console.log(error);
       }

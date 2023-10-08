@@ -1,4 +1,4 @@
-const { comites, aprendices_implicados } = require("../models");
+const { comites, aprendices_implicados, usuarios } = require("../models");
 
 /**--------------------------------
  * funcion para crear un comite
@@ -17,6 +17,9 @@ const createComites = async (req, res) => {
      * ----------------------------------------------------------*/
     if (result.dataValues.id !== 0) {
       try {
+        /**---------------------------------------
+         * | Agregamos los aprendices implicados
+         * ---------------------------------------*/
         const comite = result.dataValues.id;
         req.body.aprendices_implicados.forEach(async (aprendiz) => {
           await aprendices_implicados.create({
@@ -26,7 +29,7 @@ const createComites = async (req, res) => {
         });
         return res.sendStatus(204);
       } catch (error) {
-       return res.status(500).json({ message: error.message });
+        return res.status(500).json({ message: error.message });
       }
     }
 

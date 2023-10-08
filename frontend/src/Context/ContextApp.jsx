@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode";
 import instructorApi from "../api/instructor";
+import usuariosApi from "../api/usuarios";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { createContext, useContext } from "react";
@@ -230,6 +231,28 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getComites = async () => {
+    try {
+      const response = await instructorApi.getComitesRequest();
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getInstructor = async (id) => {
+    try {
+      const response = await usuariosApi.getUserRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -247,6 +270,8 @@ export const ContextAppProvider = ({ children }) => {
         updateRoles,
         getRolesById,
         createComite,
+        getComites,
+        getInstructor,
       }}
     >
       {children}
