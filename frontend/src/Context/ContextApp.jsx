@@ -253,6 +253,28 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getComite = async (id) => {
+    try {
+      const response = await instructorApi.getComiteByIdRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getImplicados = async (comite) => {
+    try {
+      const response = await instructorApi.getAprendicesImpRequest(comite);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -272,6 +294,8 @@ export const ContextAppProvider = ({ children }) => {
         createComite,
         getComites,
         getInstructor,
+        getComite,
+        getImplicados,
       }}
     >
       {children}

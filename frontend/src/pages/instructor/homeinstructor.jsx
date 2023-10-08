@@ -42,6 +42,7 @@ export const Homeinstructor = () => {
                 {comites.map((comite) => (
                   <Carta
                     key={comite.id}
+                    comite_id={comite.id}
                     tipo_falta={comite.tipo_falta}
                     descripcion_solicitud={comite.descripcion_solicitud}
                     instructor={comite.instructor_fk}
@@ -51,7 +52,7 @@ export const Homeinstructor = () => {
                 ))}
               </>
             ) : (
-              <h1>Sin Comites.</h1>
+              <h1>Sin Comites</h1>
             )}
           </div>
           <div className="p-2">

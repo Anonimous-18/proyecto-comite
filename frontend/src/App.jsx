@@ -40,7 +40,7 @@ function App() {
         <Route path="/homeinstructor" element={<Homeinstructor />} />
         <Route path="/homesubdirector" element={<Homesubdirector />}/>
         <Route path="/reglamento" element={<Reglamento />} />
-        <Route path="/infocomiteinstrutor" element={<Informacioncomiteinst/>}/>
+        <Route path="/infocomiteinstrutor/:comite_id" element={<Informacioncomiteinst/>}/>
         <Route path="/impugnacionesaprendiz"element={<ImpugnacionesAprendiz />}/>
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
         <Route path="/solicitudinstructor" element={<SolicitudIntructor/>}/>
