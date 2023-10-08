@@ -1,21 +1,13 @@
 const { Router } = require("express");
-// const { verifyToken } = require("../middlewares/session.meddleware.js")
-const {
-  createComites,
-  getComites,
-  updateComite,
-  deleteComite,
-  comitebyId,
-} = require("../controllers/comites.controller.js");
+const controllers = require("../controllers/comites.controller.js");
 
 const router = Router();
 
 router
-  .post("/api/create-comites", createComites)
-
-  .get("/api/get-comites", getComites)
-  .get("/api/get-comites/:id", comitebyId)
-  .put("/api/update-comites/:id", updateComite)
-  .delete("/api/delete-comites/:id", deleteComite);
+  .post("/api/comites", controllers.createComites)
+  .get("/api/comites", controllers.getComites)
+  .get("/api/comites/:id", controllers.comitebyId)
+  .put("/api/comites/:id", controllers.updateComite)
+  .delete("/api/comites/:id", controllers.deleteComite);
 
 module.exports = router;
