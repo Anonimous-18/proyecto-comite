@@ -143,14 +143,10 @@ export const SolicitudComite = () => {
     const body = {
       aprendices_implicados: idenRequest,
       articulos: artRequest,
-      instructor_fk: "",
+      instructor_fk: 191,
       tipo_falta: data.tipo_falta,
       descripcion_solicitud: data.descripcion_falta,
       carpeta_anexos: data.anexos,
-      acta: null,
-      recomendacion: null,
-      anexar_plan_mejoramiento: null,
-      resultado_plan_mejoramiento: null,
     };
   };
 
