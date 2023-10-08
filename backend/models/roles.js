@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('roles', {
+  const roles = sequelize.define('roles', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -31,4 +31,10 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  roles.belongsToMany(sequelize.models.permisos, {
+    through: 'roles_permisos', // Nombre de la tabla intermedia
+    foreignKey: 'rol_id', // Clave externa en roles_permisos que hace referencia a roles
+    otherKey: 'permisos_id', // Clave externa en roles_permisos que hace referencia a permisos
+  });
+  return roles;
 };
