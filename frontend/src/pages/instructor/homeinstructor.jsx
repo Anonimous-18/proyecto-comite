@@ -122,7 +122,7 @@ export const Homeinstructor = () => {
             </div>
           </div>
 
-          <div className=" border-2">
+          <div className="flex flex-wrap justify-around border-2">
             {comites && comites.length !== 0 ? (
               <>
                 {currentComites.map((comite) => (
