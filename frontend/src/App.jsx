@@ -65,7 +65,7 @@ function App() {
           path="/solicitud-comite-instructor"
           element={<SolicitudIntructor />}
         />
-        <Route path="/Antecedenteaprendiz" element={<Antecedente />} />
+        <Route path="/Antecedenteaprendiz/:id" element={<Antecedente />} />
         <Route path="/notificacionaprendiz" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />
       </Routes>

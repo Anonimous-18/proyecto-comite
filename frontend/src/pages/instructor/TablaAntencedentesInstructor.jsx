@@ -81,7 +81,10 @@ export const TablaAntencedentesInstructor = () => {
                   <td>{aprendiz.email}</td>
                   <td>{aprendiz.telefono}</td>
                   <td>
-                    <Link className="rounded-md bg-teal-500" to={`#`}>
+                    <Link
+                      className="rounded-md bg-teal-500"
+                      to={`/Antecedenteaprendiz/${aprendiz.id}`}
+                    >
                       Ver
                     </Link>
                   </td>
@@ -94,7 +97,10 @@ export const TablaAntencedentesInstructor = () => {
                 <td>{filtrado[0].email}</td>
                 <td>{filtrado[0].telefono}</td>
                 <td>
-                  <Link className="rounded-md bg-teal-500" to={`#`}>
+                  <Link
+                    className="rounded-md bg-teal-500"
+                    to={`/Antecedenteaprendiz/${filtrado[0].id}`}
+                  >
                     Ver
                   </Link>
                 </td>
