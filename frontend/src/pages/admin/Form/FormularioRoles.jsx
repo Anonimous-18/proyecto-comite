@@ -60,15 +60,15 @@ export const FormularioRoles = () => {
           <div className="w-full flex">
             <div className="border-l-2 p-5 w-1/3">
               <label
-                for="first_name"
-                class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="first_name"
+                className="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
               >
               Rol
               </label>
               <input
                 type="text"
                 id="first_name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Nombre del nuevo rol"
                 required
               />
