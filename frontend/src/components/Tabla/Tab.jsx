@@ -37,7 +37,7 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
   return (
     <div className="flex justify-center items-center">
       <div className=" max-w-4xl mx-auto">
-        <div className="relative overflow-x-auto shadow-lg sm:rounded-lg w-full">
+        <div className="relative overflow-x-auto border shadow-lg sm:rounded-lg w-full">
           <div className="flex justify-between p-4">
             <div className="relative mt-1">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -150,7 +150,6 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
             </tbody>
           </table>
         </div>
-        <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
       </div>
     </div>
   );

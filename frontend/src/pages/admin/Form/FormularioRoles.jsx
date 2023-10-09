@@ -52,13 +52,13 @@ export const FormularioRoles = () => {
 
   return (
     <DefaultLayout>
-      <div className="h-full w-full md:w-1/2">
-        <form>
-          <div className="shadow-lg shadow-zinc-400  p-4 rounded-xl text-sm font-medium text-gray-900">
+      <div className="w-full flex justify-center">
+        <form className="w-full">
+          <div className="items-center shadow-lg shadow-zinc-400  p-4 rounded-xl text-sm font-medium text-gray-900 max-w-2xl ">
             <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
               Crear Rol
             </h2>
-            <div>
+            <div className="">
               <div>
                 <label
                   for="first_name"
@@ -84,6 +84,7 @@ export const FormularioRoles = () => {
             </div>
           </div>
         </form>
+
       </div>
     </DefaultLayout>
   );

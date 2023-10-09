@@ -88,7 +88,7 @@ export const NavBar = () => {
 
     <nav
       id="navbar"
-      className="w-full py-4 top-0 z-40 fixed shadow-xl bg-gradient-to-t from-white via-white to-blue-100 "
+      className="w-full py-4 top-0 z-40 fixed shadow-lg bg-gradient-to-t from-white via-white to-blue-100 "
     >
       <div className="px-4 sm:px-6 ">
         {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
