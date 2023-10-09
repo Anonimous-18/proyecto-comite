@@ -1,7 +1,7 @@
 import { SlMenu } from "react-icons/sl";
 import { GiCancel } from "react-icons/gi";
 import { Popover, Transition } from "@headlessui/react";
-import { BsFillPersonDashFill } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 
@@ -139,7 +139,7 @@ export const NavBar = () => {
             </NavLink>
             <div className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
               <div className="flex flex-col items-center justify-center">
-                <BsFillPersonDashFill className=" w-10 h-10  text-black" />
+                <BsFillPersonFill className=" w-10 h-10  text-black" />
                 <div>{userName && userName ? userName : "Sin nombre"}</div>
               </div>
             </div>
