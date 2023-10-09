@@ -287,6 +287,17 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getAprendices = async () => {
+    try {
+      const response = await usuariosApi.getAprendicesRequest();
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -310,6 +321,7 @@ export const ContextAppProvider = ({ children }) => {
         getImplicados,
         filtro,
         camposFil,
+        getAprendices,
       }}
     >
       {children}
