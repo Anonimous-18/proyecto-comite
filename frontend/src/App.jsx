@@ -24,6 +24,7 @@ import DefaultLayout from "./Layout/DefaultLayout";
 import { Antecedente } from "./pages/subdirector/Antecedente";
 import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
 import { Historiacomite } from "./components/util/Historiacomite";
+import { TablaAntencedentesInstructor } from "./pages/instructor/TablaAntencedentesInstructor";
 
 function App() {
   return (
@@ -32,25 +33,38 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-        <Route path="/pruebas" element={< DefaultLayout />} />
-        <Route path="/votoinstructor" element={<Votoinstructor/>} />
+        <Route path="/pruebas" element={<DefaultLayout />} />
+        <Route path="/votoinstructor" element={<Votoinstructor />} />
         <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/homeinvitado" element={<Homeinvitado />} />
         <Route path="/homeinstructor" element={<Homeinstructor />} />
-        <Route path="/homesubdirector" element={<Homesubdirector />}/>
+        <Route path="/homesubdirector" element={<Homesubdirector />} />
         <Route path="/reglamento" element={<Reglamento />} />
-        <Route path="/infocomiteinstrutor/:comite_id" element={<Informacioncomiteinst/>}/>
-        <Route path="/impugnacionesaprendiz"element={<ImpugnacionesAprendiz />}/>
+        <Route
+          path="/infocomiteinstrutor/:comite_id"
+          element={<Informacioncomiteinst />}
+        />
+        <Route
+          path="/impugnacionesaprendiz"
+          element={<ImpugnacionesAprendiz />}
+        />
         <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
-        <Route path="/solicitudinstructor" element={<SolicitudIntructor/>}/>
+        <Route path="/solicitudinstructor" element={<SolicitudIntructor />} />
         <Route path="/novedadinvitado" element={<NovedadInvitado />} />
-        <Route path="/infocomitesub" element={<Infocomitesub/>}/>
+        <Route path="/infocomitesub" element={<Infocomitesub />} />
         <Route path="/roles" element={<Roles />} />
+        <Route
+          path="/antecedentes"
+          element={<TablaAntencedentesInstructor />}
+        />
         <Route path="/form-roles" element={<FormularioRoles />} />
         <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
         <Route path="/see-roles/:id" element={<RolesDetails />} />
-        <Route path="/solicitud-comite-instructor" element={<SolicitudIntructor />} />
+        <Route
+          path="/solicitud-comite-instructor"
+          element={<SolicitudIntructor />}
+        />
         <Route path="/Antecedenteaprendiz" element={<Antecedente />} />
         <Route path="/notificacionaprendiz" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />
