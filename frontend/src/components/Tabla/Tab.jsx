@@ -32,6 +32,7 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
       navigate(0);
     } else {
       navigate(`/home`);
+      
     }
   };
   return (
