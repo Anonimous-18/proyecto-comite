@@ -1,4 +1,9 @@
-const { usuarios, roles } = require("../models");
+const {
+  usuarios,
+  roles,
+  comites,
+  aprendices_implicados,
+} = require("../models");
 
 const getUserById = async (req, res) => {
   try {
@@ -52,4 +57,43 @@ const getAprendices = async (req, res) => {
   }
 };
 
-module.exports = { getUserById, getAprendices };
+const getAntecedenteForAprendiz = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const aprendiz = await usuarios.findByPk(id);
+
+    if (aprendiz) {
+      const documento = aprendiz.dataValues.documento;
+
+      const comites_fk = await aprendices_implicados.findAll({
+        where: { documento },
+      });
+
+      const comitesIds = comites_fk.map((comite_fk) => comite_fk.dataValues.comite_fk);
+
+      const infoComites = await comites.findAll({
+        where: { id: comitesIds },
+      });
+
+      const instructorSolicitantePromises = infoComites.map(async (comite) => {
+        const instructor = await usuarios.findByPk(comite.dataValues.instructor_fk);
+        return instructor.dataValues;
+      });
+
+      const instructorSolicitante = await Promise.all(instructorSolicitantePromises);
+
+      return res.status(200).json({
+        aprendiz: aprendiz.dataValues,
+        comites: infoComites.map(comite => comite.dataValues),
+        instructorSolicitante: instructorSolicitante,
+      });
+    } else {
+      return res.status(404).json({ message: `Aprendiz no encontrado.` });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getUserById, getAprendices, getAntecedenteForAprendiz };

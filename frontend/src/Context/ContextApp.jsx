@@ -298,6 +298,17 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getAntecedentes = async (id) => {
+    try {
+      const response = await usuariosApi.getAntecedentesRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -322,6 +333,7 @@ export const ContextAppProvider = ({ children }) => {
         filtro,
         camposFil,
         getAprendices,
+        getAntecedentes,
       }}
     >
       {children}

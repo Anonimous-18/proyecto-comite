@@ -1,11 +1,30 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import DefaultLayout from "../../Layout/DefaultLayout";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Antecedenteaprendiz = () => {
+  const [data, setData] = useState(null);
   const { id } = useParams();
 
-  console.log(id);
+  const contextApi = useContextApp();
+
+  useEffect(() => {
+    const getAntecedentesForAprendiz = async () => {
+      const response = await contextApi.getAntecedentes(id);
+
+      if (response) {
+        setData(response);
+      }
+    };
+    getAntecedentesForAprendiz();
+  }, [contextApi, id]);
+
+  /**------------------------------------------------------------
+   * | Falta reemplazar los campos del jsx con los datos de data
+   * ------------------------------------------------------------*/
+  console.log(data);
 
   return (
     <DefaultLayout>
