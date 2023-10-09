@@ -36,10 +36,9 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
   };
   return (
     <div className="flex justify-center items-center">
-      <div className="w-10/12 max-w-2xl mx-auto">
+      <div className=" max-w-4xl mx-auto">
         <div className="relative overflow-x-auto shadow-lg sm:rounded-lg w-full">
           <div className="flex justify-between p-4">
-            
             <div className="relative mt-1">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
@@ -59,11 +58,15 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 type="text"
                 id="table-search"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search for items"
+                placeholder="Buscar "
               />
             </div>
             <div className="ml-3 relative inline-flex items-center rounded-md w-1/4 bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none text-center">
-              <Link className="text-center w-full" to={`/form-${nombre_tabla}`} type="button">
+              <Link
+                className="text-center w-full"
+                to={`/form-${nombre_tabla}`}
+                type="button"
+              >
                 Crear
               </Link>
             </div>
@@ -82,6 +85,9 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 </th>
                 <th scope="col" className="px-6 py-3">
                   creado
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  permisos
                 </th>
                 <th scope="col" className="px-15 py-">
                   <span className="sr-only">Eliminar</span>
@@ -104,7 +110,20 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                     {index + 1}
                   </th>
                   <td className="px-6 py-4">{item.nombre}</td>
-                  <td className="px-6 py-4">{item.creado}</td>
+                  <td className="px-6 py-4">
+                    {item.creado.replace(/T.*/, "")}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="ml-3 relative inline-flex items-center rounded-md  bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none text-center">
+                      <Link
+                        className="text-center w-full"
+                        to={`/form-${nombre_tabla}`}
+                        type="button"
+                      >
+                        Permisos
+                      </Link>
+                    </div>
+                  </td>
                   <td className="px-6 py-4 text-right flex gap-4">
                     <Link
                       to={`/see-${nombre_tabla}/${item.id}`}
