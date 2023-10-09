@@ -36,7 +36,7 @@ export const Roles = () => {
     }
   }, [navigate, tokenExist, filterRol, getRoles, validateToken]);
 
-  if (roles.length !== 0) {
+  if (roles && roles.length !== 0) {
     return (
       <DefaultLayout>
         <Tab datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
