@@ -19,16 +19,32 @@ const getAprendices = async (req, res) => {
     const allUsers = await usuarios.findAll();
 
     if (allUsers) {
-      let aprendices = []
-      allUsers.forEach(async (user) => {
-        console.log(user.dataValues.rol_id)
-        const id = user.dataValues.rol_id
-        const rol = await roles.findOne({ where: { id } }); 
-        aprendices.push(rol.dataValues)
-        console.log(aprendices.length)
-      });
-      console.log(aprendices)
-      return res.status(200).json(allUsers);
+      /**----------------------------------------------------------------
+       * | Esperamos que todas las promesas terminen antes de continuar
+       * ----------------------------------------------------------------*/
+      const aprendices = await Promise.all(
+        allUsers.map(async (user) => {
+          const id = user.dataValues.rol_id;
+          const rol = await roles.findOne({ where: { id } });
+
+          /**---------------------------------
+           * | Filtramos solo los aprendices
+           * ---------------------------------*/
+          if (rol && rol.nombre === "Aprendiz") {
+            return user.dataValues;
+          }
+        })
+      );
+
+      const response = aprendices.filter(
+        (aprendiz) => aprendiz !== undefined && aprendiz !== null
+      );
+
+      if (response && response.length !== 0) {
+        return res.status(200).json(response);
+      } else {
+        return res.status(404).json({ message: `No hay aprendices.` });
+      }
     }
     return res.status(404).json({ message: `No se encontraron usuarios` });
   } catch (error) {

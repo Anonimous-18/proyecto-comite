@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
 import DefaultLayout from "../../Layout/DefaultLayout";
+
 export const Antecedenteaprendiz = () => {
+  const { id } = useParams();
+
+  console.log(id);
+
   return (
     <DefaultLayout>
       <div className=" bg-white border-2  max-w-5xl flex flex-col items-center h-auto justify-center rounded-2xl">
@@ -9,7 +15,7 @@ export const Antecedenteaprendiz = () => {
             Antecedentes Aprendiz
           </h4>
         </div>{" "}
-        <Link to={"/homeaprendiz"}>
+        <Link to={"/home"}>
           <button className="pt-6 md:p-8 text-center md:text-left space-y-4">
             <p className=" bg-gray-500 hover:bg-black text-white w-24 h-7 text-center flex flex-col justify-center items-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg">
               Volver
@@ -162,7 +168,7 @@ export const Antecedenteaprendiz = () => {
           </div>
 
           <div className="grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 bg-purple-900 h-auto max-w-full items-center border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
-          <div className=" bg-slate-500 h-full max-w-full flex flex-row items-center  shadow-2xl p-5 place-content-evenly rounded-2xl">
+            <div className=" bg-slate-500 h-full max-w-full flex flex-row items-center  shadow-2xl p-5 place-content-evenly rounded-2xl">
               <div className=" bg-blue-200  hover:bg-blue-800 hover:text-black rounded-xl border-2 hover:border-black  shadow-black shadow-2xl">
                 <button className="  flex flex-col items-center justify-center  space-y-2 hover:bg-blue-500 hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
                   <h4>
