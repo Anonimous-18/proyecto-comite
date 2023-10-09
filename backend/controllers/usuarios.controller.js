@@ -19,13 +19,15 @@ const getAprendices = async (req, res) => {
     const allUsers = await usuarios.findAll();
 
     if (allUsers) {
-      let roless = []
+      let aprendices = []
       allUsers.forEach(async (user) => {
-        console.log(user)
-        const rol = await roles.findOne({ where: { rol_id: user.rol_id } }); 
-        console.log(rol)
+        console.log(user.dataValues.rol_id)
+        const id = user.dataValues.rol_id
+        const rol = await roles.findOne({ where: { id } }); 
+        aprendices.push(rol.dataValues)
+        console.log(aprendices.length)
       });
-      // console.log(roless)
+      console.log(aprendices)
       return res.status(200).json(allUsers);
     }
     return res.status(404).json({ message: `No se encontraron usuarios` });
