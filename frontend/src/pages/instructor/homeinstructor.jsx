@@ -13,6 +13,7 @@ import hooks from "../../hooks/useFunction";
 export const Homeinstructor = () => {
   const contextApi = useContextApp();
   const [comites, setComites] = useState([]);
+  const [filtrar, setFiltrar] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [comitesPerPage] = useState(5);
@@ -35,20 +36,79 @@ export const Homeinstructor = () => {
         const token = JSON.parse(localStorage.getItem("newToken"));
 
         if (token) {
+          setFiltrar(contextApi.camposFil);
+          console.log("Filtrar", filtrar);
           const decodedToken = hooks.useDecodedToken(token.token);
 
           const comitesByUser = response.filter(
             (comite) => comite.instructor_fk === decodedToken.user.id
           );
-          setComites(comitesByUser);
+
+          if (filtrar && filtrar !== null) {
+            const comitesFiltrados = comitesByUser.filter((comite) => {
+              if (
+                filtrar.estado.length !== 0 &&
+                filtrar.fecha.length === 0 &&
+                filtrar.tipo_falta.length === 0
+              ) {
+                return filtrar.estado === comite.estado;
+              } else if (
+                filtrar.fecha.length !== 0 &&
+                filtrar.estado.length === 0 &&
+                filtrar.tipo_falta.length === 0
+              ) {
+                return filtrar.fecha === comite.createdAt.replace(/T.*/, "");
+              } else if (
+                filtrar.tipo_falta.length !== 0 &&
+                filtrar.estado.length === 0 &&
+                filtrar.fecha.length === 0
+              ) {
+                return filtrar.tipo_falta === comite.tipo_falta;
+              } else if (
+                filtrar.estado.length !== 0 &&
+                filtrar.fecha.length !== 0 &&
+                filtrar.tipo_falta.length === 0
+              ) {
+                return (
+                  filtrar.estado === comite.estado &&
+                  filtrar.fecha === comite.createdAt.replace(/T.*/, "")
+                );
+              } else if (
+                filtrar.estado.length !== 0 &&
+                filtrar.fecha.length === 0 &&
+                filtrar.tipo_falta.length !== 0
+              ) {
+                return (
+                  filtrar.estado === comite.estado &&
+                  filtrar.tipo_falta === comite.tipo_falta
+                );
+              } else if (
+                filtrar.fecha.length !== 0 &&
+                filtrar.estado.length === 0 &&
+                filtrar.tipo_falta.length !== 0
+              ) {
+                return (
+                  filtrar.fecha === comite.createdAt.replace(/T.*/, "") &&
+                  filtrar.tipo_falta === comite.tipo_falta
+                );
+              } else {
+                return (
+                  filtrar.fecha === comite.createdAt.replace(/T.*/, "") &&
+                  filtrar.tipo_falta === comite.tipo_falta &&
+                  filtrar.estado === comite.estado
+                );
+              }
+            });
+            setComites(comitesFiltrados);
+          } else {
+            setComites(comitesByUser);
+          }
         }
       }
     };
 
     getAllComites();
-  }, [contextApi]);
-
-  console.log(comites);
+  }, [contextApi, filtrar]);
 
   return (
     <DefaultLayout>

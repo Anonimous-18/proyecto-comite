@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import jwt_decode from "jwt-decode";
+import { createContext, useContext, useState } from "react";
+
 import instructorApi from "../api/instructor";
 import usuariosApi from "../api/usuarios";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
-import { createContext, useContext } from "react";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 import {
   getRolesRequest,
@@ -16,6 +18,8 @@ import {
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
+  const [camposFil, setCamposFil] = useState(null);
+
   const deleteToken = () => {
     try {
       localStorage.removeItem("newToken");
@@ -275,6 +279,14 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const filtro = (valores) => {
+    try {
+      setCamposFil(valores);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -296,6 +308,8 @@ export const ContextAppProvider = ({ children }) => {
         getInstructor,
         getComite,
         getImplicados,
+        filtro,
+        camposFil,
       }}
     >
       {children}
