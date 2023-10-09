@@ -8,10 +8,10 @@ export const Noautorizado = () => {
         <div className=" flex flex-col items-center text-9xl text-red-600">
           <RiErrorWarningLine />
         </div>
-        <h2 class="text-xl font-bold text-red-800 flex flex-col items-center p-2">
+        <h2 className="text-xl font-bold text-red-800 flex flex-col items-center p-2">
           No autorizado
         </h2>
-        <p class="text-gray-600">
+        <p className="text-gray-600">
           No tienes permiso para acceder a esta página.
         </p>
         <div className="p-2 flex flex-col items-center">
