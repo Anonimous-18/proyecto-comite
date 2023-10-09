@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
 import { useEffect, useState } from "react";
 import DefaultLayout from "../../Layout/DefaultLayout";
+import { Noautorizado } from "../../components/util/noautorizado";
 
 export const Roles = () => {
   const [roles, setRoles] = useState([]);
@@ -29,9 +30,7 @@ export const Roles = () => {
 
         getRol();
       } else {
-        setTimeout(() => {
-          navigate(`/home`);
-        }, 1000);
+        
       }
     }
   }, [navigate, tokenExist, filterRol, getRoles, validateToken]);
@@ -43,6 +42,6 @@ export const Roles = () => {
       </DefaultLayout>
     );
   } else {
-    return <div>NO AUTORIZADO</div>;
+    return <Noautorizado />;
   }
 };
