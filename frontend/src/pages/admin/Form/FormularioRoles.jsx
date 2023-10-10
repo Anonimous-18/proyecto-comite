@@ -4,9 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContextApp } from "../../../Context/ContextApp";
 
 export const FormularioRoles = () => {
-  const [nombre, setNombre] = useState({
-    nombre: "",
-  });
+  const [nombre, setNombre] = useState(null);
   const { params, id } = useParams();
   const { createRoles, updateRoles, validateToken, protectedRoutes } =
     useContextApp();
@@ -24,10 +22,7 @@ export const FormularioRoles = () => {
   }, [navigate, tokenExist, validateToken]);
 
   const onChange = (e) => {
-    setNombre({
-      ...nombre,
-      [e.target.name]: e.target.value,
-    });
+    setNombre(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -38,10 +33,10 @@ export const FormularioRoles = () => {
     if (admin) {
       if (nombre.length !== 0) {
         if (params && id) {
-          await updateRoles(token.token, id, nombre);
+          await updateRoles(token.token, id, { nombre });
           navigate(-1);
         } else {
-          await createRoles(token.token, nombre);
+          await createRoles(token.token, { nombre } );
           navigate(-1);
         }
       }
@@ -52,7 +47,7 @@ export const FormularioRoles = () => {
 
   return (
     <DefaultLayout>
-      <form className="w-full flex justify-center">
+      <form className="w-full flex justify-center" onSubmit={(e) => handleSubmit(e)}>
         <div className="w-full md:w-4/6 shadow-lg shadow-zinc-400  p-4  font-medium text-gray-900 border rounded-xl text-2xl">
           <h2 className="mb-4 font-bold text-blue-800 flex flex-col items-center">
             Crear Rol
@@ -68,6 +63,7 @@ export const FormularioRoles = () => {
               <input
                 type="text"
                 id="first_name"
+                onChange={(e) => onChange(e)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Nombre del nuevo rol"
                 required
