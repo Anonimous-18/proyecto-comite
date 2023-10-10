@@ -1,4 +1,4 @@
-const { roles,permisos } = require("../models");
+const { roles, permisos } = require("../models");
 
 /**--------------------------------
  * Controlador para crear un rol
@@ -84,7 +84,7 @@ const updateRol = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
+        .json({ message: "No existe un rol con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -115,7 +115,7 @@ const deleteRol = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
+        .json({ message: "No existe un rol con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -142,6 +142,91 @@ const createPermiso = async (req, res) => {
   }
 };
 
+/**-----------------------------------------
+ * Controlador para obtener todos los permisos
+ -----------------------------------------*/
+const getPermisos = async (req, res) => {
+  try {
+    const result = await permisos.findAll();
+
+    if (result.length !== 0) {
+      return res.status(200).json(result);
+    }
+    return res.status(404).json({ message: "No hay roles" });
+  } catch (error) {
+    res.status(500).json({
+      message: `Error al obtener todos los roles detalles: ${error.message}`,
+    });
+  }
+};
+
+/**-----------------------------------------
+ * Controlador para obtener un permiso por id
+ -----------------------------------------*/
+const getPermisobyId = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const rol = await permisos.findOne({ where: { id } });
+
+    if (rol) {
+      return res.status(200).json(rol);
+    } else {
+      return res
+        .status(404)
+        .json({ message: `No se encontraron el permiso con ese id.` });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error al obtener un permiso detalles: ${error.message}` });
+  }
+};
+
+/**----------------------------------
+ * Controlador para actualizar un permiso
+ ----------------------------------*/
+ const updatePermiso = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [updated] = await permisos.update(req.body, {
+      where: { id },
+    });
+    if (updated) {
+      const actualizado = await permisos.findOne({ where: { id } });
+      return res.status(200).json(actualizado);
+    } else {
+      return res
+        .status(404)
+        .json({ message: "No existe un permiso con este id." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+/**--------------------------------
+ * Controlador para delete un rol
+ --------------------------------*/
+const deletePermiso = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleted = await permisos.destroy({
+      where: { id },
+    });
+    if (deleted) {
+      return res.json({ message: "permiso eliminado" });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "No existe un permiso con este id." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 module.exports = {
   createRol,
   getRol,
@@ -150,4 +235,8 @@ module.exports = {
   getRolbyId,
 
   createPermiso,
+  getPermisos,
+  getPermisobyId,
+  updatePermiso,
+  deletePermiso
 };
