@@ -12,6 +12,8 @@ export const FormularioRoles = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(params);
+    console.log(id);
     if (!tokenExist) {
       navigate(`/`);
     } else if (validateToken()) {
@@ -30,15 +32,13 @@ export const FormularioRoles = () => {
     const admin = localStorage.getItem("admin");
     const token = JSON.parse(localStorage.getItem("newToken"));
 
-    if (admin) {
-      if (nombre.length !== 0) {
-        if (params && id) {
-          await updateRoles(token.token, id, { nombre });
-          navigate(-1);
-        } else {
-          await createRoles(token.token, { nombre } );
-          navigate(-1);
-        }
+    if (admin && nombre.length !== 0) {
+      if (params && id) {
+        await updateRoles(token.token, id, { nombre });
+        navigate(-1);
+      } else {
+        await createRoles(token.token, { nombre });
+        navigate(-1);
       }
     } else {
       navigate(`/home`);
@@ -47,7 +47,10 @@ export const FormularioRoles = () => {
 
   return (
     <DefaultLayout>
-      <form className="w-full flex justify-center" onSubmit={(e) => handleSubmit(e)}>
+      <form
+        className="w-full flex justify-center"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div className="w-full md:w-4/6 shadow-lg shadow-zinc-400  p-4  font-medium text-gray-900 border rounded-xl text-2xl">
           <h2 className="mb-4 font-bold text-blue-800 flex flex-col items-center">
             Crear Rol
@@ -58,7 +61,7 @@ export const FormularioRoles = () => {
                 htmlFor="first_name"
                 className="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
               >
-              Rol
+                Rol
               </label>
               <input
                 type="text"
@@ -69,9 +72,7 @@ export const FormularioRoles = () => {
                 required
               />
             </div>
-            <div className=" border">
-
-            </div>
+            <div className=" border"></div>
           </div>
 
           <div className="p-2 sm:col-span-2 flex flex-row place-content-center">
