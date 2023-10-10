@@ -8,6 +8,6 @@ https://react-icons.github.io/react-icons/search?q=facebook
 
 
 ## MIGRACIONES BASE DE DATOS
-<strong>npx sequelize-cli db:migrate:undo</strong>
-<strong>npx sequelize-cli db:migrate</strong>
+<h2>npx sequelize-cli db:migrate:undo</h2>
+<h2>npx sequelize-cli db:migrate</h2>
 
