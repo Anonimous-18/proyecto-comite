@@ -11,3 +11,5 @@ https://react-icons.github.io/react-icons/search?q=facebook
 <h2>npx sequelize-cli db:migrate:undo</h2>
 <h2>npx sequelize-cli db:migrate</h2>
 
+## GENERAR MODELO CON CAMPOS
+<h2>npx sequelize-cli model:generate --name Novedad --attributes descripcion_novedad:string,nombre_novedad:string</h2>
