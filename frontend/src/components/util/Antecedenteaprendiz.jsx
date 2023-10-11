@@ -35,7 +35,7 @@ export const Antecedenteaprendiz = () => {
               Antecedentes Aprendiz
             </h4>
           </div>{" "}
-          <Link to={"/homeaprendiz"}>
+          <Link to={"/home"}>
             <button className="pt-6 md:p-8 text-center md:text-left space-y-4">
               <p className=" bg-gray-500 hover:bg-black text-white w-24 h-7 text-center flex flex-col justify-center items-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg">
                 Volver
