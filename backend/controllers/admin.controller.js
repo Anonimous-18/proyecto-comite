@@ -1,4 +1,4 @@
-const { roles, permisos } = require("../models");
+const { roles, permisos, roles_permisos } = require("../models");
 
 /**--------------------------------
  * Controlador para crear un rol
@@ -82,9 +82,7 @@ const updateRol = async (req, res) => {
       const actualizado = await roles.findOne({ where: { id } });
       return res.status(200).json(actualizado);
     } else {
-      return res
-        .status(404)
-        .json({ message: "No existe un rol con este id." });
+      return res.status(404).json({ message: "No existe un rol con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -113,9 +111,7 @@ const deleteRol = async (req, res) => {
     if (deleted) {
       return res.json({ message: "rol eliminado" });
     } else {
-      return res
-        .status(404)
-        .json({ message: "No existe un rol con este id." });
+      return res.status(404).json({ message: "No existe un rol con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -179,14 +175,16 @@ const getPermisobyId = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Error al obtener un permiso detalles: ${error.message}` });
+      .json({
+        message: `Error al obtener un permiso detalles: ${error.message}`,
+      });
   }
 };
 
 /**----------------------------------
  * Controlador para actualizar un permiso
  ----------------------------------*/
- const updatePermiso = async (req, res) => {
+const updatePermiso = async (req, res) => {
   const { id } = req.params;
   try {
     const [updated] = await permisos.update(req.body, {
@@ -226,6 +224,26 @@ const deletePermiso = async (req, res) => {
   }
 };
 
+/**--------------------------------
+ * Controlador para crear un permiso
+ --------------------------------*/
+const rolPermisoCreate = async (req, res) => {
+  try {
+    
+    const result = await roles_permisos.create({ rol_id:req.body.rol_id, permisos_id:req.body.permisos_id })
+
+    if (result.dataValues.id !== 0) {
+      return res.status(200).json(result);
+    }
+    return res
+      .status(500)
+      .json({ message: "Error al crear un nuevo permiso." });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error al crear un nuevo permiso: ${error.message}` });
+  }
+};
 
 module.exports = {
   createRol,
@@ -238,5 +256,5 @@ module.exports = {
   getPermisos,
   getPermisobyId,
   updatePermiso,
-  deletePermiso
+  deletePermiso,
 };
