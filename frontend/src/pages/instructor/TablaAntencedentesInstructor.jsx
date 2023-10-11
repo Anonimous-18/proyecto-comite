@@ -47,70 +47,78 @@ export const TablaAntencedentesInstructor = () => {
 
   return (
     <DefaultLayout>
-      <div>
-        <p>Filtrar por:</p>
-        <div>
-          <form onSubmit={(e) => handleSubmit(e)}>
-            <input
-              onChange={(e) => onChange(e)}
-              type="number"
-              name="documento"
-              placeholder="Identificación"
-            />
-            <button type="submit">
-              <IoSearchCircle />
-            </button>
-          </form>
+      <div className="mx-auto max-w-screen-xl">
+        <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
+          <div>
+            <p className="">Filtrar por:</p>
+            <div>
+              <form onSubmit={(e) => handleSubmit(e)} className=" space-x-2 flex flex-row p-2">
+                <div>
+                  <input
+                    onChange={(e) => onChange(e)}
+                    type="number"
+                    name="documento"
+                    placeholder="Identificación"
+                  />
+                </div>
+                <div>
+                  <button type="submit">
+                    <IoSearchCircle />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {aprendices && aprendices !== null ? (
+            <table>
+              <tbody>
+                <tr>
+                  <th>Identificación</th>
+                  <th>Nombre Completo</th>
+                  <th>Email</th>
+                  <th>Telefono</th>
+                  <th>Acción</th>
+                </tr>
+                {aprendices && filtrado === null ? (
+                  aprendices.map((aprendiz) => (
+                    <tr key={aprendiz.id}>
+                      <td>{aprendiz.documento}</td>
+                      <td>{aprendiz.nombre_completo}</td>
+                      <td>{aprendiz.email}</td>
+                      <td>{aprendiz.telefono}</td>
+                      <td>
+                        <Link
+                          className="rounded-md bg-teal-500"
+                          to={`/Antecedenteaprendiz/${aprendiz.id}`}
+                        >
+                          Ver
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr key={filtrado[0].id}>
+                    <td>{filtrado[0].documento}</td>
+                    <td>{filtrado[0].nombre_completo}</td>
+                    <td>{filtrado[0].email}</td>
+                    <td>{filtrado[0].telefono}</td>
+                    <td>
+                      <Link
+                        className="rounded-md bg-teal-500"
+                        to={`/Antecedenteaprendiz/${filtrado[0].id}`}
+                      >
+                        Ver
+                      </Link>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <h2>Sin aprendices</h2>
+          )}
         </div>
       </div>
-      {aprendices && aprendices !== null ? (
-        <table>
-          <tbody>
-            <tr>
-              <th>Identificación</th>
-              <th>Nombre Completo</th>
-              <th>Email</th>
-              <th>Telefono</th>
-              <th>Acción</th>
-            </tr>
-            {aprendices && filtrado === null ? (
-              aprendices.map((aprendiz) => (
-                <tr key={aprendiz.id}>
-                  <td>{aprendiz.documento}</td>
-                  <td>{aprendiz.nombre_completo}</td>
-                  <td>{aprendiz.email}</td>
-                  <td>{aprendiz.telefono}</td>
-                  <td>
-                    <Link
-                      className="rounded-md bg-teal-500"
-                      to={`/Antecedenteaprendiz/${aprendiz.id}`}
-                    >
-                      Ver
-                    </Link>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr key={filtrado[0].id}>
-                <td>{filtrado[0].documento}</td>
-                <td>{filtrado[0].nombre_completo}</td>
-                <td>{filtrado[0].email}</td>
-                <td>{filtrado[0].telefono}</td>
-                <td>
-                  <Link
-                    className="rounded-md bg-teal-500"
-                    to={`/Antecedenteaprendiz/${filtrado[0].id}`}
-                  >
-                    Ver
-                  </Link>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      ) : (
-        <h2>Sin aprendices</h2>
-      )}
     </DefaultLayout>
   );
 };
