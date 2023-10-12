@@ -21,11 +21,6 @@ export const Antecedenteaprendiz = () => {
     getAntecedentesForAprendiz();
   }, [contextApi, id]);
 
-  /**------------------------------------------------------------
-   * | Falta reemplazar los campos del jsx con los datos de data
-   * ------------------------------------------------------------*/
-  console.log(data);
-
   return (
     <DefaultLayout>
       {data && data.length !== 0 ? (
@@ -231,12 +226,22 @@ export const Antecedenteaprendiz = () => {
                     <h4>
                       instrurtor <br /> solicitantes:
                     </h4>
-                    <button className=" pt-2 flex flex-row items-center bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      Rosa quintero
-                    </button>
-                    <button className="space-y-2 pt-2 flex flex-row items-center bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      julano de tal
-                    </button>
+                    {data && data.instructorSolicitanteNovedad.length !== 0 ? (
+                      data.instructorSolicitanteNovedad.map(
+                        (instructor, index) => (
+                          <button
+                            key={index}
+                            className=" pt-2 flex flex-row items-center  bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl"
+                          >
+                            {instructor.nombre_completo === null
+                              ? "Sin Nombre"
+                              : instructor.nombre_completo}
+                          </button>
+                        )
+                      )
+                    ) : (
+                      <>Sin instructor solicitante</>
+                    )}
                   </button>
                 </div>
               </div>
@@ -247,12 +252,20 @@ export const Antecedenteaprendiz = () => {
                     <h4>
                       Nombre <br /> Novedad:
                     </h4>
-                    <button className=" pt-2 flex flex-row items-center bg-blue-500  hover:bg-white  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      Rosa quintero
-                    </button>
-                    <button className="space-y-2 pt-2 flex flex-row items-center bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      Rosa quintero
-                    </button>
+                    {data && data.novedades.length !== 0 ? (
+                      data.novedades.map((novedad, index) => (
+                        <button
+                          key={index}
+                          className=" pt-2 flex flex-row items-center  bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl"
+                        >
+                          {novedad.nombre_novedad === null
+                            ? "Sin Nombre"
+                            : novedad.nombre_novedad}
+                        </button>
+                      ))
+                    ) : (
+                      <>Sin instructor solicitante</>
+                    )}
                   </button>
                 </div>
               </div>
@@ -262,12 +275,20 @@ export const Antecedenteaprendiz = () => {
                 <div className="bg-white   hover:bg-blue-400 hover:text-black rounded-xl border-2 hover:border-black  shadow-black shadow-2xl">
                   <button className="  flex flex-col items-center justify-center  space-y-2 hover:bg-blue-500 hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
                     <h4>Descripcion :</h4>
-                    <button className=" pt-2 flex flex-row items-center bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      Descripcion
-                    </button>
-                    <button className="space-y-2 pt-2 flex flex-row items-center bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      Descripcion
-                    </button>
+                    {data && data.novedades.length !== 0 ? (
+                      data.novedades.map((novedad, index) => (
+                        <button
+                          key={index}
+                          className=" pt-2 flex flex-row items-center  bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl"
+                        >
+                          {novedad.descripcion_novedad === null
+                            ? "Sin Descripcion"
+                            : novedad.descripcion_novedad}
+                        </button>
+                      ))
+                    ) : (
+                      <>Sin instructor solicitante</>
+                    )}
                   </button>
                 </div>
               </div>
@@ -277,12 +298,20 @@ export const Antecedenteaprendiz = () => {
                 <div className=" bg-white   hover:bg-blue-400 hover:text-black rounded-xl border-2 hover:border-black  shadow-black shadow-2xl">
                   <button className="  flex flex-col items-center justify-center  space-y-2 hover:bg-blue-500 hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
                     <h4>Fecha :</h4>
-                    <button className=" pt-2 flex flex-row items-center bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      18/05/2023
-                    </button>
-                    <button className="space-y-2 pt-2 flex flex-row items-center bg-blue-500  hover:bg-white  border-2 shadow-2xl p-3 place-content-evenly rounded-2xl">
-                      18/05/2023
-                    </button>
+                    {data && data.novedades.length !== 0 ? (
+                      data.novedades.map((novedad, index) => (
+                        <button
+                          key={index}
+                          className=" pt-2 flex flex-row items-center  bg-blue-500  hover:bg-white border-2 shadow-2xl p-3 place-content-evenly rounded-2xl"
+                        >
+                          {novedad.createdAt === null
+                            ? "Sin Fecha"
+                            : novedad.createdAt.replace(/T.*/, "")}
+                        </button>
+                      ))
+                    ) : (
+                      <>Sin instructor solicitante</>
+                    )}
                   </button>
                 </div>
               </div>
