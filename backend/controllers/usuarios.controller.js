@@ -3,6 +3,7 @@ const {
   roles,
   comites,
   aprendices_implicados,
+  Novedad,
 } = require("../models");
 
 const getUserById = async (req, res) => {
@@ -70,23 +71,34 @@ const getAntecedenteForAprendiz = async (req, res) => {
         where: { documento },
       });
 
-      const comitesIds = comites_fk.map((comite_fk) => comite_fk.dataValues.comite_fk);
+      const comitesIds = comites_fk.map(
+        (comite_fk) => comite_fk.dataValues.comite_fk
+      );
 
       const infoComites = await comites.findAll({
         where: { id: comitesIds },
       });
 
       const instructorSolicitantePromises = infoComites.map(async (comite) => {
-        const instructor = await usuarios.findByPk(comite.dataValues.instructor_fk);
+        const instructor = await usuarios.findByPk(
+          comite.dataValues.instructor_fk
+        );
         return instructor.dataValues;
       });
 
-      const instructorSolicitante = await Promise.all(instructorSolicitantePromises);
+      const instructorSolicitante = await Promise.all(
+        instructorSolicitantePromises
+      );
+
+      const infoNovedades = await Novedad.findAll({
+        where: { aprendiz_fk: id },
+      });
 
       return res.status(200).json({
         aprendiz: aprendiz.dataValues,
-        comites: infoComites.map(comite => comite.dataValues),
+        comites: infoComites.map((comite) => comite.dataValues),
         instructorSolicitante: instructorSolicitante,
+        novedades: infoNovedades,
       });
     } else {
       return res.status(404).json({ message: `Aprendiz no encontrado.` });
