@@ -173,11 +173,9 @@ const getPermisobyId = async (req, res) => {
         .json({ message: `No se encontraron el permiso con ese id.` });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: `Error al obtener un permiso detalles: ${error.message}`,
-      });
+    res.status(500).json({
+      message: `Error al obtener un permiso detalles: ${error.message}`,
+    });
   }
 };
 
@@ -227,21 +225,39 @@ const deletePermiso = async (req, res) => {
 /**--------------------------------
  * Controlador para crear un permiso
  --------------------------------*/
-const rolPermisoCreate = async (req, res) => {
+const asignarPermiso = async (req, res) => {
   try {
-    
-    const result = await roles_permisos.create({ rol_id:req.body.rol_id, permisos_id:req.body.permisos_id })
+    const { permisosNombres, rol } = req.body;
+    const rolId = (await roles.findOne({ where: { nombre: rol } })).id;
+    // Crear un array de promesas para todas las consultas asincrónicas
+    const promesas = permisosNombres.map(async (permiso) => {
+      const permisoId = (await permisos.findOne({ where: { nombre: permiso } }))
+        .id;
+      const result = await roles_permisos.create({
+        rol_id: rolId,
+        permisos_id: permisoId,
+      });
+      return result; // Devolver el resultado de cada consulta
+    });
 
-    if (result.dataValues.id !== 0) {
-      return res.status(200).json(result);
+    // Esperar a que todas las promesas se resuelvan
+    const resultados = await Promise.all(promesas);
+
+    // Ahora resultados es un array que contiene todos los resultados de las consultas
+    resultados.forEach((result) => {
+      console.log(result);
+    });
+
+    if (resultados) {
+      return res.status(200).json(resultados);
     }
     return res
       .status(500)
-      .json({ message: "Error al crear un nuevo permiso." });
+      .json({ message: "Error al asiganar los permisos al rol" });
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Error al crear un nuevo permiso: ${error.message}` });
+      .json({ message: `Error al asiganar los permisos al rol: ${error.message}` });
   }
 };
 
@@ -257,4 +273,6 @@ module.exports = {
   getPermisobyId,
   updatePermiso,
   deletePermiso,
+
+  asignarPermiso,
 };

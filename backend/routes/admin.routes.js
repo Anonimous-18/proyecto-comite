@@ -44,4 +44,6 @@ router
   .put("/api/update-permiso/:id", adminController.updatePermiso)
   .delete("/api/delete-permiso/:id", adminController.deletePermiso)
 
+  .post("/api/create-rol-permiso",verifyToken, adminController.asignarPermiso)
+
 module.exports = router;

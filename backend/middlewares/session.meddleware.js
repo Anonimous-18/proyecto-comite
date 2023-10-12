@@ -31,6 +31,7 @@ const verifyToken = (req, res, next) => {
      * |  Guardamos los datos del usuario logueado
      ---------------------------------------------*/
     req.userData = decodedToken;
+    console.log(req.userData);
     if (decodedToken) {
       next();
     }
