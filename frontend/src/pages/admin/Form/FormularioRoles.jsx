@@ -5,15 +5,19 @@ import { useContextApp } from "../../../Context/ContextApp";
 
 export const FormularioRoles = () => {
   const [nombre, setNombre] = useState(null);
+  const [permisos, setPermisos] = useState([]);
   const { params, id } = useParams();
-  const { createRoles, updateRoles, validateToken, protectedRoutes } =
-    useContextApp();
+  const {
+    createRoles,
+    updateRoles,
+    validateToken,
+    protectedRoutes,
+    getPermisos,
+  } = useContextApp();
   const tokenExist = protectedRoutes();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(params);
-    console.log(id);
     if (!tokenExist) {
       navigate(`/`);
     } else if (validateToken()) {
@@ -21,6 +25,14 @@ export const FormularioRoles = () => {
     } else if (!localStorage.getItem("admin")) {
       navigate(`/home`);
     }
+    const cargarPermisos = async () => {
+      const token = JSON.parse(localStorage.getItem("newToken"));
+      const res = await getPermisos(token.token);
+      if (res) {
+        setPermisos(res);
+      }
+    };
+    cargarPermisos();
   }, [navigate, tokenExist, validateToken]);
 
   const onChange = (e) => {
@@ -44,19 +56,18 @@ export const FormularioRoles = () => {
       navigate(`/home`);
     }
   };
-
   return (
     <DefaultLayout>
       <form
         className="w-full flex justify-center"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="w-full md:w-4/6 shadow-lg shadow-zinc-400  p-4  font-medium text-gray-900 border rounded-xl text-2xl">
+        <div className="w-full md:w-4/6 shadow-lg shadow-zinc-400  p-4  font-medium text-gray-900 border rounded-xl text-5xl">
           <h2 className="mb-4 font-bold text-blue-800 flex flex-col items-center">
             Crear Rol
           </h2>
           <div className="w-full flex">
-            <div className="border-l-2 p-5 w-1/3">
+            <div className="border-r-2 p-5 w-1/3">
               <label
                 htmlFor="first_name"
                 className="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
@@ -67,12 +78,19 @@ export const FormularioRoles = () => {
                 type="text"
                 id="first_name"
                 onChange={(e) => onChange(e)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50  border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Nombre del nuevo rol"
                 required
               />
             </div>
-            <div className=" border"></div>
+            <div className="flex flex-col w-5/6 border">
+              {permisos.map((e) => (
+                <div className="flex border border-gray-950 w-full p-5">
+                  <label htmlFor={`${e}`} className="w-44 text-2xl">{e}</label>
+                  <input type="checkbox" className="h-10 w-10" name={`${e}`} id={`${e}`} />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="p-2 sm:col-span-2 flex flex-row place-content-center">

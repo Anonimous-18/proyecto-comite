@@ -87,9 +87,6 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 <th scope="col" className="px-6 py-3">
                   creado
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  permisos
-                </th>
                 <th scope="col" className="px-15 py-">
                   <span className="sr-only">Eliminar</span>
                   <span className="sr-only">Editar</span>
@@ -114,17 +111,7 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                   <td className="px-6 py-4">
                     {item.creado.replace(/T.*/, "")}
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="ml-3 relative inline-flex items-center rounded-md  bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none text-center">
-                      <Link
-                        className="text-center w-full"
-                        to={`/form-${nombre_tabla}`}
-                        type="button"
-                      >
-                        Permisos
-                      </Link>
-                    </div>
-                  </td>
+                  
                   <td className="px-6 py-4 text-right flex gap-4">
                     <Link
                       to={`/see-${nombre_tabla}/${item.id}`}

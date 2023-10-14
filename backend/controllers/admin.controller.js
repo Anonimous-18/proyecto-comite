@@ -143,87 +143,23 @@ const createPermiso = async (req, res) => {
  -----------------------------------------*/
 const getPermisos = async (req, res) => {
   try {
-    const result = await permisos.findAll();
 
+    const permisosResul = await permisos.findAll();
+    const result = permisosResul.map((permiso) => permiso.nombre);
     if (result.length !== 0) {
       return res.status(200).json(result);
     }
     return res.status(404).json({ message: "No hay roles" });
   } catch (error) {
     res.status(500).json({
-      message: `Error al obtener todos los roles detalles: ${error.message}`,
+      message: `Error al obtener todos los permisos detalles: ${error.message}`,
     });
   }
 };
 
-/**-----------------------------------------
- * Controlador para obtener un permiso por id
- -----------------------------------------*/
-const getPermisobyId = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const rol = await permisos.findOne({ where: { id } });
-
-    if (rol) {
-      return res.status(200).json(rol);
-    } else {
-      return res
-        .status(404)
-        .json({ message: `No se encontraron el permiso con ese id.` });
-    }
-  } catch (error) {
-    res.status(500).json({
-      message: `Error al obtener un permiso detalles: ${error.message}`,
-    });
-  }
-};
-
-/**----------------------------------
- * Controlador para actualizar un permiso
- ----------------------------------*/
-const updatePermiso = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const [updated] = await permisos.update(req.body, {
-      where: { id },
-    });
-    if (updated) {
-      const actualizado = await permisos.findOne({ where: { id } });
-      return res.status(200).json(actualizado);
-    } else {
-      return res
-        .status(404)
-        .json({ message: "No existe un permiso con este id." });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 /**--------------------------------
- * Controlador para delete un rol
- --------------------------------*/
-const deletePermiso = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const deleted = await permisos.destroy({
-      where: { id },
-    });
-    if (deleted) {
-      return res.json({ message: "permiso eliminado" });
-    } else {
-      return res
-        .status(404)
-        .json({ message: "No existe un permiso con este id." });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-/**--------------------------------
- * Controlador para crear un permiso
+ * Controlador para asignar un permiso a un rol determinado por el administrador
  --------------------------------*/
 const asignarPermiso = async (req, res) => {
   try {
@@ -231,8 +167,8 @@ const asignarPermiso = async (req, res) => {
     const rolId = (await roles.findOne({ where: { nombre: rol } })).id;
     // Crear un array de promesas para todas las consultas asincrónicas
     const promesas = permisosNombres.map(async (permiso) => {
-      const permisoId = (await permisos.findOne({ where: { nombre: permiso } }))
-        .id;
+      const permisoId = (await permisos.findOne({ where: { nombre: permiso } })).id;
+
       const result = await roles_permisos.create({
         rol_id: rolId,
         permisos_id: permisoId,
@@ -270,9 +206,6 @@ module.exports = {
 
   createPermiso,
   getPermisos,
-  getPermisobyId,
-  updatePermiso,
-  deletePermiso,
 
   asignarPermiso,
 };

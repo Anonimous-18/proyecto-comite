@@ -23,7 +23,7 @@ export const Roles = () => {
       if (admin) {
         const getRol = async () => {
           const res = await getRoles(token.token);
-          if (res !== null || res !== undefined) {
+          if (res) {
             setRoles(res);
           }
         };
@@ -41,7 +41,5 @@ export const Roles = () => {
         <Tab datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
       </DefaultLayout>
     );
-  } else {
-    return <Noautorizado />;
-  }
+  } 
 };

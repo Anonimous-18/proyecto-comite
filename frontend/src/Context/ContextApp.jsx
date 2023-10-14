@@ -14,6 +14,7 @@ import {
   updateRolRequest,
   getRolByIdRequest,
 } from "../api/roles";
+import { getPermisosRequest } from "../api/permisos";
 
 export const ContextApp = createContext();
 
@@ -179,6 +180,16 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getPermisos = async (token) => {
+    try {
+      const res = await getPermisosRequest(token);
+      return res;
+    } catch (error) {
+      console.log("Error chupaloo inin: ", error.message);
+    }
+  };
+
+
   const getRoles = async (token) => {
     try {
       const res = await getRolesRequest(token);
@@ -334,6 +345,7 @@ export const ContextAppProvider = ({ children }) => {
         camposFil,
         getAprendices,
         getAntecedentes,
+        getPermisos
       }}
     >
       {children}

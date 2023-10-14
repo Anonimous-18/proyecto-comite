@@ -73,7 +73,6 @@ export const updateRolRequest = async (token, id, data) => {
     console.log("Error al actualizar un rol detalles: ", error.message);
   }
 };
-
 /**----------------------------------------
  * |  Enpoint para obtener un rol por id
  ----------------------------------------*/

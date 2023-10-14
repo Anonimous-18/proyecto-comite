@@ -36,14 +36,10 @@ router
     permisosMiddleware.comprobarPermiso("delete-roles"),
     adminController.deleteRol
   )
+ 
 
+  .post("/api/asignar-rol-permiso", verifyToken, adminController.asignarPermiso)
+  .get("/api/get-permisos", verifyToken, permisosMiddleware.comprobarPermiso("list-permisos"), adminController.getPermisos)
 
-  .post("/api/create-permiso", adminController.createPermiso)
-  .get("/api/get-permisos", adminController.getPermisos)
-  .get("/api/get-permiso/:id", adminController.getPermisobyId)
-  .put("/api/update-permiso/:id", adminController.updatePermiso)
-  .delete("/api/delete-permiso/:id", adminController.deletePermiso)
-
-  .post("/api/create-rol-permiso",verifyToken, adminController.asignarPermiso)
 
 module.exports = router;
