@@ -6,6 +6,20 @@ import { useContextApp } from "../../../Context/ContextApp";
 export const FormularioRoles = () => {
   const [nombre, setNombre] = useState(null);
   const [permisos, setPermisos] = useState([]);
+  const [selectedValues, setSelectedValues] = useState([]);
+
+  // Función para manejar el cambio de un checkbox
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    // Si el checkbox está marcado, agrega el valor al array de selección
+    if (checked) {
+      setSelectedValues([...selectedValues, value]);
+    } else {
+      // Si el checkbox está desmarcado, elimina el valor del array de selección
+      const updatedValues = selectedValues.filter((item) => item !== value);
+      setSelectedValues(updatedValues);
+    }
+  };
   const { params, id } = useParams();
   const {
     createRoles,
@@ -13,6 +27,7 @@ export const FormularioRoles = () => {
     validateToken,
     protectedRoutes,
     getPermisos,
+    asignarPermisos
   } = useContextApp();
   const tokenExist = protectedRoutes();
   const navigate = useNavigate();
@@ -43,6 +58,7 @@ export const FormularioRoles = () => {
     e.preventDefault();
     const admin = localStorage.getItem("admin");
     const token = JSON.parse(localStorage.getItem("newToken"));
+    console.log(selectedValues);
 
     if (admin && nombre.length !== 0) {
       if (params && id) {
@@ -50,6 +66,7 @@ export const FormularioRoles = () => {
         navigate(-1);
       } else {
         await createRoles(token.token, { nombre });
+        await asignarPermisos(token.token, { rol:nombre, permisosNombres:permisos })
         navigate(-1);
       }
     } else {
@@ -63,14 +80,14 @@ export const FormularioRoles = () => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="w-full md:w-4/6 shadow-lg shadow-zinc-400  p-4  font-medium text-gray-900 border rounded-xl text-5xl">
-          <h2 className="mb-4 font-bold text-blue-800 flex flex-col items-center">
+          <h2 className="mb-4 font-bold text-blue-800 flex flex-col items-center ">
             Crear Rol
           </h2>
           <div className="w-full flex">
             <div className="border-r-2 p-5 w-1/3">
               <label
                 htmlFor="first_name"
-                className="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
+                className="block mb-2 font-medium text-gray-900 dark:text-gray-300 text-3xl"
               >
                 Rol
               </label>
@@ -78,16 +95,16 @@ export const FormularioRoles = () => {
                 type="text"
                 id="first_name"
                 onChange={(e) => onChange(e)}
-                className="bg-gray-50  border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50  border-gray-500 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Nombre del nuevo rol"
                 required
               />
             </div>
-            <div className="flex flex-col w-5/6 border">
-              {permisos.map((e) => (
-                <div className="flex border border-gray-950 w-full p-5">
+            <div className="flex flex-col w-3/6 border-r-2">
+              {permisos.map((e,i) => (
+                <div className="flex  w-full p-5" key={i}>
                   <label htmlFor={`${e}`} className="w-44 text-2xl">{e}</label>
-                  <input type="checkbox" className="h-10 w-10" name={`${e}`} id={`${e}`} />
+                  <input type="checkbox" className="h-10 w-10" name={`${e}`} id={`${e}`} value={`${e}`} onChange={handleCheckboxChange} />
                 </div>
               ))}
             </div>

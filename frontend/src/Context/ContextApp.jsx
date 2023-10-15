@@ -14,7 +14,7 @@ import {
   updateRolRequest,
   getRolByIdRequest,
 } from "../api/roles";
-import { getPermisosRequest } from "../api/permisos";
+import { getPermisosRequest,asignarPermisosRequest } from "../api/permisos";
 
 export const ContextApp = createContext();
 
@@ -188,7 +188,15 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error chupaloo inin: ", error.message);
     }
   };
-
+  
+  const asignarPermisos = async (token, data) => {
+    try {
+      const res = await asignarPermisosRequest(token, data);
+      return res;
+    } catch (error) {
+      console.log("Error al crear un rol: ", error.message);
+    }
+  };
 
   const getRoles = async (token) => {
     try {
@@ -345,7 +353,8 @@ export const ContextAppProvider = ({ children }) => {
         camposFil,
         getAprendices,
         getAntecedentes,
-        getPermisos
+        getPermisos,
+        asignarPermisos
       }}
     >
       {children}
