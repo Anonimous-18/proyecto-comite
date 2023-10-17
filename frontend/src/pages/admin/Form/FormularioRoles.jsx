@@ -66,7 +66,8 @@ export const FormularioRoles = () => {
         navigate(-1);
       } else {
         await createRoles(token.token, { nombre });
-        await asignarPermisos(token.token, { rol:nombre, permisosNombres:permisos })
+        console.log(selectedValues);
+        await asignarPermisos(token.token, { rol:nombre, permisosNombres:selectedValues })
         navigate(-1);
       }
     } else {
