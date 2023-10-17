@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
-import { AiFillDelete } from "react-icons/ai";
-import { GrUpdate } from "react-icons/gr";
-import { AiOutlineEye } from "react-icons/ai";
 
 export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
   // datos = null
@@ -32,18 +29,17 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
       navigate(0);
     } else {
       navigate(`/home`);
-      
     }
   };
   return (
-    <div className="flex justify-center items-center">
-      <div className=" max-w-4xl mx-auto">
-        <div className="relative overflow-x-auto border shadow-lg sm:rounded-lg w-full">
-          <div className="flex justify-between p-4">
+    <div className="flex justify-center items-center w-full">
+      <div className="mx-auto w-full">
+        <div className="relative overflow-x-auto border shadow-lg sm:rounded-lg">
+          <div className="flex justify-between p-4 relative">
             <div className="relative mt-1">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none  h-11">
                 <svg
-                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="w-5 h-5 text-gray-500 dark:text-gray-400 m-auto"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,13 +54,13 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
               <input
                 type="text"
                 id="table-search"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Buscar "
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                placeholder="Buscar"
               />
             </div>
-            <div className="ml-3 relative inline-flex items-center rounded-md w-1/4 bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none text-center">
+            <div className="relative flex items-center rounded-md ml-40 bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:text-white hover:bg-blue-400 focus:outline-none text-center ">
               <Link
-                className="text-center w-full"
+                className="text-center w-full p-2 text-xl uppercase dark:bg-gray-700 dark:text-gray-400"
                 to={`/form-${nombre_tabla}`}
                 type="button"
               >
@@ -111,26 +107,38 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                   <td className="px-6 py-4">
                     {item.creado.replace(/T.*/, "")}
                   </td>
-                  
-                  <td className="px-6 py-4 text-right flex gap-4">
-                    <Link
-                      to={`/see-${nombre_tabla}/${item.id}`}
-                      className=" p-2"
+
+                  <td className="px-6 py-4 text-right flex justify-center gap-4  ">
+                    <div className="ml-3 relative rounded-md w-1/4 bg-blue-100 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
+                      <Link
+                        to={`/see-${nombre_tabla}/${item.id}`}
+                        className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
+                        type="button"
+                      >
+                        ver
+                      </Link>
+                    </div>
+                    <div className="ml-3 relative rounded-md w-1/4 bg-blue-200 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
+                        <Link
+                      to={`/form-${nombre_tabla}/update/${item.id}`}
+                      className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
                     >
-                      <AiOutlineEye />
+                      gestion permisos
                     </Link>
-                    <Link
+                    </div>
+
+                    {/* <Link
                       to={`/form-${nombre_tabla}/update/${item.id}`}
                       className="p-2"
                     >
                       <GrUpdate />
-                    </Link>
+                    </Link> */}
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="p-2"
+                      className="ml-3 relative rounded-md w-1/4 bg-blue-700 px-5 py-1  text-xs font-bold shadow-md transition duration-300 ease-in-out  focus:outline-none text-center  text-white uppercase hover:text-white hover:bg-blue-400"
                       type="button"
                     >
-                      <AiFillDelete />
+                      eliminar
                     </button>
                   </td>
                 </tr>
