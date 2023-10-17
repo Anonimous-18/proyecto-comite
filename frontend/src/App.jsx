@@ -25,6 +25,7 @@ import { Antecedente } from "./pages/subdirector/Antecedente";
 import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
 import { Historiacomite } from "./components/util/Historiacomite";
 import { TablaAntencedentesInstructor } from "./pages/instructor/TablaAntencedentesInstructor";
+import { NovedadInstructor } from "./pages/instructor/NovedadInstructor";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/homeinvitado" element={<Homeinvitado />} />
         <Route path="/homeinstructor" element={<Homeinstructor />} />
         <Route path="/homesubdirector" element={<Homesubdirector />} />
+        <Route path="/novedades-instructor" element={<NovedadInstructor />} />
         <Route path="/reglamento" element={<Reglamento />} />
         <Route
           path="/infocomiteinstrutor/:comite_id"

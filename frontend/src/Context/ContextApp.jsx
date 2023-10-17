@@ -2,8 +2,9 @@
 import jwt_decode from "jwt-decode";
 import { createContext, useContext, useState } from "react";
 
-import instructorApi from "../api/instructor";
 import usuariosApi from "../api/usuarios";
+import novedadesApi from "../api/novedades";
+import instructorApi from "../api/instructor";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
@@ -14,7 +15,7 @@ import {
   updateRolRequest,
   getRolByIdRequest,
 } from "../api/roles";
-import { getPermisosRequest,asignarPermisosRequest } from "../api/permisos";
+import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
 
 export const ContextApp = createContext();
 
@@ -188,7 +189,7 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error chupaloo inin: ", error.message);
     }
   };
-  
+
   const asignarPermisos = async (token, data) => {
     try {
       const res = await asignarPermisosRequest(token, data);
@@ -328,6 +329,17 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const createNovedad = async (body) => {
+    try {
+      const response = await novedadesApi.createNovedadRequest(body);
+      if (response) return response.status;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -354,7 +366,8 @@ export const ContextAppProvider = ({ children }) => {
         getAprendices,
         getAntecedentes,
         getPermisos,
-        asignarPermisos
+        asignarPermisos,
+        createNovedad
       }}
     >
       {children}

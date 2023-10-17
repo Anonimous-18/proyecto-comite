@@ -138,10 +138,10 @@ export const NavBar = () => {
               Permisos
             </NavLink>
             <NavLink
-              to="/"
+              to="/novedades-instructor"
               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
             >
-              Apredices
+              Novedades
             </NavLink>
             <div className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
               <div className="flex flex-col items-center justify-center">
