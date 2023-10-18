@@ -39,7 +39,7 @@ const login = async (req, res) => {
       tipo_documento: userRes.tipo_documento,
       documento: userRes.documento,
       rol_id: userRes.rol_id,
-      rol: userRes.role.dataValues
+      // rol: userRes.role.dataValues
     };
     req.userData = user;
     req.userData.permisos = (await roles.findByPk(req.userData.rol_id, {

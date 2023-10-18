@@ -143,25 +143,27 @@ export const NavBar = () => {
             >
               Novedades
             </NavLink>
+
             <div className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
-              <div className="flex flex-col items-center justify-center">
+              
+              <button
+                onClick={() => handleClick()}
+                // Transicion transition duration-300 ease-in-out ...
+                className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+              >
+                Cerrar sesion
+                <PulseLoader
+                  className="ml-3"
+                  loading={loading}
+                  size={5}
+                  color="#ffffff"
+                />
+              </button>
+              <div className="flex flex-col items-center justify-center text-center">
                 <BsFillPersonFill className=" w-10 h-10  text-black" />
-                <div>{userName && userName ? userName : "Sin nombre"}</div>
+                <div className="w-32 text-xs">{userName && userName ? userName : "Sin nombre"}</div>
               </div>
             </div>
-            <button
-              onClick={() => handleClick()}
-              // Transicion transition duration-300 ease-in-out ...
-              className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-            >
-              Cerrar sesion
-              <PulseLoader
-                className="ml-3"
-                loading={loading}
-                size={5}
-                color="#ffffff"
-              />
-            </button>
           </div>
         </div>
 
