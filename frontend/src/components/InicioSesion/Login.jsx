@@ -114,6 +114,7 @@ export const Login = () => {
                       </label>
                       <input
                         type="number"
+                        autoFocus
                         name="documento"
                         onChange={(e) => onChange(e)}
                         id="documento"
