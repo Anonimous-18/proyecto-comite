@@ -1,7 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 
-const { PORT } = require("./config.js");
+const config = require("./config.js");
 
 // Rutas
 const adminRoutes = require("./routes/admin.routes.js");
@@ -14,7 +14,11 @@ const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [config.ORIGEN, "http://localhost:5173"],
+  })
+);
 
 // Procesamientos:
 app.use(express.json());
@@ -28,4 +32,6 @@ app.use(instructorRoutes);
 app.use(reglamentoRoutes);
 app.use(inicio_sesionRoutes);
 
-app.listen(PORT, () => console.log(`Server on port ${PORT}`));
+app.listen(config.PORT, "0.0.0.0", () =>
+  console.log(`Server on port ${config.PORT}`)
+);
