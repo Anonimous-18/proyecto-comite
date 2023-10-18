@@ -3,9 +3,8 @@ const pool = require("../database/db.js");
 const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
-const sequelize = require('../sequelize-config.js')
-const { usuarios,roles,permisos } = require('../models')
-
+const sequelize = require("../sequelize-config.js");
+const { usuarios, roles, permisos } = require("../models");
 
 const secretKey = v4();
 
@@ -23,13 +22,13 @@ const login = async (req, res) => {
       },
       include: [roles],
     });
-  
+
     if (!userRes) {
       return res
         .status(404)
         .json({ message: `No se encontró al usuario con esos datos` });
     }
-  
+
     // Mapea los campos del modelo Usuarios a un objeto user
     const user = {
       id: userRes.id,
@@ -41,10 +40,18 @@ const login = async (req, res) => {
       rol_id: userRes.rol_id,
       // rol: userRes.role.dataValues
     };
+
     req.userData = user;
-    req.userData.permisos = (await roles.findByPk(req.userData.rol_id, {
-      include: [permisos], // Incluye la relación con el modelo Permisos
-    })).dataValues.permisos;
+    if (req.userData.rol_id) {
+      req.userData.permisos = (
+        await roles.findByPk(req.userData.rol_id, {
+          include: [permisos], // Incluye la relación con el modelo Permisos
+        })
+      ).dataValues.permisos;
+    } else {
+      req.userData.permisos = null;
+    }
+
     /**-----------------------------------------------------
      * |  Creamos el Token de sesión con el tiempo de expiración
      * |  y mandamos el usuario logueado.
@@ -252,7 +259,17 @@ const registerUser = async (req, res) => {
 
     const [result] = await pool.query(
       "INSERT INTO usuarios(nombre_completo, email, contrasenia, tipo_documento, documento, telefono, cargo, dependencia, rol_id)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-      [nombre_completo, email, contrasenia, tipo_documento, documento, telefono, cargo, dependencia, rol_id]
+      [
+        nombre_completo,
+        email,
+        contrasenia,
+        tipo_documento,
+        documento,
+        telefono,
+        cargo,
+        dependencia,
+        rol_id,
+      ]
     );
 
     if (result.affectedRows !== 0) {
@@ -266,7 +283,7 @@ const registerUser = async (req, res) => {
     res.status(500).json({
       message: `Error al intentar registrarse detalles: ${error.message}`,
     });
-  } 
+  }
 };
 /**------------------------------------------
  * |  Controlador del registro de usuarios 
@@ -274,11 +291,13 @@ const registerUser = async (req, res) => {
 const registerUsers = async (req, res) => {
   const buscarRolAprendiz = async () => {
     try {
-      if(req.body.cargo !== "Aprendiz"){
-        return
+      if (req.body.cargo !== "Aprendiz") {
+        return;
       }
       const [rows] = await pool.execute("SELECT * FROM roles");
-      const registrosAprendiz = rows.filter(item => item.nombre === req.body.cargo);
+      const registrosAprendiz = rows.filter(
+        (item) => item.nombre === req.body.cargo
+      );
       return registrosAprendiz[0].id;
     } catch (error) {
       throw error;
@@ -286,12 +305,15 @@ const registerUsers = async (req, res) => {
   };
   const enviarUsuario = (resultadosInsercion) => {
     try {
-      const errorUsuarios = resultadosInsercion.reduce((acumulador, usuarioEstado) => {
+      const errorUsuarios = resultadosInsercion.reduce(
+        (acumulador, usuarioEstado) => {
           if (usuarioEstado.usuarioCreado) {
             const email = usuarioEstado.usuarioCreado.dataValues.email;
             const documento = usuarioEstado.usuarioCreado.dataValues.documento;
-            const contrasenia = usuarioEstado.usuarioCreado.dataValues.contrasenia;
-            const nombre = usuarioEstado.usuarioCreado.dataValues.nombre_completo;
+            const contrasenia =
+              usuarioEstado.usuarioCreado.dataValues.contrasenia;
+            const nombre =
+              usuarioEstado.usuarioCreado.dataValues.nombre_completo;
             const mailOptions = {
               from: `${EMAIL}`,
               to: email,
@@ -322,8 +344,8 @@ const registerUsers = async (req, res) => {
             });
 
             console.log("prueba");
-          }else if (usuarioEstado.error) {
-            acumulador.push(usuarioEstado.error)
+          } else if (usuarioEstado.error) {
+            acumulador.push(usuarioEstado.error);
           }
           return acumulador;
         },
@@ -369,7 +391,7 @@ const registerUsers = async (req, res) => {
       const promesasInsercion = data.map(crearUsuarioConErrorHandling);
 
       // Esperar a que todas las inserciones se completen
-      const resultadosInsercion = await Promise.all(promesasInsercion);// Envía una respuesta con información sobre los resultados de la inserción
+      const resultadosInsercion = await Promise.all(promesasInsercion); // Envía una respuesta con información sobre los resultados de la inserción
       enviarUsuario(resultadosInsercion);
       res.status(200).json({ resultadosInsercion });
     } else {
@@ -378,7 +400,7 @@ const registerUsers = async (req, res) => {
         .json({ message: "Datos inválidos o faltantes en la solicitud." });
     }
   } catch (error) {
-    console.error('Error al conectar a la base de datos:', error);
+    console.error("Error al conectar a la base de datos:", error);
     res.status(500).json({
       message: `Error al intentar registrarse: ${error.message}`,
     });
