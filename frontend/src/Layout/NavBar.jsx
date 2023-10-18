@@ -102,50 +102,45 @@ export const NavBar = () => {
               />
             </Link>
           </div>
-          <div className="ml-4 mt-2 flex-shrink-0">
-            <NavLink
-              to="/reglamento"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Reglamento
-            </NavLink>
-            <NavLink
-              to="/antecedentes"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Antecedentes aprendiz
-            </NavLink>
-            {localStorage.getItem("admin") ? (
+          <div className="ml-4 mt-2 flex">
+            <div className="flex flex-nowrap items-center text-sm">
               <NavLink
-                to="/roles"
-                className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                to="/reglamento"
+                className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
               >
-                Roles
+                Reglamento
               </NavLink>
-            ) : (
-              <></>
-            )}
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Instructores
-            </NavLink>
-            <NavLink
-              to="/"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Permisos
-            </NavLink>
-            <NavLink
-              to="/novedades-instructor"
-              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-            >
-              Novedades
-            </NavLink>
-
-            <div className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
+              <NavLink
+                to="/antecedentes"
+                className=" inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+              >
+                Antecedentes aprendiz
+              </NavLink>
+              {localStorage.getItem("admin") ? (
+                <NavLink
+                  to="/roles"
+                  className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                >
+                  Roles
+                </NavLink>
+              ) : (
+                <></>
+              )}
+              <NavLink
+                to="/"
+                className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+              >
+                Instructores
+              </NavLink>
               
+              <NavLink
+                to="/novedades-instructor"
+                className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+              >
+                Novedades
+              </NavLink>
+            </div>
+            <div className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent mx-3">
               <button
                 onClick={() => handleClick()}
                 // Transicion transition duration-300 ease-in-out ...
@@ -160,8 +155,10 @@ export const NavBar = () => {
                 />
               </button>
               <div className="flex flex-col items-center justify-center text-center">
-                <BsFillPersonFill className=" w-10 h-10  text-black" />
-                <div className="w-32 text-xs">{userName && userName ? userName : "Sin nombre"}</div>
+                <BsFillPersonFill className="w-10 h-10 text-black" />
+                <div className="w-32 text-xs hover:border-blue-800 transition duration-200 ease-in-out">
+                  {userName && userName ? userName : "Sin nombre"}
+                </div>
               </div>
             </div>
           </div>
