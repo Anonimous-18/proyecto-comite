@@ -14,7 +14,7 @@ export const Login = () => {
       if (localStorage.getItem("admin")) {
         navigate(`/roles`);
       } else if (localStorage.getItem("invitado")) {
-        navigate(`/homeinvitado`);
+        navigate(`/home-invitado`);
       } else if (localStorage.getItem("instructor")) {
         navigate(`/homeinstructor`);
       } else if (localStorage.getItem("aprendiz")) {

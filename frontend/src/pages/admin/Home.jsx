@@ -21,7 +21,7 @@ export const Home = () => {
     } else if (localStorage.getItem("admin")) {
       navigate(`/home`);
     } else if (localStorage.getItem("invitado")) {
-      navigate(`/homeinvitado`);
+      navigate(`/home-invitado`);
     } else if (localStorage.getItem("instructor")) {
       navigate(`/homeinstructor`);
     } else if (localStorage.getItem("aprendiz")) {

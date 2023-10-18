@@ -38,7 +38,7 @@ function App() {
         <Route path="/votoinstructor" element={<Votoinstructor />} />
         <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
-        <Route path="/homeinvitado" element={<Homeinvitado />} />
+        <Route path="/home-invitado" element={<Homeinvitado />} />
         <Route path="/homeinstructor" element={<Homeinstructor />} />
         <Route path="/homesubdirector" element={<Homesubdirector />} />
         <Route path="/novedades-instructor" element={<NovedadInstructor />} />
@@ -70,6 +70,8 @@ function App() {
         <Route path="/Antecedenteaprendiz/:id" element={<Antecedente />} />
         <Route path="/notificacionaprendiz" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />
+
+        <Route path="*" element={<Home />} />
       </Routes>
     </ContextAppProvider>
   );
