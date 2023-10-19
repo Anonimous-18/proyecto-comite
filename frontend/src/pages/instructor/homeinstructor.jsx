@@ -11,6 +11,34 @@ import { useContextApp } from "../../Context/ContextApp";
 import hooks from "../../hooks/useFunction";
 
 export const Homeinstructor = () => {
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [comitesPerPage] = useState(5);
+
+  // const indexOfLastComite = currentPage * comitesPerPage;
+  // const indexOfFirstComite = indexOfLastComite - comitesPerPage;
+  // const currentComites = comites.slice(indexOfFirstComite, indexOfLastComite);
+
+  // const paginate = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  //   window.scroll(0, 0);
+  // };
+
+  // <ul className="flex flex-row justify-center items-center">
+  //   {Array.from({
+  //     length: Math.ceil(comites.length / comitesPerPage),
+  //   }).map((_, index) => (
+  //     <li key={index}>
+  //       <button
+  //         onClick={() => paginate(index + 1)}
+  //         className={`bg-blue-500 text-white border border-black px-3 py-1 ${
+  //           currentPage === index + 1 ? "bg-yellow-500" : ""
+  //         }`}
+  //       >
+  //         {index + 1}
+  //       </button>
+  //     </li>
+  //   ))}
+  // </ul>;
   const contextApi = useContextApp();
   const [comites, setComites] = useState([]);
   const [filtrar, setFiltrar] = useState(null);
@@ -112,16 +140,13 @@ export const Homeinstructor = () => {
 
   return (
     <DefaultLayout>
-      <div className="max-w-full h-full flex flex-col items-center justify-around bg-yellow-300">
-        <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
-          <div className=" flex space-x-2">
-            {/* flex space-x-4 para columas */}
-            <Semaforo />
-            <Filtrocomite />
-          </div>
+      <div className="max-w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full flex flex-row items-start justify-center">
+          <Semaforo />
+          <Filtrocomite />
         </div>
 
-        <div className="flex flex-wrap justify-around border-2">
+        <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center">
           {comites && comites.length !== 0 ? (
             <>
               {currentComites.map((comite) => (
@@ -140,31 +165,33 @@ export const Homeinstructor = () => {
             <h1>Sin Comites</h1>
           )}
         </div>
-        <div className="p-2">
-          <Link
-            to={`/solicitudinstructor`}
-            className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-            type="button"
-          >
-            Crear Solicitud a Comite
-          </Link>
+        <div className="flex flex-row w-full h-32 items-center justify-between">
+          <ul className="flex flex-row justify-center items-center">
+            {Array.from({
+              length: Math.ceil(comites.length / comitesPerPage),
+            }).map((_, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => paginate(index + 1)}
+                  className={`bg-blue-500 text-white border border-black px-3 py-1 ${
+                    currentPage === index + 1 ? "bg-yellow-500" : ""
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="p-2">
+            <Link
+              to={`/solicitudinstructor`}
+              className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+              type="button"
+            >
+              Crear Solicitud a Comite
+            </Link>
+          </div>
         </div>
-        <ul>
-          {Array.from({
-            length: Math.ceil(comites.length / comitesPerPage),
-          }).map((_, index) => (
-            <li key={index}>
-              <button
-                onClick={() => paginate(index + 1)}
-                className={`bg-blue-500 text-white rounded-full px-3 py-1 ${
-                  currentPage === index + 1 ? "bg-yellow-500" : ""
-                }`}
-              >
-                {index + 1}
-              </button>
-            </li>
-          ))}
-        </ul>
       </div>
     </DefaultLayout>
   );

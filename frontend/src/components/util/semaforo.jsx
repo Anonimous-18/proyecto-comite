@@ -6,11 +6,11 @@ import { BsFillPersonDashFill } from "react-icons/bs";
 
 export const Semaforo = () => {
   return (
-    <div className="flex flex-col items-start justify-start px-1 bg-green-600 w-full h-full py-2 gap-1">
-      <h1 className="text-blue-800 text-left w-full text-xl font-bold bg-rose-600">
+    <div className="flex flex-col items-start justify-start px-1 w-full h-full bg-white py-2 gap-1">
+      <h1 className="text-blue-800 text-left w-full text-xl font-bold">
         Estado del comite:
       </h1>
-      <div className="grid grid-cols-5 bg-blue-400 gap-5 justify-around items-start">
+      <div className="grid grid-cols-5 gap-5 justify-around items-start">
         <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-500">
           <BsFillPersonXFill className="w-14 h-14  flex flex-col items-center text-red-600 " />
           <h4 className="font-bold">Rechazado</h4>
