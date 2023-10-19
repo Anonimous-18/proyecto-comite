@@ -1,6 +1,7 @@
 import DefaultLayout from "../../Layout/DefaultLayout";
-import Semaforo from "../../components/util/semaforo"
-import Filtrocomite from "../../components/util/filtocomite"
+import {Semaforo} from "../../components/util/semaforo"
+import {Filtrocomite} from "../../components/util/filtocomite"
+import { Carta } from "../../components/util/carta";
 
 export const HomeGestor = () => {
     return (

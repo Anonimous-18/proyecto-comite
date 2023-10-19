@@ -26,6 +26,7 @@ import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
 import { Historiacomite } from "./components/util/Historiacomite";
 import { TablaAntencedentesInstructor } from "./pages/instructor/TablaAntencedentesInstructor";
 import { NovedadInstructor } from "./pages/instructor/NovedadInstructor";
+import { HomeGestor } from "./pages/gestorcomite/homegestor";
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
         <Route path="/notificacionaprendiz" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />
 
+        <Route path="/home-gestor" element={< HomeGestor />}/>
         <Route path="*" element={<Home />} />
       </Routes>
     </ContextAppProvider>
