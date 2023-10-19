@@ -112,49 +112,47 @@ export const Homeinstructor = () => {
 
   return (
     <DefaultLayout>
-      <div>
-        <div className="mx-auto max-w-screen-xl  ">
-          <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
-            <div className=" flex space-x-2">
-              {/* flex space-x-4 para columas */}
-              <Semaforo />
-              <Filtrocomite />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-around border-2">
-            {comites && comites.length !== 0 ? (
-              <>
-                {currentComites.map((comite) => (
-                  <Carta
-                    key={comite.id}
-                    comite_id={comite.id}
-                    tipo_falta={comite.tipo_falta}
-                    descripcion_solicitud={comite.descripcion_solicitud}
-                    instructor={comite.instructor_fk}
-                    fecha={comite.createdAt.replace(/T.*/, "")}
-                    estado={comite.estado}
-                  />
-                ))}
-              </>
-            ) : (
-              <h1>Sin Comites</h1>
-            )}
-          </div>
-          <div className="p-2">
-            <Link
-              to={`/solicitudinstructor`}
-              className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-              type="button"
-            >
-              Crear Solicitud a Comite
-            </Link>
+      <div className="w-full h-full">
+        <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
+          <div className=" flex space-x-2">
+            {/* flex space-x-4 para columas */}
+            <Semaforo />
+            <Filtrocomite />
           </div>
         </div>
-      </div>
-      <ul>
-        {Array.from({ length: Math.ceil(comites.length / comitesPerPage) }).map(
-          (_, index) => (
+
+        <div className="flex flex-wrap justify-around border-2">
+          {comites && comites.length !== 0 ? (
+            <>
+              {currentComites.map((comite) => (
+                <Carta
+                  key={comite.id}
+                  comite_id={comite.id}
+                  tipo_falta={comite.tipo_falta}
+                  descripcion_solicitud={comite.descripcion_solicitud}
+                  instructor={comite.instructor_fk}
+                  fecha={comite.createdAt.replace(/T.*/, "")}
+                  estado={comite.estado}
+                />
+              ))}
+            </>
+          ) : (
+            <h1>Sin Comites</h1>
+          )}
+        </div>
+        <div className="p-2">
+          <Link
+            to={`/solicitudinstructor`}
+            className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+            type="button"
+          >
+            Crear Solicitud a Comite
+          </Link>
+        </div>
+        <ul>
+          {Array.from({
+            length: Math.ceil(comites.length / comitesPerPage),
+          }).map((_, index) => (
             <li key={index}>
               <button
                 onClick={() => paginate(index + 1)}
@@ -165,9 +163,9 @@ export const Homeinstructor = () => {
                 {index + 1}
               </button>
             </li>
-          )
-        )}
-      </ul>
+          ))}
+        </ul>
+      </div>
     </DefaultLayout>
   );
 };

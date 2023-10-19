@@ -20,8 +20,6 @@ export const NavBar = () => {
     if (token) {
       const decodedToken = hooks.useDecodedToken(token.token);
       setUserName(decodedToken.user.nombre_completo);
-      console.log(decodedToken);
-      console.log(localStorage.getItem("instructor"));
     }
   }, []);
 
