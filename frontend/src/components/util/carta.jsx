@@ -16,7 +16,7 @@ export const Carta = ({
   instructor,
   fecha,
   estado,
-  comite_id
+  comite_id,
 }) => {
   const [nombreInstructor, setNombreInstructor] = useState(null);
   const contextApi = useContextApp();
@@ -34,52 +34,46 @@ export const Carta = ({
   }, [contextApi, instructor]);
 
   return (
-    <div className="p-2">
-      <figure className="md:flex border-gray-200  p-3 md:p-0 max-w-lg bg-gray-200 rounded-xl">
-        <div className="flex  max-w-xl bg-gray-400">
-          {estado && estado === "espera" ? (
-            <BsFillPersonDashFill className="w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2 text-blue-600" />
-          ) : estado && estado === "rechazado" ? (
-            <BsFillPersonXFill className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-red-600 " />
-          ) : estado && estado === "aceptado" ? (
-            <BsFillPersonCheckFill className="  text-yellow-500  w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  " />
-          ) : estado && estado === "ejecucion" ? (
-            <BsFillPersonLinesFill className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-lime-500 " />
-          ) : (
-            <BsFillPersonFill className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-red-950 " />
-          )}
-        </div>
-        <div className="p-2">
-          <h1 className="text-blue-800 text-lg font-bold">{tipo_falta}</h1>
-          <p className="text-sm p-2">{descripcion_solicitud}</p>
-          <p className="text-sm p-2 font-bold">
-            {nombreInstructor && nombreInstructor !== null
-              ? nombreInstructor
-              : "¡Sin nombre!"}
-          </p>
-          <p className="text-sm p-2">{fecha}</p>
-          <div className="flex p-2">
-            <div className="p-2 ">
-              <button
-                className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                type="button"
-              >
-                Anexar Plan
-              </button>
-            </div>
-            <div className="p-2 ">
-              <Link to={`/infocomiteinstrutor/${comite_id}`}>
-                <button
-                  className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                  type="button"
-                >
-                  Ver mas
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
+    <div className="w-full h-full flex flex-row items-center justify-center">
+      <figure className="bg-gray-600 h-full w-56 flex flex-col items-center justify-center rounded-l-xl">
+        {estado && estado === "espera" ? (
+          <BsFillPersonDashFill className="w-36 h-36 text-blue-600" />
+        ) : estado && estado === "rechazado" ? (
+          <BsFillPersonXFill className=" w-36 h-36 text-red-600 " />
+        ) : estado && estado === "aceptado" ? (
+          <BsFillPersonCheckFill className="text-yellow-500 w-36 h-36" />
+        ) : estado && estado === "ejecucion" ? (
+          <BsFillPersonLinesFill className=" w-36 h-36 text-lime-500 " />
+        ) : (
+          <BsFillPersonFill className=" w-36 h-36 text-red-950 " />
+        )}
       </figure>
+      <div className="p-2 flex flex-col items-start justify-center bg-blue-400 rounded-r-xl">
+        <h1 className="text-blue-800 text-lg font-bold">{tipo_falta}</h1>
+        <p className="text-sm py-2">{descripcion_solicitud}</p>
+        <p className="text-sm py-2 font-bold">
+          {nombreInstructor && nombreInstructor !== null
+            ? nombreInstructor
+            : "¡Sin nombre!"}
+        </p>
+        <p className="text-sm py-2">{fecha}</p>
+        <div className="w-full flex flex-row items-center justify-center h-auto gap-2">
+          <button
+            className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+            type="button"
+          >
+            Anexar Plan
+          </button>
+          <Link to={`/infocomiteinstrutor/${comite_id}`}>
+            <button
+              className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+              type="button"
+            >
+              Ver mas
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
