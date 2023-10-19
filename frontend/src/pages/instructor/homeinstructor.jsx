@@ -112,7 +112,7 @@ export const Homeinstructor = () => {
 
   return (
     <DefaultLayout>
-      <div className="w-full h-full">
+      <div className="max-w-full h-full flex flex-col items-center justify-around bg-yellow-300">
         <div className="h-auto max-w-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl">
           <div className=" flex space-x-2">
             {/* flex space-x-4 para columas */}

@@ -4,10 +4,8 @@ export default function DefaultLayout({ children }) {
   return (
     <>
       <NavBar />
-      <main className="flex-1 mt-20">
-        <section className="container px-4 py-10 mx-auto">
-          {children}
-        </section>
+      <main className="flex my-32 px-32 flex-col justify-center items-center max-w-full h-full">
+        {children}
       </main>
       <Footer />
     </>
