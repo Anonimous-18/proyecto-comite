@@ -10,7 +10,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 import hooks from "../hooks/useFunction";
 
 export const NavBar = () => {
-  const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState(null);
 
   const navigate = useNavigate();
@@ -21,6 +20,8 @@ export const NavBar = () => {
     if (token) {
       const decodedToken = hooks.useDecodedToken(token.token);
       setUserName(decodedToken.user.nombre_completo);
+      console.log(decodedToken);
+      console.log(localStorage.getItem("instructor"));
     }
   }, []);
 
@@ -110,12 +111,17 @@ export const NavBar = () => {
               >
                 Reglamento
               </NavLink>
-              <NavLink
-                to="/antecedentes"
-                className=" inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-              >
-                Antecedentes aprendiz
-              </NavLink>
+              {localStorage.getItem("instructor") ||
+              localStorage.getItem("admin") ? (
+                <NavLink
+                  to="/antecedentes"
+                  className=" inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                >
+                  Antecedentes aprendiz
+                </NavLink>
+              ) : (
+                <></>
+              )}
               {localStorage.getItem("admin") ? (
                 <NavLink
                   to="/roles"
@@ -132,13 +138,17 @@ export const NavBar = () => {
               >
                 Instructores
               </NavLink>
-              
-              <NavLink
-                to="/novedades-instructor"
-                className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-              >
-                Novedades
-              </NavLink>
+              {localStorage.getItem("instructor") ||
+              localStorage.getItem("admin") ? (
+                <NavLink
+                  to="/novedades-instructor"
+                  className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                >
+                  Novedades
+                </NavLink>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent mx-3">
               <button
@@ -149,7 +159,7 @@ export const NavBar = () => {
                 Cerrar sesion
                 <PulseLoader
                   className="ml-3"
-                  loading={loading}
+                  loading={true}
                   size={5}
                   color="#ffffff"
                 />
@@ -253,7 +263,7 @@ export const NavBar = () => {
                             Cerrar sesion
                             <PulseLoader
                               className="ml-3"
-                              loading={loading}
+                              loading={true}
                               size={5}
                               color="#ffffff"
                             />
@@ -305,32 +315,6 @@ function IconOne() {
   );
 }
 
-function IconTwo() {
-  return (
-    <svg
-      width="48"
-      height="48"
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="48" height="48" rx="8" fill="#FFEDD5" />
-      <path
-        d="M28.0413 20L23.9998 13L19.9585 20M32.0828 27.0001L36.1242 34H28.0415M19.9585 34H11.8755L15.9171 27"
-        stroke="#FB923C"
-        strokeWidth="2"
-      />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M18.804 30H29.1963L24.0001 21L18.804 30Z"
-        stroke="#FDBA74"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
 function IconThree() {
   return (
     <svg
@@ -351,9 +335,11 @@ function IconThree() {
   );
 }
 
-<NavLink
+{
+  /* <NavLink
   to="/reglamento"
   className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
 >
   reglamento
-</NavLink>;
+</NavLink>; */
+}
