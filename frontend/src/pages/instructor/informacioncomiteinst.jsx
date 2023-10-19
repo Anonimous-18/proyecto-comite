@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { BsFillPersonLinesFill } from "react-icons/bs";
@@ -221,30 +221,28 @@ export const Informacioncomiteinst = () => {
                         Voto
                       </p>
                     </blockquote>
-                    <label
-                      htmlFor="opciones"
-                      className="text-gray-600 mt-4 flex flex-col items-center p-2"
-                    >
-                      Selecciona una opcción
-                    </label>
-                    <select
-                      id="opciones"
-                      name="opciones"
-                      className=" p-2 flex flex-col items-center border-2 border-gray-600 mt-2 bg-blue-400 hover:bg-blue-600  hover:text-white text-black"
-                    >
-                      <option value=" ">Selecionar</option>
-                      <option value="opcion1 ">Option 1</option>
-                      <option value="opcion2">Option 2</option>
-                    </select>
-                    <button
-                      type="submit"
-                      className="mt-2 place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-                      disabled
-                    >
-                      <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
-                        Votar
-                      </span>
-                    </button>
+                    {comite && comite.estado === "ejecucion" ? (
+                      <Link to={`/voto-comite/${comite.id}`}>
+                        <button
+                          type="button"
+                          className="mt-2 place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                        >
+                          <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
+                            Votar
+                          </span>
+                        </button>
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled
+                        className="mt-2 place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                      >
+                        <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
+                          Votar
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </>

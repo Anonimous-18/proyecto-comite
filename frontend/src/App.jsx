@@ -35,11 +35,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
         <Route path="/pruebas" element={<DefaultLayout />} />
-        <Route path="/votoinstructor" element={<Votoinstructor />} />
         <Route path="/home" element={<Home />} />
         <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
         <Route path="/home-invitado" element={<Homeinvitado />} />
         <Route path="/homeinstructor" element={<Homeinstructor />} />
+        <Route path="/voto-comite/:comite" element={<Votoinstructor />} />
         <Route path="/homesubdirector" element={<Homesubdirector />} />
         <Route path="/novedades-instructor" element={<NovedadInstructor />} />
         <Route path="/reglamento" element={<Reglamento />} />
