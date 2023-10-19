@@ -9,20 +9,17 @@ module.exports = {
         {
           id: 1,
           nombre: "Administrador",
-          createdAt: new Date(),  // Establece createdAt con la fecha y hora actual
-          updatedAt: new Date(), 
+          creado: new Date(), 
         },
         {
           id: 2,
           nombre: "Instructor",
-          createdAt: new Date(),  // Establece createdAt con la fecha y hora actual
-          updatedAt: new Date(), 
+          creado: new Date(),   
         },
         {
           id: 3,
           nombre: "Aprendiz",
-          createdAt: new Date(),  // Establece createdAt con la fecha y hora actual
-          updatedAt: new Date(), 
+          creado: new Date(), 
         },
       ],
       {}
