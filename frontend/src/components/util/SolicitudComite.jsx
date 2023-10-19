@@ -163,9 +163,9 @@ export const SolicitudComite = () => {
   };
 
   return (
-    <main className=" h-full w-full flex flex-col items-center">
+    <main className="h-full w-full flex flex-col items-center gap-5 bg-rose-600">
       <Semaforo />
-      <div className="h-full w-full flex flex-col items-center ">
+      <div className="h-full w-full flex flex-col items-center mb-3 bg-yellow-300">
         <form
           onSubmit={(e) => handleSubmit(e)}
           className="border border-black  p-2 rounded-xl text-sm font-medium text-gray-900"
