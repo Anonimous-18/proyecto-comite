@@ -1,9 +1,11 @@
+import { Fragment, useEffect, useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+
 import { SlMenu } from "react-icons/sl";
 import { GiCancel } from "react-icons/gi";
+import { BsJournalBookmarkFill } from "react-icons/bs";
 import { Popover, Transition } from "@headlessui/react";
 import { BsFillPersonFill } from "react-icons/bs";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { Fragment, useEffect, useState } from "react";
 
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -49,49 +51,13 @@ export const NavBar = () => {
     }
   };
 
-  const solutions = [
-    {
-      name: "Reglamento",
-      description: "Measure actions your users take",
-      href: "/reglamento",
-      icon: IconOne,
-    },
-    {
-      name: "Nosotros",
-      description: "Keep track of your growth",
-      href: "/nosotros",
-      icon: IconThree,
-    },
-    {
-      name: "Carreras",
-      description: "Keep track of your growth",
-      href: "/carreras",
-      icon: IconThree,
-    },
-    {
-      name: "Blog",
-      description: "Keep track of your growth",
-      href: "/blog",
-      icon: IconThree,
-    },
-    {
-      name: "Contacto",
-      description: "Keep track of your growth",
-      href: "/contacto",
-      icon: IconThree,
-    },
-  ];
-
   return (
-    // Con id queremos identificar cada vez que hacemos scroll
-
     <nav
       id="navbar"
       className="w-full py-4 top-0 z-40 fixed shadow-lg bg-gradient-to-t from-white via-white to-blue-100 "
     >
       <div className="px-4 sm:px-6 ">
-        {/* Con esto hacemos que el navbar sea responsive ver tailwind.config.js (screen) */}
-        <div className="-ml-4 -mt-2 hidden lg:flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2 ">
+        <div className="-ml-4 -mt-2 lg:flex flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
@@ -101,92 +67,22 @@ export const NavBar = () => {
               />
             </Link>
           </div>
-          <div className="ml-4 mt-2 flex">
-            <div className="flex flex-nowrap items-center text-sm">
-              <NavLink
-                to="/reglamento"
-                className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-              >
+          <div className="ml-4 mt-2 flex flex-row items-center justify-center">
+            <NavLink
+              to="/reglamento"
+              className="text-lg flex flex-col items-center justify-center text-center font-medium text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+            >
+              <BsJournalBookmarkFill className="w-10 h-10 text-black" />
+              <div className="w-32 text-xs font-bold hover:border-blue-800 transition duration-200 ease-in-out">
                 Reglamento
-              </NavLink>
-              {localStorage.getItem("instructor") ||
-              localStorage.getItem("admin") ? (
-                <NavLink
-                  to="/antecedentes"
-                  className=" inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-                >
-                  Antecedentes aprendiz
-                </NavLink>
-              ) : (
-                <></>
-              )}
-              {localStorage.getItem("admin") ? (
-                <NavLink
-                  to="/roles"
-                  className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-                >
-                  Roles
-                </NavLink>
-              ) : (
-                <></>
-              )}
-              <NavLink
-                to="/"
-                className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-              >
-                Instructores
-              </NavLink>
-              {localStorage.getItem("instructor") ||
-              localStorage.getItem("admin") ? (
-                <NavLink
-                  to="/novedades-instructor"
-                  className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-                >
-                  Novedades
-                </NavLink>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent mx-3">
-              <button
-                onClick={() => handleClick()}
-                // Transicion transition duration-300 ease-in-out ...
-                className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-              >
-                Cerrar sesion
-                <PulseLoader
-                  className="ml-3"
-                  loading={true}
-                  size={5}
-                  color="#ffffff"
-                />
-              </button>
-              <div className="flex flex-col items-center justify-center text-center">
-                <BsFillPersonFill className="w-10 h-10 text-black" />
-                <div className="w-32 text-xs hover:border-blue-800 transition duration-200 ease-in-out">
-                  {userName && userName ? userName : "Sin nombre"}
-                </div>
+              </div>
+            </NavLink>
+            <div className="flex flex-col items-center justify-center text-center mr-10 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
+              <BsFillPersonFill className="w-10 h-10 text-black" />
+              <div className="w-32 text-xs font-bold hover:border-blue-800 transition duration-200 ease-in-out">
+                {userName && userName ? userName : "Sin nombre"}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Este es el navLink cuando el de arriba se esconde */}
-        <div className="-ml-4 -mt-2 lg:hidden flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
-          <div className="ml-4 mt-2">
-            <Link to="/home">
-              {/* src={logo} */}
-              <img
-                // src="https://media.tenor.com/9xx5jJaHPpIAAAAd/fat-guy.gif"
-                src="https://tenor.com/es-419/view/tired-sleepy-gif-27609170.gif"
-                // src="https://placekitten.com/100/100"
-                width={70}
-                height={60}
-              />
-            </Link>
-          </div>
-          <div className="ml-4 mt-2 flex-shrink-0">
             <Popover className="relative">
               {({ open }) => (
                 <>
@@ -196,9 +92,9 @@ export const NavBar = () => {
                 focus:ring-none focus:outline-none`}
                   >
                     {open ? (
-                      <GiCancel className="text-4xl" />
+                      <GiCancel className="w-10 h-10" />
                     ) : (
-                      <SlMenu className="text-4xl" />
+                      <SlMenu className="w-10 h-10" />
                     )}
                   </Popover.Button>
                   <Transition
@@ -210,28 +106,67 @@ export const NavBar = () => {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute -left-20 z-10 mt-3 w-screen max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
+                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-1/2 transform px-6">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-2">
-                          {solutions.map((item) => (
+                        <div className="relative grid grid-cols-1 gap-4 bg-white p-7">
+                          {localStorage.getItem("instructor") ||
+                          localStorage.getItem("admin") ? (
                             <NavLink
-                              key={item.name}
-                              to={item.href}
-                              className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                              to="/antecedentes"
+                              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
                               <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                                <item.icon aria-hidden="true" />
+                                <IconOne aria-hidden="true" />
                               </div>
                               <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-900">
-                                  {item.name}
+                                  Antecedente Aprendiz
                                 </p>
                                 <p className="text-sm text-gray-500">
-                                  {item.description}
+                                  Descripcion Antecedente Aprendiz
                                 </p>
                               </div>
                             </NavLink>
-                          ))}
+                          ) : (
+                            <></>
+                          )}
+                          <NavLink
+                            to="/"
+                            className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                          >
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                              <IconOne aria-hidden="true" />
+                            </div>
+                            <div className="ml-4">
+                              <p className="text-sm font-medium text-gray-900">
+                                Instructores
+                              </p>
+                              <p className="text-sm text-gray-500">
+                                Descripcion Instructores
+                              </p>
+                            </div>
+                          </NavLink>
+                          {localStorage.getItem("instructor") ||
+                          localStorage.getItem("admin") ? (
+                            <NavLink
+                              to="/novedades-instructor"
+                              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                                <IconOne aria-hidden="true" />
+                              </div>
+                              <div className="ml-4">
+                                <p className="text-sm font-medium text-gray-900">
+                                  Novedades
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  Descripcion novedades
+                                </p>
+                              </div>
+                            </NavLink>
+                          ) : (
+                            <></>
+                          )}
                           {localStorage.getItem("admin") ? (
                             <NavLink
                               to="/roles"
@@ -331,13 +266,4 @@ function IconThree() {
       <rect x="33" y="12" width="2" height="24" fill="#FB923C" />
     </svg>
   );
-}
-
-{
-  /* <NavLink
-  to="/reglamento"
-  className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-white transition duration-200 ease-in-out mx-3"
->
-  reglamento
-</NavLink>; */
 }
