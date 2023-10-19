@@ -13,3 +13,21 @@ https://react-icons.github.io/react-icons/search?q=facebook
 
 ## GENERAR MODELO CON CAMPOS
 <h2>npx sequelize-cli model:generate --name Novedad --attributes descripcion_novedad:string,nombre_novedad:string</h2>
+
+## .env Frontend:
+<h2>VITE_API_URL=http://localhost:5000</h2>
+
+## .env Backend:
+<h2>PORT=5000
+
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=
+DB_DATABASE=proyecto_comite
+
+EMAIL=richardospina18@gmail.com
+EMAIL_PASSWORD=bklzkodrqernvxae
+
+ORIGEN=
+</h2>
