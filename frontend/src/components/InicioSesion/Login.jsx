@@ -76,7 +76,7 @@ export const Login = () => {
 
   return (
     <>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="dalinComoFondo dark:bg-gray-900">
         {err ? (
           <div className="bg-opacity-95 absolute flex flex-col items-center justify-center px-6 py-8 mx-auto h-full w-full lg:py-0">
             <div className="text-ls font-bold w-96 h-60 flex flex-col justify-center items-center text-center">

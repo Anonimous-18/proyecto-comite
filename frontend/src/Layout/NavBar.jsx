@@ -61,7 +61,8 @@ export const NavBar = () => {
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
-                src="https://tenor.com/es-419/view/tired-sleepy-gif-27609170.gif"
+              className="darlin"
+                src="../../public/hola.gif"
                 width={70}
                 height={60}
               />

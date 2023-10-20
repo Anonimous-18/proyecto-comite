@@ -3,3 +3,15 @@ body {
   height: 100vh;
   width: 100%;
 }
+
+.darlin {
+  width: 70px;
+  height: 70px;
+}
+
+.dalinComoFondo {
+  background-image: url("../public/hola.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} 
