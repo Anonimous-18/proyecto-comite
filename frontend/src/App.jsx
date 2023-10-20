@@ -22,7 +22,7 @@ import { Infocomitesub } from "./pages/subdirector/infocomitesub";
 import { RolesDetails } from "./components/Roles/RolesDetails";
 import DefaultLayout from "./Layout/DefaultLayout";
 import { Antecedente } from "./pages/subdirector/Antecedente";
-import { Notificaciones } from "./pages/aprendiz/Notificacionesaprendiz";
+import { Notificaciones } from "./components/util/Notificaciones";
 import { Historiacomite } from "./components/util/Historiacomite";
 import { TablaAntencedentesInstructor } from "./pages/instructor/TablaAntencedentesInstructor";
 import { NovedadInstructor } from "./pages/instructor/NovedadInstructor";
@@ -69,10 +69,10 @@ function App() {
           element={<SolicitudIntructor />}
         />
         <Route path="/Antecedenteaprendiz/:id" element={<Antecedente />} />
-        <Route path="/notificacionaprendiz" element={<Notificaciones />} />
+        <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
         <Route path="/historiasdecomite" element={<Historiacomite />} />
 
-        <Route path="/home-gestor" element={< HomeGestor />}/>
+        <Route path="/home-gestor" element={<HomeGestor />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </ContextAppProvider>

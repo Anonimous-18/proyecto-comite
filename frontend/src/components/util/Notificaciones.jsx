@@ -1,65 +1,98 @@
-import { BiSolidUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { BiSolidUser } from "react-icons/bi";
 
+import DefaultLayout from "../../Layout/DefaultLayout";
 
 export const Notificaciones = () => {
   return (
-    <div className="mx-auto max-w-4xl pt-20 pb-32 sm:pt-40 sm:pb-20 rounded-2xl">
-      <div className="mx-auto max-w-3xl pt-10 pb-22 sm:pt-38 sm:pb-20">
-        <button className=" md:p-2 text-center  ">
-          <blockquote>
-            <h1 className=" bg-black text-white w-24 h-9 text-center rounded-tl-lg rounded-br-lg   ">
-              RECIBIDOS
-            </h1>
-          </blockquote>
-        </button>
-        <div className="h-auto max-w-full flex flex-col items-center border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
-          <button className="hover:bg-blue-200 hover:text-black rounded-xl border-blue-500 shadow-black shadow-2xl ">
-            <figure className="md:flex border-gray-200 border-2 rounded-xl p-3 md:p-0 max-w-2xl">
-              <div className="rounded-xl mx-auto border-2 bg-gray-200 p-2 text-black">
-                <BiSolidUser className="w-36 h-36 md:h-auto" />
-                <h1>nombre</h1>
-              </div>
+    <DefaultLayout>
+      <main className="bg-rose-600 max-w-full h-full flex flex-col items-center justify-center">
+        <article className="bg-yellow-500 w-full h-full flex flex-row items-center justify-start">
+          <h1 className="text-white text-center p-4 bg-black">RECIBIDOS</h1>
+        </article>
+        <figure className="bg-blue-300 flex flex-row items-center justify-center w-full h-full">
+          <div className="rounded-xl bg-gray-200 flex flex-col items-center justify-center text-center text-black 2xl:w-1/5 w-1/4 h-full">
+            <BiSolidUser className="w-36 h-36" />
+            <h1>nombre</h1>
+          </div>
 
-              <div className="pt-6 md:p-8 text-center md:text-left space-y-4 bg-white">
-                <blockquote>
-                  <p className="w-20 text-blue-800 text-lg font-bold">TITULO</p>
-                </blockquote>
-                <blockquote>
-                  <p className="text-sm p-0 w-30">Descripcion</p>
-                </blockquote>
-                <blockquote>
-                  <p className="text-sm p-0 w-30 text-gray-500">
-                    Fecha de recibido
-                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-                    hhhhhhhhhhhhhhhhhhhh
-                  </p>
-                </blockquote>
-              </div>
-            </figure>
-          </button>
-          <blockquote>
-            
-        
-            
-          </blockquote>
-        </div>
-        
-<Link to={"/homeaprendiz"}>
-<button className="pt-6 md:p-8 text-center md:text-left space-y-4 ">
-          <blockquote>
-            <p
-              className="       bg-gray-500 text-white w-24 h-7 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg"
-            >
-              Volver
+          <div className="h-40 2xl:w-4/5 w-9/12 relative overflow-x-auto">
+            <p className="text-sm p-11 w-30 text-gray-500">
+              Fecha de recibido
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              hhhhhhhhhhhhhhhhhhhh
             </p>
-          </blockquote>
-        </button>
-
-</Link>
-        
-      </div>
-    </div>
-     );
- };
- 
+          </div>
+        </figure>
+        <div className="flex flex-col items-start justify-start w-full h-16">
+          <Link to={"/home"}>
+            <button className="bg-orange-500">Volver</button>
+          </Link>
+        </div>
+      </main>
+    </DefaultLayout>
+  );
+};
