@@ -11,24 +11,24 @@ export const Semaforo = () => {
         Estado del comite:
       </h1>
       <div className="grid grid-cols-5 gap-5 justify-around items-start">
-        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-500">
+        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-200 ">
           <BsFillPersonXFill className="w-14 h-14  flex flex-col items-center text-red-600 " />
           <h4 className="font-bold">Rechazado</h4>
         </div>
-        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-500">
-          <BsFillPersonDashFill className="w-14 h-14  flex flex-col text-blue-600 items-center" />
+        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-200">
+          <BsFillPersonDashFill className="w-14 h-14  flex flex-col text-blue-800 items-center" />
           <h4 className="font-bold">En espera</h4>
         </div>
-        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-500">
-          <BsFillPersonCheckFill className="w-14 h-14 text-yellow-500  flex flex-col items-center " />
+        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-200">
+          <BsFillPersonCheckFill className="w-14 h-14 text-green-700  flex flex-col items-center " />
           <h4 className="font-bold">Aceptado</h4>
         </div>
-        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-500">
-          <BsFillPersonLinesFill className="w-14 h-14 flex flex-col text-lime-500  items-center" />
+        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-200">
+          <BsFillPersonLinesFill className="w-14 h-14 flex flex-col text-green-700  items-center" />
           <h4 className="font-bold">En ejecución</h4>
         </div>
-        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-500">
-          <BsFillPersonFill className="w-14 h-14 text-red-950 flex flex-col items-center" />
+        <div className="p-4 rounded-md flex flex-col justify-center items-center shadow-md shadow-black bg-gray-200">
+          <BsFillPersonFill className="w-14 h-14 text-black flex flex-col items-center" />
           <h4 className="font-bold">Finalizado</h4>
         </div>
       </div>
