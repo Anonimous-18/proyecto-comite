@@ -4,9 +4,9 @@ export const Footer = () => {
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <img src="#" className="mr-5 h-6 sm:h-9" alt="logo" />
-            <p className="max-w-xs mt-4 text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
+            <img src="../../public/logoSena.png" className=" mr-40   sm:h-9" alt="logo" />
+            <p className="max-w-xs mt-4 text-sm text-gray-600 flex flex-col items-center justify-center">
+              SE-JustApp | | Servicion Nacional de Aprendizaje SENA
             </p>
             <div className="flex mt-8 space-x-6 text-gray-600">
               <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
@@ -82,26 +82,20 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <p className="font-medium">Company</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">About</a>
-                <a className="hover:opacity-75" href="#">Meet the Team</a>
-                <a className="hover:opacity-75" href="#">History</a>
-                <a className="hover:opacity-75" href="#">Careers</a>
+              <p className="font-medium">¿QUE ES SE-JUSTAPP?</p>
+              <nav className="flex flex-col mt-4 space-y-2 space-x-2 text-sm text-gray-500">
+                <p className="hover:opacity-75 space-x-2 w-full" href="#">Se-JustApp es una aplicación creada para la automatización 
+                de procesos de comités tanto académicos como disciplinarios del SENA. Esta aplicación permite a los 
+                usuarios gestionar y consultar los casos que se presentan en los comités, así como generar informes 
+                y estadísticas. Se-JustApp facilita el trabajo de los integrantes de los comités, al brindarles 
+                una herramienta ágil, segura y eficiente. Se-JustApp es una solución innovadora que contribuye 
+                a la calidad y transparencia de los procesos del SENA.  </p>
+                
               </nav>
             </div>
-            <div>
-              <p className="font-medium">Services</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">1on1 Coaching</a>
-                <a className="hover:opacity-75" href="#">Company Review</a>
-                <a className="hover:opacity-75" href="#">Accounts Review</a>
-                <a className="hover:opacity-75" href="#">HR Consulting</a>
-                <a className="hover:opacity-75" href="#">SEO Optimisation</a>
-              </nav>
-            </div>
+            
             <div>
               <p className="font-medium">Helpful Links</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
@@ -121,7 +115,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-gray-800">© 2022 Company Name</p>
+        <p className="mt-8 text-xs text-gray-800">© 2023 SE-JustApp</p>
       </div>
     </footer>
   );
