@@ -29,12 +29,14 @@ const createComites = async (req, res) => {
         });
         return res.sendStatus(204);
       } catch (error) {
+        console.log(error);
         return res.status(500).json({ message: error.message });
       }
     }
 
     return res.status(500).json({ message: "Error al crear un nuevo comite." });
   } catch (error) {
+    console.log(error);
     res
       .status(500)
       .json({ message: `Error al crear un nuevo comite: ${error.message}` });
