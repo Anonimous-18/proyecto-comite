@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { handleFileUpload,excelNombre } from "../../execelJson/xlsxJson";
+import { handleFileUpload,excelNombre } from "../../funciones/xlsxJson";
 import { BsFiletypeExe } from "react-icons/bs"
 import axios from 'axios'; 
 const Prueba = () => {

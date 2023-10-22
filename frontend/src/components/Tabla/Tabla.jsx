@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
-  // datos = null
+export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
   const [data, setData] = useState([]);
   const { validateToken } = useContextApp();
   const navigate = useNavigate();
@@ -55,8 +54,7 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                 type="text"
                 id="table-search"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
-                placeholder="Buscar"
-              />
+                placeholder="Buscar" />
             </div>
             <div className="relative flex items-center rounded-md ml-40 bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:text-white hover:bg-blue-400 focus:outline-none text-center ">
               <Link
@@ -119,12 +117,12 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
                       </Link>
                     </div>
                     <div className="ml-3 relative rounded-md w-1/4 bg-blue-200 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
-                        <Link
-                      to={`/form-${nombre_tabla}/update/${item.id}`}
-                      className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
-                    >
-                      gestion permisos
-                    </Link>
+                      <Link
+                        to={`/form-${nombre_tabla}/update/${item.id}`}
+                        className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
+                      >
+                        gestion permisos
+                      </Link>
                     </div>
 
                     {/* <Link
@@ -149,4 +147,4 @@ export const Tab = ({ datos, fun_eliminar, nombre_tabla }) => {
       </div>
     </div>
   );
-};
+}

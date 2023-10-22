@@ -27,6 +27,7 @@ export const NavBar = () => {
 
   const handleClick = () => {
     localStorage.clear();
+    sessionStorage.clear();
     navigate("/");
   };
 

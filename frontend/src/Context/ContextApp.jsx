@@ -8,6 +8,7 @@ import instructorApi from "../api/instructor";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
+
 import {
   getRolesRequest,
   createRolRequest,
@@ -15,7 +16,10 @@ import {
   updateRolRequest,
   getRolByIdRequest,
 } from "../api/roles";
+
 import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
+
+import { encodeCustomBase64String,decodeCustomBase64String } from "../funciones/encode";
 
 export const ContextApp = createContext();
 
@@ -25,6 +29,7 @@ export const ContextAppProvider = ({ children }) => {
   const deleteToken = () => {
     try {
       localStorage.removeItem("newToken");
+      sessionStorage.clear();
     } catch (error) {
       console.log(error.message);
     }
@@ -36,6 +41,7 @@ export const ContextAppProvider = ({ children }) => {
       const response = await login(data);
       if (response.status === 200 && response.data) {
         localStorage.setItem("newToken", JSON.stringify(response.data));
+        sessionStorage.setItem("Datos", encodeCustomBase64String(response.data.token));
         return true;
       }
       return false;
@@ -367,7 +373,7 @@ export const ContextAppProvider = ({ children }) => {
         getAntecedentes,
         getPermisos,
         asignarPermisos,
-        createNovedad
+        createNovedad,
       }}
     >
       {children}

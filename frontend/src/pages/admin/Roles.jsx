@@ -1,4 +1,4 @@
-import { Tab } from "../../components/Tabla/Tab";
+import { Tabla } from "../../components/Tabla/Tabla";
 import { useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
 import { useEffect, useState } from "react";
@@ -38,7 +38,7 @@ export const Roles = () => {
   if (roles && roles.length !== 0) {
     return (
       <DefaultLayout>
-        <Tab datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
+        <Tabla datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
       </DefaultLayout>
     );
   } 

@@ -26,6 +26,7 @@ import { Historiacomite } from "./components/util/Historiacomite";
 import { TablaAntencedentesInstructor } from "./pages/instructor/TablaAntencedentesInstructor";
 import { NovedadInstructor } from "./pages/instructor/NovedadInstructor";
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
+import Prueba from "./components/pruebas/Prueba";
 
 const Router = () => {
   return (
@@ -33,7 +34,7 @@ const Router = () => {
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-      <Route path="/pruebas" element={<DefaultLayout />} />
+      <Route path="/pruebas" element={<Prueba />} />
       <Route path="/home" element={<Home />} />
       <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
       <Route path="/home-invitado" element={<Homeinvitado />} />
