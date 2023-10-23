@@ -1,6 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-
+import { BiSolidFoodMenu } from "react-icons/bi";
+import { BsFillJournalBookmarkFill } from "react-icons/bs";
+import { FaStreetView } from "react-icons/fa";
+import { IoNotificationsSharp } from "react-icons/io5"
 import { SlMenu } from "react-icons/sl";
 import { GiCancel } from "react-icons/gi";
 import { BsJournalBookmarkFill } from "react-icons/bs";
@@ -109,7 +112,7 @@ export const NavBar = () => {
                     leaveTo="opacity-0 translate-y-1"
                   >
                     <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-1/2 transform px-6">
-                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
                         <div className="relative grid grid-cols-1 gap-4 bg-white p-7">
                           {localStorage.getItem("instructor") ||
                           localStorage.getItem("admin") ? (
@@ -117,8 +120,8 @@ export const NavBar = () => {
                               to="/antecedentes"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                                <IconOne aria-hidden="true" />
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                                <BiSolidFoodMenu className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center"/>
                               </div>
                               <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-900">
@@ -144,8 +147,8 @@ export const NavBar = () => {
                             }`}
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                              <IconOne aria-hidden="true" />
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <IoNotificationsSharp className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                             </div>
                             <div className="ml-4">
                               <p className="text-sm font-medium text-gray-900">
@@ -160,8 +163,8 @@ export const NavBar = () => {
                             to="/"
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                              <IconOne aria-hidden="true" />
+                            <div  className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <FaStreetView  className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center"/>
                             </div>
                             <div className="ml-4">
                               <p className="text-sm font-medium text-gray-900">
@@ -178,8 +181,8 @@ export const NavBar = () => {
                               to="/novedades-instructor"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                                <IconOne aria-hidden="true" />
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                                <BsFillJournalBookmarkFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                               </div>
                               <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-900">
@@ -217,7 +220,7 @@ export const NavBar = () => {
                         <div className="bg-gray-50 p-4">
                           <button
                             onClick={() => handleClick()}
-                            className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-black px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                            className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-800 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
                           >
                             Cerrar sesion
                             <PulseLoader
