@@ -41,7 +41,6 @@ export const ContextAppProvider = ({ children }) => {
       const obtenerUsuario = async () => {
         const usuario = await usuarioToken.user;
         setUsuario(usuario);
-        console.log(usuario);
       };
   
       obtenerUsuario();

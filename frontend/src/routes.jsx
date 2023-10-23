@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useContextApp } from "./Context/ContextApp";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 
 import { Reglamento } from "./components/Reglamento/Reglamento";
@@ -32,60 +32,81 @@ import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
 import Prueba from "./components/pruebas/Prueba";
 
 const Router = () => {
-  const { usuario, decode } = useContextApp();
-  // useEffect(() => {
-  //   const token = decode(sessionStorage.getItem('Datos'));
-  //   usuario
-  // },[location.pathname])
-  return (
-    <Routes>
-      <Route
-        path="/roles"
-        element={
-          <RutasProtegidas permitido={!!usuario && usuario.rol_id === 1}>
-            <Roles/>
-          </RutasProtegidas>
-        }
-      />
+  const { decode } = useContextApp();
+  const [usuarioRoles, setUsuarioRoles] = useState(null);
 
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-      <Route path="/pruebas" element={<Prueba />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
-      <Route path="/home-invitado" element={<Homeinvitado />} />
-      <Route path="/homeinstructor" element={<Homeinstructor />} />
-      <Route path="/voto-comite/:comite" element={<Votoinstructor />} />
-      <Route path="/homesubdirector" element={<Homesubdirector />} />
-      <Route path="/novedades-instructor" element={<NovedadInstructor />} />
-      <Route path="/reglamento" element={<Reglamento />} />
-      <Route
-        path="/infocomiteinstrutor/:comite_id"
-        element={<Informacioncomiteinst />}
-      />
-      <Route
-        path="/impugnacionesaprendiz"
-        element={<ImpugnacionesAprendiz />}
-      />
-      <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
-      <Route path="/solicitudinstructor" element={<SolicitudIntructor />} />
-      <Route path="/novedadinvitado" element={<NovedadInvitado />} />
-      <Route path="/infocomitesub" element={<Infocomitesub />} />
-      <Route path="/antecedentes" element={<TablaAntencedentesInstructor />} />
-      <Route path="/form-roles" element={<FormularioRoles />} />
-      <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
-      <Route path="/see-roles/:id" element={<RolesDetails />} />
-      <Route
-        path="/solicitud-comite-instructor"
-        element={<SolicitudIntructor />}
-      />
-      <Route path="/Antecedenteaprendiz/:id" element={<Antecedente />} />
-      <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
-      <Route path="/historiasdecomite" element={<Historiacomite />} />
-      <Route path="/home-gestor" element={<HomeGestor />} />
-      <Route path="*" element={<Home />} />
-    </Routes>
+  useEffect(() => {
+    if (sessionStorage.getItem("Datos")) {
+      const token = decode(sessionStorage.getItem("Datos"));
+      const usuarioToken = jwt_decode(token);
+      if (usuarioToken) {
+        setUsuarioRoles(usuarioToken.user);
+      }
+    }
+  }, [location.pathname]);
+
+  console.log(usuarioRoles);
+
+  return (
+    <>
+      {usuarioRoles ? (
+        <Routes>
+          <Route
+            path="/roles"
+            element={
+              <RutasProtegidas
+                permitido={!!usuarioRoles && usuarioRoles.rol_id === 1}
+              >
+                <Roles />
+              </RutasProtegidas>
+            }
+          />
+
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
+          <Route path="/pruebas" element={<Prueba />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
+          <Route path="/home-invitado" element={<Homeinvitado />} />
+          <Route path="/homeinstructor" element={<Homeinstructor />} />
+          <Route path="/voto-comite/:comite" element={<Votoinstructor />} />
+          <Route path="/homesubdirector" element={<Homesubdirector />} />
+          <Route path="/novedades-instructor" element={<NovedadInstructor />} />
+          <Route path="/reglamento" element={<Reglamento />} />
+          <Route
+            path="/infocomiteinstrutor/:comite_id"
+            element={<Informacioncomiteinst />}
+          />
+          <Route
+            path="/impugnacionesaprendiz"
+            element={<ImpugnacionesAprendiz />}
+          />
+          <Route path="/pruebaaprendiz" element={<Pruebas_Aprendiz />} />
+          <Route path="/solicitudinstructor" element={<SolicitudIntructor />} />
+          <Route path="/novedadinvitado" element={<NovedadInvitado />} />
+          <Route path="/infocomitesub" element={<Infocomitesub />} />
+          <Route
+            path="/antecedentes"
+            element={<TablaAntencedentesInstructor />}
+          />
+          <Route path="/form-roles" element={<FormularioRoles />} />
+          <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
+          <Route path="/see-roles/:id" element={<RolesDetails />} />
+          <Route
+            path="/solicitud-comite-instructor"
+            element={<SolicitudIntructor />}
+          />
+          <Route path="/Antecedenteaprendiz/:id" element={<Antecedente />} />
+          <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
+          <Route path="/historiasdecomite" element={<Historiacomite />} />
+          <Route path="/home-gestor" element={<HomeGestor />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      ) : (
+        <div className="mx-auto">Cargando...</div>
+      )}
+    </>
   );
 };
 
