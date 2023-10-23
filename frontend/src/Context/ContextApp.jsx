@@ -31,6 +31,23 @@ export const ContextAppProvider = ({ children }) => {
 
   const [camposFil, setCamposFil] = useState(null);
 
+  const [cargarPagina, setCargarPagina] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("Datos")) {
+      const token = decode(sessionStorage.getItem("Datos"));
+      const usuarioToken = jwt_decode(token);
+  
+      const obtenerUsuario = async () => {
+        const usuario = await usuarioToken.user;
+        setUsuario(usuario);
+        console.log(usuario);
+      };
+  
+      obtenerUsuario();
+    }
+  }, [location.pathname]);
+
   const decode = (encode) => {
     return decodeCustomBase64String(encode);
   };
@@ -392,8 +409,7 @@ export const ContextAppProvider = ({ children }) => {
         decode,
         usuario,
         setUsuario,
-      }}
-    >
+      }}>
       {children}
     </ContextApp.Provider>
   );

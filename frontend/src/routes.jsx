@@ -32,21 +32,17 @@ import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
 import Prueba from "./components/pruebas/Prueba";
 
 const Router = () => {
-  const { validateToken, usuario, setUsuario, decode } = useContextApp();
-
-  // useEffect(()=>{
+  const { usuario, decode } = useContextApp();
+  // useEffect(() => {
   //   const token = decode(sessionStorage.getItem('Datos'));
-  //   const usuarioToken = jwt_decode(token);
-  //   setUsuario(usuarioToken.user);
-  //   console.log(usuarioToken)
-  // },[]);
-
+  //   usuario
+  // },[location.pathname])
   return (
     <Routes>
       <Route
         path="/roles"
         element={
-          <RutasProtegidas permitido={!!usuario && usuario.rol_id == 1}>
+          <RutasProtegidas permitido={!!usuario && usuario.rol_id === 1}>
             <Roles/>
           </RutasProtegidas>
         }
