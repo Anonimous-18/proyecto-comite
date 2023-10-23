@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('roles', {
+  const roles = sequelize.define('roles', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -14,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     creado: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
     sequelize,
@@ -31,4 +32,12 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  //relacion de muchos a muchos se coloca solamente en uno de los modelos sequelize ya se encarga de hacer el resto
+  roles.belongsToMany(sequelize.models.permisos, {
+    through: 'roles_permisos', // Nombre de la tabla intermedia
+    foreignKey: 'rol_id', // Clave externa en roles_permisos que hace referencia a roles
+    otherKey: 'permisos_id', // Clave externa en roles_permisos que hace referencia a permisos
+  });
+  return roles;
 };
+

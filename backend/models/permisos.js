@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('permisos', {
+  const permisos = sequelize.define('permisos', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -14,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     creado: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
     sequelize,
@@ -31,4 +32,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  return permisos;
 };

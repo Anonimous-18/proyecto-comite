@@ -25,12 +25,13 @@ const verifyToken = (req, res, next) => {
     /**-------------------------------------------------------
      * |  Verificar el token y obtener los datos decodificados
      -------------------------------------------------------*/
-    let decodedToken = jwt.verify(token, key);
+    const decodedToken = jwt.verify(token, key);
 
     /**---------------------------------------------
      * |  Guardamos los datos del usuario logueado
      ---------------------------------------------*/
     req.userData = decodedToken;
+    console.log(req.userData);
     if (decodedToken) {
       next();
     }
@@ -47,8 +48,8 @@ const filtrarRol = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   const { rol } = req.body;
 
-  console.log("BACKEND TOKEN: ", token);
-  console.log("ROL : ", rol);
+  // console.log("BACKEND TOKEN: ", token);
+  // console.log("ROL : ", rol);
 
   if (!token) {
     return res.status(401).json({ message: "Token no proporcionado" });
@@ -56,7 +57,6 @@ const filtrarRol = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, key);
-    req.userData = decodedToken;
 
     const getRol = async () => {
       const [result] = await pool.query(

@@ -1,7 +1,6 @@
 import { BiSolidUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-
 export const Notificaciones = () => {
   return (
     <div className="mx-auto max-w-4xl pt-20 pb-32 sm:pt-40 sm:pb-20 rounded-2xl">
@@ -38,28 +37,19 @@ export const Notificaciones = () => {
               </div>
             </figure>
           </button>
-          <blockquote>
-            
-        
-            
-          </blockquote>
+          <blockquote></blockquote>
         </div>
-        
-<Link to={"/homeaprendiz"}>
-<button className="pt-6 md:p-8 text-center md:text-left space-y-4 ">
-          <blockquote>
-            <p
-              className="       bg-gray-500 text-white w-24 h-7 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg"
-            >
-              Volver
-            </p>
-          </blockquote>
-        </button>
 
-</Link>
-        
+        <Link to={"/homeaprendiz"}>
+          <button className="pt-6 md:p-8 text-center md:text-left space-y-4 ">
+            <blockquote>
+              <p className="       bg-blue-700 text-white w-24 h-7 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg">
+                Volver
+              </p>
+            </blockquote>
+          </button>
+        </Link>
       </div>
     </div>
-     );
- };
- 
+  );
+};

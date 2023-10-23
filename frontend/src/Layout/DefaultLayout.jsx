@@ -1,11 +1,13 @@
 import { NavBar } from "./NavBar";
 import { Footer } from "./Footer";
-export default function ({ children }) {
-  return(
-    <div className="flex flex-col space-y-40 justify-between h-full">
-    <NavBar />
-    <div>{children}</div>
-    <Footer />
-  </div>
+export default function DefaultLayout({ children }) {
+  return (
+    <>
+      <NavBar />
+      <main className="flex my-32 px-32 flex-col justify-center items-center max-w-full h-full">
+        {children}
+      </main>
+      <Footer />
+    </>
   );
 }

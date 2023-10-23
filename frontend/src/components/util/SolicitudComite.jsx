@@ -1,8 +1,9 @@
-
-import { Semaforo } from "./semaforo";
-import { useContextApp } from "../../Context/ContextApp";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import hooks from "../../hooks/useFunction";
+import { Semaforo } from "./semaforo";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const SolicitudComite = () => {
   const [reglamento, setReglamento] = useState([]);
@@ -17,10 +18,9 @@ export const SolicitudComite = () => {
     identificaciones: [],
   });
 
-  const { getReglamento, orderReglamento, protectedRoutes, validateToken } =
-    useContextApp();
+  const contextApi = useContextApp();
   const navigate = useNavigate();
-  const tokenExist = protectedRoutes();
+  const tokenExist = contextApi.protectedRoutes();
 
   useEffect(() => {
     /**-------------------------------------------------------
@@ -28,12 +28,12 @@ export const SolicitudComite = () => {
      -------------------------------------------------------*/
     if (!tokenExist) {
       navigate(`/`);
-    } else if (validateToken()) {
+    } else if (contextApi.validateToken()) {
       navigate(`/`);
     } else {
       const Reglamento = async () => {
         const token = JSON.parse(localStorage.getItem("newToken"));
-        const res = await getReglamento(token.token);
+        const res = await contextApi.getReglamento(token.token);
 
         if (res !== null || res !== undefined) {
           setReglamento(res);
@@ -42,7 +42,7 @@ export const SolicitudComite = () => {
 
       Reglamento();
     }
-  }, [getReglamento, validateToken, navigate, tokenExist, data.capitulo]);
+  }, [navigate, contextApi, tokenExist]);
 
   const agregarArticulo = () => {
     /**-------------------------------------------------------
@@ -84,7 +84,7 @@ export const SolicitudComite = () => {
   } else if (reglamento.length === 0) {
     return <div>Loading...</div>;
   }
-  const result = orderReglamento(reglamento);
+  const result = contextApi.orderReglamento(reglamento);
 
   const agregarIdentificacion = () => {
     setData({
@@ -117,7 +117,7 @@ export const SolicitudComite = () => {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     /**-------------------------------------------------------
      * |  Eliminamos los elementos repetidos en el array
@@ -140,31 +140,63 @@ export const SolicitudComite = () => {
     console.log("DESCRIPCIONFALTA ", data.descripcion_falta);
     console.log("TIPOFALTA ", data.tipo_falta);
     console.log("ANEXOS ", data.anexos);
+
+    const token = JSON.parse(localStorage.getItem("newToken"));
+    const tokenDecoded = hooks.useDecodedToken(token.token);
+
+    const body = {
+      aprendices_implicados: idenRequest,
+      articulos: artRequest,
+      instructor_fk: tokenDecoded.user.id,
+      tipo_falta: data.tipo_falta,
+      descripcion_solicitud: data.descripcion_falta,
+    };
+
+    if (body) {
+      try {
+        await contextApi.createComite(body);
+        navigate(`/homeinstructor`)
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
-    <main className="mt-24 h-full w-full flex flex-col items-center">
-      <h1>Solicitudes de Comité</h1>
+    <main className="h-full w-full flex flex-col items-center gap-5 ">
       <Semaforo />
-      <div className="h-full w-full">
-        <form onSubmit={(e) => handleSubmit(e)} className="border border-black">
-          <h2 className="font-bold">Crear Solicitud Comite</h2>
+      <div className="h-full w-full flex flex-col items-center mb-3 ">
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          className="border border-black  p-2 rounded-xl text-sm font-medium text-gray-900"
+        >
+          <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
+            Crear Solicitud Comite
+          </h2>
           <div>
-            <label className="">Capitulo del Reglamento</label>
-            <select
-              onChange={(e) => onChange(e)}
-              id="capitulo"
-              name="capitulo"
-              value={data.capitulo}
-              required
-              className="bg-rose-200"
-            >
-              {result.map((capitulo) => (
-                <option key={capitulo.cap_id} value={`${capitulo.cap_id}`}>
-                  Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
-                </option>
-              ))}
-            </select>
+            <label className="h-full w-full flex flex-col">
+              Capitulo del Reglamento
+            </label>
+            <div>
+              <select
+                onChange={(e) => onChange(e)}
+                id="capitulo"
+                name="capitulo"
+                value={data.capitulo}
+                required
+                className="bg-blue-400 h-100 w-full flex flex-col rounded-xl border-2"
+              >
+                {result.map((capitulo) => (
+                  <option
+                    key={capitulo.cap_id}
+                    value={`${capitulo.cap_id}`}
+                    className="h-100 p-14"
+                  >
+                    Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div>
             <label className="">Articulo del Reglamento</label>
@@ -174,7 +206,7 @@ export const SolicitudComite = () => {
                 id="articulo"
                 name="articulo"
                 value={data.articulo}
-                className="bg-rose-200"
+                className="bg-blue-400 h-100 w-full flex flex-col rounded-xl border-2"
               >
                 <option value="">Seleccione un Articulo</option>
                 {getArticulos(result).contenido.map((articulo, index) => (
@@ -183,13 +215,15 @@ export const SolicitudComite = () => {
                   </option>
                 ))}
               </select>
-              <button
-                type="button"
-                className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-                onClick={agregarArticulo}
-              >
-                Agregar Articulo
-              </button>
+              <div className="place-content-center flex p-1">
+                <button
+                  type="button"
+                  className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                  onClick={agregarArticulo}
+                >
+                  Agregar Articulo
+                </button>
+              </div>
             </div>
           </div>
           {articulosSeleccionados.length > 0 && (
@@ -197,11 +231,11 @@ export const SolicitudComite = () => {
               <h4>Articulos Seleccionados:</h4>
               <ul>
                 {articulosSeleccionados.map((articuloId, index) => (
-                  <li key={index}>
-                    {`Articulo ${articuloId}`}
+                  <li key={index} className="place-content-center flex p-1">
+                    • {`Articulo ${articuloId}`}
                     <button
                       type="button"
-                      className="bg-purple-900"
+                      className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
                       onClick={() => quitarArticulo(index)}
                     >
                       Eliminar
@@ -214,29 +248,31 @@ export const SolicitudComite = () => {
           <div>
             <h4>Aprendices Implicados:</h4>
             {data.identificaciones.map((identificacion, index) => (
-              <div key={index}>
+              <div key={index} className="p-1">
                 <input
                   type="text"
                   value={identificacion}
                   onChange={(e) =>
                     actualizarIdentificacion(index, e.target.value)
                   }
-                  className="border border-black"
+                  className="border border-black  p-2 rounded-xl"
                   placeholder="Identificacion"
                 />
               </div>
             ))}
-            <button
-              type="button"
-              className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-              onClick={agregarIdentificacion}
-            >
-              {data.identificaciones.length !== 0 ? (
-                <>Agregar Otra Identificación</>
-              ) : (
-                <>Agregar Identificación</>
-              )}
-            </button>
+            <div className="place-content-center flex p-1">
+              <button
+                type="button"
+                className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                onClick={agregarIdentificacion}
+              >
+                {data.identificaciones.length !== 0 ? (
+                  <>Agregar Otra Identificación</>
+                ) : (
+                  <>Agregar Identificación</>
+                )}
+              </button>
+            </div>
           </div>
           <div>
             <p>Descripcion de la Falta:</p>
@@ -244,7 +280,7 @@ export const SolicitudComite = () => {
               name="descripcion_falta"
               required
               onChange={(e) => onChange(e)}
-              className="border border-black"
+              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
             />
           </div>
           <div>
@@ -255,30 +291,43 @@ export const SolicitudComite = () => {
               name="tipo_falta"
               value={data.tipo_falta}
               required
-              className="bg-rose-200"
+              className="bg-blue-400  h-100 w-full flex flex-col rounded-xl border-2"
             >
               <option value="">Seleccione el Tipo de Falta</option>
               <option value="Academica">Academica</option>
               <option value="Disciplinaria">Disciplinaria</option>
             </select>
           </div>
-          <div>
-            <p>Carpeta Anexos:</p>
+          <div className="w-full">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Adjuntar evidencias
+            </label>
             <input
-              type="text"
-              name="anexos"
+              type="file"
+              name="brand"
+              id="brand"
               placeholder="Link de la carpeta"
               onChange={(e) => onChange(e)}
-              className="border border-black"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
             />
           </div>
-          <Link
-            to={`/home`}
-            className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-          >
-            Cancelar
-          </Link>
-          <button className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800">Crear Solicitud</button>
+          <div className="p-2 sm:col-span-2 flex flex-row place-content-center">
+            <div>
+              <Link
+                to={`/home`}
+                className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+              >
+                Cancelar
+              </Link>
+            </div>
+            <div>
+              <button className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2">
+                Crear Solicitud
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </main>

@@ -1,16 +1,44 @@
+/* eslint-disable react/prop-types */
 import jwt_decode from "jwt-decode";
+import { createContext, useContext, useEffect, useState } from "react";
+
+import usuariosApi from "../api/usuarios";
+import novedadesApi from "../api/novedades";
+import instructorApi from "../api/instructor";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
-import { createContext, useContext } from "react";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
-import { getRolesRequest, createRolRequest, deleteRolRequest, updateRolRequest, getRolByIdRequest } from "../api/roles";
+
+import {
+  getRolesRequest,
+  createRolRequest,
+  deleteRolRequest,
+  updateRolRequest,
+  getRolByIdRequest,
+} from "../api/roles";
+
+import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
+
+import {
+  encodeCustomBase64String,
+  decodeCustomBase64String,
+} from "../funciones/encode";
 
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
+  const [usuario, setUsuario] = useState({});
+
+  const [camposFil, setCamposFil] = useState(null);
+
+  const decode = (encode) => {
+    return decodeCustomBase64String(encode);
+  };
+
   const deleteToken = () => {
     try {
       localStorage.removeItem("newToken");
+      sessionStorage.clear();
     } catch (error) {
       console.log(error.message);
     }
@@ -22,6 +50,13 @@ export const ContextAppProvider = ({ children }) => {
       const response = await login(data);
       if (response.status === 200 && response.data) {
         localStorage.setItem("newToken", JSON.stringify(response.data));
+
+        sessionStorage.setItem(
+          "Datos",
+          encodeCustomBase64String(response.data.token)
+        );
+        const datosUsuario = jwt_decode(response.data.token);
+        setUsuario(datosUsuario.user);
         return true;
       }
       return false;
@@ -42,7 +77,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const protectedRoutes = () => {
     const token = JSON.parse(localStorage.getItem("newToken"));
-    if (token !== null) {
+    if (token) {
       return true;
     }
     return false;
@@ -167,6 +202,24 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getPermisos = async (token) => {
+    try {
+      const res = await getPermisosRequest(token);
+      return res;
+    } catch (error) {
+      console.log("Error chupaloo inin: ", error.message);
+    }
+  };
+
+  const asignarPermisos = async (token, data) => {
+    try {
+      const res = await asignarPermisosRequest(token, data);
+      return res;
+    } catch (error) {
+      console.log("Error al crear un rol: ", error.message);
+    }
+  };
+
   const getRoles = async (token) => {
     try {
       const res = await getRolesRequest(token);
@@ -178,7 +231,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const getRolesById = async (token, id) => {
     try {
-      const res = await getRolByIdRequest(token,id);
+      const res = await getRolByIdRequest(token, id);
       return res;
     } catch (error) {
       console.log("Error al filtrar el rol por id: ", error.message);
@@ -205,13 +258,106 @@ export const ContextAppProvider = ({ children }) => {
 
   const updateRoles = async (token, id, data) => {
     try {
-      console.log("ID: ", id)
-      console.log("DATA: ",  data)
-      console.log("TOKEN: ",  token)
+      console.log("ID: ", id);
+      console.log("DATA: ", data);
+      console.log("TOKEN: ", token);
       const res = await updateRolRequest(token, id, data);
       return res;
     } catch (error) {
       console.log("Error actualizar un rol: ", error.message);
+    }
+  };
+
+  const createComite = async (data) => {
+    try {
+      await instructorApi.createComiteRequest(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getComites = async () => {
+    try {
+      const response = await instructorApi.getComitesRequest();
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getInstructor = async (id) => {
+    try {
+      const response = await usuariosApi.getUserRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getComite = async (id) => {
+    try {
+      const response = await instructorApi.getComiteByIdRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getImplicados = async (comite) => {
+    try {
+      const response = await instructorApi.getAprendicesImpRequest(comite);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const filtro = (valores) => {
+    try {
+      setCamposFil(valores);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAprendices = async () => {
+    try {
+      const response = await usuariosApi.getAprendicesRequest();
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getAntecedentes = async (id) => {
+    try {
+      const response = await usuariosApi.getAntecedentesRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const createNovedad = async (body) => {
+    try {
+      const response = await novedadesApi.createNovedadRequest(body);
+      if (response) return response.status;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
     }
   };
 
@@ -231,7 +377,23 @@ export const ContextAppProvider = ({ children }) => {
         deleteRoles,
         updateRoles,
         getRolesById,
-      }}>
+        createComite,
+        getComites,
+        getInstructor,
+        getComite,
+        getImplicados,
+        filtro,
+        camposFil,
+        getAprendices,
+        getAntecedentes,
+        getPermisos,
+        asignarPermisos,
+        createNovedad,
+        decode,
+        usuario,
+        setUsuario,
+      }}
+    >
       {children}
     </ContextApp.Provider>
   );

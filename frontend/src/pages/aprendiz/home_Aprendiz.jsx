@@ -1,61 +1,82 @@
-import { NavBar } from "../../Layout/NavBar";
-import { Footer } from "../../Layout/Footer";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { BiBell } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-
 export const Home_Aprendiz = () => {
   return (
-    <div>
-      <NavBar />
-      <div className="  mx-auto w-96  pt-0 pb-32 sm:pt-48 sm:pb-46 adsolute transform  ">
-        <div className="  bg-white border-2 h-auto max-w-full max-h-full flex flex-col items-center  p-5 place-content-evenly rounded-2xl space-y-2">
-          <div className="  hover:translate-x-2 hover:translate-y-1 translate-x-0 translate-y-0 flex flex-row p-3  space-x-2 border-gray-400 border-2 rounded-t-lg rounded-r-lg rounded-l-lg ">
-            {/* 
-              <Link to="/novedadinvitado">
-  { }
-</Link> */}
+    <DefaultLayout>
+      <div className=" ">
+        <main className="bg-white w-full h-full p-4 sm:p-20 border-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
+            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className=" w-52  h-52 border-2 duration-150 bg-blue-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
+                    <BiBell className="w-32 h-16 text-black" />
+                    Ver solicitudes a comite 
+                  </button>
+                </Link>
+              </section>
+            </div>
 
+            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className="border-2 w-52  h-52  duration-150 bg-yellow-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
+                    <BiBell className="w-32 h-16 text-black" />
+                    impugnacion
+                  </button>
+                </Link>
+              </section>
+            </div>
 
-            <Link to="/pruebaaprendiz">
-              {<button className=" duration-150 bg-yellow-500  hover:bg-yellow-300 p-2 flex flex-col items-center justify-center rounded-t-lg rounded-r-lg ">
-                <BiBell className=" w-8 h-8  flex flex-col items-center text-black" />Subir rueba </button>
-              }
-            </Link>
+            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className="border-2 w-52  h-52 duration-150 bg-red-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
+                    <BiBell className="w-32 h-16 text-black" />
+                   Antecedentes
+                  </button>
+                </Link>
+              </section>
+            </div>
+            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className="border-2 w-52  h-52  duration-150 bg-blue-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
+                    <BiBell className="w-32 h-16 text-black" />
+                    Subir prueba
+                  </button>
+                </Link>
+              </section>
+            </div>
 
+            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className="border-2 w-52  h-52 duration-150 bg-yellow-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
+                    <BiBell className="w-32 h-16 text-black" />
+                    Plan de mejoramiento
+                  </button>
+                </Link>
+              </section>
+            </div>
+            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className="border-2 w-52  h-52  duration-150 bg-red-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
+                    <BiBell className="w-32 h-16 text-black" />
+                   Notificaciones
+                  </button>
+                </Link>
+              </section>
+            </div>
 
-            <Link to="/notificacionaprendiz">
-              {<button className="duration-150  bg-green-500  hover:bg-green-300 p-2 flex flex-col items-center justify-center rounded-t-lg rounded-l-lg">
-                <BiBell className=" w-8 h-8  flex flex-col items-center text-black" /> Notificacion </button>}
-            </Link>
-
-
-
-
+           
           </div>
-          <hr />
-          <div className="  hover:translate-x-2 hover:translate-y-1 translate-x-0 translate-y-0 bg-white flex flex-row h-auto p-3 space-x-2  border-gray-400 border-2 rounded-t-lg rounded-r-lg rounded-l-lg ">
-            <Link to="/impugnacionesaprendiz">
-              {<button className=" duration-150 top-4 left-4 bg-red-500  hover:bg-red-300 p-2 flex flex-col items-center justify-center rounded-t-lg rounded-r-lg rounded-l-lg">
-                <BiBell className=" w-8 h-8  flex flex-col items-center text-black" />Subir impugnacion  </button>
-              }
-            </Link>
-            <button className="duration-150  bg-yellow-500  hover:bg-yellow-300 p-2 flex flex-col items-center justify-center rounded-t-lg rounded-r-lg ">
-              <BiBell className=" w-8 h-8  flex flex-col items-center text-black" />plan mejoramiento </button>
-          </div>
-        </div>
-        <div className="flex flex-row p-3    items-center justify-center ">
-          <div className=" w-64 flex flex-row p-3  space-x-6  items-center justify-center  hover:translate-x-4 hover:translate-y-1 translate-x-0 translate-y-0
-         bg-white border-2 h-auto max-w-full max-h-full   place-content-evenly rounded-2xl space-y-2 ">
-            <Link to="/home">
-              {<button className=" duration-150 bg-red-500  hover:bg-red-300 p-2 flex flex-col items-center justify-center rounded-t-lg rounded-r-lg">
-                <BiBell className=" w-8 h-8  flex flex-col items-center text-black" />Cerrar </button>}
-            </Link>
-
-          </div>
-        </div>
+          
+        </main>
       </div>
-      <Footer />
-    </div>
+    </DefaultLayout>
   );
 };

@@ -1,8 +1,9 @@
-import { Tab } from "../../components/Tabla/Tab";
+import { Tabla } from "../../components/Tabla/Tabla";
 import { useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
 import { useEffect, useState } from "react";
 import DefaultLayout from "../../Layout/DefaultLayout";
+import { Noautorizado } from "../../components/util/noautorizado";
 
 export const Roles = () => {
   const [roles, setRoles] = useState([]);
@@ -22,27 +23,23 @@ export const Roles = () => {
       if (admin) {
         const getRol = async () => {
           const res = await getRoles(token.token);
-          if (res !== null || res !== undefined) {
+          if (res) {
             setRoles(res);
           }
         };
 
         getRol();
       } else {
-        setTimeout(() => {
-          navigate(`/home`);
-        }, 1000);
+        
       }
     }
   }, [navigate, tokenExist, filterRol, getRoles, validateToken]);
 
-  if (roles.length !== 0) {
+  if (roles && roles.length !== 0) {
     return (
       <DefaultLayout>
-        <Tab datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
+        <Tabla datos={roles} fun_ver={getRolesById} fun_eliminar={deleteRoles} nombre_tabla={"roles"}/>
       </DefaultLayout>
     );
-  } else {
-    return <div>NO AUTORIZADO</div>;
-  }
+  } 
 };

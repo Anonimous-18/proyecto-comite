@@ -12,6 +12,8 @@ const DB_PORT = process.env.DB_PORT;
 const EMAIL = process.env.EMAIL;
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
+const ORIGEN = process.env.ORIGEN;
+
 module.exports = {
   PORT,
   DB_HOST,
@@ -20,5 +22,6 @@ module.exports = {
   DB_PASSWORD,
   DB_PORT,
   EMAIL,
-  EMAIL_PASSWORD
+  EMAIL_PASSWORD,
+  ORIGEN
 };

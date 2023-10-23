@@ -12,9 +12,9 @@ export const Login = () => {
   useEffect(() => {
     if (tokenExist && !validateToken()) {
       if (localStorage.getItem("admin")) {
-        navigate(`/home`);
+        navigate(`/roles`);
       } else if (localStorage.getItem("invitado")) {
-        navigate(`/homeinvitado`);
+        navigate(`/home-invitado`);
       } else if (localStorage.getItem("instructor")) {
         navigate(`/homeinstructor`);
       } else if (localStorage.getItem("aprendiz")) {
@@ -46,7 +46,7 @@ export const Login = () => {
       console.log("admin", admin)
       if (admin) {
         localStorage.setItem("admin", admin);
-        navigate(`/home`);
+        navigate(`/roles`);
       } else if (invitado) {
         localStorage.setItem("invitado", invitado);
         navigate(`/homeinvitado`);
@@ -76,7 +76,7 @@ export const Login = () => {
 
   return (
     <>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="dalinComoFondo dark:bg-gray-900">
         {err ? (
           <div className="bg-opacity-95 absolute flex flex-col items-center justify-center px-6 py-8 mx-auto h-full w-full lg:py-0">
             <div className="text-ls font-bold w-96 h-60 flex flex-col justify-center items-center text-center">
@@ -114,6 +114,7 @@ export const Login = () => {
                       </label>
                       <input
                         type="number"
+                        autoFocus
                         name="documento"
                         onChange={(e) => onChange(e)}
                         id="documento"
