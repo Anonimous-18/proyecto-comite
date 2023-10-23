@@ -49,7 +49,7 @@ const Router = () => {
 
   return (
     <>
-      {usuarioRoles ? (
+      {usuarioRoles || location.pathname === '/' ?  (
         <Routes>
           <Route
             path="/roles"
