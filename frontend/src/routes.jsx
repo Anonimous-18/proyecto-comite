@@ -34,12 +34,12 @@ import Prueba from "./components/pruebas/Prueba";
 const Router = () => {
   const { validateToken, usuario, setUsuario, decode } = useContextApp();
 
-  useEffect(()=>{
-    const token = decode(sessionStorage.getItem('Datos'));
-    const usuarioToken = jwt_decode(token);
-    setUsuario(usuarioToken.user);
-    console.log(usuarioToken)
-  },[]);
+  // useEffect(()=>{
+  //   const token = decode(sessionStorage.getItem('Datos'));
+  //   const usuarioToken = jwt_decode(token);
+  //   setUsuario(usuarioToken.user);
+  //   console.log(usuarioToken)
+  // },[]);
 
   return (
     <Routes>
