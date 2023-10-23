@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import jwt_decode from "jwt-decode";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import usuariosApi from "../api/usuarios";
 import novedadesApi from "../api/novedades";
@@ -19,12 +19,21 @@ import {
 
 import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
 
-import { encodeCustomBase64String,decodeCustomBase64String } from "../funciones/encode";
+import {
+  encodeCustomBase64String,
+  decodeCustomBase64String,
+} from "../funciones/encode";
 
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
+  const [usuario, setUsuario] = useState({});
+
   const [camposFil, setCamposFil] = useState(null);
+
+  const decode = (encode) => {
+    return decodeCustomBase64String(encode);
+  };
 
   const deleteToken = () => {
     try {
@@ -41,7 +50,13 @@ export const ContextAppProvider = ({ children }) => {
       const response = await login(data);
       if (response.status === 200 && response.data) {
         localStorage.setItem("newToken", JSON.stringify(response.data));
-        sessionStorage.setItem("Datos", encodeCustomBase64String(response.data.token));
+
+        sessionStorage.setItem(
+          "Datos",
+          encodeCustomBase64String(response.data.token)
+        );
+        const datosUsuario = jwt_decode(response.data.token);
+        setUsuario(datosUsuario.user);
         return true;
       }
       return false;
@@ -62,7 +77,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const protectedRoutes = () => {
     const token = JSON.parse(localStorage.getItem("newToken"));
-    if (token !== null) {
+    if (token) {
       return true;
     }
     return false;
@@ -374,6 +389,9 @@ export const ContextAppProvider = ({ children }) => {
         getPermisos,
         asignarPermisos,
         createNovedad,
+        decode,
+        usuario,
+        setUsuario,
       }}
     >
       {children}

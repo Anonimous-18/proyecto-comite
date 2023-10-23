@@ -1,6 +1,8 @@
 import { Navigate,Outlet } from "react-router-dom"
-import { useState,useEffect } from "react"
-
-export const RutasProtegidas = ({ children }) =>{
     
+export const RutasProtegidas = ({  permitido, children, redireccionaA = "/"}) =>{
+    if (!permitido) {
+        return <Navigate to={redireccionaA}/>
+    }
+    return children ?  children : <Outlet/>
 }
