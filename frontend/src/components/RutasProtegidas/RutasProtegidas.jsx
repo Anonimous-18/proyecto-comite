@@ -5,5 +5,5 @@ export const RutasProtegidas = ({  permitido, children, redireccionaA = "/home" 
     if (!permitido) {
         return <Navigate to={redireccionaA}/>
     }
-    return children ?  children : <Outlet/>
+    return children ?  children : <Outlet />
 }

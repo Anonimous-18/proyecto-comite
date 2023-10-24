@@ -49,24 +49,31 @@ const Router = () => {
 
   return (
     <>
-      {usuarioRoles || location.pathname === '/' ?  (
+      {usuarioRoles || location.pathname === "/" ? (
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route
-            path="/roles"
+            path="/"
             element={
               <RutasProtegidas
                 permitido={!!usuarioRoles && usuarioRoles.rol_id === 1}
-              >
-                <Roles />
-              </RutasProtegidas>
+              />
             }
-          />
+          >
+            <Route path="roles" element={<Roles />} />
+            <Route path="form-roles" element={<FormularioRoles />} />
+            <Route
+              path="/form-roles/:params/:id"
+              element={<FormularioRoles />}
+            />
+            <Route path="/see-roles/:id" element={<RolesDetails />} />
+            <Route path="/mi-perfil" element={<Roles />} />
+          </Route>
 
-          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/pruebas" element={<Prueba />} />
-          <Route path="/home" element={<Home />} />
           <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
           <Route path="/home-invitado" element={<Homeinvitado />} />
           <Route path="/homeinstructor" element={<Homeinstructor />} />
@@ -90,9 +97,6 @@ const Router = () => {
             path="/antecedentes"
             element={<TablaAntencedentesInstructor />}
           />
-          <Route path="/form-roles" element={<FormularioRoles />} />
-          <Route path="/form-roles/:params/:id" element={<FormularioRoles />} />
-          <Route path="/see-roles/:id" element={<RolesDetails />} />
           <Route
             path="/solicitud-comite-instructor"
             element={<SolicitudIntructor />}
@@ -101,7 +105,6 @@ const Router = () => {
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/home-gestor" element={<HomeGestor />} />
-          <Route path="*" element={<Home />} />
         </Routes>
       ) : (
         <div className="mx-auto">Cargando...</div>
