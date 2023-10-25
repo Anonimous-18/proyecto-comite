@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -27,6 +28,9 @@ import {
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
+  const API = import.meta.env.VITE_API_URL;
+  const socket = io(`${API}`);
+  
   const [usuario, setUsuario] = useState({});
 
   const [camposFil, setCamposFil] = useState(null);
@@ -408,6 +412,7 @@ export const ContextAppProvider = ({ children }) => {
         decode,
         usuario,
         setUsuario,
+        socket
       }}>
       {children}
     </ContextApp.Provider>

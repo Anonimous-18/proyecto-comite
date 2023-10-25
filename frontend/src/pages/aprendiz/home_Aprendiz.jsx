@@ -1,13 +1,28 @@
 import DefaultLayout from "../../Layout/DefaultLayout";
-import {TbAlignBoxRightTop} from "react-icons/tb";
-import {TiGroup} from "react-icons/ti";
-import {VscHistory} from "react-icons/vsc"
-import {IoDocumentOutline} from "react-icons/io5"
-import {HiDocumentDuplicate} from "react-icons/hi"
-import {MdNotificationsActive} from "react-icons/md"
+import { TbAlignBoxRightTop } from "react-icons/tb";
+import { TiGroup } from "react-icons/ti";
+import { VscHistory } from "react-icons/vsc";
+import { IoDocumentOutline } from "react-icons/io5";
+import { HiDocumentDuplicate } from "react-icons/hi";
+import { MdNotificationsActive } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Home_Aprendiz = () => {
+  const contextApi = useContextApp();
+
+  useEffect(() => {
+    contextApi.socket.emit("aprendizConectado")
+    
+    contextApi.socket.on("notificacionesAprendiz", () => {
+      console.log("Notificado bro");
+    });
+
+    return () => {
+      contextApi.socket.off("notificacionesAprendiz");
+    };
+  }, [contextApi]);
   return (
     <DefaultLayout>
       <div className=" ">
@@ -21,7 +36,6 @@ export const Home_Aprendiz = () => {
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
                       <p className="mt-2 text-xl">Ver solicitudes a comite</p>
                     </div>
-                     
                   </button>
                 </Link>
               </section>
@@ -31,11 +45,10 @@ export const Home_Aprendiz = () => {
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
                   <button className=" w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
-                    <TbAlignBoxRightTop  className=" text-9xl " />
+                    <TbAlignBoxRightTop className=" text-9xl " />
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Impugnacion</p>
                     </div>
-                    
                   </button>
                 </Link>
               </section>
@@ -44,12 +57,11 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
+                  <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
                     <VscHistory className=" text-9xl " />
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Mis antecedentes</p>
                     </div>
-                     
                   </button>
                 </Link>
               </section>
@@ -57,12 +69,11 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                  <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
                     <IoDocumentOutline className=" text-9xl " />
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Subir pruebas</p>
                     </div>
-                     
                   </button>
                 </Link>
               </section>
@@ -71,12 +82,11 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                  <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
                     <HiDocumentDuplicate className=" text-9xl " />
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
                       <p className="mt-2 text-xl">Planes de mejoramiento</p>
                     </div>
-                     
                   </button>
                 </Link>
               </section>
@@ -84,20 +94,16 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
+                  <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
                     <MdNotificationsActive className=" text-9xl " />
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
                       <p className="mt-2 text-xl">Notificaciones</p>
                     </div>
-                     
                   </button>
                 </Link>
               </section>
             </div>
-
-           
           </div>
-          
         </main>
       </div>
     </DefaultLayout>

@@ -3,7 +3,17 @@ import { BiSolidUser } from "react-icons/bi";
 
 import DefaultLayout from "../../Layout/DefaultLayout";
 
+import { useContextApp } from "../../Context/ContextApp";
+
 export const Notificaciones = () => {
+  const contextApi = useContextApp();
+
+  const contectar = () => {
+    contextApi.socket.emit("instructorConectado");
+
+    contextApi.socket.emit("notificar")
+  };
+
   return (
     <DefaultLayout>
       <main className="max-w-full h-full flex flex-col items-center justify-center">
@@ -20,17 +30,21 @@ export const Notificaciones = () => {
 
           {/* <div className="h-40 w-4/5 relative overflow-x-auto"> */}
           <div className="h-40 w-full relative overflow-x-auto">
-            <p className="text-base p-11 w-30 text-black ">
-              Sin mensajes...
-            </p>
+            <p className="text-base p-11 w-30 text-black ">Sin mensajes...</p>
           </div>
         </figure>
-        <div className="flex flex-col items-start justify-start w-full h-16 mt-11">
+        <div className="flex flex-row gap-3 items-start justify-start w-full h-16 mt-11">
           <Link to={"/home"}>
             <button className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2">
               Volver
             </button>
           </Link>
+          <button
+            onClick={() => contectar()}
+            className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+          >
+            EJEMPLO DE ENVIAR
+          </button>
         </div>
       </main>
     </DefaultLayout>

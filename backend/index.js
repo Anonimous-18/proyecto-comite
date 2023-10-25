@@ -5,7 +5,6 @@ const { Server: SocketServer } = require("socket.io");
 
 const config = require("./config.js");
 
-// Rutas
 const adminRoutes = require("./routes/admin.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
 const usuariosRoutes = require("./routes/usuario.routes.js");
@@ -29,7 +28,6 @@ app.use(
   })
 );
 
-// Procesamientos:
 app.use(express.json());
 
 app.use(adminRoutes);
@@ -39,6 +37,40 @@ app.use(novedadesRoutes);
 app.use(instructorRoutes);
 app.use(reglamentoRoutes);
 app.use(inicio_sesionRoutes);
+
+io.on("connection", (socket) => {
+  console.log(`Usuario conectado ${socket.id}`);
+
+  /**----------------
+   * Sala instructor
+   * ----------------*/
+  socket.on("instructorConectado", () => {
+    console.log("Sala de Instructor conectado");
+    socket.join("instructor");
+  });
+
+  /**----------------
+   * Sala aprendiz
+   * ----------------*/
+  socket.on("aprendizConectado", () => {
+    console.log("Sala de aprendiz conectado");
+    socket.join("aprendiz");
+  });
+
+  /**----------------
+   * Evento notificar
+   * ----------------*/
+  socket.on("notificar", () => {
+    io.to("aprendiz").emit("notificacionesAprendiz");
+  });
+
+  /**-------------------------
+   * desconexion del usuario
+   * -------------------------*/
+  socket.on("disconnect", () => {
+    console.log("Usuario desconectado");
+  });
+});
 
 server.listen(config.PORT, "0.0.0.0", () =>
   console.log(`Server on port ${config.PORT}`)

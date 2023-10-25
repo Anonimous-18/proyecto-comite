@@ -49,7 +49,7 @@ export const Login = () => {
         navigate(`/roles`);
       } else if (invitado) {
         localStorage.setItem("invitado", invitado);
-        navigate(`/homeinvitado`);
+        navigate(`/home-invitado`);
       } else if (instructor) {
         localStorage.setItem("instructor", instructor);
         navigate(`/homeinstructor`);
