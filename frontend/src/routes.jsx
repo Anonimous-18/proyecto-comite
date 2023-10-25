@@ -45,13 +45,13 @@ const Router = () => {
     }
   }, [location.pathname]);
 
-  console.log(usuarioRoles);
+//   console.log(usuarioRoles);
 
   return (
     <>
       {usuarioRoles || location.pathname === "/" ? (
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login/>} />
           <Route
             path="/"
             element={
