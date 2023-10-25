@@ -32,24 +32,22 @@ import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
 import Prueba from "./components/pruebas/Prueba";
 
 const Router = () => {
-  const { decode } = useContextApp();
-  const [usuarioRoles, setUsuarioRoles] = useState(null);
+  const { usuario,decode } = useContextApp();
+  let usuarioRoles = usuario;
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
       const token = decode(sessionStorage.getItem("Datos"));
       const usuarioToken = jwt_decode(token);
       if (usuarioToken) {
-        setUsuarioRoles(usuarioToken.user);
+        usuarioRoles = usuarioToken.user; 
       }
     }
   }, [location.pathname]);
 
-//   console.log(usuarioRoles);
-
   return (
     <>
-      {usuarioRoles || location.pathname === "/" ? (
+      {(usuarioRoles && Object.keys(usuarioRoles).length > 0) || location.pathname === "/" ? (
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route
