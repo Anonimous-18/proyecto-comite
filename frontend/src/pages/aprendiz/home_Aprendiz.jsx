@@ -18,7 +18,7 @@ export const Home_Aprendiz = () => {
                 <Link to="/pruebaaprendiz">
                   <button className=" w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
                     <TiGroup className=" text-9xl " />
-                    <div className=" bg-blue-500 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
                       <p className="mt-2 text-xl">Ver solicitudes a comite</p>
                     </div>
                      
@@ -30,9 +30,9 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                  <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                  <button className=" w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
                     <TbAlignBoxRightTop  className=" text-9xl " />
-                    <div className=" bg-blue-600 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-800 ">
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Impugnacion</p>
                     </div>
                     
@@ -44,9 +44,9 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
                     <VscHistory className=" text-9xl " />
-                    <div className=" bg-blue-600 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-800 ">
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Mis antecedentes</p>
                     </div>
                      
@@ -59,7 +59,7 @@ export const Home_Aprendiz = () => {
                 <Link to="/pruebaaprendiz">
                 <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
                     <IoDocumentOutline className=" text-9xl " />
-                    <div className=" bg-blue-600 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-800 ">
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Subir pruebas</p>
                     </div>
                      
@@ -73,7 +73,7 @@ export const Home_Aprendiz = () => {
                 <Link to="/pruebaaprendiz">
                 <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
                     <HiDocumentDuplicate className=" text-9xl " />
-                    <div className=" bg-blue-600 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-800 ">
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
                       <p className="mt-2 text-xl">Planes de mejoramiento</p>
                     </div>
                      
@@ -84,9 +84,9 @@ export const Home_Aprendiz = () => {
             <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
                     <MdNotificationsActive className=" text-9xl " />
-                    <div className=" bg-blue-600 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-800 ">
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
                       <p className="mt-2 text-xl">Notificaciones</p>
                     </div>
                      
