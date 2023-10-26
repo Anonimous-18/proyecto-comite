@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import { Homesubdirector } from "./pages/subdirector/homesubdirector";
-import { Login } from "./components/InicioSesion/Login";
+/*import { Login } from "./components/InicioSesion/Login";*/
 import Recuperacion from "./components/InicioSesion/Recuperacion";
 import { Votoinstructor } from "./pages/instructor/votoinstructor";
 import { Homeinvitado } from "./pages/invitado/Homeinvitado";
@@ -60,7 +60,7 @@ const Router = () => {
     <>
       {(usuarioRoles && Object.keys(usuarioRoles).length > 0) || location.pathname === "/" ||  location.pathname === "/recuperacion-contraseña" ||  location.pathname === "/register"  ? (
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login1 />} />
           <Route
             path="/"
             element={
