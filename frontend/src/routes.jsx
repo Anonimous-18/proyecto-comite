@@ -6,7 +6,6 @@ import jwt_decode from "jwt-decode";
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import { Homesubdirector } from "./pages/subdirector/homesubdirector";
 import { Login } from "./components/InicioSesion/Login";
-import { Register } from "./components/InicioSesion/Register";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
 import { Votoinstructor } from "./pages/instructor/votoinstructor";
 import { Homeinvitado } from "./pages/invitado/Homeinvitado";
@@ -31,6 +30,9 @@ import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
 import { Spinner } from "./components/util/Spinner";
 import Prueba from "./components/pruebas/Prueba";
+
+import { Register1 } from "./components/InicioSesion/Register1";
+import { Login1 } from "./components/InicioSesion/Login1";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
@@ -77,7 +79,6 @@ const Router = () => {
           </Route>
 
           <Route path="/home" element={<Home />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/pruebas" element={<Prueba />} />
           <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
@@ -111,7 +112,13 @@ const Router = () => {
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/home-gestor" element={<HomeGestor />} />
+
+          <Route path="/register-1" element ={<Register1/>}/>
+          <Route path="/login-1" element={<Login1/>}/>
+
           <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
+
+          
         </Routes>
       ) : (
         <Spinner usuario = {!!usuarioRoles}/>
