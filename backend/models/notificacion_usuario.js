@@ -3,13 +3,13 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Notificacion_Usuario extends Model {
     static associate(models) {
-      Novedad.belongsTo(models.notificacions, {
+      Notificacion_Usuario.belongsTo(models.notificacions, {
         as: "notificacion",
         foreignKey: "notificacion_id",
       });
-      Novedad.belongsTo(models.usuarios, {
-        as: "remisor",
-        foreignKey: "remisor_id",
+      Notificacion_Usuario.belongsTo(models.usuarios, {
+        as: "receptor",
+        foreignKey: "receptor_id",
       });
     }
   }
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      remisor_id: {
+      receptor_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

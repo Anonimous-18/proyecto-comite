@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Notificacion extends Model {
     static associate(models) {
-      Novedad.belongsTo(models.usuarios, {
+      Notificacion.belongsTo(models.usuarios, {
         as: "remitente",
         foreignKey: "remitente_fk",
       });
