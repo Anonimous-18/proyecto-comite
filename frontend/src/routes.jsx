@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useContextApp } from "./Context/ContextApp";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
@@ -29,35 +29,43 @@ import { TablaAntencedentesInstructor } from "./pages/instructor/TablaAntenceden
 import { NovedadInstructor } from "./pages/instructor/NovedadInstructor";
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
+import { Spinner } from "./components/util/Spinner";
 import Prueba from "./components/pruebas/Prueba";
 
 const Router = () => {
-  const { usuario,decode } = useContextApp();
+  const { usuario, decode } = useContextApp();
   let usuarioRoles = usuario;
+  const rutaOpcion = {
+    1: "/roles",
+    2: "/homeinstructor",
+    3: "/home-invitado",
+  };
+  let ruta = rutaOpcion[usuario.rol_id] || "/";
+  console.log(ruta);
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
       const token = decode(sessionStorage.getItem("Datos"));
       const usuarioToken = jwt_decode(token);
       if (usuarioToken) {
-        usuarioRoles = usuarioToken.user; 
+        usuarioRoles = usuarioToken.user;
+        ruta = rutaOpcion[usuarioRoles.rol_id.toString()] || "/";
       }
     }
   }, [location.pathname]);
 
   return (
     <>
-      {(usuarioRoles && Object.keys(usuarioRoles).length > 0) || location.pathname === "/" ? (
+      {(usuarioRoles && Object.keys(usuarioRoles).length > 0) || location.pathname === "/" ||  location.pathname === "/recuperacion-contraseña" ||  location.pathname === "/register"  ? (
         <Routes>
-          <Route path="/" element={<Login/>} />
+          <Route path="/" element={<Login />} />
           <Route
             path="/"
             element={
               <RutasProtegidas
                 permitido={!!usuarioRoles && usuarioRoles.rol_id === 1}
               />
-            }
-          >
+            }>
             <Route path="roles" element={<Roles />} />
             <Route path="form-roles" element={<FormularioRoles />} />
             <Route
@@ -103,9 +111,10 @@ const Router = () => {
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/home-gestor" element={<HomeGestor />} />
+          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>
       ) : (
-        <div className="mx-auto">Cargando...</div>
+        <Spinner usuario = {!!usuarioRoles}/>
       )}
     </>
   );
