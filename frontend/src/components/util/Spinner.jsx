@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 
-export const Spinner = () => {
+export const Spinner = ({ raiz = null }) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setVisible(false);
-    }, 3000); // Cambia 3000 por la cantidad de milisegundos que desees
+    }, 1000); // Cambia 3000 por la cantidad de milisegundos que desees
 
     return () => clearTimeout(timeout);
   }, []);
-  if (!visible) {
+  if (!visible && raiz ) {
     // Realiza la redirección y recarga
     window.location.href = '/';
-    return <Navigate to={'/xxx'} replace />;
+    return <Navigate to={'/'} replace />;
   }
 
   return visible ? (
