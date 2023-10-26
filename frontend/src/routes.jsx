@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useContextApp } from "./Context/ContextApp";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
 import { Reglamento } from "./components/Reglamento/Reglamento";
