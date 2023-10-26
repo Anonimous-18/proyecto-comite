@@ -1,80 +1,109 @@
 import DefaultLayout from "../../Layout/DefaultLayout";
-import { BiBell } from "react-icons/bi";
+import { TbAlignBoxRightTop } from "react-icons/tb";
+import { TiGroup } from "react-icons/ti";
+import { VscHistory } from "react-icons/vsc";
+import { IoDocumentOutline } from "react-icons/io5";
+import { HiDocumentDuplicate } from "react-icons/hi";
+import { MdNotificationsActive } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Home_Aprendiz = () => {
+  const contextApi = useContextApp();
+
+  useEffect(() => {
+    contextApi.socket.emit("aprendizConectado")
+    
+    contextApi.socket.on("notificacionesAprendiz", () => {
+      console.log("Notificado bro");
+    });
+
+    return () => {
+      contextApi.socket.off("notificacionesAprendiz");
+    };
+  }, [contextApi]);
   return (
     <DefaultLayout>
       <div className=" ">
-        <main className="bg-white w-full h-full p-4 sm:p-20 border-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
-            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+        <main className="bg-white w-full h-full p-2 sm:p-20 border-2 rounded-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 bg-white">
+            <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                  <button className=" w-52  h-52 border-2 duration-150 bg-blue-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
-                    <BiBell className="w-32 h-16 text-black" />
-                    Ver solicitudes a comite 
+                  <button className=" w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
+                    <TiGroup className=" text-9xl " />
+                    <div className=" bg-blue-100 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
+                      <p className="mt-2 text-xl">Ver solicitudes a comite</p>
+                    </div>
                   </button>
                 </Link>
               </section>
             </div>
 
-            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+            <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                  <button className="border-2 w-52  h-52  duration-150 bg-yellow-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
-                    <BiBell className="w-32 h-16 text-black" />
-                    impugnacion
+                  <button className=" w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
+                    <TbAlignBoxRightTop  className=" text-9xl " />
+                    <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
+                      <p className="mt-2 text-xl">Impugnacion</p>
+                    </div>
                   </button>
                 </Link>
               </section>
             </div>
 
-            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+            <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                  <button className="border-2 w-52  h-52 duration-150 bg-red-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
-                    <BiBell className="w-32 h-16 text-black" />
-                   Antecedentes
+                  <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
+                    <VscHistory className=" text-9xl " />
+                    <div className=" bg-blue-100 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
+                      <p className="mt-2 text-xl">Mis antecedentes</p>
+                    </div>
                   </button>
                 </Link>
               </section>
             </div>
-            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
+            <div className="bg-white   py-10 flex flex-row justify-center items-center">
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
-                  <button className="border-2 w-52  h-52  duration-150 bg-blue-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
-                    <BiBell className="w-32 h-16 text-black" />
-                    Subir prueba
-                  </button>
-                </Link>
-              </section>
-            </div>
-
-            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
-              <section className="gap-4">
-                <Link to="/pruebaaprendiz">
-                  <button className="border-2 w-52  h-52 duration-150 bg-yellow-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
-                    <BiBell className="w-32 h-16 text-black" />
-                    Plan de mejoramiento
-                  </button>
-                </Link>
-              </section>
-            </div>
-            <div className="bg-white  border-2 py-10 flex flex-row justify-center items-center">
-              <section className="gap-4">
-                <Link to="/pruebaaprendiz">
-                  <button className="border-2 w-52  h-52  duration-150 bg-red-500 hover:bg-yellow-300 flex flex-col items-center justify-center rounded-lg">
-                    <BiBell className="w-32 h-16 text-black" />
-                   Notificaciones
+                  <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                    <IoDocumentOutline className=" text-9xl " />
+                    <div className=" bg-blue-100 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
+                      <p className="mt-2 text-xl">Subir pruebas</p>
+                    </div>
                   </button>
                 </Link>
               </section>
             </div>
 
-           
+            <div className="bg-white   py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className=" w-52  h-52 shadow-2xl border-gray-200 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-800 flex flex-col items-center justify-center rounded-lg">
+                    <HiDocumentDuplicate className=" text-9xl " />
+                    <div className=" bg-blue-100 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
+                      <p className="mt-2 text-xl">Planes de mejoramiento</p>
+                    </div>
+                  </button>
+                </Link>
+              </section>
+            </div>
+            <div className="bg-white   py-10 flex flex-row justify-center items-center">
+              <section className="gap-4">
+                <Link to="/pruebaaprendiz">
+                  <button className="  w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
+                    <MdNotificationsActive className=" text-9xl " />
+                    <div className=" bg-blue-100 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600 ">
+                      <p className="mt-2 text-xl">Notificaciones</p>
+                    </div>
+                  </button>
+                </Link>
+              </section>
+            </div>
           </div>
-          
         </main>
       </div>
     </DefaultLayout>

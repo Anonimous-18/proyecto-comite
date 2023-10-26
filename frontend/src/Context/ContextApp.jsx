@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -27,9 +28,28 @@ import {
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
+  const API = import.meta.env.VITE_API_URL;
+  const socket = io(`${API}`);
+  
   const [usuario, setUsuario] = useState({});
 
   const [camposFil, setCamposFil] = useState(null);
+
+  const [cargarPagina, setCargarPagina] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("Datos")) {
+      const token = decode(sessionStorage.getItem("Datos"));
+      const usuarioToken = jwt_decode(token);
+  
+      const obtenerUsuario = async () => {
+        const usuario = await usuarioToken.user;
+        setUsuario(usuario);
+      };
+  
+      obtenerUsuario();
+    }
+  }, [location.pathname]);
 
   const decode = (encode) => {
     return decodeCustomBase64String(encode);
@@ -392,8 +412,8 @@ export const ContextAppProvider = ({ children }) => {
         decode,
         usuario,
         setUsuario,
-      }}
-    >
+        socket
+      }}>
       {children}
     </ContextApp.Provider>
   );

@@ -58,12 +58,7 @@ export const Carta = ({
         </p>
         <p className="text-sm py-2">{fecha}</p>
         <div className="w-full flex flex-row items-center justify-center h-auto gap-2">
-          <button
-            className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-            type="button"
-          >
-            Anexar Plan
-          </button>
+          
           <Link to={`/infocomiteinstrutor/${comite_id}`}>
             <button
               className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
