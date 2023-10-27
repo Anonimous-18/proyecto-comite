@@ -38,7 +38,7 @@ app.use(novedadesRoutes);
 app.use(instructorRoutes);
 app.use(reglamentoRoutes);
 app.use(inicio_sesionRoutes);
-app.use("/api/notificaciones", notificacionRoutes);
+app.use(notificacionRoutes);
 
 io.on("connection", (socket) => {
   console.log(`Usuario conectado ${socket.id}`);

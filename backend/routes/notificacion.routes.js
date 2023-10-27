@@ -4,9 +4,25 @@ const router = express.Router();
 const notificacionController = require("../controllers/notificacion.controller.js");
 
 router
-  .get("/", notificacionController.getNotificaciones)
-  .post("/", notificacionController.createNotificacion)
-  .get("/:id", notificacionController.getNotificacionById)
-  .delete("/:id", notificacionController.deleteNotificacion);
+  .get("/api/notificaciones/", notificacionController.getNotificaciones)
+  .post("/api/notificaciones/", notificacionController.createNotificacion)
+  .get("/api/notificaciones/:id", notificacionController.getNotificacionById)
+  .delete("/api/notificaciones/:id", notificacionController.deleteNotificacion)
+  .get(
+    "/api/notificaciones-usuarios",
+    notificacionController.getNotificacionesUsuarios
+  )
+  .post(
+    "/api/notificaciones-usuarios",
+    notificacionController.createNotificacionUsuario
+  )
+  .get(
+    "/api/notificaciones-usuarios/:id",
+    notificacionController.getNotificacionUsuarioById
+  )
+  .delete(
+    "/api/notificaciones-usuarios/:id",
+    notificacionController.deleteNotificacionUsuario
+  );
 
 module.exports = router;
