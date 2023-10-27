@@ -119,6 +119,7 @@ export const SolicitudComite = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     /**-------------------------------------------------------
      * |  Eliminamos los elementos repetidos en el array
      -------------------------------------------------------*/

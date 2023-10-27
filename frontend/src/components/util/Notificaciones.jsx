@@ -3,17 +3,7 @@ import { BiSolidUser } from "react-icons/bi";
 
 import DefaultLayout from "../../Layout/DefaultLayout";
 
-import { useContextApp } from "../../Context/ContextApp";
-
 export const Notificaciones = () => {
-  const contextApi = useContextApp();
-
-  const contectar = () => {
-    contextApi.socket.emit("instructorConectado");
-
-    contextApi.socket.emit("notificar")
-  };
-
   return (
     <DefaultLayout>
       <main className="max-w-full h-full flex flex-col items-center justify-center">
@@ -39,12 +29,6 @@ export const Notificaciones = () => {
               Volver
             </button>
           </Link>
-          <button
-            onClick={() => contectar()}
-            className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-          >
-            EJEMPLO DE ENVIAR
-          </button>
         </div>
       </main>
     </DefaultLayout>
