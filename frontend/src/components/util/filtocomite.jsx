@@ -35,7 +35,7 @@ export const Filtrocomite = () => {
   };
 
   return (
-    <form className="w-2/4 min-w-[300px] p-3 bg-gray-200 shadow-md shadow-black rounded-xl border-2  mt-9" onSubmit={(e) => handleSubmit(e)}>
+    <form className="w-2/4 min-w-[300px] max-w-[500px] p-3 bg-gray-200 shadow-md shadow-black rounded-xl border-2  mt-9" onSubmit={(e) => handleSubmit(e)}>
       <div className="rounded-2xl flex flex-col py-3 items-center justify-center text-blue-800">
         <div className="w-full flex flex-row items-center justify-around">
             <div className="">
