@@ -121,7 +121,7 @@ const Router = () => {
           
         </Routes>
       ) : (
-        <Spinner usuario = {!!usuarioRoles}/>
+        <Spinner/>
       )}
     </>
   );

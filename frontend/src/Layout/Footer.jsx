@@ -4,7 +4,7 @@ export const Footer = () => {
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <img src="../../public/logoSena.png" className=" mr-40   sm:h-9" alt="logo" />
+            <img src="../../public/logoSena.png" className="h-9" alt="logo" />
             <p className="max-w-xs mt-4 text-sm text-gray-600 flex flex-col items-center justify-center">
               SE-JustApp | | Servicion Nacional de Aprendizaje SENA
             </p>

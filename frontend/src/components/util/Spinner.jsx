@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 
-export const Spinner = ({ raiz = null }) => {
+export const Spinner = () => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -12,11 +12,6 @@ export const Spinner = ({ raiz = null }) => {
 
     return () => clearTimeout(timeout);
   }, []);
-  if (!visible && raiz ) {
-    // Realiza la redirección y recarga
-    window.location.href = '/';
-    return <Navigate to={'/'} replace />;
-  }
 
   return visible ? (
     <div className="flex items-center justify-center min-h-screen">
