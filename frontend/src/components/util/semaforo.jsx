@@ -7,7 +7,7 @@ import { GiSandsOfTime } from "react-icons/gi";
 export const Semaforo = () => {
   
   return (
-    <div className="flex flex-col items-center justify-center px-1 w-full h-full bg-white py-2 gap-1  md:min-w-[400px] md:max-w-[550px] max-w-[340px] min-w-[340px]">
+    <div className="flex flex-col items-center justify-center px-1 w-full h-full bg-white py-2 gap-1  md:min-w-[400px] md:max-w-[550px] max-w-[340px] min-w-[250px] mr-10">
       <h2 className="text-blue-800 w-full text-xl font-bold text-center mb-4">
         Estados
       </h2>
