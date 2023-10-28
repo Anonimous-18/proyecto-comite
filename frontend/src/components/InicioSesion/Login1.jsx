@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import {SlPeople} from"react-icons/sl";
 import { useContextApp } from "../../Context/ContextApp";
 import { Formik, Field, Form } from "formik";
 import { BiErrorAlt } from "react-icons/bi";
@@ -87,13 +87,8 @@ export const Login1 = () => {
             </div>
           </div>
         ) : (
-          <div className="bg-gray-200 rounded py-16 px-12 m-16 flex flex-col items-center justify-center">
-            <img
-              className="rounded-full h-32 w-32"
-              src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-              alt="user avatar"
-            />
-
+          <div className="rounded py-16 px-12 m-16 flex flex-col items-center justify-center">
+            <SlPeople className="rounded-full h-32 w-32 bg-blue-500 p-2 shadow-2xl "/>
             <Formik
               initialValues={{
                 documento: "",
@@ -105,9 +100,12 @@ export const Login1 = () => {
               }}
             >
               {({ handleChange }) => (
-                <Form className="mt-8 mb-4" onSubmit={(e) => handleSubmit(e)}>
+                <Form className=" bg-gray-200 p-5 rounded-md shadow-xl mt-2 mb-4" onSubmit={(e) => handleSubmit(e)}>
                   <div className="mb-4">
-                    <label className="sr-only">Numero de Documento</label>
+                    <div>
+                      <label className="flex flex-col items-center justify-center">Numero de Documento</label> 
+                    </div>
+                    
                     <Field
                       className="border-solid border border-gray-400 rounded px-2 py-3"
                       type="number"
@@ -119,7 +117,10 @@ export const Login1 = () => {
                     />
                   </div>
                   <div>
-                    <label className="sr-only">Contraseña</label>
+                    <div>
+                      <label className="flex flex-col items-center justify-center">Contraseña</label>
+                    </div>
+                    
                     <Field
                       className="border-solid border border-gray-400 rounded px-2 py-3"
                       type="password"
