@@ -93,10 +93,10 @@ export const Login = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center px-6 py-4 mx-auto md:h-screen lg:py-0">
+          <div className="flex items-center justify-center mx-auto h-screen">
             <div className="w-auto rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 shadow-xl bg-blue-800">
-              <div className="p-6 space-y-4 md:space-y-6 sm:p-1">
-                <h3 className=" text-center mt-4 mb-4 text-sm font-extrabold text-white md:text-5xl lg:text-xl">
+              <div className="p-1 space-y-4 md:space-y-6 sm:p-1">
+                <h3 className="text-center mt-4 mb-4 text-sm font-extrabold text-white lg:text-5xl md:text-4xl">
                   {" "}
                   Bienvenido a{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-500 from-sky-400">
@@ -107,7 +107,7 @@ export const Login = () => {
                   onSubmit={(e) => handleSubmit(e)}
                   className="space-y-4 md:space-y-6"
                 >
-                  <div className="bg-white w-full h-full sm:p-7 border-blue-700 border-2 rounded-lg">
+                  <div className="bg-white w-full h-full sm:p-7 rounded-lg p-4">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 ">
                         Documento

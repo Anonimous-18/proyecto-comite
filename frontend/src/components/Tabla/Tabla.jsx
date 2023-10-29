@@ -32,7 +32,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
   };
   return (
     <div className="flex justify-center items-center w-full">
-      <div className="mx-auto w-full">
+      <div className="mx-auto w-full min-w-[300px] max-w-5xl">
         <div className="relative overflow-x-auto border shadow-lg sm:rounded-lg">
           <div className="flex justify-between p-4 relative">
             <div className="relative mt-1">
