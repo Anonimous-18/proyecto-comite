@@ -116,7 +116,7 @@ const Router = () => {
           <Route path="/register-1" element ={<Register1/>}/>
           <Route path="/login-1" element={<Login1/>}/>
 
-          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
+          <Route path="*" element={ <Navigate to={`${ruta}`} replace /> } />
 
           
         </Routes>
