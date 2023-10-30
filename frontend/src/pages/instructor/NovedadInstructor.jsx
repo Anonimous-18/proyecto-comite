@@ -69,7 +69,9 @@ export const NovedadInstructor = () => {
                   placeholder="Ingrese el nombre de la novedad"
                   name="nombre_novedad"
                 />
-                <ErrorMessage name="nombre_novedad" />
+                <div className="text-red-600 font-bold">
+                  <ErrorMessage name="nombre_novedad" />
+                </div>
               </div>
               <div>
                 <label htmlFor="descripcion_novedad">
@@ -81,7 +83,9 @@ export const NovedadInstructor = () => {
                   name="descripcion_novedad"
                   placeholder="Descripción de la Novedad"
                 />
-                <ErrorMessage name="descripcion_novedad" />
+                <div className="text-red-600 font-bold">
+                  <ErrorMessage name="descripcion_novedad" />
+                </div>
               </div>
               <div>
                 <label htmlFor="aprendiz_fk">Aprendices</label>
@@ -99,7 +103,9 @@ export const NovedadInstructor = () => {
                     </option>
                   )}
                 </Field>
-                <ErrorMessage name="aprendiz_fk" />
+                <div className="text-red-600 font-bold">
+                  <ErrorMessage name="aprendiz_fk" />
+                </div>
               </div>
               <button
                 type="submit"
