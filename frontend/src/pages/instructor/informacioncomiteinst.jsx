@@ -1,12 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-import { BsFillPersonLinesFill } from "react-icons/bs";
-import { BsFillPersonCheckFill } from "react-icons/bs";
-import { BsFillPersonXFill } from "react-icons/bs";
-import { BsFillPersonFill } from "react-icons/bs";
-import { BsFillPersonDashFill } from "react-icons/bs";
-
+import{ BsSkipBackwardCircle } from"react-icons/bs"
 import { FaGears } from "react-icons/fa6";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
@@ -72,6 +66,14 @@ export const Informacioncomiteinst = () => {
           </h1>
           <Semaforo />
           <div className=" flex space-x-2 border-2 mt-5">
+          <div className="flex flex-col mt-2 ml-2 ">
+          <Link
+                to={`/login`}
+                className="font-medium text-primary-600 hover:underline text-blue-800 text-2xl"
+              >
+                <BsSkipBackwardCircle/>
+              </Link>
+          </div>
             {comite && comite !== null ? (
               <>
                 <div className="p-5">
