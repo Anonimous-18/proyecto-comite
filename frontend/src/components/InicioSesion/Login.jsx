@@ -154,7 +154,7 @@ export const Login = () => {
                           </Link>
                         </div>
                         <button
-                          disabled={formik.isSubmitting || !formik.isValid}
+                          // disabled={formik.isSubmitting || !formik.isValid}
                           type="submit"
                           className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
                         >
