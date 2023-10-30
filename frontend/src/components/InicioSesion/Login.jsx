@@ -1,7 +1,11 @@
+import * as Yup from "yup";
+import { ErrorMessage, Field, Formik } from "formik";
+
+import { BiErrorAlt } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import { useContextApp } from "../../Context/ContextApp";
-import { BiErrorAlt } from "react-icons/bi";
 
 export const Login = () => {
   const { isLogged, protectedRoutes, validateToken, filterRol } =
@@ -23,15 +27,10 @@ export const Login = () => {
     }
   }, [navigate, tokenExist, validateToken, filterRol]);
 
-  const [data, setData] = useState({
-    documento: "",
-    contrasenia: "",
-  });
   const [err, setErr] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await isLogged(data);
+  const handleSubmit = async (values) => {
+    const response = await isLogged(values);
     if (response) {
       const token = JSON.parse(localStorage.getItem("newToken"));
 
@@ -40,10 +39,10 @@ export const Login = () => {
       const invitado = await filterRol(token.token, "Invitado");
       const admin = await filterRol(token.token, "Administrador");
 
-      console.log("instructor", instructor)
-      console.log("aprendiz", aprendiz)
-      console.log("invitado", invitado)
-      console.log("admin", admin)
+      console.log("instructor", instructor);
+      console.log("aprendiz", aprendiz);
+      console.log("invitado", invitado);
+      console.log("admin", admin);
       if (admin) {
         localStorage.setItem("admin", admin);
         navigate(`/roles`);
@@ -65,14 +64,6 @@ export const Login = () => {
       console.log(err);
     }
   };
-
-  // const { email, contrasenia } = data;
-
-  const onChange = (e) =>
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
 
   return (
     <>
@@ -103,65 +94,87 @@ export const Login = () => {
                     SE-JustApp
                   </span>
                 </h3>
-                <form
-                  onSubmit={(e) => handleSubmit(e)}
+                <Formik
+                  initialValues={{
+                    documento: "",
+                    contrasenia: "",
+                  }}
+                  validationSchema={Yup.object({
+                    documento: Yup.number()
+                      .min(1, "Minimo 15 caracteres")
+                      .required("El documento es requerido"),
+                    contrasenia: Yup.string()
+                      .min(1, "Minimo 8 caracteres")
+                      .required("La contraseña es requerida"),
+                  })}
+                  onSubmit={async (values, { resetForm }) => {
+                    await handleSubmit(values);
+                    resetForm();
+                  }}
                   className="space-y-4 md:space-y-6"
                 >
-                  <div className="bg-white w-full h-full sm:p-7 rounded-lg p-4">
-                    <div>
-                      <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                        Documento
-                      </label>
-                      <input
-                        type="number"
-                        autoFocus
-                        name="documento"
-                        onChange={(e) => onChange(e)}
-                        id="documento"
-                        className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                        Contraseña:
-                      </label>
-                      <input
-                        type="password"
-                        name="contrasenia"
-                        onChange={(e) => onChange(e)}
-                        id="password"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        required
-                      />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <Link
-                        to={`/recuperacion-contraseña`}
-                        className=" text-blue-800 text-sm font-medium text-primary-600 hover:underline pt-3 pb-4"
-                      >
-                        ¿Olvidaste tu contraseña?
-                      </Link>
-                    </div>
-                    <button
-                      type="submit"
-                      className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
-                    >
-                      <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
-                        Inicio de Sesion
-                      </span>
-                    </button>
-                    <p className="text-sm font-light text-gray-700  pt-1 pb-2">
-                      Tienes cuenta?{" "}
-                      <Link
-                        to={`/register-1`}
-                        className="font-medium text-primary-600 hover:underline text-blue-800"
-                      >
-                        Registrarse
-                      </Link>
-                    </p>
-                  </div>
-                </form>
+                  {(formik) => (
+                    <form onSubmit={formik.handleSubmit}>
+                      <div className="bg-white w-full h-full sm:p-7 rounded-lg p-4">
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                            Documento
+                          </label>
+                          <Field
+                            type="number"
+                            autoFocus
+                            name="documento"
+                            id="documento"
+                            className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                          />
+                          <div className="text-red-600 font-bold">
+                            <ErrorMessage name="documento" />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                            Contraseña:
+                          </label>
+                          <Field
+                            type="password"
+                            name="contrasenia"
+                            id="password"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                          />
+                          <div className="text-red-600 font-bold">
+                            <ErrorMessage name="contrasenia" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Link
+                            to={`/recuperacion-contraseña`}
+                            className=" text-blue-800 text-sm font-medium text-primary-600 hover:underline pt-3 pb-4"
+                          >
+                            ¿Olvidaste tu contraseña?
+                          </Link>
+                        </div>
+                        <button
+                          // disabled={formik.isSubmitting || !formik.isValid}
+                          type="submit"
+                          className=" place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                        >
+                          <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
+                            Inicio de Sesion
+                          </span>
+                        </button>
+                        <p className="text-sm font-light text-gray-700  pt-1 pb-2">
+                          Tienes cuenta?{" "}
+                          <Link
+                            to={`/register-1`}
+                            className="font-medium text-primary-600 hover:underline text-blue-800"
+                          >
+                            Registrarse
+                          </Link>
+                        </p>
+                      </div>
+                    </form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>
