@@ -6,23 +6,8 @@ import { IoDocumentOutline } from "react-icons/io5";
 import { HiDocumentDuplicate } from "react-icons/hi";
 import { MdNotificationsActive } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useContextApp } from "../../Context/ContextApp";
 
 export const Home_Aprendiz = () => {
-  const contextApi = useContextApp();
-
-  useEffect(() => {
-    contextApi.socket.emit("aprendizConectado")
-    
-    contextApi.socket.on("notificacionesAprendiz", () => {
-      console.log("Notificado bro");
-    });
-
-    return () => {
-      contextApi.socket.off("notificacionesAprendiz");
-    };
-  }, [contextApi]);
   return (
     <DefaultLayout>
       <div className=" ">
@@ -45,7 +30,7 @@ export const Home_Aprendiz = () => {
               <section className="gap-4">
                 <Link to="/pruebaaprendiz">
                   <button className=" w-52  h-52 shadow-2xl border-gray-400 duration-150 border text-black hover:text-gray-200 bg-gray-400 hover:bg-gray-600 flex flex-col items-center justify-center rounded-lg">
-                    <TbAlignBoxRightTop  className=" text-9xl " />
+                    <TbAlignBoxRightTop className=" text-9xl " />
                     <div className=" bg-blue-400 rounded-b-lg w-full h-20 items-center justify-center hover:bg-blue-600  ">
                       <p className="mt-2 text-xl">Impugnacion</p>
                     </div>

@@ -32,7 +32,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
   };
   return (
     <div className="flex justify-center items-center w-full">
-      <div className="mx-auto w-full">
+      <div className="mx-auto w-full min-w-[300px] max-w-5xl">
         <div className="relative overflow-x-auto border shadow-lg sm:rounded-lg">
           <div className="flex justify-between p-4 relative">
             <div className="relative mt-1">
@@ -107,7 +107,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
                   </td>
 
                   <td className="px-6 py-4 text-right flex justify-center gap-4  ">
-                    <div className="ml-3 relative rounded-md w-1/4 bg-blue-100 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
+                    <div className="flex justify-center items-center ml-3 relative rounded-md w-1/4 bg-blue-100 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
                       <Link
                         to={`/see-${nombre_tabla}/${item.id}`}
                         className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
@@ -116,7 +116,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
                         ver
                       </Link>
                     </div>
-                    <div className="ml-3 relative rounded-md w-1/4 bg-blue-200 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
+                    <div className="flex justify-center items-center ml-3 relative rounded-md w-1/4 bg-blue-200 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
                       <Link
                         to={`/form-${nombre_tabla}/update/${item.id}`}
                         className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
@@ -133,7 +133,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
                     </Link> */}
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="ml-3 relative rounded-md w-1/4 bg-blue-700 px-5 py-1  text-xs font-bold shadow-md transition duration-300 ease-in-out  focus:outline-none text-center  text-white uppercase hover:text-white hover:bg-blue-400"
+                      className="flex justify-center items-center ml-3 relative rounded-md w-1/4 bg-blue-700 px-5 py-1  text-xs font-bold shadow-md transition duration-300 ease-in-out  focus:outline-none text-center  text-white uppercase hover:text-white hover:bg-blue-400"
                       type="button"
                     >
                       eliminar

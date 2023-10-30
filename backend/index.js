@@ -11,6 +11,7 @@ const usuariosRoutes = require("./routes/usuario.routes.js");
 const novedadesRoutes = require("./routes/novedades.routes.js");
 const instructorRoutes = require("./routes/instructor.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
+const notificacionRoutes = require("./routes/notificacion.routes.js");
 const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
 
 const app = express();
@@ -37,6 +38,7 @@ app.use(novedadesRoutes);
 app.use(instructorRoutes);
 app.use(reglamentoRoutes);
 app.use(inicio_sesionRoutes);
+app.use(notificacionRoutes);
 
 io.on("connection", (socket) => {
   console.log(`Usuario conectado ${socket.id}`);

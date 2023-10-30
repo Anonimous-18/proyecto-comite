@@ -61,7 +61,9 @@ export const NavBar = () => {
       className="w-full py-4 top-0 z-40 fixed shadow-lg bg-gradient-to-t from-white via-white to-blue-100 "
     >
       <div className="px-4 sm:px-6 ">
-        <div className="-ml-4 -mt-2 lg:flex flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
+        <div className="flex flex-col justify-between items-center px-2  
+        sm:-ml-4 sm:-mt-2 sm:flex-row sm:flex-nowrap md:px-12">
+
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
@@ -72,23 +74,23 @@ export const NavBar = () => {
               />
             </Link>
           </div>
-          <div className="ml-4 mt-2 flex flex-row items-center justify-center">
+          <div className="w-72 sm:w-2/6 flex flex-row items-center justify-center">
             <NavLink
               to="/reglamento"
-              className="text-lg flex flex-col items-center justify-center text-center font-medium text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+              className="w-2/6   text-lg flex flex-col items-center justify-center text-center font-medium text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3 relative"
             >
               <BsJournalBookmarkFill className="w-10 h-10 text-black" />
               <div className="w-32 text-xs font-bold hover:border-blue-800 transition duration-200 ease-in-out">
                 Reglamento
               </div>
             </NavLink>
-            <div className="flex flex-col items-center justify-center text-center mr-10 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
+            <div className="w-2/6   flex flex-col items-center justify-center text-center mr-10 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3 relative">
               <BsFillPersonFill className="w-10 h-10 text-black" />
               <div className="w-32 text-xs font-bold hover:border-blue-800 transition duration-200 ease-in-out">
                 {userName && userName ? userName : "Sin nombre"}
               </div>
             </div>
-            <Popover className="relative">
+            <Popover className="w-2/6 relative">
               {({ open }) => (
                 <>
                   <Popover.Button
@@ -111,9 +113,9 @@ export const NavBar = () => {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-1/2 transform px-6">
+                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-64 transform px-6 ">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
-                        <div className="relative grid grid-cols-1 gap-4 bg-white p-7">
+                        <div className="relative grid grid-cols-1 gap-4 bg-white p-7 ">
                           {localStorage.getItem("instructor") ||
                           localStorage.getItem("admin") ? (
                             <NavLink

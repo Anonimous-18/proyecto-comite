@@ -8,15 +8,10 @@ export const Spinner = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setVisible(false);
-    }, 3000); // Cambia 3000 por la cantidad de milisegundos que desees
+    }, 1000); // Cambia 3000 por la cantidad de milisegundos que desees
 
     return () => clearTimeout(timeout);
   }, []);
-  if (!visible) {
-    // Realiza la redirección y recarga
-    window.location.href = '/';
-    return <Navigate to={'/xxx'} replace />;
-  }
 
   return visible ? (
     <div className="flex items-center justify-center min-h-screen">

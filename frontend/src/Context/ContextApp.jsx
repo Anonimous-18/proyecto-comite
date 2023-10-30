@@ -6,6 +6,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import usuariosApi from "../api/usuarios";
 import novedadesApi from "../api/novedades";
 import instructorApi from "../api/instructor";
+import notificacionesApi from "../api/notificacionse";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
@@ -30,7 +31,7 @@ export const ContextApp = createContext();
 export const ContextAppProvider = ({ children }) => {
   const API = import.meta.env.VITE_API_URL;
   const socket = io(`${API}`);
-  
+
   const [usuario, setUsuario] = useState({});
 
   const [camposFil, setCamposFil] = useState(null);
@@ -41,12 +42,12 @@ export const ContextAppProvider = ({ children }) => {
     if (sessionStorage.getItem("Datos")) {
       const token = decode(sessionStorage.getItem("Datos"));
       const usuarioToken = jwt_decode(token);
-  
+
       const obtenerUsuario = async () => {
         const usuario = await usuarioToken.user;
         setUsuario(usuario);
       };
-  
+
       obtenerUsuario();
     }
   }, [location.pathname]);
@@ -381,6 +382,28 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const createNotificacion = async (body) => {
+    try {
+      const response = await notificacionesApi.createNotificacionRequest(body);
+      if (response) return response.status;
+      return null;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const createNotificacionUsu = async (body) => {
+    try {
+      const response = await notificacionesApi.createNotificacionUsuRequest(
+        body
+      );
+      if (response) return response.status;
+      return null;
+    } catch (error) {
+      return null;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -412,8 +435,11 @@ export const ContextAppProvider = ({ children }) => {
         decode,
         usuario,
         setUsuario,
-        socket
-      }}>
+        socket,
+        createNotificacion,
+        createNotificacionUsu,
+      }}
+    >
       {children}
     </ContextApp.Provider>
   );

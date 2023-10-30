@@ -141,7 +141,7 @@ export const Homeinstructor = () => {
   return (
     <DefaultLayout>
       <div className="max-w-full h-full flex flex-col items-center justify-center">
-        <div className="w-full flex flex-col 2xl:flex-row xl:flex-row lg:flex-col 2xl:items-start xl:items-start lg:items-center items-center justify-center">
+        <div className="w-full flex flex-col gap-28 2xl:flex-row xl:flex-row lg:flex-col 2xl:items-start xl:items-start lg:items-center items-center justify-center">
           <Semaforo />
           <Filtrocomite />
         </div>
