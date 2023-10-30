@@ -7,6 +7,12 @@ import { BsFillPersonXFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillPersonDashFill } from "react-icons/bs";
 
+import { FaGears } from "react-icons/fa6";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
+import { GiSandsOfTime } from "react-icons/gi";
+
 import { useContextApp } from "../../Context/ContextApp";
 import { Semaforo } from "../../components/util/semaforo";
 import DefaultLayout from "../../Layout/DefaultLayout";
@@ -71,15 +77,15 @@ export const Informacioncomiteinst = () => {
                 <div className="p-5">
                   <div className="border-2 p-2">
                     {comite.estado && comite.estado === "espera" ? (
-                      <BsFillPersonDashFill className="w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2 text-blue-600" />
+                      <GiSandsOfTime className="w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2 text-blue-800" />
                     ) : comite.estado && comite.estado === "rechazado" ? (
-                      <BsFillPersonXFill className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-red-600 " />
+                      <MdCancel className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-red-600 " />
                     ) : comite.estado && comite.estado === "aceptado" ? (
-                      <BsFillPersonCheckFill className="  text-yellow-500  w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  " />
+                      <AiFillCheckCircle className="  text-green-700 w-36 h-36 md:h-auto mx-auto flex items-center p-2  " />
                     ) : comite.estado && comite.estado === "ejecucion" ? (
-                      <BsFillPersonLinesFill className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-lime-500 " />
+                      <FaGears className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-green-700 " />
                     ) : (
-                      <BsFillPersonFill className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-red-950 " />
+                      <IoCheckmarkDoneCircleSharp className=" w-36 h-36 md:h-auto  mx-auto  flex  items-center p-2  text-black " />
                     )}
                   </div>
                   <div>

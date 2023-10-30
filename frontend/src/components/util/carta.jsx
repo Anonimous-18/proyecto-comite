@@ -2,11 +2,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { BsFillPersonLinesFill } from "react-icons/bs";
-import { BsFillPersonCheckFill } from "react-icons/bs";
-import { BsFillPersonXFill } from "react-icons/bs";
-import { BsFillPersonFill } from "react-icons/bs";
-import { BsFillPersonDashFill } from "react-icons/bs";
+import { FaGears } from "react-icons/fa6";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
+import { GiSandsOfTime } from "react-icons/gi";
 
 import { useContextApp } from "../../Context/ContextApp";
 
@@ -37,15 +37,15 @@ export const Carta = ({
     <div className="w-full h-full flex flex-row items-center justify-center">
       <figure className="bg-gray-400 shadow-md shadow-black h-full w-56 flex flex-col items-center justify-center rounded-l-xl">
         {estado && estado === "espera" ? (
-          <BsFillPersonDashFill className="w-36 h-36 text-blue-800" />
+          <GiSandsOfTime className="w-36 h-36 text-blue-800" />
         ) : estado && estado === "rechazado" ? (
-          <BsFillPersonXFill className=" w-36 h-36 text-red-600 " />
+          <MdCancel className=" w-36 h-36 text-red-600 " />
         ) : estado && estado === "aceptado" ? (
-          <BsFillPersonCheckFill className="text-green-700 w-36 h-36" />
+          <AiFillCheckCircle className="text-green-700 w-36 h-36" />
         ) : estado && estado === "ejecucion" ? (
-          <BsFillPersonLinesFill className=" w-36 h-36 text-green-700 " />
+          <FaGears className=" w-36 h-36 text-green-700 " />
         ) : (
-          <BsFillPersonFill className=" w-36 h-36 text-black " />
+          <IoCheckmarkDoneCircleSharp className=" w-36 h-36 text-black " />
         )}
       </figure>
       <div className="p-2 flex flex-col items-start justify-center bg-blue-100 w-96 shadow-md shadow-black  rounded-r-xl">

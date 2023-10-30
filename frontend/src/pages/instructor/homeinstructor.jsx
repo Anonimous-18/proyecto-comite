@@ -173,8 +173,8 @@ export const Homeinstructor = () => {
               <li key={index}>
                 <button
                   onClick={() => paginate(index + 1)}
-                  className={`bg-blue-800 text-white border border-black px-3 py-1 ${
-                    currentPage === index + 1 ? "bg-blue-500" : ""
+                  className={`bg-blue-500 text-white border border-black px-3 py-1 ${
+                    currentPage === index + 1 ? "bg-blue-800" : ""
                   }`}
                 >
                   {index + 1}
