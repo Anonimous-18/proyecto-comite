@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContextApp } from "../../Context/ContextApp";
+import { BsSkipBackwardCircle } from "react-icons/bs";
 
 const Recuperacion = () => {
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,14 @@ const Recuperacion = () => {
     <div className="bg-black h-screen w-full">
       <section className="bg-gray-50 ">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div className=" p-2">
+            <Link
+              to={`/login`}
+              className="font-medium text-primary-600 hover:underline text-blue-800 text-2xl"
+            >
+              <BsSkipBackwardCircle />
+            </Link>
+          </div>
           <div className="w-full bg-gradient-to-r bg-blue-800  rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 shadow-xl  ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-1">
               <h3 className=" text-center mt-4 mb-4 text-sm font-extrabold text-white md:text-5xl lg:text-3xl">

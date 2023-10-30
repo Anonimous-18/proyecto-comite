@@ -1,6 +1,7 @@
 import { useContextApp } from "../../Context/ContextApp";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {BsSkipBackwardCircle} from"react-icons/bs"
 
 export const Register1 = () => {
   const { protectedRoutes, registerUser } = useContextApp();
@@ -19,7 +20,6 @@ export const Register1 = () => {
     rol_id: null,
   });
 
-  
   useEffect(() => {
     if (tokenExist) {
       navigate(`/home`);
@@ -46,13 +46,29 @@ export const Register1 = () => {
   return (
     <>
       <section className="bg-while-500 dark:bg--900 mt-11 mb-11 flex flex-col items-center justify-center">
-        <form className="w-full max-w-lg bg-gray-100 p-8 shadow-black border-blue-100 border-2 rounded-lg shadow-xl" onSubmit={(e) => handleSubmit(e)}>
+        <form
+          className="w-full max-w-lg bg-gray-100 p-8 shadow-black border-blue-700 border-2 rounded-lg shadow-xl"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className="flex flex-row -mx-3 mb-6">
+            <div className="w-full px-3">
+              <Link
+                to={`/login`}
+                className="font-medium text-primary-600 hover:underline text-blue-800 text-2xl"
+              >
+                <BsSkipBackwardCircle/>
+              </Link>
+            </div>
+            <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-blue-800 text-lg font-bold mb-2">
+                Registrate!
+              </label>
+            </div>
+          </div>
+
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3  ">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 tipo documento
               </label>
               <select
@@ -80,10 +96,7 @@ export const Register1 = () => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Número de documento
               </label>
               <input
@@ -98,10 +111,7 @@ export const Register1 = () => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Nombre completo
               </label>
               <input
@@ -114,10 +124,7 @@ export const Register1 = () => {
               />
             </div>
             <div className="w-full md:w-1/2 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 telefono
               </label>
               <input
@@ -132,10 +139,7 @@ export const Register1 = () => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Correo
               </label>
               <input
@@ -150,10 +154,7 @@ export const Register1 = () => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 contraseña
               </label>
               <input
@@ -168,10 +169,7 @@ export const Register1 = () => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Dependencia
               </label>
               <input
@@ -184,10 +182,7 @@ export const Register1 = () => {
               />
             </div>
             <div className="w-full md:w-1/2 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 cargo
               </label>
               <input
