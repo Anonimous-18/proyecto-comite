@@ -71,6 +71,18 @@ const login = async (req, res) => {
   }
 };
 
+const ejemplo = async (req, res) => {
+  try {
+    const userRes = await roles.findByPk(1, {
+      include: [permisos], // Incluye la relación con el modelo Permisos
+    })
+
+    res.json(userRes);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 /**---------------------------------------------
  * |  Funcion para recuperar la contraseña
  ---------------------------------------------*/
@@ -414,4 +426,5 @@ module.exports = {
   recoveryEmail,
   registerUsers,
   secretKey,
+  ejemplo
 };

@@ -1,60 +1,42 @@
-
-const Sequelize = require('sequelize');
-
-module.exports = function (sequelize, DataTypes) {
-  const RolesPermisos = sequelize.define('roles_permisos', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    rol_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'roles',
-        key: 'id'
-      }
-    },
-    permisos_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'permisos',
-        key: 'id'
-      }
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Roles_Permisos extends Model {
+    static associate(models) {
+      Roles_Permisos.belongsTo(models.roles, {
+        as: "rol",
+        foreignKey: "rol_id",
+      });
+      Roles_Permisos.belongsTo(models.permisos, {
+        as: "permisos",
+        foreignKey: "permisos_id",
+      });
     }
-  }, {
-    sequelize,
-    tableName: 'roles_permisos',
-    timestamps: true,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
+  }
+  Roles_Permisos.init(
+    {
+      rol_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "roles",
+          key: "id",
+        },
       },
-      {
-        name: "rol_id",
-        using: "BTREE",
-        fields: [
-          { name: "rol_id" },
-        ]
+      permisos_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "permisos",
+          key: "id",
+        },
       },
-      {
-        name: "permisos_id",
-        using: "BTREE",
-        fields: [
-          { name: "permisos_id" },
-        ]
-      },
-    ]
-  });
+    },
+    {
+     sequelize,
+     modelName: "Roles_Permisos"
+    }
+  );
 
-  return RolesPermisos;
+  return Roles_Permisos;
 };
-
