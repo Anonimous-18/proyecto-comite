@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
 const sequelize = require("../sequelize-config.js");
 const { usuarios, roles, permisos, roles_permisos } = require("../models");
-
+ 
 const secretKey = v4();
 
 /**------------------------------
@@ -47,7 +47,7 @@ const login = async (req, res) => {
       
     }else{
       const permisosRol = await roles_permisos.findAll({
-        where: { rol_id: 1 },
+        where: { rol_id: req.userData.rol_id },
         include: [
           {
             model: permisos,

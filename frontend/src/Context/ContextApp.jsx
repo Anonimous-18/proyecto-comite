@@ -10,6 +10,8 @@ import notificacionesApi from "../api/notificacionse";
 import { filterRolRequest } from "../api/filtrarRol";
 import { getReglamentoRequest } from "../api/reglamento";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
+import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
+import { getPermisosRolRequest } from "../api/RolesPermisos";
 
 import {
   getRolesRequest,
@@ -19,12 +21,11 @@ import {
   getRolByIdRequest,
 } from "../api/roles";
 
-import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
-
 import {
   encodeCustomBase64String,
   decodeCustomBase64String,
 } from "../funciones/encode";
+import jwtDecode from "jwt-decode";
 
 export const ContextApp = createContext();
 
@@ -240,7 +241,14 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error al crear un rol: ", error.message);
     }
   };
-
+  const getPermisosRol = async (token,id) => {
+    try {
+      const res = await getPermisosRolRequest(token,id);
+      return res;
+    } catch (error) {
+      console.log("Error: ", error.message);
+    }
+  };
   const getRoles = async (token) => {
     try {
       const res = await getRolesRequest(token);
@@ -438,6 +446,7 @@ export const ContextAppProvider = ({ children }) => {
         socket,
         createNotificacion,
         createNotificacionUsu,
+        getPermisosRol,
       }}
     >
       {children}

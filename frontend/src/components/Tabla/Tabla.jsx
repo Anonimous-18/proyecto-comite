@@ -124,13 +124,6 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
                         gestion permisos
                       </Link>
                     </div>
-
-                    {/* <Link
-                      to={`/form-${nombre_tabla}/update/${item.id}`}
-                      className="p-2"
-                    >
-                      <GrUpdate />
-                    </Link> */}
                     <button
                       onClick={() => handleDelete(item.id)}
                       className="flex justify-center items-center ml-3 relative rounded-md w-1/4 bg-blue-700 px-5 py-1  text-xs font-bold shadow-md transition duration-300 ease-in-out  focus:outline-none text-center  text-white uppercase hover:text-white hover:bg-blue-400"
