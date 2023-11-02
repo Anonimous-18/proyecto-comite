@@ -3,17 +3,16 @@ const middlewareFuncion = (req, res, next) => {
     // Accede al parámetro específico que se configuró
     const accionControlador = req.accionControlador;
     const permisos = req.userData.user.permisos;
-    const permiso = permisos.find(
-      permiso => permiso === accionControlador
-    );
-    if (permiso) {
-      console.log(permiso);
-      next();
-    } else {
+    const permiso = permisos.find((permiso) => permiso === accionControlador);
+
+    if (!permiso) {
       return res.status(403).json({
         message: `No se tiene el permiso para poder ejecutar esta accion`,
       });
     }
+    
+    console.log(permiso);
+    next();
   } catch (error) {
     throw error;
   }
