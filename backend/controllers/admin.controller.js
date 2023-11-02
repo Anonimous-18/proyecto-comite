@@ -143,20 +143,20 @@ const createPermiso = async (req, res) => {
  -----------------------------------------*/
 const getPermisos = async (req, res) => {
   try {
-
     const permisosResul = await permisos.findAll();
     const result = permisosResul.map((permiso) => permiso.nombre);
-    if (result.length !== 0) {
-      return res.status(200).json(result);
+    
+    if (result.length === 0) {
+      return res.status(404).json({ message: "No hay roles" });
     }
-    return res.status(404).json({ message: "No hay roles" });
+    return res.status(200).json(result);
+
   } catch (error) {
     res.status(500).json({
       message: `Error al obtener todos los permisos detalles: ${error.message}`,
     });
   }
 };
-
 
 /**--------------------------------
  * Controlador para asignar un permiso a un rol determinado por el administrador
@@ -167,7 +167,8 @@ const asignarPermiso = async (req, res) => {
     const rolId = (await roles.findOne({ where: { nombre: rol } })).id;
     // Crear un array de promesas para todas las consultas asincrónicas
     const promesas = permisosNombres.map(async (permiso) => {
-      const permisoId = (await permisos.findOne({ where: { nombre: permiso } })).id;
+      const permisoId = (await permisos.findOne({ where: { nombre: permiso } }))
+        .id;
 
       const result = await roles_permisos.create({
         rol_id: rolId,
@@ -193,7 +194,9 @@ const asignarPermiso = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Error al asiganar los permisos al rol: ${error.message}` });
+      .json({
+        message: `Error al asiganar los permisos al rol: ${error.message}`,
+      });
   }
 };
 

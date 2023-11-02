@@ -4,7 +4,7 @@ const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
 const sequelize = require("../sequelize-config.js");
-const { usuarios, roles, permisos } = require("../models");
+const { usuarios, roles, permisos, roles_permisos } = require("../models");
 
 const secretKey = v4();
 
@@ -40,17 +40,28 @@ const login = async (req, res) => {
       rol_id: userRes.rol_id,
       // rol: userRes.role.dataValues
     };
-
     req.userData = user;
-    if (req.userData.rol_id) {
-      req.userData.permisos = (
-        await roles.findByPk(req.userData.rol_id, {
-          include: [permisos], // Incluye la relación con el modelo Permisos
-        })
-      ).dataValues.permisos;
-    } else {
+
+    if (!req.userData.rol_id) {
       req.userData.permisos = null;
+      
+    }else{
+      const permisosRol = await roles_permisos.findAll({
+        where: { rol_id: 1 },
+        include: [
+          {
+            model: permisos,
+            as: "permisos",
+          },
+        ],
+      });
+      const permisosNom = permisosRol.map(
+        (permisoRol) => permisoRol.permisos.nombre
+      );
+      req.userData.permisos = permisosNom;
+      console.log(req.userData);
     }
+
 
     /**-----------------------------------------------------
      * |  Creamos el Token de sesión con el tiempo de expiración
@@ -68,18 +79,6 @@ const login = async (req, res) => {
     res.status(500).json({
       message: `Error al intentar logearse detalles: ${error.message}`,
     });
-  }
-};
-
-const ejemplo = async (req, res) => {
-  try {
-    const userRes = await roles.findByPk(1, {
-      include: [permisos], // Incluye la relación con el modelo Permisos
-    })
-
-    res.json(userRes);
-  } catch (error) {
-    console.log(error.message);
   }
 };
 
@@ -419,6 +418,28 @@ const registerUsers = async (req, res) => {
   }
 };
 
+const ejemplo = async (req, res) => {
+  try {
+    const permisosRol = await roles_permisos.findAll({
+      where: { rol_id: 1 },
+      include: [
+        {
+          model: permisos,
+          as: "permisos",
+        },
+      ],
+    });
+
+    const permisosNom = permisosRol.map(
+      (permisoRol) => permisoRol.permisos.nombre
+    );
+    res.json(permisosNom);
+  } catch (error) {
+    console.error("Unable to fetch permissions:", error);
+    throw error;
+  }
+};
+
 module.exports = {
   login,
   recoveryEmail,
@@ -426,5 +447,5 @@ module.exports = {
   recoveryEmail,
   registerUsers,
   secretKey,
-  ejemplo
+  ejemplo,
 };

@@ -4,7 +4,7 @@ const middlewareFuncion = (req, res, next) => {
     const accionControlador = req.accionControlador;
     const permisos = req.userData.user.permisos;
     const permiso = permisos.find(
-      (permiso) => permiso.nombre === accionControlador
+      permiso => permiso === accionControlador
     );
     if (permiso) {
       console.log(permiso);
