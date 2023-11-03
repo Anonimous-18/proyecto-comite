@@ -30,6 +30,7 @@ import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
 import { Spinner } from "./components/util/Spinner";
 import Prueba from "./components/pruebas/Prueba";
+import  { CitacionAprendiz} from "./components/util/CitacionAprendiz";
 
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Login1 } from "./components/InicioSesion/Login1";
@@ -77,7 +78,7 @@ const Router = () => {
             <Route path="/see-roles/:id" element={<RolesDetails />} />
             <Route path="/mi-perfil" element={<Roles />} />
           </Route>
-
+          <Route path="/citacion-aprendiz" element={<CitacionAprendiz /> }/>
           <Route path="/home" element={<Home />} />
           <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/pruebas" element={<Prueba />} />
@@ -108,7 +109,7 @@ const Router = () => {
             path="/solicitud-comite-instructor"
             element={<SolicitudIntructor />}
           />
-          <Route path="/Antecedenteaprendiz/:id" element={<Antecedente />} />
+          <Route path="/antecedente-aprendiz/:id" element={<Antecedente />} />
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/home-gestor" element={<HomeGestor />} />
