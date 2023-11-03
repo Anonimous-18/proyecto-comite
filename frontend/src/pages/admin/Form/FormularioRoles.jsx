@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContextApp } from "../../../Context/ContextApp";
 import { FormularioRolesUI } from "./FormularioRolesUI";
+import { useLocation } from "react-router-dom";
 
 export const FormularioRoles = () => {
   const [nombre, setNombre] = useState(null);
@@ -9,6 +10,7 @@ export const FormularioRoles = () => {
   const [selectedValues, setSelectedValues] = useState([]);
   const { params, id } = useParams();
   const [cargando, setCargando] = useState(true);
+  const [rolParam, setRolParam] = useState('')
   const {
     createRoles,
     updateRoles,
@@ -19,7 +21,8 @@ export const FormularioRoles = () => {
     getPermisosRol,
   } = useContextApp();
   const tokenExist = protectedRoutes();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Función para manejar el cambio de un checkbox
   const handleCheckboxChange = (event) => {
@@ -34,7 +37,6 @@ export const FormularioRoles = () => {
       setSelectedValues(updatedValues);
     }
   };
-
   useEffect(() => {
     if (!tokenExist) {
       navigate(`/`);
@@ -43,14 +45,19 @@ export const FormularioRoles = () => {
     } else if (!localStorage.getItem("admin")) {
       navigate(`/home`);
     }
+    
+    const searchParams = new URLSearchParams(location.search);
+    const rolParam = searchParams.get("rol");
+    setRolParam(rolParam);
+    
     const cargarPermisos = async () => {
       const token = JSON.parse(localStorage.getItem("newToken"));
       const res = await getPermisos(token.token);
       const respermisosrol = await getPermisosRol(token.token, id);
-      setSelectedValues(respermisosrol)
+      setSelectedValues(respermisosrol);
       if (res) {
         setPermisos(res);
-        setCargando(false)
+        setCargando(false);
       }
     };
     cargarPermisos();
@@ -82,7 +89,6 @@ export const FormularioRoles = () => {
     } else {
       navigate(`/home`);
     }
-
   };
   return (
     <FormularioRolesUI
@@ -95,6 +101,7 @@ export const FormularioRoles = () => {
       params={params}
       rol={id}
       cargando={cargando}
+      rolParam={rolParam}
     />
   );
 };

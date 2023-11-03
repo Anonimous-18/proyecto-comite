@@ -118,7 +118,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
                     </div>
                     <div className="flex justify-center items-center ml-3 relative rounded-md w-1/4 bg-blue-200 px-5 py-1  text-lg font-bold shadow-md transition duration-300 ease-in-out focus:outline-none text-center  text-blue-700 hover:text-white hover:bg-blue-400">
                       <Link
-                        to={`/form-${nombre_tabla}/update/${item.id}`}
+                        to={`/form-${nombre_tabla}/update/${item.id}?rol=${item.nombre}`}
                         className="p-2 text-xs uppercase dark:bg-gray-700 dark:text-gray-400"
                       >
                         gestion permisos
