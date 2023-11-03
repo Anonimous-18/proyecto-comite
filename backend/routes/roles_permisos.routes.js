@@ -8,6 +8,7 @@ const router = Router();
 
 router
   .get("/api/get-permisosRol/:id",sessionMiddlewares.verifyToken, permisosMiddleware.comprobarPermiso('permisos-rol'), rolesPermisos.getPermisosRol)
+  // .get("/api/get-prueba/:id", rolesPermisos.getPermisosRol)
   // .post("/api/create-ficha", permisosMiddleware.comprobarPermiso("create-fichas"), rolesPermisos.createFicha)
   // .get("/api/get-ficha", rolesPermisos.getFicha)
   // .put("/api/update-ficha/:id", rolesPermisos.updateFicha)

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContextApp } from "../../../Context/ContextApp";
-import { FormularioRolesUI } from "./formularioRolesUI";
+import { FormularioRolesUI } from "./FormularioRolesUI";
 
 export const FormularioRoles = () => {
   const [nombre, setNombre] = useState(null);
   const [permisos, setPermisos] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const { params, id } = useParams();
+  const [cargando, setCargando] = useState(true);
   const {
     createRoles,
     updateRoles,
@@ -32,7 +33,7 @@ export const FormularioRoles = () => {
       const updatedValues = selectedValues.filter((item) => item !== value);
       setSelectedValues(updatedValues);
     }
-  };;
+  };
 
   useEffect(() => {
     if (!tokenExist) {
@@ -45,10 +46,11 @@ export const FormularioRoles = () => {
     const cargarPermisos = async () => {
       const token = JSON.parse(localStorage.getItem("newToken"));
       const res = await getPermisos(token.token);
-      const res2 = await getPermisosRol(token.token, 10);
-      console.log(res2);
+      const respermisosrol = await getPermisosRol(token.token, id);
+      setSelectedValues(respermisosrol)
       if (res) {
         setPermisos(res);
+        setCargando(false)
       }
     };
     cargarPermisos();
@@ -80,6 +82,7 @@ export const FormularioRoles = () => {
     } else {
       navigate(`/home`);
     }
+
   };
   return (
     <FormularioRolesUI
@@ -91,6 +94,7 @@ export const FormularioRoles = () => {
       handleSubmit={handleSubmit}
       params={params}
       rol={id}
+      cargando={cargando}
     />
   );
 };
