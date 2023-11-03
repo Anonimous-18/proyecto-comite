@@ -47,7 +47,6 @@ export const FormularioRolesUI = ({
                     name={`${e}`}
                     id={`${e}`}
                     value={`${e}`}
-                    checked={false}
                     onChange={handleCheckboxChange}
                   />
                 </div>
