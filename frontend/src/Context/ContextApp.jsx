@@ -25,7 +25,7 @@ import {
   encodeCustomBase64String,
   decodeCustomBase64String,
 } from "../funciones/encode";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 
 export const ContextApp = createContext();
 
@@ -37,7 +37,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const [camposFil, setCamposFil] = useState(null);
 
-  const [cargarPagina, setCargarPagina] = useState(false);
+  // const [cargarPagina, setCargarPagina] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
