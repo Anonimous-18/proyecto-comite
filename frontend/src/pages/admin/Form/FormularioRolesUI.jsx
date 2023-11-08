@@ -16,7 +16,7 @@ export const FormularioRolesUI = ({
         className="w-full flex justify-center"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="w-full md:w-4/6 shadow-lg shadow-zinc-400  p-4  font-medium text-gray-900 border rounded-xl text-5xl">
+        <div className="w-full md:w-4/6 shadow-md min-w-[500px] shadow-zinc-950  p-4  font-medium text-gray-900 border rounded-xl text-5xl">
           <h2 className="mb-4 font-bold text-blue-800 flex flex-col items-center ">
             {params === "update" ? "Actualizar usuario" : "Crear rol"}
           </h2>
@@ -35,7 +35,7 @@ export const FormularioRolesUI = ({
                 className="bg-gray-50  border-gray-500 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={params ? "Actualizar" : "Nuevo rol"}
                 required
-                value={rolParam || ''}
+                value={rolParam ? rolParam : null}
               />
             </div>
             <div className="flex flex-col w-3/6 border-r-2">

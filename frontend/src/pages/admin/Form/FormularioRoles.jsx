@@ -41,7 +41,11 @@ export const FormularioRoles = () => {
       const token = JSON.parse(localStorage.getItem("newToken"));
       const res = await getPermisos(token.token);
       const respermisosrol = await getPermisosRol(token.token, id);
-      setSelectedValues(respermisosrol);
+
+       
+      if (respermisosrol) {
+        setSelectedValues(respermisosrol);
+      }
       if (res) {
         setPermisos(res);
         setCargando(false);
