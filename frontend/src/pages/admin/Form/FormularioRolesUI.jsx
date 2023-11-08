@@ -8,7 +8,7 @@ export const FormularioRolesUI = ({
   params,
   selectedValues,
   cargando,
-  rolParam
+  rolParam,
 }) => {
   return (
     <DefaultLayout>
@@ -35,7 +35,7 @@ export const FormularioRolesUI = ({
                 className="bg-gray-50  border-gray-500 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={params ? "Actualizar" : "Nuevo rol"}
                 required
-                value={rolParam}
+                value={rolParam || ''}
               />
             </div>
             <div className="flex flex-col w-3/6 border-r-2">
@@ -53,17 +53,28 @@ export const FormularioRolesUI = ({
                     <label htmlFor={`${e}`} className="w-44 text-2xl">
                       {e}
                     </label>
-                    <input
-                      type="checkbox"
-                      className="h-10 w-10"
-                      name={`${e}`}
-                      id={`${e}`}
-                      checked={
-                        selectedValues ? selectedValues.includes(e) : false
-                      }
-                      value={`${e}`}
-                      onChange={handleCheckboxChange}
-                    />
+                    {( params && selectedValues )? (
+                      <input
+                        type="checkbox"
+                        className="h-10 w-10"
+                        name={`${e}`}
+                        id={`${e}`}
+                        checked={
+                          selectedValues ? selectedValues.includes(e) : false
+                        }
+                        value={`${e}`}
+                        onChange={handleCheckboxChange}
+                      />
+                    ) : (
+                      <input
+                        type="checkbox"
+                        className="h-10 w-10"
+                        name={`${e}`}
+                        id={`${e}`}
+                        value={`${e}`}
+                        onChange={handleCheckboxChange}
+                      />
+                    )}
                   </div>
                 ))
               )}
