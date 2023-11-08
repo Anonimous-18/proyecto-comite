@@ -5,11 +5,15 @@ const { comites, aprendices_implicados, usuarios } = require("../models");
  --------------------------------*/
 const createComites = async (req, res) => {
   try {
+    const { file } = req;
+    const MEDIA_PATH = __dirname + "/../uploads/" + file.filename;
+
     const result = await comites.create({
       articulos: req.body.articulos.toString(),
       instructor_fk: req.body.instructor_fk,
       tipo_falta: req.body.tipo_falta,
       descripcion_solicitud: req.body.descripcion_solicitud,
+      evidencia: MEDIA_PATH,
     });
 
     /**----------------------------------------------------------
@@ -33,7 +37,6 @@ const createComites = async (req, res) => {
         return res.status(500).json({ message: error.message });
       }
     }
-
     return res.status(500).json({ message: "Error al crear un nuevo comite." });
   } catch (error) {
     console.log(error);
