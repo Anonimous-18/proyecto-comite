@@ -24,19 +24,6 @@ export const FormularioRoles = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Función para manejar el cambio de un checkbox
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    // Si el checkbox está marcado, agrega el valor al array de selección
-    if (checked) {
-      console.log(selectedValues);
-      setSelectedValues([...selectedValues, value]);
-    } else {
-      // Si el checkbox está desmarcado, elimina el valor del array de selección
-      const updatedValues = selectedValues.filter((item) => item !== value);
-      setSelectedValues(updatedValues);
-    }
-  };
   useEffect(() => {
     if (!tokenExist) {
       navigate(`/`);
@@ -65,6 +52,19 @@ export const FormularioRoles = () => {
 
   const onChange = (e) => {
     setNombre(e.target.value);
+  };
+  // Función para manejar el cambio de un checkbox
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    // Si el checkbox está marcado, agrega el valor al array de selección
+    if (checked) {
+      console.log(selectedValues);
+      setSelectedValues([...selectedValues, value]);
+    } else {
+      // Si el checkbox está desmarcado, elimina el valor del array de selección
+      const updatedValues = selectedValues.filter((item) => item !== value);
+      setSelectedValues(updatedValues);
+    }
   };
 
   const handleSubmit = async (e) => {
