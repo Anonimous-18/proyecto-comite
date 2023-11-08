@@ -5,12 +5,12 @@ import { FormularioRolesUI } from "./FormularioRolesUI";
 import { useLocation } from "react-router-dom";
 
 export const FormularioRoles = () => {
-  const [nombre, setNombre] = useState(null);
+  const [nombre, setNombre] = useState("");
   const [permisos, setPermisos] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const { params, id } = useParams();
   const [cargando, setCargando] = useState(true);
-  const [rolParam, setRolParam] = useState('')
+  const [rolParam, setRolParam] = useState("");
   const {
     createRoles,
     updateRoles,
@@ -32,17 +32,18 @@ export const FormularioRoles = () => {
     } else if (!localStorage.getItem("admin")) {
       navigate(`/home`);
     }
-    
+
     const searchParams = new URLSearchParams(location.search);
     const rolParam = searchParams.get("rol");
-    setRolParam(rolParam);
-    
+    if (rolParam) {
+      setRolParam(rolParam);
+    }
+
     const cargarPermisos = async () => {
       const token = JSON.parse(localStorage.getItem("newToken"));
       const res = await getPermisos(token.token);
       const respermisosrol = await getPermisosRol(token.token, id);
 
-       
       if (respermisosrol) {
         setSelectedValues(respermisosrol);
       }
