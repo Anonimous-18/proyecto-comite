@@ -3,12 +3,13 @@ import DefaultLayout from "../../Layout/DefaultLayout";
 export const CitacionAprendiz = () => {
   return (
     <DefaultLayout>
-      <div className="  bg-red-600  w-full h-full mt-10  border-8 border-blue-600">
-        <div className=" w-full h-full bg-amber-400">
+      <div className="   w-full h-full mt-10  border-8 border-blue-600">
+        <div className=" w-full h-full ">
           <form>
             <div 
-              className="w-full  h-28 bg-red-500  flex flex-row items-center justify-center ">
-              <div className=" bg-blue-800  w-48 flex flex-col items-center justify-center h-full">
+              className="w-full  h-28 bg-purple-500  border-2 flex-row items-center justify-center  grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 ">
+               
+              <div className=" bg-blue-800  w-48 flex flex-col items-center justify-center h-full ">
                 <img
                   src="../../public/logoSena.png"
                   className="h-9"
@@ -16,7 +17,7 @@ export const CitacionAprendiz = () => {
                 />
               </div>
 
-              <div>
+              <div className="">
                 {" "}
                 <h1>
                   {" "}
@@ -31,21 +32,22 @@ export const CitacionAprendiz = () => {
                 </p>
               </div>
             </div>
+            {/* creo q termina a qui */}
             <div>
               <p>parrafo</p>
               <h4>titulo</h4>
             </div>
-            <div>
-              <label htmlFor="aprendiz">Aprendiz :</label>
+            <div className=" grid grid-col  bg-slate-100 w-96 items-center justify-center ">
+              <label htmlFor="aprendiz" className=" items-center justify-center  ">Aprendiz :</label>
               <input id="aprendiz" type="text" />
 
-              <label htmlFor="id">ID:</label>
+              <label htmlFor="id " className=" items-center justify-center">ID:</label>
               <input id="id" type="number" />
 
-              <label htmlFor="documento">Documento :</label>
+              <label htmlFor="documento" className=" items-center justify-center">Documento :</label>
               <input id="documento" type="number" />
 
-              <label htmlFor="correo">Correo :</label>
+              <label htmlFor="correo" className=" items-center justify-center">Correo :</label>
               <input id="correo" type="email" />
 
               <label htmlFor="programa">Programa :</label>
@@ -60,26 +62,23 @@ export const CitacionAprendiz = () => {
             <div>
               <p>
                 {" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Suscipit aspernatur animi ipsam eveniet ipsa! Reiciendis natus
-                excepturi tempore. Possimus nulla nesciunt suscipit quas ullam
-                eligendi, totam voluptatem illo aut sed.{" "}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
               </p>
             </div>
             <div>
               <div>
                 {" "}
                 1
-                <div>
+                <div className=" bg-slate-300 border-2 border-red-700 grid  grid-cols-8 ">
                   <p>RELACIÓN SUCINTA DEL INFORME O DE LA QUEJA PRESENTADA</p>
-                </div>
-                <div>
+           
                   {" "}
+                 
+                  <div className=" grid grid-col   w-20">
                   <p>
                     El instructor José David López Álzate refiere: El aprendiz
                     …..……….
                   </p>
-                  <div>
                     <label htmlFor="gestor">Gestor de la ficha :</label>
                     <input id="gestor" type="text" />
 
@@ -104,18 +103,18 @@ export const CitacionAprendiz = () => {
                   </p>
                 </div>
                 <div>
-                  <table>
+                  <table className="">
                     <tr>
-                      <th>NOMBRE</th>
-                      <th>DOCUMENTO</th>
-                      <th> ID</th>
-                      <th> PROGRAMA</th>
+                      <th className=" w-60 border-red-400 border-2">NOMBRE</th>
+                      <th className=" w-60 border-red-400 border-2">DOCUMENTO</th>
+                      <th className=" w-60 border-red-400 border-2"> ID</th>
+                      <th className=" w-60 border-red-400 border-2"> PROGRAMA</th>
                     </tr>
-                    <tr>
-                      <td>En blanco</td>
-                      <td>En blanco</td>
-                      <td>En blanco</td>
-                      <td>En blanco</td>
+                    <tr className="">
+                      <td className=" w-20 border-red-400  ">En blanco</td>
+                      <td className=" w-20 border-red-400 ">En blanco</td>
+                      <td className=" w-20 border-red-400 ">En blanco</td>
+                      <td className=" w-20 border-red-400  ">En blanco</td>
                     </tr>
                   </table>
                 </div>
