@@ -10,7 +10,8 @@ body {
 }
 
 .dalinComoFondo {
-  background-image: url("../public/hola.gif");
+  /* background-image: url("../public/hola.gif"); */
+  background-image: url("https://tenor.com/es-419/view/kareena-kapoor-wonder-woman-gif-18433720.gif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

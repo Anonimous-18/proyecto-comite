@@ -68,7 +68,8 @@ export const NavBar = () => {
             <Link to="/home">
               <img
                 className="darlin"
-                src="../../public/hola.gif"
+                // src="../../public/hola.gif"
+                src="https://tenor.com/es-419/view/dog-sex-gif-22435603.gif"
                 width={70}
                 height={60}
               />
