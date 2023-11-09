@@ -44,6 +44,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
+      evidencia: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       anexar_plan_mejoramiento: {
         type: Sequelize.STRING,
         allowNull: true

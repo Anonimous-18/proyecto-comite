@@ -7,6 +7,7 @@ const config = require("./config.js");
 
 const adminRoutes = require("./routes/admin.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
+const rolesPermisos = require("./routes/roles_permisos.routes.js");
 const usuariosRoutes = require("./routes/usuario.routes.js");
 const novedadesRoutes = require("./routes/novedades.routes.js");
 const instructorRoutes = require("./routes/instructor.routes.js");
@@ -30,9 +31,12 @@ app.use(
 );
 
 app.use(express.json());
+app.use(express.static(`uploads`));
+app.use(express.urlencoded({ extended: true }))
 
 app.use(adminRoutes);
 app.use(fichasRoutes);
+app.use(rolesPermisos);
 app.use(usuariosRoutes);
 app.use(novedadesRoutes);
 app.use(instructorRoutes);

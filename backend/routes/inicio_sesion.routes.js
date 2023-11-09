@@ -4,10 +4,12 @@ const {
   login,
   recoveryEmail,
   registerUser,
-  registerUsers
+  registerUsers,
+  ejemplo
 } = require("../controllers/inicio_sesion.controller.js");
 
 const router = Router();
+router.get("/ejem", ejemplo)
 
 /**----------------------------------
  * |  Ruta de logueo

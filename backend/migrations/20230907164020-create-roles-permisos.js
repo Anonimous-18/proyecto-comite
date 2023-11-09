@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -32,14 +32,17 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     });
+    await queryInterface.addIndex("roles_permisos", ["rol_id"]);
+    await queryInterface.addIndex("roles_permisos", ["permisos_id"]);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('roles_permisos');
-  }
+    await queryInterface.dropTable("roles_permisos");
+  },
 };

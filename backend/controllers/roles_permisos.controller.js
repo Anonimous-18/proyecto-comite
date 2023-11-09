@@ -1,5 +1,31 @@
-const { ficha } = require("../models");
+const { ficha, permisos, roles_permisos } = require("../models");
 
+/**--------------------------------------------------------
+ * funcion para obtener todos los permisos de un cierto rol
+ -----------------------------------------*/
+const getPermisosRol = async (req, res) => {
+  try {
+    const PermisosRol = await roles_permisos.findAll({
+      where: { rol_id: req.params.id},
+      include: [
+        {
+          model: permisos,
+          as: "permisos",
+        },
+      ],
+    });
+    const result = PermisosRol.map( permiso => permiso.permisos.nombre )
+    if (result.length === 0) {
+      return res.status(404).json({ message: "No hay permisos" });
+    }
+    return res.status(200).json(result);
+
+  } catch (error) {
+    res.status(500).json({
+      message: `Error al obtener todos los permisos detalles: ${error.message}`,
+    });
+  }
+};
 /**--------------------------------
  * funcion para crear una ficha
  --------------------------------*/
@@ -14,22 +40,6 @@ const createFicha = async (req, res) => {
     res
       .status(500)
       .json({ message: `Error al crear un nuevo ficha: ${error.message}` });
-  }
-};
-/**-----------------------------------------
- * funcion para obtener todos los ficha
- -----------------------------------------*/
-const getFicha = async (req, res) => {
-  try {
-    const result = await ficha.findAll();
-    if (result.length !== 0) {
-      return res.status(200).json(result);
-    }
-    return res.status(404).json({ message: "No hay ficha" });
-  } catch (error) {
-    res.status(500).json({
-      message: `Error al obtener todos los ficha detalles: ${error.message}`,
-    });
   }
 };
 
@@ -97,7 +107,7 @@ const deleteFicha = async (req, res) => {
 // updateficha,
 module.exports = {
   createFicha,
-  getFicha,
+  getPermisosRol,
   deleteFicha,
   updateFicha,
   fichabyId,

@@ -27,7 +27,7 @@ export const SolicitudComite = () => {
   const tokenExist = contextApi.protectedRoutes();
 
   useEffect(() => {
-    console.log(err);
+    window.scroll(0, 0);
     /**-------------------------------------------------------
      * |  Validamos el token de sesión
      -------------------------------------------------------*/
@@ -66,13 +66,6 @@ export const SolicitudComite = () => {
     const nuevosArticulos = [...articulosSeleccionados];
     nuevosArticulos.splice(index, 1);
     setArticulosSeleccionados(nuevosArticulos);
-  };
-
-  const onChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const getArticulos = (reglamentoCompleto, values) => {
@@ -142,22 +135,20 @@ export const SolicitudComite = () => {
     if (idenRequest && idenRequest.length === 0) {
       setErr(true);
     } else {
-      console.log("ANEXOS ", values.anexos);
-
       const token = JSON.parse(localStorage.getItem("newToken"));
       const tokenDecoded = hooks.useDecodedToken(token.token);
 
-      const body = {
-        aprendices_implicados: idenRequest,
-        articulos: artRequest,
-        instructor_fk: tokenDecoded.user.id,
-        tipo_falta: values.tipo_falta,
-        descripcion_solicitud: values.descripcion_falta,
-      };
+      const formData = new FormData();
+      formData.append("aprendices_implicados", idenRequest);
+      formData.append("articulos", artRequest);
+      formData.append("instructor_fk", tokenDecoded.user.id);
+      formData.append("tipo_falta", values.tipo_falta);
+      formData.append("descripcion_solicitud", values.descripcion_falta);
+      formData.append("evidencia", values.evidencia);
 
-      if (body) {
+      if (formData) {
         try {
-          await contextApi.createComite(body);
+          await contextApi.createComite(formData);
           navigate(`/homeinstructor`);
         } catch (error) {
           console.log(error);
@@ -176,6 +167,7 @@ export const SolicitudComite = () => {
             articulo: "",
             tipo_falta: "",
             descripcion_falta: "",
+            evidencia: null,
           }}
           validationSchema={Yup.object({
             capitulo: Yup.string().required("Seleccione un capitulo"),
@@ -184,6 +176,7 @@ export const SolicitudComite = () => {
             descripcion_falta: Yup.string()
               .min(10, "Minimo 10 caracteres")
               .required("La descripción de la falta es requerida"),
+            evidencia: Yup.mixed().required("Seleccione un archivo"),
           })}
           onSubmit={async (values) => {
             await handleSubmit(values);
@@ -346,12 +339,19 @@ export const SolicitudComite = () => {
                 </label>
                 <input
                   type="file"
-                  name="brand"
-                  id="brand"
+                  name="evidencia"
+                  onChange={(event) => {
+                    formik.setFieldValue(
+                      "evidencia",
+                      event.currentTarget.files[0]
+                    );
+                  }}
                   placeholder="Link de la carpeta"
-                  onChange={(e) => onChange(e)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                 />
+                <div className="text-red-600 font-bold">
+                  <ErrorMessage name="evidencia" />
+                </div>
               </div>
               <div className="p-2 sm:col-span-2 flex flex-row place-content-center">
                 <div>

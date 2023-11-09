@@ -5,11 +5,15 @@ const { comites, aprendices_implicados, usuarios } = require("../models");
  --------------------------------*/
 const createComites = async (req, res) => {
   try {
+    const { file } = req;
+    const evidencia = file.filename;
+
     const result = await comites.create({
       articulos: req.body.articulos.toString(),
       instructor_fk: req.body.instructor_fk,
       tipo_falta: req.body.tipo_falta,
       descripcion_solicitud: req.body.descripcion_solicitud,
+      evidencia,
     });
 
     /**----------------------------------------------------------
@@ -21,7 +25,7 @@ const createComites = async (req, res) => {
          * | Agregamos los aprendices implicados
          * ---------------------------------------*/
         const comite = result.dataValues.id;
-        req.body.aprendices_implicados.forEach(async (aprendiz) => {
+        req.body.aprendices_implicados.split(",").forEach(async (aprendiz) => {
           await aprendices_implicados.create({
             documento: aprendiz,
             comite_fk: comite,
