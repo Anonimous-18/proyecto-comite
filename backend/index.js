@@ -32,6 +32,7 @@ app.use(
 
 app.use(express.json());
 app.use(express.static(`uploads`));
+app.use(express.urlencoded({ extended: true }))
 
 app.use(adminRoutes);
 app.use(fichasRoutes);
