@@ -42,6 +42,10 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
+      evidencia: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
       anexar_plan_mejoramiento: {
         type: DataTypes.STRING(255),
         allowNull: true,
