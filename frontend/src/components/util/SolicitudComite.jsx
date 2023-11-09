@@ -135,23 +135,20 @@ export const SolicitudComite = () => {
     if (idenRequest && idenRequest.length === 0) {
       setErr(true);
     } else {
-
       const token = JSON.parse(localStorage.getItem("newToken"));
       const tokenDecoded = hooks.useDecodedToken(token.token);
 
-      const body = {
-        aprendices_implicados: idenRequest,
-        articulos: artRequest,
-        instructor_fk: tokenDecoded.user.id,
-        tipo_falta: values.tipo_falta,
-        descripcion_solicitud: values.descripcion_falta,
-        evidencia: values.evidencia,
-      };
+      const formData = new FormData();
+      formData.append("aprendices_implicados", idenRequest);
+      formData.append("articulos", artRequest);
+      formData.append("instructor_fk", tokenDecoded.user.id);
+      formData.append("tipo_falta", values.tipo_falta);
+      formData.append("descripcion_solicitud", values.descripcion_falta);
+      formData.append("evidencia", values.evidencia);
 
-      if (body) {
+      if (formData) {
         try {
-          console.log(body);
-          await contextApi.createComite(body);
+          await contextApi.createComite(formData);
           // navigate(`/homeinstructor`);
         } catch (error) {
           console.log(error);
@@ -344,7 +341,10 @@ export const SolicitudComite = () => {
                   type="file"
                   name="evidencia"
                   onChange={(event) => {
-                    formik.setFieldValue("evidencia", event.currentTarget.files[0]);
+                    formik.setFieldValue(
+                      "evidencia",
+                      event.currentTarget.files[0]
+                    );
                   }}
                   placeholder="Link de la carpeta"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
