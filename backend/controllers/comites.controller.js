@@ -5,39 +5,40 @@ const { comites, aprendices_implicados, usuarios } = require("../models");
  --------------------------------*/
 const createComites = async (req, res) => {
   try {
-    const { file } = req;
-    const MEDIA_PATH = __dirname + "/../uploads/" + file.filename;
+    // const { file } = req;
+    // const MEDIA_PATH = __dirname + "/../uploads/" + file.filename;
 
-    const result = await comites.create({
-      articulos: req.body.articulos.toString(),
-      instructor_fk: req.body.instructor_fk,
-      tipo_falta: req.body.tipo_falta,
-      descripcion_solicitud: req.body.descripcion_solicitud,
-      evidencia: MEDIA_PATH,
-    });
+    // const result = await comites.create({
+    //   articulos: req.body.articulos.toString(),
+    //   instructor_fk: req.body.instructor_fk,
+    //   tipo_falta: req.body.tipo_falta,
+    //   descripcion_solicitud: req.body.descripcion_solicitud,
+    //   evidencia: MEDIA_PATH,
+    // });
 
-    /**----------------------------------------------------------
-     * | Este es id del comite creado: result.dataValues.id
-     * ----------------------------------------------------------*/
-    if (result.dataValues.id !== 0) {
-      try {
-        /**---------------------------------------
-         * | Agregamos los aprendices implicados
-         * ---------------------------------------*/
-        const comite = result.dataValues.id;
-        req.body.aprendices_implicados.forEach(async (aprendiz) => {
-          await aprendices_implicados.create({
-            documento: aprendiz,
-            comite_fk: comite,
-          });
-        });
-        return res.sendStatus(204);
-      } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: error.message });
-      }
-    }
-    return res.status(500).json({ message: "Error al crear un nuevo comite." });
+    // /**----------------------------------------------------------
+    //  * | Este es id del comite creado: result.dataValues.id
+    //  * ----------------------------------------------------------*/
+    // if (result.dataValues.id !== 0) {
+    //   try {
+    //     /**---------------------------------------
+    //      * | Agregamos los aprendices implicados
+    //      * ---------------------------------------*/
+    //     const comite = result.dataValues.id;
+    //     req.body.aprendices_implicados.forEach(async (aprendiz) => {
+    //       await aprendices_implicados.create({
+    //         documento: aprendiz,
+    //         comite_fk: comite,
+    //       });
+    //     });
+    //     return res.sendStatus(204);
+    //   } catch (error) {
+    //     console.log(error);
+    //     return res.status(500).json({ message: error.message });
+    //   }
+    // }
+    res.status(201).json(req.body);
+    // return res.status(500).json({ message: "Error al crear un nuevo comite." });
   } catch (error) {
     console.log(error);
     res
