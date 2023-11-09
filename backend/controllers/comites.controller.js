@@ -6,7 +6,7 @@ const { comites, aprendices_implicados, usuarios } = require("../models");
 const createComites = async (req, res) => {
   try {
     const { file } = req;
-    const evidencia = file.filename
+    const evidencia = file.filename;
 
     const result = await comites.create({
       articulos: req.body.articulos.toString(),
@@ -37,8 +37,7 @@ const createComites = async (req, res) => {
         return res.status(500).json({ message: error.message });
       }
     }
-        // return res.status(200).json({ evidencia });
-    
+
     return res.status(500).json({ message: "Error al crear un nuevo comite." });
   } catch (error) {
     console.log(error);
