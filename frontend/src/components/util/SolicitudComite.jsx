@@ -27,7 +27,7 @@ export const SolicitudComite = () => {
   const tokenExist = contextApi.protectedRoutes();
 
   useEffect(() => {
-    console.log(err);
+    window.scroll(0, 0);
     /**-------------------------------------------------------
      * |  Validamos el token de sesión
      -------------------------------------------------------*/

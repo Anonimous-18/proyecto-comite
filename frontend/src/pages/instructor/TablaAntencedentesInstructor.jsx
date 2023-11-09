@@ -90,7 +90,7 @@ export const TablaAntencedentesInstructor = () => {
                       <td className="border-2 justify-center items-center">
                         <Link
                           className="rounded-md bg-teal-500 items-center flex justify-center"
-                          to={`/Antecedenteaprendiz/${aprendiz.id}`}
+                          to={`/antecedente-aprendiz/${aprendiz.id}`}
                         >
                           Ver
                         </Link>
@@ -105,8 +105,8 @@ export const TablaAntencedentesInstructor = () => {
                     <td className="border-2 justify-center items-center">{filtrado[0].telefono}</td>
                     <td className="border-2 justify-center items-center">
                       <Link
-                        className="rounded-md bg-teal-500"
-                        to={`/Antecedenteaprendiz/${filtrado[0].id}`}
+                        className="rounded-md bg-rose-500"
+                        to={`/antecedente-aprendiz/${filtrado[0].id}`}
                       >
                         Ver
                       </Link>
