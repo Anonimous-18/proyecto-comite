@@ -113,7 +113,7 @@ const Router = () => {
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
 
-          
+
           <Route path="/home-gestor" element={<HomeGestor />} />
 
           <Route path="/register-1" element ={<Register1/>}/>
