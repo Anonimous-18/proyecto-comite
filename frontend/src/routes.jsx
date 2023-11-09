@@ -112,12 +112,16 @@ const Router = () => {
           <Route path="/antecedente-aprendiz/:id" element={<Antecedente />} />
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
+
+          
           <Route path="/home-gestor" element={<HomeGestor />} />
 
           <Route path="/register-1" element ={<Register1/>}/>
           <Route path="/login-1" element={<Login1/>}/>
 
           <Route path="*" element={ <Navigate to={`${ruta}`} replace /> } />
+          <Route path="*/*" element={ <Navigate to={`${ruta}`} replace /> } />
+          <Route path="*/*/*" element={ <Navigate to={`${ruta}`} replace /> } />
 
           
         </Routes>

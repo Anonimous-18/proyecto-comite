@@ -34,8 +34,8 @@ export const Carta = ({
   }, [contextApi, instructor]);
 
   return (
-    <div className="w-full h-full flex flex-row items-center justify-center">
-      <figure className="bg-gray-400 shadow-md shadow-black h-full w-56 flex flex-col items-center justify-center rounded-l-xl">
+    <div className="w-full h-full flex flex-row items-center justify-center shadow-sm shadow-zinc-400">
+      <figure className="bg-zinc-200 h-full w-56 flex flex-col items-center justify-center">
         {estado && estado === "espera" ? (
           <GiSandsOfTime className="w-36 h-36 text-blue-800" />
         ) : estado && estado === "rechazado" ? (
@@ -48,7 +48,7 @@ export const Carta = ({
           <IoCheckmarkDoneCircleSharp className=" w-36 h-36 text-black " />
         )}
       </figure>
-      <div className="p-2 flex flex-col items-start justify-center bg-blue-100 w-96 shadow-md shadow-black  rounded-r-xl">
+      <div className="p-2 flex flex-col items-start justify-center bg-gray-100 w-96  ">
         <h1 className="text-blue-800 text-lg font-bold">{tipo_falta}</h1>
         <p className="text-sm py-2">{descripcion_solicitud}</p>
         <p className="text-sm py-2 font-bold">

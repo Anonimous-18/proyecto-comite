@@ -16,7 +16,6 @@ export const getPermisosRolRequest = async (token,id) => {
       return res.data;
     }
   } catch (error) {
-    throw error;
     console.log("Error al obtener los permisos detalles: ", error.message);
   }
 };
