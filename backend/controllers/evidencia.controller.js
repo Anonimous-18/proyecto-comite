@@ -4,7 +4,7 @@ const getEvidencia = async (req, res) => {
     try {
         const { nombreArchivo } = req.body;
 
-        if (!nombreArchivo) return res.status(400).json({ msg: "ERROR_GET_EVIDENCIA" })
+        if (!nombreArchivo) return res.status(400).json({ msg: "ERROR_GET_EVIDENCIA_PROP" })
         const { data } = await comites.findOne({ where: { evidencia: nombreArchivo } })
 
         if (!data) return res.status(500).json({ msg: "ERROR_GET_EVIDENCIA" });
@@ -14,3 +14,5 @@ const getEvidencia = async (req, res) => {
         return res.status(500).json({ msg: error.message });
     }
 }
+
+module.exports = { getEvidencia };
