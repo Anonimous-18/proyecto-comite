@@ -3,196 +3,369 @@ import DefaultLayout from "../../Layout/DefaultLayout";
 export const CitacionAprendiz = () => {
   return (
     <DefaultLayout>
-      <div className="   w-full h-full mt-10  border-8 border-blue-600">
+      <div className="   w-full h-full mt-10  ">
         <div className=" w-full h-full ">
           <form>
-            <div 
-              className="w-full  h-28 bg-purple-500  border-2 flex-row items-center justify-center  grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 ">
-               
-              <div className=" bg-blue-800  w-48 flex flex-col items-center justify-center h-full ">
+            <div className="grid grid-cols-3">
+              <div className=" flex flex-col items-center justify-center h-full border-2 border-black">
                 <img
                   src="../../public/logoSena.png"
-                  className="h-9"
+                  className="h-24 w-24"
                   alt="logo"
                 />
               </div>
 
-              <div className="">
-                {" "}
-                <h1>
-                  {" "}
-                  hhhhhhhhhhhhhhhhhhtttt
-                </h1>{" "}
+              <div className="  w-54 h-auto border-2 border-black">
+                <p>
+                  SERVICIO NACIONAL DE APRENDIZAJE – SENA COMUNICACIÓN AL
+                  APRENDIZ PRESUNTAMENTE IMPLICADO
+                </p>
               </div>
 
-              <div>
-                <p>
-                  {" "}
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <div className=" grid grid-cols-1 h-full items-center justify-center border-2 border-black">
+                <p className="  w-52 ">Versión: 01</p>
+                <p className="  w-52 ">
+                  <br /> Octubre 28 de 2013
                 </p>
               </div>
             </div>
             {/* creo q termina a qui */}
-            <div>
-              <p>parrafo</p>
-              <h4>titulo</h4>
+            <br />
+
+            <div className=" items-center justify-center grid grid-col">
+              <label htmlFor="codigo">17-9219-101 :</label>
+              <br />
+              <label htmlFor="fecha">
+                Manizales, 24 de noviembre de 2023 :
+              </label>
             </div>
-            <div className=" grid grid-col  bg-slate-100 w-96 items-center justify-center ">
-              <label htmlFor="aprendiz" className=" items-center justify-center  ">Aprendiz :</label>
-              <input id="aprendiz" type="text" />
+            <br />
+            <div className=" grid grid-cols-2  w-96 items-center justify-center ">
+              <label htmlFor="aprendiz" className="items-center justify-center">
+                Aprendiz :
+              </label>
+              <input
+                id="aprendiz"
+                type="text"
+                placeholder="Darlin"
+                className=" border-2 border-gray-100 "
+                disabled
+              />
 
-              <label htmlFor="id " className=" items-center justify-center">ID:</label>
-              <input id="id" type="number" />
+              <label htmlFor="id" className="items-center justify-center">
+                ID:
+              </label>
+              <input
+                id="id"
+                type="number"
+                placeholder="2504591"
+                className="  border-2 border-gray-100"
+                disabled
+              />
 
-              <label htmlFor="documento" className=" items-center justify-center">Documento :</label>
-              <input id="documento" type="number" />
+              <label
+                htmlFor="documento"
+                className="items-center justify-center">
+                Documento :
+              </label>
+              <input
+                id="documento"
+                type="number"
+                placeholder="1076817756"
+                className=" border-2 border-gray-100"
+                disabled
+              />
 
-              <label htmlFor="correo" className=" items-center justify-center">Correo :</label>
-              <input id="correo" type="email" />
+              <label htmlFor="correo" className="items-center justify-center">
+                Correo :
+              </label>
+              <input
+                id="correo"
+                type="email"
+                placeholder="sansonrivas@gmail.com"
+                className="border-2 border-gray-100"
+                disabled
+              />
 
               <label htmlFor="programa">Programa :</label>
-              <input id="programa" type="text" />
+              <input
+                id="programa"
+                type="text"
+                placeholder="Analisis y desarrollo de s."
+                className=" border-2 border-gray-100"
+                disabled
+              />
 
               <label htmlFor="centro">Centro :</label>
-              <input id="centro" type="text" />
+              <input
+                id="centro"
+                type="text"
+                placeholder="Automatizacion industrial"
+                className=" border-2 border-gray-100"
+                disabled
+              />
 
               <label htmlFor="asunto">Asunto :</label>
-              <input id="asunto" type="text" />
+              <input
+                id="asunto"
+                type="text"
+                placeholder="Comunicación al aprendiz presuntamente implicado en informe o queja"
+                className="border-2 border-gray-100"
+                disabled
+              />
             </div>
+            <br />
             <div>
               <p>
                 {" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+                <strong>
+                  Asunto: Comunicación al aprendiz presuntamente implicado en
+                  informe o queja
+                </strong>{" "}
               </p>
             </div>
+            <br />
+            <br />
             <div>
-              <div>
-                {" "}
-                1
-                <div className=" bg-slate-300 border-2 border-red-700 grid  grid-cols-8 ">
-                  <p>RELACIÓN SUCINTA DEL INFORME O DE LA QUEJA PRESENTADA</p>
-           
-                  {" "}
-                 
-                  <div className=" grid grid-col   w-20">
-                  <p>
-                    El instructor José David López Álzate refiere: El aprendiz
-                    …..……….
-                  </p>
-                    <label htmlFor="gestor">Gestor de la ficha :</label>
-                    <input id="gestor" type="text" />
+              <p>
+                De conformidad con lo dispuesto en el ,
+                <strong>
+                  <label htmlFor="capitulo">CAPITULO III artículo 9, </label>
+                </strong>
+                del Reglamento del Aprendiz SENA, adoptado mediante Acuerdo
+                00007 del 30 de abril de 2012, comedidamente le comunico que se
+                ha informado a este Centro sobre sucesos presentados dentro la
+                etapa lectiva y que requieren revisión inmediata.
+              </p>
+            </div>
+            <div className="border-2 justify-center">
+              <div className=" bordr-2">
+                <div className=" grid grid-cols-2  w-8/12 ">
+                  <p className="border-2 border-black w-58  grid grid-col justify-center items-center">
+                    RELACIÓN SUCINTA DEL INFORME O DE LA QUEJA PRESENTADA
+                  </p>{" "}
+                  <div className="border-2 border-black grid grid-col w-96">
+                    <p className="justify-center items-center grid grid-col">
+                      El instructor José David López Álzate refiere:
+                      <label className="forbid-pointer-events">
+                      A el aprendiz :
+                      <input type="text" disabled  placeholder="  Darlin Andres" />
+                    </label>
+                      <br />
+                      <br />
+                    </p>
 
-                    <label htmlFor="trimestre">Trimestre:</label>
-                    <input id="trimestre" type="text" />
+                    <label className="forbid-pointer-events">
+                      Gestor de la ficha:
+                      <input type="text" disabled  placeholder="  Andres julian" />
+                    </label>
 
-                    <label htmlFor="contrato">Contrato de aprendizaje :</label>
-                    <input id="contrato" type="text" />
+                    <label className="forbid-pointer-events">
+                      Trimestre:
+                      <input type="text" disabled placeholder="  7" />
+                    </label>
 
-                    <label htmlFor="historial">Historial académico :</label>
-                    <input id="historial" type="text" />
+                    <label className="forbid-pointer-events">
+                      Contrato de aprendizaje:
+                      <input type="text" disabled  placeholder=" Envia"/>
+                    </label>
+
+                    <label className="forbid-pointer-events">
+                      Historial académico:
+                      <input type="text" disabled placeholder="  3 Felicitaciones" />
+                    </label>
                   </div>
                 </div>
               </div>
-
-              <div>
-                {" "}
-                2
-                <div>
+              {/* cierre */}
+              <br />
+              <div className="grid grid-cols-2  w-8/12">
+                <div className="border-2 border-black items-center justify-center grid dgrid-col ">
                   <p>
                     IDENTIFICACIÓN DEL(LOS) PROBABLE(S) AUTOR(ES) DE LOS HECHOS
                   </p>
                 </div>
-                <div>
-                  <table className="">
-                    <tr>
-                      <th className=" w-60 border-red-400 border-2">NOMBRE</th>
-                      <th className=" w-60 border-red-400 border-2">DOCUMENTO</th>
-                      <th className=" w-60 border-red-400 border-2"> ID</th>
-                      <th className=" w-60 border-red-400 border-2"> PROGRAMA</th>
-                    </tr>
-                    <tr className="">
-                      <td className=" w-20 border-red-400  ">En blanco</td>
-                      <td className=" w-20 border-red-400 ">En blanco</td>
-                      <td className=" w-20 border-red-400 ">En blanco</td>
-                      <td className=" w-20 border-red-400  ">En blanco</td>
-                    </tr>
-                  </table>
+                <div className="border-2 border-black  grid grid-cols-4 w-96 ">
+                  <div className=" items-center justify-center">
+                    <div className="border-2 border-black   grid grid-col justify-center items-center ">
+                      NOMBRE
+                    </div>
+                    <div className="border-2 border-black h-24 ">
+                      BRAYAN ESTIVEN GOMES NOGUERA
+                    </div>
+                  </div>
+
+                  <div className=" items-center justify-center">
+                    <div className="border-2 border-black  grid grid-col justify-center items-center ">
+                      DOCUMENTO
+                    </div>
+                    <div className="border-2 border-black h-24 grid grid-col items-center justify-center">
+                      {" "}
+                      1076826459
+                    </div>
+                  </div>
+                  <div className=" items-center justify-center">
+                    <div className="border-2 border-black grid grid-col justify-center items-center ">
+                      ID
+                    </div>
+                    <div className="border-2 border-black h-24 grid grid-col items-center justify-center">
+                      {" "}
+                      2504591
+                    </div>
+                  </div>
+                  <div className=" items-center justify-center">
+                    <div className=" border-black h-32  grid grid-col justify-center items-center ">
+                      Adso
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div>
-                {" "}
-                3
-                <div>
+              <br />
+              {/* cierre */}
+              <div className="grid grid-cols-2  w-8/12">
+                <div className="border-2 border-black items-center justify-center grid dgrid-col ">
                   <p>
                     NORMAS DEL REGLAMENTO DEL APRENDIZ SENA QUE PRESUNTAMENTE
                     INFRINGIÓ EL (LOS) APRENDIZ(CES) CON ESOS HECHOS U
                     OMISIONES.
                   </p>
                 </div>
-                <div>
+                <div className="border-2 border-black  w-96">
                   <p>
-                    {" "}
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestias hic, vel a recusandae eaque rem neque, voluptate
-                    possimus consectetur similique pariatur, ducimus illum ad
-                    aliquid ab obcaecati incidunt facilis odio.
+                    CAPÍTULO III. Deberes el aprendiz SENA. Artículo 9, Se
+                    entiende por deber, la obligación legal, social y moral que
+                    compromete a la persona a cumplir con determinada actuación,
+                    institución.
+                    <br />
+                    <br />
+                    Cumplir con todas las actividades propias de su proceso de
+                    aprendizaje o del plan de mejoramiento, definidas durante su
+                    etapa lectiva y productiva.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div>
-              <div>
-                <p>TIPO DE FALTA</p>
+            <br />
+            <div className=" grid grid-col  w-full">
+              <div className="grid grid-cols-2  w-8/12">
+                <div className="border-2 border-black  ">
+                  <p>TIPO DE FALTA</p>
+                </div>
+                <div className="border-2 border-black  w-96">
+                  <p>ACADÉMICA DISCIPLINARIA</p>
+                </div>
               </div>
-              <div>
-                <p>ACADÉMICA DISCIPLINARIA</p>
+              <div className="grid grid-cols-2   w-8/12">
+                <div className="border-2 border-black ">
+                  <p>CALIFICACIÓN PROVISIONAL DE LA(S) PROBABLE(S) FALTA(S)</p>
+                </div>
+                <div className="border-2 border-black  w-96">
+                  <p>LEVE GRAVE GRAVÍSIMA</p>
+                </div>
               </div>
             </div>
-            <div>
-              <div>
-                <p>CALIFICACIÓN PROVISIONAL DE LA(S) PROBABLE(S) FALTA(S)</p>
-              </div>
-              <div>
-                <p>LEVE GRAVE GRAVÍSIMA</p>
-              </div>
-            </div>
+            <br />
+            <br />
+
             <div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                quaerat aut maiores dolorem eligendi accusamus repellendus ut
-                adipisci quam, vel inventore porro quod corrupti atque earum
-                culpa expedita quidem harum.
+                Teniendo en cuenta a lo anterior, le informo que usted tiene
+                derecho a presentar sus descargos ante el Comité de Evaluación y
+                Seguimiento del Centro, en forma escrita o verbal, así como a
+                controvertir las pruebas allegadas o que se
               </p>
+              <br />
+              <br />
             </div>
-            <div>
-              <div>1</div>
+            <div className="grid grid-cols-3">
+              <div className=" flex flex-col items-center justify-center h-full border-2 border-black">
+                <img
+                  src="../../public/logoSena.png"
+                  className="h-24 w-24"
+                  alt="logo"
+                />
+              </div>
 
-              <div>2</div>
+              <div className="  w-54 h-auto border-2 border-black">
+                <p>
+                  SERVICIO NACIONAL DE APRENDIZAJE – SENA COMUNICACIÓN AL
+                  APRENDIZ PRESUNTAMENTE IMPLICADO
+                </p>
+              </div>
 
-              <div>3</div>
+              <div className=" grid grid-cols-1 h-full items-center justify-center border-2 border-black">
+                <label htmlFor="version">Version: 1</label>
+                <p className="  w-52 ">
+                  <label htmlFor="fecha">octubre 28 de 2023</label>
+                </p>
+              </div>
             </div>
+
             <div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum
-                quisquam beatae voluptatum accusantium? Ipsum sed nemo corrupti
-                totam ad, corporis, ab ipsam recusandae asperiores earum ea,
-                sint doloremque esse a!
+                alleguen en su contra y aportar y/o solicitar la práctica de las
+                pruebas que considere pertinentes.
+              </p>
+              <br />
+              <p>
+                Para la diligencia de presentación de descargos y de recepción
+                de las pruebas, el Comité de Evaluación y Seguimiento del Centro
+                ha fijado el{" "}
+                <strong>
+                  viernes 03 de noviembre de 2023, a las 10:00 a.m.
+                </strong>
+                el cual se llevará a cabo de manera presencial en el ambiente
+                <strong> CNC.</strong>
+                <br />
+                <br />
+                <p>Esperamos su puntual asistencia.</p>
+                <br />
+                <br />
               </p>
             </div>
             <div>
               <h4>
-                <strong> richy</strong> Subdirector (e) Centro de Automatización
-                Industrial <strong>Copia:</strong>
-                Nini Yorlady Betancur Raigosa nbetancurr@sena.edu.co Laura
-                Vanesa Cifuentes Lvcifuentes@sena.edu.co Coordinación Académica
-                contactocai@sena.edu.co Eliana Patricia González L.
-                epgonzalezl@sena.edu.co <strong>Proyectó:</strong> Eliana
-                Patricia González Lotero Cargo: Apoyo Administrativo
-                Coordinación Académica - Centro de Automatización Industrial{" "}
-                <strong>Revisó: </strong>Nini Yorlady Betancur Raigosa - Cargo:
-                Coordinadora Académica - Centro de Automatización Industrial
+                <strong> Juan Carlos Ruge Osorio</strong>
+                <br />
+                Subdirector (e) <br />
+                Centro de Automatización Industrial <br /> <br />{" "}
+                <strong>Copia:</strong>
+                Nini Yorlady Betancur Raigosa{" "}
+                <strong>
+                  <label htmlFor="nini">nbetancurr@sena.edu.co:</label>{" "}
+                </strong>
+                <br />
+                Laura Vanesa Cifuentes{" "}
+                <strong>
+                  <label htmlFor="laura">Lvcifuentes@sena.edu.co :</label>
+                </strong>
+                <br />
+                Coordinación Académica{" "}
+                <strong>
+                  {" "}
+                  <label htmlFor="coordinacion">
+                    contactocai@sena.edu.co :
+                  </label>
+                </strong>
+                <br /> Eliana Patricia González L.
+                <strong>
+                  {" "}
+                  <label htmlFor="eliana">epgonzalezl@sena.edu.co :</label>
+                </strong>
+                <br />
+                <br />
+                <br />
+                <strong>Proyectó:</strong>{" "}
+                <label htmlFor="eliana">Eliana Patricia González L.</label>
+                <br />
+                Cargo: Apoyo Administrativo Coordinación Académica - Centro de
+                Automatización Industrial
+                <br />
+                <br /> <strong>Revisó: </strong>
+                <label htmlFor="eliana">Nini Yorlady Betancur Raigosa</label>
+                <br /> Cargo: Coordinadora Académica - Centro de Automatización
+                Industrial
               </h4>
             </div>
           </form>

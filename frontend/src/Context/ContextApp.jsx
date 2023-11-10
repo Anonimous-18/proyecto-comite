@@ -2,6 +2,7 @@
 import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import usuariosApi from "../api/usuarios";
 import novedadesApi from "../api/novedades";
@@ -33,23 +34,30 @@ export const ContextAppProvider = ({ children }) => {
   const API = import.meta.env.VITE_API_URL;
   const socket = io(`${API}`);
 
-  const [usuario, setUsuario] = useState({});
-
-  const [camposFil, setCamposFil] = useState(null);
-
   // const [cargarPagina, setCargarPagina] = useState(false);
+
+  const [usuario, setUsuario] = useState({});
+  const [camposFil, setCamposFil] = useState(null);
+  const [ruta, setRuta] = useState("");
+  const navigate = useNavigate();
+  const rutaOpcion = {
+    1: "/roles",
+    2: "/homeinstructor",
+    3: "/home-invitado",
+  };
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
       const token = decode(sessionStorage.getItem("Datos"));
       const usuarioToken = jwt_decode(token);
 
-      const obtenerUsuario = async () => {
+      const datoUsuarioRuta = async () => {
         const usuario = await usuarioToken.user;
         setUsuario(usuario);
+        setRuta(rutaOpcion[usuario.rol_id.toString()] || "/");
       };
 
-      obtenerUsuario();
+      datoUsuarioRuta();
     }
   }, [location.pathname]);
 
@@ -59,7 +67,7 @@ export const ContextAppProvider = ({ children }) => {
 
   const deleteToken = () => {
     try {
-      localStorage.removeItem("newToken");
+      localStorage.clear();
       sessionStorage.clear();
     } catch (error) {
       console.log(error.message);
@@ -79,6 +87,24 @@ export const ContextAppProvider = ({ children }) => {
         );
         const datosUsuario = jwt_decode(response.data.token);
         setUsuario(datosUsuario.user);
+
+        const instructor = await filterRol(response.data.token, "Instructor");
+        const aprendiz = await filterRol(response.data.token, "Aprendiz");
+        const invitado = await filterRol(response.data.token, "Invitado");
+        const admin = await filterRol(response.data.token, "Administrador");
+        if (admin) {
+          localStorage.setItem("admin", admin);
+          navigate(`/roles`);
+        } else if (invitado) {
+          localStorage.setItem("invitado", invitado);
+          navigate(`/home-invitado`);
+        } else if (instructor) {
+          localStorage.setItem("instructor", instructor);
+          navigate(`/homeinstructor`);
+        } else if (aprendiz) {
+          localStorage.setItem("aprendiz", aprendiz);
+          navigate(`/homeaprendiz`);
+        }
         return true;
       }
       return false;
@@ -241,9 +267,9 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error al crear un rol: ", error.message);
     }
   };
-  const getPermisosRol = async (token,id) => {
+  const getPermisosRol = async (token, id) => {
     try {
-      const res = await getPermisosRolRequest(token,id);
+      const res = await getPermisosRolRequest(token, id);
       return res;
     } catch (error) {
       console.log("Error: ", error.message);
@@ -379,6 +405,24 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getEvidencia = async (nombreArchivo) => {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("newToken"));
+
+      if (!token) return null;
+      const response = await instructorApi.getEvidenciaRequest(nombreArchivo, token);
+      
+      if (response) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   const createNovedad = async (body) => {
     try {
       const response = await novedadesApi.createNovedadRequest(body);
@@ -447,6 +491,8 @@ export const ContextAppProvider = ({ children }) => {
         createNotificacion,
         createNotificacionUsu,
         getPermisosRol,
+        ruta,
+        getEvidencia,
       }}
     >
       {children}

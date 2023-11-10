@@ -1,15 +1,16 @@
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import{ BsSkipBackwardCircle } from"react-icons/bs"
-import { FaGears } from "react-icons/fa6";
-import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
-import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
+import { FaGears } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 import { GiSandsOfTime } from "react-icons/gi";
+import { Link, useParams } from "react-router-dom";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { BsSkipBackwardCircle } from "react-icons/bs";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 
+import { dowloadFile } from "../../hooks/dowloadFile";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { useContextApp } from "../../Context/ContextApp";
 import { Semaforo } from "../../components/util/semaforo";
-import DefaultLayout from "../../Layout/DefaultLayout";
 
 export const Informacioncomiteinst = () => {
   const [comite, setComite] = useState(null);
@@ -21,6 +22,7 @@ export const Informacioncomiteinst = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
+
     const getComiteById = async (id) => {
       const response = await contextApi.getComite(id);
 
@@ -56,7 +58,11 @@ export const Informacioncomiteinst = () => {
     getUserName(comite.instructor_fk);
   }
 
-  console.log(aprendicesImplicados);
+  const handleArchivo = async (nombreArchivo) => {
+    const response = await contextApi.getEvidencia(nombreArchivo);
+    dowloadFile(response, nombreArchivo.split("-").shift());
+  };
+
   return (
     <DefaultLayout>
       <div className="mx-auto max-w-screen-xl pt-20 pb-32 sm:pt-20 sm:pb-40 ">
@@ -66,14 +72,14 @@ export const Informacioncomiteinst = () => {
           </h1>
           <Semaforo />
           <div className=" flex space-x-2 border-2 mt-5">
-          <div className="flex flex-col mt-2 ml-2 ">
-          <Link
+            <div className="flex flex-col mt-2 ml-2 ">
+              <Link
                 to={`/login`}
                 className="font-medium text-primary-600 hover:underline text-blue-800 text-2xl"
               >
-                <BsSkipBackwardCircle/>
+                <BsSkipBackwardCircle />
               </Link>
-          </div>
+            </div>
             {comite && comite !== null ? (
               <>
                 <div className="p-5">
@@ -213,15 +219,15 @@ export const Informacioncomiteinst = () => {
                   </div>
                   <div className="w-full p-2">
                     <label className="block mb-2 p-2 text-sm font-medium text-gray-900 ">
-                      Adjuntar evidencias
+                      Evidencias Adjuntas
                     </label>
-                    <input
-                      type="file"
-                      name="brand"
-                      defaultValue=""
-                      id="brand"
+                    <button
+                    disabled={comite && comite.evidencia === null}
+                      onClick={ comite && comite.evidencia ? () => handleArchivo(comite.evidencia) : null}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                    />
+                    >
+                      Descargar Evidencias
+                    </button>
                   </div>
                   <div className="border-2 flex flex-col items-center p-2">
                     <blockquote>

@@ -3,3 +3,5 @@
 <br>
 <h2>Comando</h2>
 <p>npm i --save file:vendor/xlsx-0.20.0.tgz</p>
+
+https://chat.openai.com/share/74144031-9969-409b-826b-b1cd50f3301c

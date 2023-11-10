@@ -20,20 +20,23 @@ const verifyToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Token no proporcionado" });
   }
-
+  
   try {
     /**-------------------------------------------------------
      * |  Verificar el token y obtener los datos decodificados
-     -------------------------------------------------------*/
+    -------------------------------------------------------*/
     const decodedToken = jwt.verify(token, key);
-
+    
     /**---------------------------------------------
      * |  Guardamos los datos del usuario logueado
-     ---------------------------------------------*/
+    ---------------------------------------------*/
     req.userData = decodedToken;
     console.log(req.userData);
     if (decodedToken) {
       next();
+    }
+    else {
+      return res.status(401).json({ message: "Token invalido" });
     }
   } catch (error) {
     return res.status(401).json({ message: "Token no válido" });

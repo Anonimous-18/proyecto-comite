@@ -1,0 +1,1 @@
+DROP DATABASE proyecto_comite

@@ -2,60 +2,20 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
 
 import { BiErrorAlt } from "react-icons/bi";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { useContextApp } from "../../Context/ContextApp";
 
 export const Login = () => {
-  const { isLogged, protectedRoutes, validateToken, filterRol } =
-    useContextApp();
-  const tokenExist = protectedRoutes();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (tokenExist && !validateToken()) {
-      if (localStorage.getItem("admin")) {
-        navigate(`/roles`);
-      } else if (localStorage.getItem("invitado")) {
-        navigate(`/home-invitado`);
-      } else if (localStorage.getItem("instructor")) {
-        navigate(`/homeinstructor`);
-      } else if (localStorage.getItem("aprendiz")) {
-        navigate(`/homeaprendiz`);
-      }
-    }
-  }, [navigate, tokenExist, validateToken, filterRol]);
+  const { isLogged } = useContextApp();
 
   const [err, setErr] = useState(false);
 
   const handleSubmit = async (values) => {
     const response = await isLogged(values);
     if (response) {
-      const token = JSON.parse(localStorage.getItem("newToken"));
-
-      const instructor = await filterRol(token.token, "Instructor");
-      const aprendiz = await filterRol(token.token, "Aprendiz");
-      const invitado = await filterRol(token.token, "Invitado");
-      const admin = await filterRol(token.token, "Administrador");
-
-      console.log("instructor", instructor);
-      console.log("aprendiz", aprendiz);
-      console.log("invitado", invitado);
-      console.log("admin", admin);
-      if (admin) {
-        localStorage.setItem("admin", admin);
-        navigate(`/roles`);
-      } else if (invitado) {
-        localStorage.setItem("invitado", invitado);
-        navigate(`/home-invitado`);
-      } else if (instructor) {
-        localStorage.setItem("instructor", instructor);
-        navigate(`/homeinstructor`);
-      } else if (aprendiz) {
-        localStorage.setItem("aprendiz", aprendiz);
-        navigate(`/homeaprendiz`);
-      }
+      console.log("er");
     } else {
       setErr(true);
       setTimeout(() => {
@@ -63,7 +23,7 @@ export const Login = () => {
       }, 3000);
       console.log(err);
     }
-  };
+  }
 
   return (
     <>
