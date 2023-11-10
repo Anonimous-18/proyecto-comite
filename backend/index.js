@@ -9,6 +9,7 @@ const adminRoutes = require("./routes/admin.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
 const rolesPermisos = require("./routes/roles_permisos.routes.js");
 const usuariosRoutes = require("./routes/usuario.routes.js");
+const evidenciaRoutes = require("./routes/evidencia.routes.js");
 const novedadesRoutes = require("./routes/novedades.routes.js");
 const instructorRoutes = require("./routes/instructor.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
@@ -38,11 +39,12 @@ app.use(adminRoutes);
 app.use(fichasRoutes);
 app.use(rolesPermisos);
 app.use(usuariosRoutes);
+app.use(evidenciaRoutes);
 app.use(novedadesRoutes);
 app.use(instructorRoutes);
 app.use(reglamentoRoutes);
-app.use(inicio_sesionRoutes);
 app.use(notificacionRoutes);
+app.use(inicio_sesionRoutes);
 
 io.on("connection", (socket) => {
   console.log(`Usuario conectado ${socket.id}`);

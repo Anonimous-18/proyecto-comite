@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
      * | Generamos un nuevo nombre para
      * | el archivo(con el fin de no repetir nombres)
      * --------------------------------------------------*/
-    const filename = `file-${Date.now()}.${getExtension}`;
+    const filename = `${file.originalname}-${Date.now()}.${getExtension}`;
     cb(null, filename);
   },
 });
