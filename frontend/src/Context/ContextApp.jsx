@@ -35,7 +35,7 @@ export const ContextAppProvider = ({ children }) => {
   const socket = io(`${API}`);
 
   // const [cargarPagina, setCargarPagina] = useState(false);
-  
+
   const [usuario, setUsuario] = useState({});
   const [camposFil, setCamposFil] = useState(null);
   const [ruta, setRuta] = useState("");
@@ -405,6 +405,24 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getEvidencia = async (nombreArchivo) => {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("newToken"));
+
+      if (!token) return null;
+      const response = await instructorApi.getEvidenciaRequest(nombreArchivo, token);
+      
+      if (response) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   const createNovedad = async (body) => {
     try {
       const response = await novedadesApi.createNovedadRequest(body);
@@ -474,6 +492,7 @@ export const ContextAppProvider = ({ children }) => {
         createNotificacionUsu,
         getPermisosRol,
         ruta,
+        getEvidencia,
       }}
     >
       {children}
