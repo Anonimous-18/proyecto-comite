@@ -30,7 +30,7 @@ import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { RutasProtegidas } from "./components/RutasProtegidas/RutasProtegidas";
 import { Spinner } from "./components/util/Spinner";
 import Prueba from "./components/pruebas/Prueba";
-import  { CitacionAprendiz} from "./components/util/CitacionAprendiz";
+import { CitacionAprendiz } from "./components/util/CitacionAprendiz";
 
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Login1 } from "./components/InicioSesion/Login1";
@@ -59,16 +59,31 @@ const Router = () => {
 
   return (
     <>
-      {(usuarioRoles && Object.keys(usuarioRoles).length > 0) || location.pathname === "/" ||  location.pathname === "/recuperacion-contraseña" ||  location.pathname === "/register"  ? (
+      {usuarioRoles && Object.keys(usuarioRoles).length > 0 ? (
         <Routes>
+          <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <RutasProtegidas                // Por acomodar
+                permitido={false}
+                redireccionaA={`${ruta}`}
+              />
+            }
+          >
+            <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/register-1" element={<Register1 />} />
+          </Route>
           <Route
             path="/"
             element={
               <RutasProtegidas
                 permitido={!!usuarioRoles && usuarioRoles.rol_id === 1}
               />
-            }>
+            }
+          >
             <Route path="roles" element={<Roles />} />
             <Route path="form-roles" element={<FormularioRoles />} />
             <Route
@@ -78,9 +93,8 @@ const Router = () => {
             <Route path="/see-roles/:id" element={<RolesDetails />} />
             <Route path="/mi-perfil" element={<Roles />} />
           </Route>
-          <Route path="/citacion-aprendiz" element={<CitacionAprendiz /> }/>
+          <Route path="/citacion-aprendiz" element={<CitacionAprendiz />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/pruebas" element={<Prueba />} />
           <Route path="/homeaprendiz" element={<Home_Aprendiz />} />
           <Route path="/home-invitado" element={<Homeinvitado />} />
@@ -113,20 +127,24 @@ const Router = () => {
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
           <Route path="/historiasdecomite" element={<Historiacomite />} />
 
-
           <Route path="/home-gestor" element={<HomeGestor />} />
 
-          <Route path="/register-1" element ={<Register1/>}/>
-          <Route path="/login-1" element={<Login1/>}/>
+          <Route path="/register-1" element={<Register1 />} />
+          <Route path="/login-1" element={<Login1 />} />
 
-          <Route path="*" element={ <Navigate to={`${ruta}`} replace /> } />
-          <Route path="*/*" element={ <Navigate to={`${ruta}`} replace /> } />
-          <Route path="*/*/*" element={ <Navigate to={`${ruta}`} replace /> } />
-
-          
+          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
+          <Route path="*/*" element={<Navigate to={`${ruta}`} replace />} />
+          <Route path="*/*/*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>
       ) : (
-        <Spinner/>
+        <>
+          <Spinner></Spinner>
+          <Routes>
+            <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/register-1" element={<Register1 />} />
+          </Routes>
+        </>
       )}
     </>
   );
