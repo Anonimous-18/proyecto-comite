@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { Carta } from "../../components/util/carta";
+import DefaultLayout from "../../Layout/DefaultLayout";
+import { Spinner } from "../../components/util/Spinner";
 import { Semaforo } from "../../components/util/semaforo";
 import { Filtrocomite } from "../../components/util/filtocomite";
-import DefaultLayout from "../../Layout/DefaultLayout";
 
 import { useContextApp } from "../../Context/ContextApp";
 
@@ -29,6 +30,7 @@ export const Homeinstructor = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
+
     const getAllComites = async () => {
       const response = await contextApi.getComites();
 
@@ -37,7 +39,7 @@ export const Homeinstructor = () => {
 
         if (token) {
           setFiltrar(contextApi.camposFil);
-          console.log("Filtrar", filtrar);
+          // console.log("Filtrar", filtrar);
           const decodedToken = hooks.useDecodedToken(token.token);
 
           const comitesByUser = response.filter(
@@ -118,7 +120,9 @@ export const Homeinstructor = () => {
           <Filtrocomite />
         </div>
 
-        <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center">
+        {/* <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center"> */}
+        {/* <div className="mx-auto mt-12 grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 max-w-lg gap-5 lg:max-w-none"> */}
+        <div className="mx-auto mt-12 grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 max-w-full gap-5 lg:max-w-full">
           {comites && comites.length !== 0 ? (
             <>
               {currentComites.map((comite) => (
@@ -134,7 +138,7 @@ export const Homeinstructor = () => {
               ))}
             </>
           ) : (
-            <h1>Sin Comites</h1>
+            <Spinner />
           )}
         </div>
         <div className="flex flex-row w-full h-32 items-center justify-between">
