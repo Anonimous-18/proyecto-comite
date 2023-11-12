@@ -35,6 +35,8 @@ import { CitacionAprendiz } from "./components/util/CitacionAprendiz";
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Login1 } from "./components/InicioSesion/Login1";
 
+import { Example } from "./components/tailwind/testimonials";
+
 const Router = () => {
   const { usuario, decode } = useContextApp();
   let usuarioRoles = usuario;
@@ -61,6 +63,9 @@ const Router = () => {
     <>
       {usuarioRoles && Object.keys(usuarioRoles).length > 0 ? (
         <Routes>
+          {/* RUTA PARA PROBAR LOS COMPONENTES PREMIUM DE TAILWINDCSS UBICADOS EN: src/components/tailwind */}
+          <Route path="/test" element={<Example />} />
+
           <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/" element={<Login />} />
           <Route

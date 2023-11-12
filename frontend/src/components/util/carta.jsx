@@ -22,7 +22,8 @@ export const Carta = ({
   const contextApi = useContextApp();
 
   useEffect(() => {
-    console.log(instructor);
+    window.scroll(0, 0);
+
     const getUserName = async (instructor) => {
       const user = await contextApi.getInstructor(instructor);
       if (user) {
@@ -34,43 +35,69 @@ export const Carta = ({
   }, [contextApi, instructor]);
 
   return (
-    <div className="w-full h-5/6 sm:h-full flex flex-row items-center justify-center shadow-sm shadow-zinc-400">
-      <figure className="bg-zinc-200 h-full w-56 flex flex-col items-center justify-center shadow-sm shadow-zinc-400">
-        {estado && estado === "espera" ? (
-          <GiSandsOfTime className="w-36 h-36 text-blue-800" />
-        ) : estado && estado === "rechazado" ? (
-          <MdCancel className=" w-36 h-36 text-red-600 " />
-        ) : estado && estado === "aceptado" ? (
-          <AiFillCheckCircle className="text-green-700 w-36 h-36" />
-        ) : estado && estado === "ejecucion" ? (
-          <FaGears className=" w-36 h-36 text-green-700 " />
-        ) : (
-          <IoCheckmarkDoneCircleSharp className=" w-36 h-36 text-black " />
-        )}
-      </figure>
-      <div className="p-2 flex flex-col items-start justify-center h-full bg-gray-100 w-96 shadow-sm shadow-zinc-400">
-        <div className="p-3">
-          <h1 className="text-blue-800 text-lg font-bold">{tipo_falta}</h1>
-          <p className="text-sm py-2 hidden sm:block">{descripcion_solicitud}</p>
-          <p className="text-sm py-2 font-bold">
-            {nombreInstructor && nombreInstructor !== null
-              ? nombreInstructor
-              : "¡Sin nombre!"}
-          </p>
-          <p className="text-sm py-2">{fecha}</p>
-          <div className="w-full flex flex-row items-center justify-center h-auto gap-2">
-            <Link to={`/infocomiteinstrutor/${comite_id}`} className="text-[9px] sm:text-xs relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2  font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                type="button">
-                Ver mas
+    <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+      <div className="flex-shrink-0">
+        <img
+          className="h-48 w-full object-cover"
+          src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
+          alt={tipo_falta}
+        />
+      </div>
+      <div className="flex flex-1 flex-col justify-between bg-white p-6">
+        <div className="flex-1">
+          <p className="text-sm font-medium text-indigo-600">
+            <Link
+              to={`/infocomiteinstrutor/${comite_id}`}
+              className="hover:underline"
+            >
+              Ver mas
             </Link>
+          </p>
+          <div className="mt-2 block">
+            <p className="text-xl font-semibold text-gray-900">
+              Estado del Comite:
+              <span>
+                {estado && estado === "espera" ? (
+                  <GiSandsOfTime className="inline-block w-8 h-6 text-blue-800" />
+                ) : estado && estado === "rechazado" ? (
+                  <MdCancel className="inline-block w-8 h-6 text-red-600 " />
+                ) : estado && estado === "aceptado" ? (
+                  <AiFillCheckCircle className="inline-block text-green-700 w-8 h-6" />
+                ) : estado && estado === "ejecucion" ? (
+                  <FaGears className="inline-block w-8 h-8 text-green-700 " />
+                ) : (
+                  <IoCheckmarkDoneCircleSharp className="inline-block w-8 h-6 text-black" />
+                )}
+              </span>
+            </p>
+            <p className="mt-3 text-base text-gray-500">
+              {descripcion_solicitud}
+            </p>
+          </div>
+        </div>
+        <div className="mt-6 flex items-center">
+          <div className="flex-shrink-0">
+            <span className="sr-only">{nombreInstructor}</span>
+            <img
+              className="h-10 w-10 rounded-full"
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt={nombreInstructor}
+            />
+          </div>
+          <div className="ml-3">
+            <p className="text-sm font-medium text-gray-900">
+              <small className="hover:underline text-sm">
+                {nombreInstructor && nombreInstructor !== null
+                  ? nombreInstructor
+                  : "Error al obtener el nombre"}
+              </small>
+            </p>
+            <div className="flex space-x-1 text-sm text-gray-500">
+              <time dateTime={fecha}>{fecha}</time>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
-// icono aceptado    ->  BsFillPersonCheckFill      -|
-// icono rechazado   -> BsFillPersonXFill           -|
-// icono finalizado  ->  BsFillPersonFill           -|-- todos son bs
-// icono espera   -> BsFillPersonDashFill           -|
-// icono ejecucion  ->  BsFillPersonLinesFill       -|
