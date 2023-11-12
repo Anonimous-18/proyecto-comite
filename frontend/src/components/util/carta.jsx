@@ -89,7 +89,7 @@ export const Carta = ({
               <small className="hover:underline text-sm">
                 {nombreInstructor && nombreInstructor !== null
                   ? nombreInstructor
-                  : "¡Sin nombre!"}
+                  : "Error al obtener el nombre"}
               </small>
             </p>
             <div className="flex space-x-1 text-sm text-gray-500">
