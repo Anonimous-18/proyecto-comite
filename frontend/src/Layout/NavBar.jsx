@@ -66,7 +66,17 @@ export const NavBar = () => {
         sm:-ml-4 sm:-mt-2 sm:flex-row sm:flex-nowrap md:px-12"
         >
           <div className="ml-4 mt-2">
-            <Link to="/home">
+            <Link
+              to={`/home-${
+                localStorage.getItem("instructor")
+                  ? "instructor"
+                  : localStorage.getItem("aprendiz")
+                  ? "aprendiz"
+                  : localStorage.getItem("invitado")
+                  ? "invitado"
+                  : "admin"
+              }`}
+            >
               <img
                 className="darlin"
                 src="../../public/logoSena.png"
