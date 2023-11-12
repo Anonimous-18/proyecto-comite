@@ -43,13 +43,20 @@ export const Filtrocomite = () => {
         <div className="rounded-2xl flex flex-col py-3 items-center justify-center text-blue-800">
           <div className="w-full flex flex-row items-center justify-around">
             <div className="">
-              <h3 className="font-bold">Filtrar por:</h3>
+              <h3 className="font-bold text-black">Filtrar por:</h3>
             </div>
-            <button
+            {/* <button
               className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
               type="submit"
             >
               Filtrar
+            </button> */}
+            <button
+              type="submit"
+              // className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+              className="block px-2 bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+            >
+              <span className="pl-2 mx-1">Filtrar</span>
             </button>
           </div>
           <div className="flex flex-row justify-center items-center w-full mt-2">
