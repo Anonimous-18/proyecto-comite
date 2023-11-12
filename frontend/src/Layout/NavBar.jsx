@@ -3,7 +3,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { FaStreetView } from "react-icons/fa";
-import { IoNotificationsSharp } from "react-icons/io5"
+import { IoNotificationsSharp } from "react-icons/io5";
 import { SlMenu } from "react-icons/sl";
 import { GiCancel } from "react-icons/gi";
 import { BsJournalBookmarkFill } from "react-icons/bs";
@@ -61,15 +61,15 @@ export const NavBar = () => {
       className="w-full py-4 top-0 z-40 fixed shadow-lg bg-gradient-to-t from-white via-white to-blue-100 "
     >
       <div className="px-4 sm:px-6 ">
-        <div className="flex flex-col justify-between items-center px-2  
-        sm:-ml-4 sm:-mt-2 sm:flex-row sm:flex-nowrap md:px-12">
-
+        <div
+          className="flex flex-col justify-between items-center px-2
+        sm:-ml-4 sm:-mt-2 sm:flex-row sm:flex-nowrap md:px-12"
+        >
           <div className="ml-4 mt-2">
             <Link to="/home">
               <img
                 className="darlin"
-                // src="../../public/hola.gif"
-                src="https://tenor.com/es-419/view/dog-sex-gif-22435603.gif"
+                src="../../public/logoSena.png"
                 width={70}
                 height={60}
               />
@@ -124,7 +124,7 @@ export const NavBar = () => {
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
                               <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                                <BiSolidFoodMenu className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center"/>
+                                <BiSolidFoodMenu className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                               </div>
                               <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-900">
@@ -166,8 +166,8 @@ export const NavBar = () => {
                             to="/"
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
-                            <div  className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                              <FaStreetView  className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center"/>
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <FaStreetView className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                             </div>
                             <div className="ml-4">
                               <p className="text-sm font-medium text-gray-900">
