@@ -67,14 +67,16 @@ export const NavBar = () => {
         >
           <div className="ml-4 mt-2">
             <Link
-              to={`/home-${
+              to={`${
                 localStorage.getItem("instructor")
-                  ? "instructor"
+                  ? "/home-instructor"
                   : localStorage.getItem("aprendiz")
-                  ? "aprendiz"
+                  ? "/home-aprendiz"
                   : localStorage.getItem("invitado")
-                  ? "invitado"
-                  : "admin"
+                  ? "/home-invitado"
+                  : localStorage.getItem("admin")
+                  ? "/home-admin"
+                  : "/"
               }`}
             >
               <img

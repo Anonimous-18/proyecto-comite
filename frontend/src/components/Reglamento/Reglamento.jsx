@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
+
+import { Articulos } from "./Articulos";
+import { Spinner } from "../util/Spinner";
 import { NavBar } from "../../Layout/NavBar";
 import { Footer } from "../../Layout/Footer";
-import { Articulos } from "./Articulos";
 import { useNavigate } from "react-router-dom";
 import { useContextApp } from "../../Context/ContextApp";
-import { useEffect, useState } from "react";
 
 export const Reglamento = () => {
   const [reglamento, setReglamento] = useState([]);
@@ -32,9 +34,9 @@ export const Reglamento = () => {
   }, [getReglamento, validateToken, navigate, tokenExist]);
 
   if (reglamento === null || reglamento === undefined) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   } else if (reglamento.length === 0) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
   const result = orderReglamento(reglamento);
   console.log(result);

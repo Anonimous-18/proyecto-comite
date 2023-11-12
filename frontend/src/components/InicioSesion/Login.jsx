@@ -1,9 +1,9 @@
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
 
-import { BiErrorAlt } from "react-icons/bi";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { BiErrorAlt } from "react-icons/bi";
 
 import { useContextApp } from "../../Context/ContextApp";
 
@@ -125,7 +125,7 @@ export const Login = () => {
                         <p className="text-sm font-light text-gray-700  pt-1 pb-2">
                           Tienes cuenta?{" "}
                           <Link
-                            to={`/register-1`}
+                            to={`/register`}
                             className="font-medium text-primary-600 hover:underline text-blue-800"
                           >
                             Registrarse

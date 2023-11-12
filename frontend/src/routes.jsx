@@ -105,7 +105,7 @@ const Router = () => {
             }
           >
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-            <Route path="/register-1" element={<Register1 />} />
+            <Route path="/register" element={<Register1 />} />
           </Route>
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
@@ -178,7 +178,7 @@ const Router = () => {
           <Routes>
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
             <Route path="/" element={<Login />} />
-            <Route path="/register-1" element={<Register1 />} />
+            <Route path="/register" element={<Register1 />} />
           </Routes>
         </>
       )}
