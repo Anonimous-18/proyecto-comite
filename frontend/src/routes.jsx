@@ -35,7 +35,7 @@ import { CitacionAprendiz } from "./components/util/CitacionAprendiz";
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Login1 } from "./components/InicioSesion/Login1";
 
-import { Example } from "./components/tailwind/stackedlists";
+import { Example } from "./components/tailwind/overscrollX";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
