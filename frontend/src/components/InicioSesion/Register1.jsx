@@ -14,7 +14,19 @@ export const Register1 = () => {
 
   useEffect(() => {
     if (tokenExist) {
-      navigate(`/home`);
+      navigate(
+        `${
+          localStorage.getItem("instructor")
+            ? "/home-instructor"
+            : localStorage.getItem("aprendiz")
+            ? "/home-aprendiz"
+            : localStorage.getItem("invitado")
+            ? "/home-invitado"
+            : localStorage.getItem("admin")
+            ? "/home-admin"
+            : "/"
+        }`
+      );
     }
   }, [navigate, tokenExist]);
 

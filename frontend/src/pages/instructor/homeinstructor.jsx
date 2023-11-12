@@ -149,8 +149,8 @@ export const Homeinstructor = () => {
               <li key={index}>
                 <button
                   onClick={() => paginate(index + 1)}
-                  className={`bg-blue-500 text-white border border-black px-3 py-1 ${
-                    currentPage === index + 1 ? "bg-blue-800" : ""
+                  className={`bg-gray-200 text-black px-3 py-1 rounded-md ${
+                    currentPage === index + 1 ? "bg-gray-500" : ""
                   }`}
                 >
                   {index + 1}
@@ -161,10 +161,9 @@ export const Homeinstructor = () => {
           <div className="p-2">
             <Link
               to={`/solicitudinstructor`}
-              className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-              type="button"
+              className="block w-full px-3 bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
-              Crear Solicitud
+              <span className="pl-2 mx-1">Crear Solicitud</span>
             </Link>
           </div>
         </div>

@@ -11,6 +11,8 @@ export const Antecedenteaprendiz = () => {
   const contextApi = useContextApp();
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     const getAntecedentesForAprendiz = async () => {
       const response = await contextApi.getAntecedentes(id);
 
@@ -30,7 +32,19 @@ export const Antecedenteaprendiz = () => {
               Antecedentes Aprendiz
             </h4>
           </div>{" "}
-          <Link to={"/home"}>
+          <Link
+            to={`${
+              localStorage.getItem("instructor")
+                ? "/home-instructor"
+                : localStorage.getItem("aprendiz")
+                ? "/home-aprendiz"
+                : localStorage.getItem("invitado")
+                ? "/home-invitado"
+                : localStorage.getItem("admin")
+                ? "/home-admin"
+                : "/"
+            }`}
+          >
             <button className="pt-6 md:p-8 text-center md:text-left space-y-4">
               <p className=" bg-gray-500 hover:bg-black text-white w-24 h-7 text-center flex flex-col justify-center items-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-lg">
                 Volver

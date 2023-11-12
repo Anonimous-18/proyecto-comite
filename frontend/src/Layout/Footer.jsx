@@ -9,7 +9,12 @@ export const Footer = () => {
               SE-JustApp | | Servicion Nacional de Aprendizaje SENA
             </p>
             <div className="flex mt-8 space-x-6 text-gray-600">
-              <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
+              <a
+                className="hover:opacity-75"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="sr-only"> Facebook </span>
                 <svg
                   className="w-6 h-6"
@@ -24,7 +29,12 @@ export const Footer = () => {
                   />
                 </svg>
               </a>
-              <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
+              <a
+                className="hover:opacity-75"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="sr-only"> Instagram </span>
                 <svg
                   className="w-6 h-6"
@@ -39,7 +49,12 @@ export const Footer = () => {
                   />
                 </svg>
               </a>
-              <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
+              <a
+                className="hover:opacity-75"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="sr-only"> Twitter </span>
                 <svg
                   className="w-6 h-6"
@@ -50,7 +65,12 @@ export const Footer = () => {
                   <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                 </svg>
               </a>
-              <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
+              <a
+                className="hover:opacity-75"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="sr-only"> GitHub </span>
                 <svg
                   className="w-6 h-6"
@@ -65,7 +85,12 @@ export const Footer = () => {
                   />
                 </svg>
               </a>
-              <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
+              <a
+                className="hover:opacity-75"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="sr-only"> Dribbble </span>
                 <svg
                   className="w-6 h-6"
@@ -86,31 +111,49 @@ export const Footer = () => {
             <div>
               <p className="font-medium">¿QUE ES SE-JUSTAPP?</p>
               <nav className="flex flex-col mt-4 space-y-2 space-x-2 text-sm text-gray-500">
-                <p className="hover:opacity-75 space-x-2 w-full" href="#">Se-JustApp es una aplicación creada para la automatización 
-                de procesos de comités tanto académicos como disciplinarios del SENA. Esta aplicación permite a los 
-                usuarios gestionar y consultar los casos que se presentan en los comités, así como generar informes 
-                y estadísticas. Se-JustApp facilita el trabajo de los integrantes de los comités, al brindarles 
-                una herramienta ágil, segura y eficiente. Se-JustApp es una solución innovadora que contribuye 
-                a la calidad y transparencia de los procesos del SENA.  </p>
-                
+                <p className="hover:opacity-75 space-x-2 w-full" href="#">
+                  Se-JustApp es una aplicación creada para la automatización de
+                  procesos de comités tanto académicos como disciplinarios del
+                  SENA. Esta aplicación permite a los usuarios gestionar y
+                  consultar los casos que se presentan en los comités, así como
+                  generar informes y estadísticas. Se-JustApp facilita el
+                  trabajo de los integrantes de los comités, al brindarles una
+                  herramienta ágil, segura y eficiente. Se-JustApp es una
+                  solución innovadora que contribuye a la calidad y
+                  transparencia de los procesos del SENA.{" "}
+                </p>
               </nav>
             </div>
-            
+
             <div>
               <p className="font-medium">Helpful Links</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">Contact</a>
-                <a className="hover:opacity-75" href="#">FAQs</a>
-                <a className="hover:opacity-75" href="#">Live Chat</a>
+                <a className="hover:opacity-75" href="#">
+                  Contact
+                </a>
+                <a className="hover:opacity-75" href="#">
+                  FAQs
+                </a>
+                <a className="hover:opacity-75" href="#">
+                  Live Chat
+                </a>
               </nav>
             </div>
             <div>
               <p className="font-medium">Legal</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">Privacy Policy</a>
-                <a className="hover:opacity-75" href="#">Terms &amp; Conditions</a>
-                <a className="hover:opacity-75" href="#">Returns Policy</a>
-                <a className="hover:opacity-75" href="#">Accessibility</a>
+                <a className="hover:opacity-75" href="#">
+                  Privacy Policy
+                </a>
+                <a className="hover:opacity-75" href="#">
+                  Terms &amp; Conditions
+                </a>
+                <a className="hover:opacity-75" href="#">
+                  Returns Policy
+                </a>
+                <a className="hover:opacity-75" href="#">
+                  Accessibility
+                </a>
               </nav>
             </div>
           </div>

@@ -24,7 +24,19 @@ export const Notificaciones = () => {
           </div>
         </figure>
         <div className="flex flex-row gap-3 items-start justify-start w-full h-16 mt-11">
-          <Link to={"/home"}>
+          <Link
+            to={`${
+              localStorage.getItem("instructor")
+                ? "/home-instructor"
+                : localStorage.getItem("aprendiz")
+                ? "/home-aprendiz"
+                : localStorage.getItem("invitado")
+                ? "/home-invitado"
+                : localStorage.getItem("admin")
+                ? "/home-admin"
+                : "/"
+            }`}
+          >
             <button className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2">
               Volver
             </button>
