@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BsSkipBackwardCircle } from "react-icons/bs";
 
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
@@ -42,7 +41,7 @@ export const Register1 = () => {
 
   return (
     <>
-      <section className="bg-while-500 dark:bg--900 mt-11 mb-11 flex flex-col items-center justify-center">
+      <section className="bg-while dark:bg--900 mt-11 mb-11 flex flex-col items-center justify-center">
         <Formik
           initialValues={{
             tipo_documento: "CC",
@@ -82,7 +81,7 @@ export const Register1 = () => {
         >
           {(formik) => (
             <form
-              className="w-full max-w-lg bg-gray-100 p-8 shadow-black rounded-lg shadow-xl"
+              className="w-full max-w-lg bg-gray-100 p-8 shadow rounded-lg"
               onSubmit={formik.handleSubmit}
             >
               <div className="flex flex-row -mx-3 mb-6">
@@ -240,7 +239,7 @@ export const Register1 = () => {
                       ¿Tienes cuanta?{" "}
                       <Link
                         to={`/`}
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500  text-blue-800"
+                        className="text-sm ml-2 text-blue-500 hover:text-blue-700"
                       >
                         ingresar
                       </Link>
