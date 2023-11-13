@@ -66,7 +66,7 @@ export const NavBar = () => {
   return (
     <nav
       id="navbar"
-      className={`w-full py-4 top-0 z-40 fixed ${isScrolled?'shadow-md':'border border-b-[3px]'} bg-gradient-to-t from-white via-white to-blue-100 transition`}
+      className={`w-full py-4 top-0 z-40 fixed ${isScrolled?'shadow-md':'border border-b-[2px]'} bg-gradient-to-t from-white via-white to-blue-100 transition`}
     >
       <div className="px-4 sm:px-6 ">
         <div
