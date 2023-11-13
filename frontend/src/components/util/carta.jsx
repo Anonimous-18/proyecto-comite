@@ -54,19 +54,44 @@ export const Carta = ({
             </Link>
           </p>
           <div className="mt-2 block">
-            <p className="text-xl font-semibold text-gray-900">
+            <p className="text-xl font-semibold text-gray-900 ">
               Estado del Comite:
-              <span>
+              <span className="ml-2">
                 {estado && estado === "espera" ? (
-                  <GiSandsOfTime className="inline-block w-8 h-6 text-blue-800" />
+                  <span>
+                    <GiSandsOfTime className="inline-block w-8 h-6 text-blue-800" />{" "}
+                    <span className="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">
+                      Espera
+                    </span>
+                  </span>
                 ) : estado && estado === "rechazado" ? (
-                  <MdCancel className="inline-block w-8 h-6 text-red-600 " />
+                  <span>
+                    <MdCancel className="inline-block w-8 h-6 text-red-600 " />{" "}
+                    <span className="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">
+                      Rechazado
+                    </span>
+                  </span>
                 ) : estado && estado === "aceptado" ? (
-                  <AiFillCheckCircle className="inline-block text-green-700 w-8 h-6" />
+                  <span>
+                    <AiFillCheckCircle className="inline-block text-green-700 w-8 h-6" />{" "}
+                    <span className="bg-green-300 text-green-600 py-1 px-3 rounded-full text-xs">
+                      Aceptado
+                    </span>
+                  </span>
                 ) : estado && estado === "ejecucion" ? (
-                  <FaGears className="inline-block w-8 h-8 text-green-700 " />
+                  <span>
+                    <FaGears className="inline-block w-8 h-8 text-green-700 " />{" "}
+                    <span className="bg-green-300 text-green-600 py-1 px-3 rounded-full text-xs">
+                      Ejecucion
+                    </span>
+                  </span>
                 ) : (
-                  <IoCheckmarkDoneCircleSharp className="inline-block w-8 h-6 text-black" />
+                  <span>
+                    <IoCheckmarkDoneCircleSharp className="inline-block w-8 h-6 text-black" />{" "}
+                    <span className="bg-zinc-300 text-zinc-600 py-1 px-3 rounded-full text-xs">
+                      Finalizado
+                    </span>
+                  </span>
                 )}
               </span>
             </p>

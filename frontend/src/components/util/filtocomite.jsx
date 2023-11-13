@@ -37,7 +37,7 @@ export const Filtrocomite = () => {
   return (
     <div className="py-12 px-4 sm:px-6 md:py-16 md:pr-0 md:pl-10 lg:pl-16">
       <form
-        className="min-w-[400px] max-w-[500px] p-3 bg-gray-50 mt-9"
+        className="min-w-[400px] max-w-[500px] p-3 bg-zinc-100 shadow shadow-zinc-400 mt-9 rounded-sm"
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="rounded-2xl flex flex-col py-3 items-center justify-center text-blue-800">
@@ -54,7 +54,7 @@ export const Filtrocomite = () => {
             <button
               type="submit"
               // className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
-              className="block px-2 bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              className="block px-2 bg-blue-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
               <span className="pl-2 mx-1">Filtrar</span>
             </button>
