@@ -1,10 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { Articulos } from "./Articulos";
 import { Spinner } from "../util/Spinner";
-import { NavBar } from "../../Layout/NavBar";
-import { Footer } from "../../Layout/Footer";
-import { useNavigate } from "react-router-dom";
+import DefaultLayout from "../../Layout/DefaultLayout";
 import { useContextApp } from "../../Context/ContextApp";
 
 export const Reglamento = () => {
@@ -43,51 +42,51 @@ export const Reglamento = () => {
 
   return (
     <div>
-      <NavBar />
-      <main>
-        <div className="mx-auto max-w-7xl pt-20 pb-32 sm:pt-48 sm:pb-40 ">
-          <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
-            <div className="relative px-6 lg:px-8 ">
-              <div className="mx-auto max-w-7xl pt-0 pb-32 sm:pt-0 sm:pb-40">
-                <div className="h-auto max-w-full rounded-lg flex flex-col items-center bg-slate-200 p-2">
-                  <img
-                    src={"../../../img/logo-sena-negro-png-2022.png"}
-                    alt="logo"
-                    width="350"
-                    height="350"
-                  />
-                </div>
-                <br />
-                <div className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">
-                  <h2>Reglamento del aprendiz SENA</h2>
-                </div>
+      <DefaultLayout>
+        <main>
+          <div className="mx-auto max-w-7xl pt-11 pb-32 sm:pb-40 ">
+            <div className="border-2 shadow-2xl p-5 place-content-evenly rounded-2xl">
+              <div className="relative px-6 lg:px-8 ">
+                <div className="mx-auto max-w-7xl pt-0 pb-32 sm:pt-0 sm:pb-40">
+                  <div className="h-auto max-w-full rounded-lg flex flex-col items-center bg-slate-200 p-2">
+                    <img
+                      src={"../../../img/logo-sena-negro-png-2022.png"}
+                      alt="logo"
+                      width="350"
+                      height="350"
+                    />
+                  </div>
+                  <br />
+                  <div className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">
+                    <h2>Reglamento del aprendiz SENA</h2>
+                  </div>
 
-                <ul>
-                  {result.map((capitulo, index) => (
-                    <li key={index}>
-                      <br />
-                      <article>
-                        <h1 className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">
-                          <strong>
-                            Capitulo
-                            <strong>{capitulo.cap_id}</strong>
-                          </strong>
-                          <p>{capitulo.cap_titulo}</p>
-                        </h1>
-                        <div>
-                          {/* Esto es un componente */}
-                          <Articulos articulos={capitulo.contenido} />
-                        </div>
-                      </article>
-                    </li>
-                  ))}
-                </ul>
+                  <ul>
+                    {result.map((capitulo, index) => (
+                      <li key={index}>
+                        <br />
+                        <article>
+                          <h1 className="text-base font-bold text-blue-800 italic font-serif flex-1 mb-4 flex flex-col items-center">
+                            <strong>
+                              Capitulo
+                              <strong>{capitulo.cap_id}</strong>
+                            </strong>
+                            <p>{capitulo.cap_titulo}</p>
+                          </h1>
+                          <div>
+                            {/* Esto es un componente */}
+                            <Articulos articulos={capitulo.contenido} />
+                          </div>
+                        </article>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
+        </main>
+      </DefaultLayout>
     </div>
   );
 };
