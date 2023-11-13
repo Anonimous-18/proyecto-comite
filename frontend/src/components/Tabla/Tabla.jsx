@@ -33,8 +33,8 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="mx-auto w-full min-w-[300px] max-w-5xl">
-        <div className="relative overflow-x-auto border shadow-lg sm:rounded-lg">
-          <div className="flex justify-between p-4 relative">
+        <div className="relative overflow-x-auto border shadow-lg sm:rounded-b-lg lg:p-5">
+          {/* <div className="flex justify-between p-4 relative">
             <div className="relative mt-1">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none  h-11">
                 <svg
@@ -56,18 +56,10 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                 placeholder="Buscar" />
             </div>
-            <div className="relative flex items-center rounded-md ml-40 bg-blue-700 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:text-white hover:bg-blue-400 focus:outline-none text-center ">
-              <Link
-                className="text-center w-full p-2 text-xl uppercase dark:bg-gray-700 dark:text-gray-400"
-                to={`/form-${nombre_tabla}`}
-                type="button"
-              >
-                Crear
-              </Link>
-            </div>
-          </div>
+            
+          </div> */}
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-blue-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
+            <thead className="text-xs text-blue-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400 ">
               <tr>
                 <th scope="col" className="p-4">
                   <div className="flex items-center"></div>
@@ -137,6 +129,15 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
             </tbody>
           </table>
         </div>
+        <div className="relative sm:w-4/12 flex items-center rounded-md mt-4 bg-blue-700 px-10 py-2 font-bold text-white shadow-xl transition duration-300 ease-in-out hover:text-white hover:bg-blue-400 focus:outline-none text-center ">
+              <Link
+                className="text-center w-full p-2 text-lg uppercase dark:bg-gray-700 dark:text-gray-400"
+                to={`/form-${nombre_tabla}`}
+                type="button"
+              >
+                Crear
+              </Link>
+            </div>
       </div>
     </div>
   );

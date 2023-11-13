@@ -16,11 +16,19 @@ import hooks from "../hooks/useFunction";
 
 export const NavBar = () => {
   const [userName, setUserName] = useState(null);
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("newToken"));
+    const handleScroll = () => {
+      setIsScrolled(true);
+      if (window.scrollY === 0) {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
 
     if (token) {
       const decodedToken = hooks.useDecodedToken(token.token);
@@ -58,7 +66,7 @@ export const NavBar = () => {
   return (
     <nav
       id="navbar"
-      className="w-full py-4 top-0 z-40 fixed shadow-lg bg-gradient-to-t from-white via-white to-blue-100 "
+      className={`w-full py-4 top-0 z-40 fixed ${isScrolled?'shadow-md':'border border-b-[2px]'} bg-gradient-to-t from-white via-white to-blue-100 transition`}
     >
       <div className="px-4 sm:px-6 ">
         <div

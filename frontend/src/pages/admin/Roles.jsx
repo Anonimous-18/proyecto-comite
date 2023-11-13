@@ -30,7 +30,7 @@ export const Roles = () => {
 
         getRol();
       } else {
-        
+        navigate('/');
       }
     }
   }, [navigate, tokenExist, filterRol, getRoles, validateToken]);

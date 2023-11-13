@@ -35,17 +35,14 @@ export const Filtrocomite = () => {
   };
 
   return (
-    <form className="p-3 w-full 2xl:w-[800px] xl:w-[800px] lg:w-[500px] md:w-[500px] sm:w-[500px] bg-gray-50" onSubmit={(e) => handleSubmit(e)}>
+    <form
+      className="p-3 w-full 2xl:w-[800px] xl:w-[800px] lg:w-[500px] md:w-[500px] sm:w-[500px] bg-gray-50"
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <div className="w-full flex flex-row items-center justify-around">
         <div className="">
           <h3 className="font-bold text-black">Filtrar por:</h3>
         </div>
-        {/* <button
-              className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-              type="submit"
-            >
-              Filtrar
-            </button> */}
         <button
           type="submit"
           // className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
