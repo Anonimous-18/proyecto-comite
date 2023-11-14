@@ -69,7 +69,7 @@ const Router = () => {
 
   const rutaOpcion = {
     1: "/roles",
-    2: "/homeinstructor",
+    2: "/home-instructor",
     3: "/home-invitado",
   };
 
