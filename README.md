@@ -47,3 +47,10 @@ EMAIL_PASSWORD=bklzkodrqernvxae
 ORIGEN=
 </p>
 </h2>
+
+<h1>React Spinners</h1>
+<p>links:</p>
+<ul>
+  <li>https://www.npmjs.com/package/react-spinners</li>
+  <li>https://www.davidhu.io/react-spinners/</li>
+</ul>
