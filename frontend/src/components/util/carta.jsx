@@ -126,11 +126,11 @@ export const Carta = ({
             </div>
           </div>
           {estado === "espera" && gestor ? (
-            <div className="mt-6 flex gap-3">
-              <button className="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xl font-bold">
+            <div className="mt-4 flex gap-3">
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
                 Aceptar
               </button>
-              <button className="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xl font-bold">
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                 Rechazar
               </button>
             </div>

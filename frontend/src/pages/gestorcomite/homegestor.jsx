@@ -65,7 +65,7 @@ export const HomeGestor = () => {
           )}
         </div>
       </div>
-      <Modal id={contextApi.idComite} />
+      <Modal isOpen={true} />
     </DefaultLayout>
   );
 };
