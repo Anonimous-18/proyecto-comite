@@ -98,6 +98,7 @@ const Router = () => {
           <Route path="/reglamento" element={<Reglamento />} />
           <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/antecedente-aprendiz/:id" element={<Antecedente />} />
+          <Route path="/register" element={<Register1 />} />
           <Route
             path="/"
             element={
@@ -105,7 +106,6 @@ const Router = () => {
             }
           >
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-            <Route path="/register" element={<Register1 />} />
           </Route>
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
