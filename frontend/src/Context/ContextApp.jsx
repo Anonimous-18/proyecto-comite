@@ -39,6 +39,7 @@ export const ContextAppProvider = ({ children }) => {
   const [usuario, setUsuario] = useState({});
   const [camposFil, setCamposFil] = useState(null);
   const [ruta, setRuta] = useState("");
+  const [idComite, setIdComite] = useState(false);
   const navigate = useNavigate();
   const rutaOpcion = {
     1: "/roles",
@@ -493,6 +494,8 @@ export const ContextAppProvider = ({ children }) => {
         getPermisosRol,
         ruta,
         getEvidencia,
+        idComite,
+        setIdComite,
       }}
     >
       {children}
