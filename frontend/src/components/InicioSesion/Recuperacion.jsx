@@ -1,6 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { BsSkipBackwardCircle } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
@@ -9,7 +8,7 @@ import { useContextApp } from "../../Context/ContextApp";
 
 const Recuperacion = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const contextApi = useContextApp();
 
   const handleSubmit = async (values) => {
@@ -20,7 +19,7 @@ const Recuperacion = () => {
       if (result) {
         setLoading(false);
         alert("MIRE SU CORREO");
-        navigate(`/`)
+        navigate(`/`);
       } else {
         setLoading(false);
         alert("EL CORREO NO EXISTE");
@@ -28,27 +27,20 @@ const Recuperacion = () => {
     }
   };
   return (
-    <div className="bg-black h-screen w-full">
-      <section className="bg-gray-50 ">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className=" p-2">
-            <Link
-              to={`/`}
-              className="font-medium text-primary-600 hover:underline text-blue-800 text-2xl"
-            >
-              <BsSkipBackwardCircle />
-            </Link>
-          </div>
-          <div className="w-full bg-gradient-to-r bg-blue-800  rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 shadow-xl  ">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-1">
-              <h3 className=" text-center mt-4 mb-4 text-sm font-extrabold text-white md:text-5xl lg:text-3xl">
-                {" "}
-                Recuperacion de contraseña
-                <span className="text-transparent bg-clip-text bg-gradient-to-r to-sky-500 from-sky-400">
-                  {" "}
-                  SE-JustApp
-                </span>
-              </h3>
+    <div className="h-screen bg-white">
+      <div className="container mx-auto">
+        <div className="flex justify-center items-center px-6 my-12">
+          <div className="w-full xl:w-3/4 lg:w-3/4 flex justify-center items-center">
+            <div className=" w-full 2xl:w-1/2 xl:w-1/2 lg:w-8/12 md:w-8/12 sm:w-8/12 bg-gray-100 shadow p-5 rounded-lg lg:rounded-l-none">
+              <div className="px-8 mb-4 text-center">
+                <h3 className="pt-4 mb-2 text-2xl">
+                  ¿Olvidaste tu contraseña?
+                </h3>
+                <p className="mb-4 text-sm text-gray-700">
+                  Lo entendemos, suceden ese tipo de cosas. ¡Simplemente ingrese
+                  su dirección de correo electrónico a continuación!
+                </p>
+              </div>
               <Formik
                 initialValues={{
                   email: "",
@@ -66,41 +58,56 @@ const Recuperacion = () => {
                 {(formik) => (
                   <form
                     onSubmit={formik.handleSubmit}
-                    className="space-y-4 md:space-y-6"
+                    className="px-8 pt-6 pb-8 mb-4 bg-white rounded"
                   >
-                    <div className="bg-white w-full h-full sm:p-7 border-blue-700 border-2 rounded-lg place-items-center items-center justify-center">
-                      <div>
-                        <label className="block mb-2 pt-4 text-sm font-medium text-gray-900 ">
-                          Digite el correo registrado:
-                        </label>
-                        <Field
-                          type="email"
-                          name="email"
-                          id="email"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        />
-                        <div className="text-red-600 font-bold">
-                          <ErrorMessage name="email" />
-                        </div>
+                    <div className="mb-4">
+                      <label
+                        className="block mb-2 text-sm font-bold text-gray-700"
+                        htmlFor="email"
+                      >
+                        Correo electrónico
+                      </label>
+                      <Field
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Ingrese su correo electrónico"
+                        className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      />
+                      <div className="text-red-600 font-bold text-sm">
+                        <ErrorMessage name="email" />
                       </div>
-                      <br />
+                    </div>
+                    <div className="mb-6 text-center">
                       <button
                         type={`${loading ? "button" : "submit"}`}
-                        className="place-items-center flex flex-col items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-800 group-hover:from-blue-600 group-hover:to-blue-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-sky-500 dark:focus:ring-blue-800"
+                        disabled={formik.isSubmitting}
+                        className="block w-full bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
                       >
-                        <span className="relative px-11 py-2.5 transition-all ease-in duration-75 bg-blue-500 text-white rounded-md group-hover:bg-opacity-0">
-                          Registrar
+                        <span className="pl-2 mx-1">
+                          Restablecer Contraseña
                         </span>
                       </button>
-                      <p className="text-sm font-light text-gray-700  pt-1 pb-2">
-                        ¿Ya tienes cuenta?{" "}
+                    </div>
+                    <hr className="mb-6 border-t" />
+                    <div className="text-center">
+                      <Link
+                        className="text-sm ml-2 text-blue-500 hover:text-blue-700"
+                        to="/register"
+                      >
+                        ¡Crear cuenta!
+                      </Link>
+                    </div>
+                    <div className="text-center">
+                      <span className="text-sm">¿Ya tienes una cuenta?</span>
+                      <apan className="inline-block">
                         <Link
-                          to={`/`}
-                          className="font-medium text-primary-600 hover:underline text-blue-800"
+                          className="text-sm ml-2 text-blue-500 hover:text-blue-700"
+                          to="/"
                         >
-                          Regresar a login
+                          ¡Ingresa!
                         </Link>
-                      </p>
+                      </apan>
                     </div>
                   </form>
                 )}
@@ -108,7 +115,7 @@ const Recuperacion = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

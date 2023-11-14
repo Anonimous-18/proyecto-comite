@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BsSkipBackwardCircle } from "react-icons/bs";
 
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
@@ -42,7 +41,7 @@ export const Register1 = () => {
 
   return (
     <>
-      <section className="bg-while-500 dark:bg--900 mt-11 mb-11 flex flex-col items-center justify-center">
+      <section className="bg-while dark:bg--900 mt-11 mb-11 flex flex-col items-center justify-center">
         <Formik
           initialValues={{
             tipo_documento: "CC",
@@ -82,21 +81,13 @@ export const Register1 = () => {
         >
           {(formik) => (
             <form
-              className="w-full max-w-lg bg-gray-100 p-8 shadow-black border-blue-700 border-2 rounded-lg shadow-xl"
+              className="w-full max-w-lg bg-gray-100 p-8 shadow rounded-lg"
               onSubmit={formik.handleSubmit}
             >
               <div className="flex flex-row -mx-3 mb-6">
                 <div className="w-full px-3">
-                  <Link
-                    to={`/`}
-                    className="font-medium text-primary-600 hover:underline text-blue-800 text-2xl"
-                  >
-                    <BsSkipBackwardCircle />
-                  </Link>
-                </div>
-                <div className="w-full px-3">
-                  <label className="block uppercase tracking-wide text-blue-800 text-lg font-bold mb-2">
-                    Registrate!
+                  <label className="block uppercase tracking-wide text-black text-lg font-bold mb-2">
+                    REGISTRATE
                   </label>
                 </div>
               </div>
@@ -111,24 +102,16 @@ export const Register1 = () => {
                     name="tipo_documento"
                     as="select"
                     value={formik.values.tipo_documento}
-                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
+                    // className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded focus:outline-none focus:bg-blue-200 focus:border-blue-500"
+                    className="w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                   >
                     <option value="CC">Cedula de Ciudadania</option>
                     <option value="TI">Tarjeta de Identidad</option>
                     <option value="CE">Cedula de Extranjeria</option>
                     <option value="PASAPORTE">Pasaporte</option>
                   </Field>
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="tipo_documento" />
-                  </div>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
                   </div>
                 </div>
               </div>
@@ -144,7 +127,7 @@ export const Register1 = () => {
                     type="number"
                     placeholder="XXX XXXX XXXX XXXX"
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="documento" />
                   </div>
                 </div>
@@ -160,7 +143,7 @@ export const Register1 = () => {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                     placeholder=""
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="nombre_completo" />
                   </div>
                 </div>
@@ -175,7 +158,7 @@ export const Register1 = () => {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                     placeholder="300000000"
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="telefono" />
                   </div>
                 </div>
@@ -191,7 +174,7 @@ export const Register1 = () => {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                     placeholder="correo@ejemplo.com"
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="email" />
                   </div>
                 </div>
@@ -207,7 +190,7 @@ export const Register1 = () => {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                     placeholder="****************"
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="contrasenia" />
                   </div>
                 </div>
@@ -220,10 +203,10 @@ export const Register1 = () => {
                   <Field
                     type="text"
                     name="dependencia"
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                     placeholder=""
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="dependencia" />
                   </div>
                 </div>
@@ -237,7 +220,7 @@ export const Register1 = () => {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-blue-200 focus:border-blue-500"
                     placeholder=""
                   />
-                  <div className="text-red-600 font-bold">
+                  <div className="text-red-600 text-sm font-bold">
                     <ErrorMessage name="cargo" />
                   </div>
                 </div>
@@ -245,9 +228,10 @@ export const Register1 = () => {
                   <div className="w-full px-3">
                     <button
                       type="submit"
-                      className=" hover:bg-blue-600 appearance-none block w-full bg-blue-400 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight "
+                      disabled={formik.isSubmitting}
+                      className="block w-full bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
                     >
-                      <span className="w-full px-3">Crear cuenta invitado</span>
+                      <span className="pl-2 mx-1">Crear cuenta invitado</span>
                     </button>
                   </div>
                   <div className="w-full px-3">
@@ -255,7 +239,7 @@ export const Register1 = () => {
                       ¿Tienes cuanta?{" "}
                       <Link
                         to={`/`}
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500  text-blue-800"
+                        className="text-sm ml-2 text-blue-500 hover:text-blue-700"
                       >
                         ingresar
                       </Link>

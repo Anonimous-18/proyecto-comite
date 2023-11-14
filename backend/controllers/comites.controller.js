@@ -26,9 +26,13 @@ const createComites = async (req, res) => {
          * ---------------------------------------*/
         const comite = result.dataValues.id;
         req.body.aprendices_implicados.split(",").forEach(async (aprendiz) => {
+
+          const usuario_id = (await usuarios.findOne({ where:{ documento: aprendiz }})).id
+
           await aprendices_implicados.create({
             documento: aprendiz,
             comite_fk: comite,
+            usuario_id 
           });
         });
         return res.sendStatus(204);
