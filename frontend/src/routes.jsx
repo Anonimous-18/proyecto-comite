@@ -12,7 +12,7 @@ import Prueba from "./components/pruebas/Prueba";
 import { Spinner } from "./components/util/Spinner";
 import { useContextApp } from "./Context/ContextApp";
 import { Login } from "./components/InicioSesion/Login";
-import { Example } from "./components/tailwind/Form";
+import { Example } from "./components/tailwind/OUrCLients";
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
@@ -156,14 +156,12 @@ const Router = () => {
             element={<SolicitudIntructor />}
           />
           <Route
-            path="/infocomiteinstrutor/:comite_id"
+            path="/informacion-comite/:comite_id"
             element={<Informacioncomiteinst />}
           />
 
           {/* Rutas de Subdirector */}
           <Route path="/home-subdirector" element={<Homesubdirector />} />
-
-          {/* Rutas de Subdirector */}
           <Route path="/infocomitesub" element={<Infocomitesub />} />
 
           {/* Rutas de Gestor */}
