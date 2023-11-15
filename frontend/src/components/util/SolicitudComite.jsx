@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
 
 import hooks from "../../hooks/useFunction";
-import { Semaforo } from "./semaforo";
 import { useContextApp } from "../../Context/ContextApp";
 
 export const SolicitudComite = () => {
@@ -158,224 +157,265 @@ export const SolicitudComite = () => {
   };
 
   return (
-    <main className="h-full w-full flex flex-col items-center gap-5 ">
-      <Semaforo />
-      <div className="h-full w-full flex flex-col items-center mb-3 ">
-        <Formik
-          initialValues={{
-            capitulo: "1",
-            articulo: "",
-            tipo_falta: "",
-            descripcion_falta: "",
-            evidencia: null,
-          }}
-          validationSchema={Yup.object({
-            capitulo: Yup.string().required("Seleccione un capitulo"),
-            articulo: Yup.string().required("Seleccione un articulo"),
-            tipo_falta: Yup.string().required("Seleccione un tipo de falta"),
-            descripcion_falta: Yup.string()
-              .min(10, "Minimo 10 caracteres")
-              .required("La descripción de la falta es requerida"),
-            evidencia: Yup.mixed().required("Seleccione un archivo"),
-          })}
-          onSubmit={async (values) => {
-            await handleSubmit(values);
-          }}
-        >
-          {(formik) => (
-            <form
-              onSubmit={formik.handleSubmit}
-              className="border border-black p-2 rounded-xl text-sm font-medium text-gray-900"
-            >
-              <h2 className="mb-4 text-xl font-bold text-blue-800 flex flex-col items-center">
-                Crear Solicitud Comite
-              </h2>
-              <div>
-                <label className="h-full w-full flex flex-col">
-                  Capitulo del Reglamento
-                </label>
-                <div>
-                  <Field
-                    as="select"
-                    id="capitulo"
-                    name="capitulo"
-                    value={formik.values.capitulo}
-                    className="bg-blue-400 h-100 w-full flex flex-col rounded-xl border-2"
-                  >
-                    {result.map((capitulo) => (
-                      <option
-                        key={capitulo.cap_id}
-                        value={`${capitulo.cap_id}`}
-                        className="h-100 p-14"
-                      >
-                        Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
-                      </option>
-                    ))}
-                  </Field>
-                  <div className="text-red-600 font-bold">
-                    <ErrorMessage name="capitulo" />
+    <div className="flex shadow">
+      <div className="m-auto">
+        <div>
+          <Formik
+            initialValues={{
+              capitulo: "1",
+              articulo: "",
+              tipo_falta: "",
+              descripcion_falta: "",
+              evidencia: null,
+            }}
+            validationSchema={Yup.object({
+              capitulo: Yup.string().required("Seleccione un capitulo"),
+              articulo: Yup.string().required("Seleccione un articulo"),
+              tipo_falta: Yup.string().required("Seleccione un tipo de falta"),
+              descripcion_falta: Yup.string()
+                .min(10, "Minimo 10 caracteres")
+                .required("La descripción de la falta es requerida"),
+              evidencia: Yup.mixed().required("Seleccione un archivo"),
+            })}
+            onSubmit={async (values) => {
+              await handleSubmit(values);
+            }}
+          >
+            {(formik) => (
+              <form onSubmit={formik.handleSubmit}>
+                <div className="bg-white rounded-lg shadow">
+                  <div className="flex">
+                    <div className="flex-1 py-5 pl-5 overflow-hidden">
+                      <h1 className="inline text-2xl font-semibold leading-none">
+                        Solicitud de Comite
+                      </h1>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div>
-                <label className="">Articulo del Reglamento</label>
-                <div>
-                  <Field
-                    as="select"
-                    id="articulo"
-                    name="articulo"
-                    value={formik.values.articulo}
-                    className="bg-blue-400 h-100 w-full flex flex-col rounded-xl border-2"
-                  >
-                    <option value="">Seleccione un Articulo</option>
-                    {getArticulos(result, formik.values).contenido.map(
-                      (articulo, index) => (
-                        <option key={index} value={`${articulo.art_id}`}>
-                          Articulo {articulo.art_id} {articulo.art_titulo}
-                        </option>
-                      )
-                    )}
-                  </Field>
-                  <div className="text-red-600 font-bold">
-                    <ErrorMessage name="articulo" />
-                  </div>
-                  <div className="place-content-center flex p-1">
-                    <button
-                      type="button"
-                      className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                      onClick={() => agregarArticulo(formik.values)}
+                  <div className="px-5 pb-5">
+                    <Field
+                      as="select"
+                      id="capitulo"
+                      name="capitulo"
+                      placeholder="Capitulo del Reglamento"
+                      value={formik.values.capitulo}
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                     >
-                      Agregar Articulo
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {articulosSeleccionados.length > 0 && (
-                <div>
-                  <h4>Articulos Seleccionados:</h4>
-                  <ul>
-                    {articulosSeleccionados.map((articuloId, index) => (
-                      <li key={index} className="place-content-center flex p-1">
-                        • {`Articulo ${articuloId}`}
+                      {result.map((capitulo) => (
+                        <option
+                          key={capitulo.cap_id}
+                          value={`${capitulo.cap_id}`}
+                          // className="h-100 p-14"
+                        >
+                          Capitulo {capitulo.cap_id} {capitulo.cap_titulo}
+                        </option>
+                      ))}
+                    </Field>
+                    {/* <div className="text-red-600 font-bold text-sm">
+                      <ErrorMessage name="capitulo" />
+                    </div> */}
+                    <Field
+                      as="select"
+                      id="articulo"
+                      name="articulo"
+                      value={formik.values.articulo}
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                    >
+                      <option value="">Seleccione un Articulo</option>
+                      {getArticulos(result, formik.values).contenido.map(
+                        (articulo, index) => (
+                          <option key={index} value={`${articulo.art_id}`}>
+                            Articulo {articulo.art_id} {articulo.art_titulo}
+                          </option>
+                        )
+                      )}
+                    </Field>
+                    <div className="text-red-600 font-bold text-sm">
+                      <ErrorMessage name="articulo" />
+                    </div>
+                    <div className="flex flex-row-reverse p-3">
+                      <div className="flex-initial pl-3">
                         <button
                           type="button"
-                          className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                          onClick={() => quitarArticulo(index)}
+                          className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                          onClick={() => agregarArticulo(formik.values)}
                         >
-                          Eliminar
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            fill="#FFFFFF"
+                          >
+                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                            <path
+                              d="M5 5v14h14V7.83L16.17 5H5zm7 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-8H6V6h9v4z"
+                              opacity=".3"
+                            ></path>
+                            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"></path>
+                          </svg>
+                          <span className="pl-2 mx-1">Agregar Articulo</span>
                         </button>
-                      </li>
+                      </div>
+                    </div>
+                    {articulosSeleccionados &&
+                      articulosSeleccionados.length > 0 && (
+                        <div>
+                          <h4>Articulos Seleccionados:</h4>
+                          <ul className="grid grid-cols-1 2xl:grid-cols-5 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 w-full h-full my-4 gap-5 items-center justify-center">
+                            {articulosSeleccionados.map((articuloId, index) => (
+                              <li
+                                key={index}
+                                className="place-content-center items-center justify-center bg-gray-100 flex p-1"
+                              >
+                                • {`Articulo ${articuloId}`}
+                                <button
+                                  type="button"
+                                  className="ml-4 flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                                  onClick={() => quitarArticulo(index)}
+                                >
+                                  Eliminar
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    {data.identificaciones.map((identificacion, index) => (
+                      <div key={index} className="p-1">
+                        <input
+                          type="number"
+                          value={identificacion}
+                          onChange={(e) =>
+                            actualizarIdentificacion(index, e.target.value)
+                          }
+                          className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                          placeholder="Identificacion"
+                        />
+                      </div>
                     ))}
-                  </ul>
-                </div>
-              )}
-              <div>
-                <h4>Aprendices Implicados:</h4>
-                {data.identificaciones.map((identificacion, index) => (
-                  <div key={index} className="p-1">
-                    <input
-                      type="number"
-                      value={identificacion}
-                      onChange={(e) =>
-                        actualizarIdentificacion(index, e.target.value)
-                      }
-                      className={`border border-black  p-2 rounded-xl`}
-                      placeholder="Identificacion"
-                    />
-                  </div>
-                ))}
-                {err ? (
-                  <div className="text-red-600 font-bold">
-                    La identificacion no puede estar vacia
-                  </div>
-                ) : (
-                  <></>
-                )}
-                <div className="place-content-center flex p-1">
-                  <button
-                    type="button"
-                    className=" right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                    onClick={agregarIdentificacion}
-                  >
-                    {data.identificaciones.length !== 0 ? (
-                      <>Agregar Otra Identificación</>
+                    {err ? (
+                      <div className="text-red-600 font-bold text-sm">
+                        La identificacion no puede estar vacia
+                      </div>
                     ) : (
-                      <>Agregar Identificación</>
+                      <></>
                     )}
-                  </button>
+                    <div className="place-content-center flex p-1">
+                      <button
+                        type="button"
+                        className="ml-4 flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                        onClick={agregarIdentificacion}
+                      >
+                        {data.identificaciones &&
+                        data.identificaciones.length !== 0 ? (
+                          <>Agregar Otra Identificación</>
+                        ) : (
+                          <>Agregar Identificación</>
+                        )}
+                      </button>
+                    </div>
+                    <Field
+                      as="textarea"
+                      name="descripcion_falta"
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:text-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      placeholder="Descripción de la Falta"
+                    />
+                    <div className="text-red-600 font-bold text-sm">
+                      <ErrorMessage name="descripcion_falta" />
+                    </div>
+                    <Field
+                      as="select"
+                      id="tipo_falta"
+                      name="tipo_falta"
+                      value={formik.values.tipo_falta}
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:text-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                    >
+                      <option value="">Seleccione el Tipo de Falta</option>
+                      <option value="Academica">Academica</option>
+                      <option value="Disciplinaria">Disciplinaria</option>
+                    </Field>
+                    <div className="text-red-600 font-bold text-sm">
+                      <ErrorMessage name="tipo_falta" />
+                    </div>
+                    <small className="inline-block mt-4 text-center">
+                      Adjunte Evidencias:
+                    </small>
+                    <input
+                      type="file"
+                      name="evidencia"
+                      onChange={(event) => {
+                        formik.setFieldValue(
+                          "evidencia",
+                          event.currentTarget.files[0]
+                        );
+                      }}
+                      placeholder="Adjunte Evidencias"
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:text-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                    />
+                    <div className="text-red-600 font-bold text-sm">
+                      <ErrorMessage name="evidencia" />
+                    </div>
+                  </div>
+                  <hr className="mt-4" />
+                  <div className="flex flex-row-reverse p-3">
+                    <div className="flex-initial pl-3">
+                      <button
+                        type="submit"
+                        disabled={formik.isSubmitting}
+                        className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          fill="#FFFFFF"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none"></path>
+                          <path
+                            d="M5 5v14h14V7.83L16.17 5H5zm7 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-8H6V6h9v4z"
+                            opacity=".3"
+                          ></path>
+                          <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"></path>
+                        </svg>
+                        <span className="pl-2 mx-1">Enviar Solicitud</span>
+                      </button>
+                    </div>
+                    <div className="flex-initial">
+                      <Link
+                        className="flex items-center px-5 py-2.5 font-medium tracking-wide text-black capitalize rounded-md  hover:bg-red-200 hover:fill-current hover:text-red-600  focus:outline-none  transition duration-300 transform active:scale-95 ease-in-out"
+                        to={`${
+                          localStorage.getItem("instructor")
+                            ? "/home-instructor"
+                            : localStorage.getItem("aprendiz")
+                            ? "/home-aprendiz"
+                            : localStorage.getItem("invitado")
+                            ? "/home-invitado"
+                            : localStorage.getItem("admin")
+                            ? "/home-admin"
+                            : "/"
+                        }`}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none"></path>
+                          <path d="M8 9h8v10H8z" opacity=".3"></path>
+                          <path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path>
+                        </svg>
+                        <span className="pl-2 mx-1">Cancelar</span>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <p>Descripcion de la Falta:</p>
-                <Field
-                  as="textarea"
-                  name="descripcion_falta"
-                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                />
-                <div className="text-red-600 font-bold">
-                  <ErrorMessage name="descripcion_falta" />
-                </div>
-              </div>
-              <div>
-                <label className="">Tipo de Falta</label>
-                <Field
-                  as="select"
-                  id="tipo_falta"
-                  name="tipo_falta"
-                  value={formik.values.tipo_falta}
-                  className="bg-blue-400  h-100 w-full flex flex-col rounded-xl border-2"
-                >
-                  <option value="">Seleccione el Tipo de Falta</option>
-                  <option value="Academica">Academica</option>
-                  <option value="Disciplinaria">Disciplinaria</option>
-                </Field>
-                <div className="text-red-600 font-bold">
-                  <ErrorMessage name="tipo_falta" />
-                </div>
-              </div>
-              <div className="w-full">
-                <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                  Adjuntar evidencias
-                </label>
-                <input
-                  type="file"
-                  name="evidencia"
-                  onChange={(event) => {
-                    formik.setFieldValue(
-                      "evidencia",
-                      event.currentTarget.files[0]
-                    );
-                  }}
-                  placeholder="Link de la carpeta"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                />
-                <div className="text-red-600 font-bold">
-                  <ErrorMessage name="evidencia" />
-                </div>
-              </div>
-              <div className="p-2 sm:col-span-2 flex flex-row place-content-center">
-                <div>
-                  <Link
-                    to={`/home`}
-                    className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                  >
-                    Cancelar
-                  </Link>
-                </div>
-                <div>
-                  <button
-                    // disabled={formik.isSubmitting || !formik.isValid}
-                    type="submit"
-                    className="right-0 ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 text-xs font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-                  >
-                    Crear Solicitud
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
-        </Formik>
+              </form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </main>
+    </div>
   );
 };

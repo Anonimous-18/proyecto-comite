@@ -64,7 +64,7 @@ export const Carta = ({
           <div className="flex-1">
             <p className="text-sm font-medium text-indigo-600">
               <Link
-                to={`/infocomiteinstrutor/${comite_id}`}
+                to={`/informacion-comite/${comite_id}`}
                 className="hover:underline"
               >
                 Ver mas
