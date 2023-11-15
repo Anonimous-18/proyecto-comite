@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import usuariosApi from "../api/usuarios";
@@ -28,6 +28,27 @@ import {
 } from "../funciones/encode";
 // import jwtDecode from "jwt-decode";
 
+const initialState = {
+  id: 0,
+  activado: false,
+  modalAceptar: false,
+  
+};
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "AgregarComiteId":
+      return { ...state, id: action.payload };
+    case "confirmarComite":
+      return { ...state, activado: true };
+    case "desactivarModal":
+      return { ...state, activado: false };
+    case "modalAceptar":
+      return { ...state, modalAceptar: !state.modalAceptar };
+    default:
+      return state;
+  }
+};
+
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
@@ -35,7 +56,6 @@ export const ContextAppProvider = ({ children }) => {
   const socket = io(`${API}`);
 
   // const [cargarPagina, setCargarPagina] = useState(false);
-
   const [usuario, setUsuario] = useState({});
   const [camposFil, setCamposFil] = useState(null);
   const [ruta, setRuta] = useState("");
@@ -46,6 +66,19 @@ export const ContextAppProvider = ({ children }) => {
     2: "/homeinstructor",
     3: "/home-invitado",
   };
+
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const reducerColocarId = (id) => {
+    dispatch({ type: 'AgregarComiteId', payload: id });
+  };
+  const reducerModalActivo = () => {
+    dispatch({ type: 'confirmarComite' });
+  };
+  const reducerModalDesactivo = () => {
+    dispatch({ type: 'desactivarModal' });
+  }
+
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
@@ -496,6 +529,10 @@ export const ContextAppProvider = ({ children }) => {
         getEvidencia,
         idComite,
         setIdComite,
+        state,
+        reducerModalActivo,
+        reducerColocarId,
+        reducerModalDesactivo
       }}
     >
       {children}
