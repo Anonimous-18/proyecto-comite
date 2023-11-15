@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PiWarningBold } from "react-icons/pi";
 import { useContextApp } from "../../Context/ContextApp";
 
-export const Modal = ({ isOpen, estilosAceptar }) => {
+export const Modal = ({ isOpen, estilosAceptar, id}) => {
   const [open, setOpen] = useState(false);
   const contextApp = useContextApp();
 
@@ -12,6 +12,19 @@ export const Modal = ({ isOpen, estilosAceptar }) => {
 
   const handleDesactivar = () => {
     contextApp.reducerModalDesactivo();
+  };
+  const handleRC = () => {
+    if(estilosAceptar){
+      contextApp.updateComite({
+        estado:"Aceptado"
+      },id)
+    }else{
+      contextApp.updateComite({
+        estado:"Rechazado"
+      },id)
+    }
+    contextApp.reducerModalDesactivo();
+    location.reload();
   };
 
   return (
@@ -62,7 +75,8 @@ export const Modal = ({ isOpen, estilosAceptar }) => {
         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <button
             type="button"
-            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+            className={ estilosAceptar ? 'w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm' : 'w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm' }
+            onClick={handleRC}
           >
             {" "}
             {estilosAceptar ? "Aceptar" : "Rechazar"}{" "}

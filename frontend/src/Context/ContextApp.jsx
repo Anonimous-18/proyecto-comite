@@ -13,6 +13,7 @@ import { getReglamentoRequest } from "../api/reglamento";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
 import { getPermisosRolRequest } from "../api/RolesPermisos";
+import updateComiteRequest from "../api/gestor";
 
 import {
   getRolesRequest,
@@ -31,7 +32,7 @@ import {
 const initialState = {
   id: 0,
   activado: false,
-  modalAceptar: false,
+  modo: false,
   
 };
 const reducer = (state, action) => {
@@ -42,8 +43,10 @@ const reducer = (state, action) => {
       return { ...state, activado: true };
     case "desactivarModal":
       return { ...state, activado: false };
-    case "modalAceptar":
-      return { ...state, modalAceptar: !state.modalAceptar };
+    case "modo":
+      return { ...state, modo: true };
+    case "modalRechazar":
+      return { ...state, modo: false };
     default:
       return state;
   }
@@ -77,6 +80,12 @@ export const ContextAppProvider = ({ children }) => {
   };
   const reducerModalDesactivo = () => {
     dispatch({ type: 'desactivarModal' });
+  }
+  const reducerModoAceptar = () => {
+    dispatch({ type: 'modo' });
+  }
+  const reducerModoRechazar = () => {
+    dispatch({ type: 'modalRechazar' });
   }
 
 
@@ -335,6 +344,7 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error al crear un rol: ", error.message);
     }
   };
+  
 
   const deleteRoles = async (token, data) => {
     try {
@@ -354,6 +364,14 @@ export const ContextAppProvider = ({ children }) => {
       return res;
     } catch (error) {
       console.log("Error actualizar un rol: ", error.message);
+    }
+  };
+  const updateComite = async (data,id) => {
+    try {
+      const res = await updateComiteRequest(data, id);
+      return res;
+    } catch (error) {
+      console.log("Error al actualizar el estado comite: ", error.message);
     }
   };
 
@@ -532,7 +550,10 @@ export const ContextAppProvider = ({ children }) => {
         state,
         reducerModalActivo,
         reducerColocarId,
-        reducerModalDesactivo
+        reducerModalDesactivo,
+        reducerModoAceptar,
+        reducerModoRechazar,
+        updateComite
       }}
     >
       {children}

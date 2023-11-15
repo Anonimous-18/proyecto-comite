@@ -5,10 +5,10 @@ import { Carta } from "../../components/util/carta";
 import { useContextApp } from "../../Context/ContextApp";
 import { Modal } from "../../components/util/modal";
 
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useState } from "react";
 
 export const HomeGestor = () => {
-  const contextApi = useContextApp();
+  const contextApp = useContextApp();
   const [comites, setComites] = useState([]);
   // const [filtrar, setFiltrar] = useState(null);
 
@@ -28,7 +28,7 @@ export const HomeGestor = () => {
   useEffect(() => {
     window.scroll(0, 300);
     const getComites = async () => {
-      const response = await contextApi.getComites();
+      const response = await contextApp.getComites();
       return response;
     };
     getComites()
@@ -64,7 +64,7 @@ export const HomeGestor = () => {
           )}
         </div>
       </div>
-      <Modal isOpen={ contextApi.state.activado } estilosAceptar={ contextApi.state.modalAceptar } />
+      <Modal isOpen={ contextApp.state.activado } estilosAceptar={ contextApp.state.modo } id={ contextApp.state.id } />
     </DefaultLayout>
   );
 };
