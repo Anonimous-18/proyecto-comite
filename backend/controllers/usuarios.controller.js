@@ -112,13 +112,48 @@ const getAntecedenteForAprendiz = async (req, res) => {
       /**----------
        * | Salida
        * ----------*/
-      return res.status(200).json({
-        aprendiz: aprendiz.dataValues,
-        comites: infoComites.map((comite) => comite.dataValues),
-        instructorSolicitante: instructorSolicitante,
-        novedades: infoNovedades,
-        instructorSolicitanteNovedad: instructorNovedad,
-      });
+
+      const unirDatos = () => {
+        const comites = infoComites.map((comite) => {
+          let resultado = [];
+
+          instructorSolicitante.find((inst) => {
+            if (inst.id === comite.dataValues.instructor_fk) {
+              resultado.push({
+                ...comite.dataValues,
+                instructor: inst.nombre_completo,
+                emailInstructor: inst.email,
+                dependenciaInstructor: inst.dependencia,
+              });
+              return;
+            }
+          });
+
+          return resultado[0];
+        });
+
+        const novedades = infoNovedades.map((novedad) => {
+          let resultado = [];
+
+          instructorNovedad.find((inst) => {
+            if (inst.id === novedad.dataValues.instructor_fk) {
+              resultado.push({
+                ...novedad.dataValues,
+                instructor: inst.nombre_completo,
+                emailInstructor: inst.email,
+                dependenciaInstructor: inst.dependencia,
+              });
+              return;
+            }
+          });
+
+          return resultado[0];
+        });
+
+        return { aprendiz: aprendiz.dataValues, comites, novedades };
+      };
+
+      return res.status(200).json(unirDatos());
     } else {
       return res.status(404).json({ message: `Aprendiz no encontrado.` });
     }
