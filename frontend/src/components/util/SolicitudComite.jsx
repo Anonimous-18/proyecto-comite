@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
 
 import hooks from "../../hooks/useFunction";
-import { Semaforo } from "./semaforo";
 import { useContextApp } from "../../Context/ContextApp";
 
 export const SolicitudComite = () => {
