@@ -3,6 +3,8 @@ import { Semaforo } from "../../components/util/semaforo";
 import { Filtrocomite } from "../../components/util/filtocomite";
 import { Carta } from "../../components/util/carta";
 import { useContextApp } from "../../Context/ContextApp";
+import { Modal } from "../../components/util/modal";
+
 import { useEffect, useState } from "react";
 
 export const HomeGestor = () => {
@@ -19,11 +21,11 @@ export const HomeGestor = () => {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scroll(0, 0);
+    window.scroll(0, 50);
   };
 
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scroll(0, 300);
     const getComites = async () => {
       const response = await contextApi.getComites();
       return response;
@@ -39,23 +41,22 @@ export const HomeGestor = () => {
   return (
     <DefaultLayout>
       <div className="max-w-full h-full flex flex-col items-center justify-center">
-        <div className="w-full flex flex-col gap-28 2xl:flex-row xl:flex-row lg:flex-col 2xl:items-start xl:items-start lg:items-center items-center justify-center">
-          <Semaforo />
-          <Filtrocomite />
-        </div>
+        
 
         <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center">
           {comites && comites.length !== 0 ? (
             <>
-              {currentComites.map((comite) => (
+              {currentComites.map((comite, index) => (
                 <Carta
-                  key={comite.id}
+                  key={index}
+                  id={ comite.id }
                   comite_id={comite.id}
                   tipo_falta={comite.tipo_falta}
                   descripcion_solicitud={comite.descripcion_solicitud}
                   instructor={comite.instructor_fk}
                   fecha={comite.createdAt.replace(/T.*/, "")}
                   estado={comite.estado}
+                  gestor={true}
                 />
               ))}
             </>
@@ -64,6 +65,7 @@ export const HomeGestor = () => {
           )}
         </div>
       </div>
+      <Modal isOpen={true} />
     </DefaultLayout>
   );
 };

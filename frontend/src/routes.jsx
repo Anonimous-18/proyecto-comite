@@ -62,14 +62,15 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
  * | Gestor
  * -----------------*/
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
+import { Error404 } from "./components/util/erro404";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
   let usuarioRoles = usuario;
 
   const rutaOpcion = {
-    1: "/roles",
-    2: "/homeinstructor",
+    1: "/home-admin",
+    2: "/home-instructor",
     3: "/home-invitado",
   };
 
@@ -98,6 +99,7 @@ const Router = () => {
           <Route path="/reglamento" element={<Reglamento />} />
           <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
           <Route path="/antecedente-aprendiz/:id" element={<Antecedente />} />
+          <Route path="/register" element={<Register1 />} />
           <Route
             path="/"
             element={
@@ -105,7 +107,6 @@ const Router = () => {
             }
           >
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
-            <Route path="/register" element={<Register1 />} />
           </Route>
           <Route path="/historiasdecomite" element={<Historiacomite />} />
           <Route path="/notificaciones/:usuario" element={<Notificaciones />} />
@@ -168,9 +169,7 @@ const Router = () => {
           {/* Rutas de Gestor */}
           <Route path="/home-gestor" element={<HomeGestor />} />
 
-          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
-          <Route path="*/*" element={<Navigate to={`${ruta}`} replace />} />
-          <Route path="*/*/*" element={<Navigate to={`${ruta}`} replace />} />
+          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />  
         </Routes>
       ) : (
         <>
@@ -179,6 +178,7 @@ const Router = () => {
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register1 />} />
+            <Route path="*" element={<Error404/>} />
           </Routes>
         </>
       )}
