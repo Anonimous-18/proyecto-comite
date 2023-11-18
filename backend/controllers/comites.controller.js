@@ -7,7 +7,7 @@ const createComites = async (req, res) => {
   try {
     const { file } = req;
     const evidencia = file.filename;
-
+    console.log(req.body);
     const result = await comites.create({
       articulos: req.body.articulos.toString(),
       instructor_fk: req.body.instructor_fk,
