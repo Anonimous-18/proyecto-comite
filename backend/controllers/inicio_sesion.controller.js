@@ -59,7 +59,7 @@ const login = async (req, res) => {
         (permisoRol) => permisoRol.permisos.nombre
       );
       req.userData.permisos = permisosNom;
-      console.log(req.userData);
+      //console.log(req.userData);
     }
 
 
@@ -354,7 +354,7 @@ const registerUsers = async (req, res) => {
               }
             });
 
-            console.log("prueba");
+            //console.log("prueba");
           } else if (usuarioEstado.error) {
             acumulador.push(usuarioEstado.error);
           }
@@ -362,7 +362,7 @@ const registerUsers = async (req, res) => {
         },
         []
       );
-      console.log(errorUsuarios);
+      //console.log(errorUsuarios);
     } catch (error) {
       return res.status(500).json({
         message: `Error detalles ${error.message}`,

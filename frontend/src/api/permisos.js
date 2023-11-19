@@ -13,7 +13,7 @@ export const getPermisosRequest = async (token) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al obtener los permisos detalles: ", error.message);
+    //console.log("Error al obtener los permisos detalles: ", error.message);
   }
 };
 
@@ -28,6 +28,6 @@ export const asignarPermisosRequest = async (token, data) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al asignar un permsio al rol detalles: ", error.message);
+    //console.log("Error al asignar un permsio al rol detalles: ", error.message);
   }
 };

@@ -38,7 +38,7 @@ export const Reglamento = () => {
     return <Spinner />;
   }
   const result = orderReglamento(reglamento);
-  console.log(result);
+  //console.log(result);
 
   return (
     <div>

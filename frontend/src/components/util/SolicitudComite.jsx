@@ -150,7 +150,7 @@ export const SolicitudComite = () => {
           await contextApi.createComite(formData);
           navigate(`/home-instructor`);
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
       }
     }

@@ -15,7 +15,7 @@ export const resetPass = async (email) => {
     const res = await axios.post(`${API}/api/reset-password`, email);
     return res;
   } catch (error) {
-    console.log("Error enpoint restPass", error.message);
+    //console.log("Error enpoint restPass", error.message);
   }
 };
 
@@ -27,6 +27,6 @@ export const registerUserRequest = async (data) => {
     const res = await axios.post(`${API}/api/register`, data);
     return res;
   } catch (error) {
-    console.log("Error enpoint restPass", error.message);
+    //console.log("Error enpoint restPass", error.message);
   }
 };

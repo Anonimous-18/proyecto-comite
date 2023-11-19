@@ -182,7 +182,7 @@ const asignarPermiso = async (req, res) => {
 
     // Ahora resultados es un array que contiene todos los resultados de las consultas
     resultados.forEach((result) => {
-      console.log(result);
+      //console.log(result);
     });
 
     if (resultados) {

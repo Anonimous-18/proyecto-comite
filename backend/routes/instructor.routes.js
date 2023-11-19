@@ -1,11 +1,11 @@
 const { Router } = require("express");
 const controllers = require("../controllers/comites.controller.js");
-const uploadMiddleware = require("../utils/handleStorage")
+const uploadMiddleware = require("../utils/handleStorage");
 
 const router = Router();
 
 router
-  .post("/api/comites", uploadMiddleware.single("evidencia"), controllers.createComites)
+  .post("/api/comites", controllers.crearActa )
   .post("/api/comites/aprendices", controllers.getAprendicesImplicados)
   .get("/api/comites", controllers.getComites)
   .get("/api/comites/:id", controllers.comitebyId)

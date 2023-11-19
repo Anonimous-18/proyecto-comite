@@ -16,7 +16,7 @@ export const getRolesRequest = async (token) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al obtener los roles detalles: ", error.message);
+    //console.log("Error al obtener los roles detalles: ", error.message);
   }
 };
 
@@ -34,7 +34,7 @@ export const createRolRequest = async (token, data) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al crear un rol detalles: ", error.message);
+    //console.log("Error al crear un rol detalles: ", error.message);
   }
 };
 
@@ -52,7 +52,7 @@ export const deleteRolRequest = async (token, data) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al eliminar un rol detalles: ", error.message);
+    //console.log("Error al eliminar un rol detalles: ", error.message);
   }
 };
 
@@ -70,7 +70,7 @@ export const updateRolRequest = async (token, id, data) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al actualizar un rol detalles: ", error.message);
+    //console.log("Error al actualizar un rol detalles: ", error.message);
   }
 };
 /**----------------------------------------
@@ -87,6 +87,6 @@ export const getRolByIdRequest = async (token, id) => {
       return res.data;
     }
   } catch (error) {
-    console.log("Error al obtener los roles detalles: ", error.message);
+    //console.log("Error al obtener los roles detalles: ", error.message);
   }
 };

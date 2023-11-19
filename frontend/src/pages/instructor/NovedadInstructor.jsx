@@ -30,9 +30,9 @@ export const NovedadInstructor = () => {
     const response = await context.createNovedad(values);
 
     if (response && response === 204) {
-      console.log("BIEN");
+      //console.log("BIEN");
     } else {
-      console.log("MAL");
+      //console.log("MAL");
     }
   };
 

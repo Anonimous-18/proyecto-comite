@@ -113,7 +113,7 @@ export const ContextAppProvider = ({ children }) => {
       localStorage.clear();
       sessionStorage.clear();
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
 
@@ -152,7 +152,7 @@ export const ContextAppProvider = ({ children }) => {
       }
       return false;
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
       return false;
     }
   };
@@ -162,7 +162,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await registerUserRequest(data);
       return res;
     } catch (error) {
-      console.log("Error al registrarse desde context");
+      //console.log("Error al registrarse desde context");
     }
   };
 
@@ -249,7 +249,7 @@ export const ContextAppProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
-      console.log("Error en validateToken detalles: ", error.message);
+      //console.log("Error en validateToken detalles: ", error.message);
       return false;
     }
   };
@@ -262,7 +262,7 @@ export const ContextAppProvider = ({ children }) => {
       }
       return response.data;
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
 
@@ -275,7 +275,7 @@ export const ContextAppProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
-      console.log("Error al recuperar contraseña ", error.message);
+      //console.log("Error al recuperar contraseña ", error.message);
       return false;
     }
   };
@@ -289,7 +289,7 @@ export const ContextAppProvider = ({ children }) => {
         return true;
       }
     } catch (error) {
-      console.log("Error al filtrar el rol: ", error.message);
+      //console.log("Error al filtrar el rol: ", error.message);
     }
   };
 
@@ -298,7 +298,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await getPermisosRequest(token);
       return res;
     } catch (error) {
-      console.log("Error chupaloo inin: ", error.message);
+      //console.log("Error chupaloo inin: ", error.message);
     }
   };
 
@@ -307,7 +307,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await asignarPermisosRequest(token, data);
       return res;
     } catch (error) {
-      console.log("Error al crear un rol: ", error.message);
+      //console.log("Error al crear un rol: ", error.message);
     }
   };
   const getPermisosRol = async (token, id) => {
@@ -315,7 +315,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await getPermisosRolRequest(token, id);
       return res;
     } catch (error) {
-      console.log("Error: ", error.message);
+      //console.log("Error: ", error.message);
     }
   };
   const getRoles = async (token) => {
@@ -323,7 +323,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await getRolesRequest(token);
       return res;
     } catch (error) {
-      console.log("Error al filtrar el rol: ", error.message);
+      //console.log("Error al filtrar el rol: ", error.message);
     }
   };
 
@@ -332,7 +332,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await getRolByIdRequest(token, id);
       return res;
     } catch (error) {
-      console.log("Error al filtrar el rol por id: ", error.message);
+      //console.log("Error al filtrar el rol por id: ", error.message);
     }
   };
 
@@ -341,7 +341,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await createRolRequest(token, data);
       return res;
     } catch (error) {
-      console.log("Error al crear un rol: ", error.message);
+      //console.log("Error al crear un rol: ", error.message);
     }
   };
   
@@ -351,19 +351,19 @@ export const ContextAppProvider = ({ children }) => {
       const res = await deleteRolRequest(token, data);
       return res.status;
     } catch (error) {
-      console.log("Error al eliminar un rol: ", error.message);
+      //console.log("Error al eliminar un rol: ", error.message);
     }
   };
 
   const updateRoles = async (token, id, data) => {
     try {
-      console.log("ID: ", id);
-      console.log("DATA: ", data);
-      console.log("TOKEN: ", token);
+      //console.log("ID: ", id);
+      //console.log("DATA: ", data);
+      //console.log("TOKEN: ", token);
       const res = await updateRolRequest(token, id, data);
       return res;
     } catch (error) {
-      console.log("Error actualizar un rol: ", error.message);
+      //console.log("Error actualizar un rol: ", error.message);
     }
   };
   const updateComite = async (data,id) => {
@@ -371,7 +371,7 @@ export const ContextAppProvider = ({ children }) => {
       const res = await updateComiteRequest(data, id);
       return res;
     } catch (error) {
-      console.log("Error al actualizar el estado comite: ", error.message);
+      //console.log("Error al actualizar el estado comite: ", error.message);
     }
   };
 
@@ -379,7 +379,7 @@ export const ContextAppProvider = ({ children }) => {
     try {
       await instructorApi.createComiteRequest(data);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -389,7 +389,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.data;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -400,7 +400,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.data;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -411,7 +411,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.data;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -422,7 +422,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.data;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -431,7 +431,7 @@ export const ContextAppProvider = ({ children }) => {
     try {
       setCamposFil(valores);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -441,7 +441,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.data;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -452,7 +452,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.data;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -470,7 +470,7 @@ export const ContextAppProvider = ({ children }) => {
         return null;
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };
@@ -481,7 +481,7 @@ export const ContextAppProvider = ({ children }) => {
       if (response) return response.status;
       return null;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   };

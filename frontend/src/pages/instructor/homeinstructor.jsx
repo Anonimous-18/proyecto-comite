@@ -39,7 +39,7 @@ export const Homeinstructor = () => {
 
         if (token) {
           setFiltrar(contextApi.camposFil);
-          // console.log("Filtrar", filtrar);
+          // //console.log("Filtrar", filtrar);
           const decodedToken = hooks.useDecodedToken(token.token);
 
           const comitesByUser = response.filter(
