@@ -12,7 +12,7 @@ const createComiteRequest = async (data) =>
 
 const getComitesRequest = async () => await axios.get(`${API}/api/comites`);
 
-frontend/src/api/novedades.jsconst getEvidenciaRequest = async (nombreArchivo, token) =>
+const getEvidenciaRequest = async (nombreArchivo, token) =>
   await axios.get(`${API}/api/evidencia/${nombreArchivo}`, {
     responseType: "blob",
     headers: {
