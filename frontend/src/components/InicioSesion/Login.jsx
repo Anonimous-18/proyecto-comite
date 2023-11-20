@@ -182,9 +182,10 @@ export const Login = () => {
                     />
                   </svg>
                   <Field
-                    className="pl-2 outline-none border-none"
+                    className="pl-2 outline-none border-none appearance-none"
                     type="number"
                     name="documento"
+                    id="documento"
                     placeholder="Identificación"
                   />
                 </div>
