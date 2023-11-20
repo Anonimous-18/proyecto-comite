@@ -1,11 +1,89 @@
-const { comites, aprendices_implicados, usuarios } = require("../models");
+const {
+  comites,
+  aprendices_implicados,
+  usuarios,
+  ficha,
+  aprendices,
+} = require("../models");
 const fs = require("fs");
 const Docxtemplater = require("docxtemplater");
 const PizZip = require("pizzip");
 
-const crearActa =  (req, res) => {
-  console.log("entro");
-  console.log(req.body);
+const crearActa = async (req, res) => {
+  const involucrados = [];
+  let cita = {};
+  
+
+  function formatearFecha(fecha) {
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = fecha.getDate();
+    const mes = meses[fecha.getMonth()];
+    const año = fecha.getFullYear();
+  
+    return `${dia} de ${mes} de ${año}`;
+  }
+  
+  // Uso de la función con la fecha actual
+  const fechaActual = new Date();
+  const fechaFormateada = formatearFecha(fechaActual);
+
+  const obtenerDatosFicha = async (aprendizId) => {
+    const datosAprendiz = await aprendices.findOne({
+      where: { documento: aprendizId },
+    });
+    if (datosAprendiz) {
+      const fichaId = datosAprendiz.ficha_fk;
+      const datosFicha = await ficha.findOne({ where: { id: fichaId } });
+      datosFicha.instructor = ( await usuarios.findOne( { where:{ id:datosFicha.instructor_id } } ) ).nombre_completo;
+      console.log(datosFicha);
+      return datosFicha ? datosFicha : null;
+    }
+    return null;
+  };
+
+  const obtenerInformacionAprendices = async (aprendicesIds) => {
+    const intrucSolici = (await usuarios.findOne({where:{ id:req.body.instructor_fk }})).nombre_completo
+    for (let index = 0; index < aprendicesIds.length; index++) {
+      const datosAprendiz = await usuarios.findOne({
+        where: { documento: aprendicesIds[index] },
+      });
+      if (datosAprendiz) {
+        const ficha = await obtenerDatosFicha(aprendicesIds[index]);
+
+        if (index === 0) {
+          cita.programa = ficha.programa;
+          cita.primerApreNom = datosAprendiz.nombre_completo;
+          cita.primerApreDoc = datosAprendiz.documento;
+          cita.primerApreficha = ficha.codigo;
+          cita.primerAprCorreo = datosAprendiz.email  ;
+          cita.primerAprProg = ficha.programa;
+          cita.fechaActual = fechaFormateada;
+          cita.intrucSolici = intrucSolici;
+          cita.gestorFicha = ficha.instructor;
+          cita.desFalta = req.body.descripcion_solicitud;
+        }
+
+        involucrados.push({
+          nombreTa: datosAprendiz.nombre_completo,
+          documentoTa: datosAprendiz.documento,
+          idTa: ficha.codigo,
+        });
+      }
+    }
+  };
+
+  const aprendicesIds = req.body.aprendices_implicados.split(",");
+  try {
+    await obtenerInformacionAprendices(aprendicesIds);
+    res.status(200).json(cita);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Hubo un error al obtener los datos" });
+  }
   //   // Cargar un archivo .docx
   //   const content = fs.readFileSync(
   //     "plantilla de citación - variables.docx",
@@ -56,7 +134,7 @@ const crearActa =  (req, res) => {
   //       stack: error.stack,
   //       properties: error.properties,
   //     };
-  //     //console.log(JSON.stringify({ error: e }));
+  //     console.log(JSON.stringify({ error: e }));
   //     throw error;
   //   }
 };
@@ -64,7 +142,7 @@ const crearActa =  (req, res) => {
 /**--------------------------------
  * funcion para crear un comite
  --------------------------------*/
-const createComites = async (req, res) => {
+const createComites = async (req, res, next) => {
   try {
     const { file } = req;
     const evidencia = file.filename;
@@ -79,33 +157,30 @@ const createComites = async (req, res) => {
      * | Este es id del comite creado: result.dataValues.id
      * ----------------------------------------------------------*/
     if (result.dataValues.id !== 0) {
-      try {
-        /**---------------------------------------
-         * | Agregamos los aprendices implicados
-         * ---------------------------------------*/
-        
-        const comite = result.dataValues.id;
-        req.acta = req.body;
-        req.body.aprendices_implicados.split(",").forEach(async (aprendiz) => {
+      /**---------------------------------------
+       * | Agregamos los aprendices implicados
+       * ---------------------------------------*/
 
-          const usuario_id = (await usuarios.findOne({ where:{ documento: aprendiz }})).id
+      const comite = result.dataValues.id;
+      req.acta = req.body;
+      req.body.aprendices_implicados.split(",").forEach(async (aprendiz) => {
+        const usuario_id = (
+          await usuarios.findOne({ where: { documento: aprendiz } })
+        ).id;
 
-          await aprendices_implicados.create({
-            documento: aprendiz,
-            comite_fk: comite,
-            usuario_id 
-          });
+        await aprendices_implicados.create({
+          documento: aprendiz,
+          comite_fk: comite,
+          usuario_id,
         });
-        return res.sendStatus(204);
-      } catch (error) {
-        //console.log(error);
-        return res.status(500).json({ message: error.message });
-      }
+      });
+      res.sendStatus(204);
+      return next();
     }
 
     return res.status(500).json({ message: "Error al crear un nuevo comite." });
   } catch (error) {
-    //console.log(error);
+    console.log(error);
     res
       .status(500)
       .json({ message: `Error al crear un nuevo comite: ${error.message}` });
