@@ -93,6 +93,7 @@ const crearActa = async (req, res) => {
           cita.desFalta = req.body.descripcion_solicitud;
           cita.contrato = datosAprendiz.contrato;
           cita.historialAcade = datosAprendiz.historialAcademico;
+          cita.tipoFalta = req.body.tipo_falta
         }
 
         involucrados.push({
