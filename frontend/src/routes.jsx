@@ -11,8 +11,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Prueba from "./components/pruebas/Prueba";
 import { Spinner } from "./components/util/Spinner";
 import { useContextApp } from "./Context/ContextApp";
+import { Example } from "./components/tailwind/team";
 import { Login } from "./components/InicioSesion/Login";
-import { Example } from "./components/tailwind/Form";
+import { FichaList } from "./components/util/FichaList";
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
@@ -145,7 +146,10 @@ const Router = () => {
           {/* Rutas de Instructor */}
           <Route path="/home-instructor" element={<Homeinstructor />} />
           <Route path="/voto-comite/:comite" element={<Votoinstructor />} />
-          <Route path="/solicitud-instructor" element={<SolicitudIntructor />} />
+          <Route
+            path="/solicitud-instructor"
+            element={<SolicitudIntructor />}
+          />
           <Route path="/novedades-instructor" element={<NovedadInstructor />} />
           <Route
             path="/antecedentes"
@@ -166,6 +170,7 @@ const Router = () => {
 
           {/* Rutas de Gestor */}
           <Route path="/home-gestor" element={<HomeGestor />} />
+          <Route path="/fichas" element={<FichaList />} />
 
           <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>
@@ -176,7 +181,7 @@ const Router = () => {
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register1 />} />
-            <Route path="*" element={<Error404/>} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </>
       )}
