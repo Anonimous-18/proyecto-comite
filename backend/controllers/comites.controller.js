@@ -4,16 +4,23 @@ const {
   usuarios,
   ficha,
   aprendices,
+  articulos,
+  capitulos
 } = require("../models");
 const fs = require("fs");
 const Docxtemplater = require("docxtemplater");
 const PizZip = require("pizzip");
+const { log } = require("console");
 
 const crearActa = async (req, res) => {
   const involucrados = [];
-  let cita = {};
-  
-
+  let cita = {
+    capitulosInfligidos: "",
+    capituloInvolucrado: ""
+  };
+  const aprendicesIds = req.body.aprendices_implicados.split(",");
+  const articulosIds = req.body.articulos.split(",");
+  console.log(articulosIds);
   function formatearFecha(fecha) {
     const meses = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
@@ -38,47 +45,68 @@ const crearActa = async (req, res) => {
     if (datosAprendiz) {
       const fichaId = datosAprendiz.ficha_fk;
       const datosFicha = await ficha.findOne({ where: { id: fichaId } });
-      datosFicha.instructor = ( await usuarios.findOne( { where:{ id:datosFicha.instructor_id } } ) ).nombre_completo;
+      datosFicha.instructor = ( await usuarios.findOne( { where:{ id : datosFicha.instructor_id } } ) ).nombre_completo;
       console.log(datosFicha);
       return datosFicha ? datosFicha : null;
     }
     return null;
   };
 
-  const obtenerInformacionAprendices = async (aprendicesIds) => {
+  const obtenerDatosArticulo = async (articuloId) => {
+    const datosArticulo = await articulos.findOne({
+      where: { art_id: articuloId },
+    });
+    if (datosArticulo) {
+      return datosArticulo 
+    }
+    return null;
+  };
+
+  const obtenerInformacionAprendices = async (aprendicesIds,articulosIds) => {
     const intrucSolici = (await usuarios.findOne({where:{ id:req.body.instructor_fk }})).nombre_completo
+    for (const articuloId of articulosIds) {
+      const articulo = await obtenerDatosArticulo(articuloId)
+      cita.capitulosInfligidos += `capitulo ${articulo.cap_id} del articulo ${articuloId}, `
+      cita.capituloInvolucrado += `capitulo ${articulo.cap_id} del articulo ${articuloId} dice: ${articulo.art_descripcion} `
+    }
     for (let index = 0; index < aprendicesIds.length; index++) {
-      const datosAprendiz = await usuarios.findOne({
+      const datosAprendiz = await aprendices.findOne({
         where: { documento: aprendicesIds[index] },
       });
-      if (datosAprendiz) {
-        const ficha = await obtenerDatosFicha(aprendicesIds[index]);
 
+      const datosUsuario = await usuarios.findOne({
+        where: { documento: aprendicesIds[index] },
+      });
+
+      if (datosUsuario) {
+        const ficha = await obtenerDatosFicha(aprendicesIds[index]);;
         if (index === 0) {
           cita.programa = ficha.programa;
-          cita.primerApreNom = datosAprendiz.nombre_completo;
-          cita.primerApreDoc = datosAprendiz.documento;
+          cita.primerApreNom = datosUsuario.nombre_completo;
+          cita.primerApreDoc = datosUsuario.documento;
           cita.primerApreficha = ficha.codigo;
-          cita.primerAprCorreo = datosAprendiz.email  ;
+          cita.primerAprCorreo = datosUsuario.email  ;
           cita.primerAprProg = ficha.programa;
           cita.fechaActual = fechaFormateada;
           cita.intrucSolici = intrucSolici;
           cita.gestorFicha = ficha.instructor;
           cita.desFalta = req.body.descripcion_solicitud;
+          cita.contrato = datosAprendiz.contrato;
+          cita.historialAcade = datosAprendiz.historialAcademico;
         }
 
         involucrados.push({
-          nombreTa: datosAprendiz.nombre_completo,
-          documentoTa: datosAprendiz.documento,
+          nombreTa: datosUsuario.nombre_completo,
+          documentoTa: datosUsuario.documento,
           idTa: ficha.codigo,
         });
       }
     }
   };
 
-  const aprendicesIds = req.body.aprendices_implicados.split(",");
+  
   try {
-    await obtenerInformacionAprendices(aprendicesIds);
+    await obtenerInformacionAprendices(aprendicesIds,articulosIds);
     res.status(200).json(cita);
   } catch (error) {
     console.error(error);
