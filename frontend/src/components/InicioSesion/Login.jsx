@@ -216,7 +216,7 @@ export const Login = () => {
                   type="submit"
                   disabled={formik.isSubmitting}
                   // className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
-                  className="block w-full bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+                  className="block w-full bg-blue-800 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
                 >
                   <span className="pl-2 mx-1">Iniciar Sesión</span>
                 </button>

@@ -161,7 +161,7 @@ export const Homeinstructor = () => {
           <div className="p-2">
             <Link
               to={`/solicitud-instructor`}
-              className="block w-full px-3 bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              className="block w-full px-3 bg-blue-800 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
               <span className="pl-2 mx-1">Crear Solicitud</span>
             </Link>

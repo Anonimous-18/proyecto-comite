@@ -236,7 +236,7 @@ export const SolicitudComite = () => {
                       <div className="flex-initial pl-3">
                         <button
                           type="button"
-                          className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                          className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-blue-800 rounded-md hover:bg-blue-900  focus:outline-none focus:bg-blue-950  transition duration-300 transform active:scale-95 ease-in-out"
                           onClick={() => agregarArticulo(formik.values)}
                         >
                           <svg
@@ -270,7 +270,7 @@ export const SolicitudComite = () => {
                                 • {`Articulo ${articuloId}`}
                                 <button
                                   type="button"
-                                  className="ml-4 flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                                  className="ml-4 flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-blue-800 rounded-md hover:bg-blue-900  focus:outline-none focus:bg-blue-950  transition duration-300 transform active:scale-95 ease-in-out"
                                   onClick={() => quitarArticulo(index)}
                                 >
                                   Eliminar
@@ -303,7 +303,7 @@ export const SolicitudComite = () => {
                     <div className="place-content-center flex p-1">
                       <button
                         type="button"
-                        className="ml-4 flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                        className="ml-4 flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-blue-800 rounded-md hover:bg-blue-900  focus:outline-none focus:bg-blue-950  transition duration-300 transform active:scale-95 ease-in-out"
                         onClick={agregarIdentificacion}
                       >
                         {data.identificaciones &&
@@ -362,7 +362,7 @@ export const SolicitudComite = () => {
                       <button
                         type="submit"
                         disabled={formik.isSubmitting}
-                        className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
+                        className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-blue-800 rounded-md hover:bg-blue-900  focus:outline-none focus:bg-blue-950  transition duration-300 transform active:scale-95 ease-in-out"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
