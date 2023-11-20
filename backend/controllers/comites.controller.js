@@ -5,7 +5,7 @@ const {
   ficha,
   aprendices,
   articulos,
-  capitulos
+  capitulos,
 } = require("../models");
 const fs = require("fs");
 const Docxtemplater = require("docxtemplater");
@@ -16,24 +16,34 @@ const crearActa = async (req, res) => {
   const involucrados = [];
   let cita = {
     capitulosInfligidos: "",
-    capituloInvolucrado: ""
+    capituloInvolucrado: "",
   };
   const aprendicesIds = req.body.aprendices_implicados.split(",");
   const articulosIds = req.body.articulos.split(",");
   console.log(articulosIds);
   function formatearFecha(fecha) {
     const meses = [
-      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre",
     ];
-  
+
     const dia = fecha.getDate();
     const mes = meses[fecha.getMonth()];
     const año = fecha.getFullYear();
-  
+
     return `${dia} de ${mes} de ${año}`;
   }
-  
+
   // Uso de la función con la fecha actual
   const fechaActual = new Date();
   const fechaFormateada = formatearFecha(fechaActual);
@@ -45,7 +55,9 @@ const crearActa = async (req, res) => {
     if (datosAprendiz) {
       const fichaId = datosAprendiz.ficha_fk;
       const datosFicha = await ficha.findOne({ where: { id: fichaId } });
-      datosFicha.instructor = ( await usuarios.findOne( { where:{ id : datosFicha.instructor_id } } ) ).nombre_completo;
+      datosFicha.instructor = (
+        await usuarios.findOne({ where: { id: datosFicha.instructor_id } })
+      ).nombre_completo;
       console.log(datosFicha);
       return datosFicha ? datosFicha : null;
     }
@@ -57,17 +69,19 @@ const crearActa = async (req, res) => {
       where: { art_id: articuloId },
     });
     if (datosArticulo) {
-      return datosArticulo 
+      return datosArticulo;
     }
     return null;
   };
 
-  const obtenerInformacionAprendices = async (aprendicesIds,articulosIds) => {
-    const intrucSolici = (await usuarios.findOne({where:{ id:req.body.instructor_fk }})).nombre_completo
+  const obtenerInformacionAprendices = async (aprendicesIds, articulosIds) => {
+    const intrucSolici = (
+      await usuarios.findOne({ where: { id: req.body.instructor_fk } })
+    ).nombre_completo;
     for (const articuloId of articulosIds) {
-      const articulo = await obtenerDatosArticulo(articuloId)
-      cita.capitulosInfligidos += `capitulo ${articulo.cap_id} del articulo ${articuloId}, `
-      cita.capituloInvolucrado += `capitulo ${articulo.cap_id} del articulo ${articuloId} dice: ${articulo.art_descripcion} `
+      const articulo = await obtenerDatosArticulo(articuloId);
+      cita.capitulosInfligidos += `Capitulo ${articulo.cap_id} del articulo ${articuloId}, `;
+      cita.capituloInvolucrado += `\nCapitulo ${articulo.cap_id} del articulo ${articuloId} dice: ${articulo.art_descripcion}. `;
     }
     for (let index = 0; index < aprendicesIds.length; index++) {
       const datosAprendiz = await aprendices.findOne({
@@ -79,13 +93,13 @@ const crearActa = async (req, res) => {
       });
 
       if (datosUsuario) {
-        const ficha = await obtenerDatosFicha(aprendicesIds[index]);;
+        const ficha = await obtenerDatosFicha(aprendicesIds[index]);
         if (index === 0) {
           cita.programa = ficha.programa;
           cita.primerApreNom = datosUsuario.nombre_completo;
           cita.primerApreDoc = datosUsuario.documento;
           cita.primerApreficha = ficha.codigo;
-          cita.primerAprCorreo = datosUsuario.email  ;
+          cita.primerAprCorreo = datosUsuario.email;
           cita.primerAprProg = ficha.programa;
           cita.fechaActual = fechaFormateada;
           cita.intrucSolici = intrucSolici;
@@ -93,7 +107,7 @@ const crearActa = async (req, res) => {
           cita.desFalta = req.body.descripcion_solicitud;
           cita.contrato = datosAprendiz.contrato;
           cita.historialAcade = datosAprendiz.historialAcademico;
-          cita.tipoFalta = req.body.tipo_falta
+          cita.tipoFalta = req.body.tipo_falta;
         }
 
         involucrados.push({
@@ -105,67 +119,39 @@ const crearActa = async (req, res) => {
     }
   };
 
-  
   try {
-    await obtenerInformacionAprendices(aprendicesIds,articulosIds);
+    await obtenerInformacionAprendices(aprendicesIds, articulosIds);
     res.status(200).json(cita);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Hubo un error al obtener los datos" });
   }
-  //   // Cargar un archivo .docx
-  //   const content = fs.readFileSync(
-  //     "plantilla de citación - variables.docx",
-  //     "binary"
-  //   );
-  //   const zip = new PizZip(content);
 
-  //   const doc = new Docxtemplater(zip);
+  const entrada = `${__dirname}/../documentos_comite/plantilla de citación - variables.docx`;
+  const salida = `${__dirname}/../documentos_comite/citación.docx`;
 
-  //   const involucrados = [
-  //     {
-  //       nombreTa: "Juan Pérez",
-  //       documentoTa: "12345678",
-  //       idTa: 1,
-  //     },
-  //     {
-  //       nombreTa: "María Rodríguez",
-  //       documentoTa: "98765432",
-  //       idTa: 2,
-  //     },
-  //     {
-  //       nombreTa: "Luis González",
-  //       documentoTa: "56789012",
-  //       idTa: 3,
-  //     },
-  //     {
-  //       nombreTa: "Ana Martínez",
-  //       documentoTa: "34567890",
-  //       idTa: 4,
-  //     },
-  //   ];
+  // Realizar el reemplazo en el documento
+  try {
+    // Cargar un archivo .docx
+    const content = fs.readFileSync(entrada, "binary");
+    const zip = new PizZip(content);
 
-  //   const dos = {
-  //     programa: "ADSI",
-  //   };
-
-  //   // Realizar el reemplazo en el documento
-  //   try {
-  //     doc.setData({ ...dos, involucrados });
-  //     doc.render();
-  //     // Generar el archivo .docx modificado
-  //     const buffer1 = doc.getZip().generate({ type: "nodebuffer" });
-  //     fs.writeFileSync("ruta_salida.docx", buffer1);
-  //   } catch (error) {
-  //     const e = {
-  //       message: error.message,
-  //       name: error.name,
-  //       stack: error.stack,
-  //       properties: error.properties,
-  //     };
-  //     console.log(JSON.stringify({ error: e }));
-  //     throw error;
-  //   }
+    const doc = new Docxtemplater(zip);
+    doc.setData({ ...cita, involucrados });
+    doc.render();
+    // Generar el archivo .docx modificado
+    const buffer1 = doc.getZip().generate({ type: "nodebuffer" });
+    fs.writeFileSync(salida, buffer1);
+  } catch (error) {
+    const e = {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+      properties: error.properties,
+    };
+    console.log(JSON.stringify({ error: e }));
+    throw error;
+  }
 };
 
 /**--------------------------------
