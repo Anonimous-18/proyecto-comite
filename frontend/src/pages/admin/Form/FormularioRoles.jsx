@@ -63,7 +63,7 @@ export const FormularioRoles = () => {
     const { value, checked } = event.target;
     // Si el checkbox está marcado, agrega el valor al array de selección
     if (checked) {
-      console.log(selectedValues);
+      //console.log(selectedValues);
       setSelectedValues([...selectedValues, value]);
     } else {
       // Si el checkbox está desmarcado, elimina el valor del array de selección
@@ -76,7 +76,7 @@ export const FormularioRoles = () => {
     e.preventDefault();
     const admin = localStorage.getItem("admin");
     const token = JSON.parse(localStorage.getItem("newToken"));
-    console.log(selectedValues);
+    //console.log(selectedValues);
 
     if (admin && nombre.length !== 0) {
       if (params && id) {
@@ -84,7 +84,7 @@ export const FormularioRoles = () => {
         navigate(-1);
       } else {
         await createRoles(token.token, { nombre });
-        console.log(selectedValues);
+        //console.log(selectedValues);
         await asignarPermisos(token.token, {
           rol: nombre,
           permisosNombres: selectedValues,

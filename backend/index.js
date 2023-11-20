@@ -47,13 +47,13 @@ app.use(notificacionRoutes);
 app.use(inicio_sesionRoutes);
 
 io.on("connection", (socket) => {
-  console.log(`Usuario conectado ${socket.id}`);
+  //console.log(`Usuario conectado ${socket.id}`);
 
   /**----------------
    * Sala instructor
    * ----------------*/
   socket.on("instructorConectado", () => {
-    console.log("Sala de Instructor conectado");
+    //console.log("Sala de Instructor conectado");
     socket.join("instructor");
   });
 
@@ -61,7 +61,7 @@ io.on("connection", (socket) => {
    * Sala aprendiz
    * ----------------*/
   socket.on("aprendizConectado", () => {
-    console.log("Sala de aprendiz conectado");
+    //console.log("Sala de aprendiz conectado");
     socket.join("aprendiz");
   });
 
@@ -76,7 +76,7 @@ io.on("connection", (socket) => {
    * desconexion del usuario
    * -------------------------*/
   socket.on("disconnect", () => {
-    console.log("Usuario desconectado");
+    //console.log("Usuario desconectado");
   });
 });
 

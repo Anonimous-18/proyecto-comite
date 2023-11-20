@@ -11,7 +11,7 @@ const middlewareFuncion = (req, res, next) => {
       });
     }
     
-    console.log(permiso);
+    //console.log(permiso);
     next();
   } catch (error) {
     throw error;

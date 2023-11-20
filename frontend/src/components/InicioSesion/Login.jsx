@@ -14,13 +14,13 @@ export const Login = () => {
   const handleSubmit = async (values) => {
     const response = await isLogged(values);
     if (response) {
-      console.log("er");
+      //console.log("er");
     } else {
       setErr(true);
       setTimeout(() => {
         setErr(false);
       }, 3000);
-      console.log(err);
+      //console.log(err);
     }
   };
 

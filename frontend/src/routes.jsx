@@ -75,7 +75,7 @@ const Router = () => {
   };
 
   let ruta = rutaOpcion[usuario.rol_id] || "/";
-  // console.log(ruta);
+  // //console.log(ruta);
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
