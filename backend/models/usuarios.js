@@ -1,6 +1,18 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  const usuario =  sequelize.define('usuarios', {
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class usuarios extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+    }
+  }
+  usuarios.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -46,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
     creado: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
+      defaultValue: sequelize.fn('current_timestamp')
     },
     rol_id: {
       type: DataTypes.INTEGER,
@@ -59,6 +71,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'usuarios',
+    modelName: 'usuarios',
     timestamps: false,
     indexes: [
       {
@@ -142,6 +155,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-  usuario.belongsTo(sequelize.models.roles, { foreignKey: 'rol_id' });
-  return usuario;
+  return usuarios;
 };

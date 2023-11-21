@@ -1,5 +1,6 @@
 const {
   aprendices_implicados,
+  comites,
   usuarios,
   ficha,
   aprendices,
@@ -34,25 +35,49 @@ const crearActa = async (req, res) => {
  --------------------------------*/
 const actaCasos = async (req, res) => {
   const idComite = req.body.idComite;
-  const buscarDatos = async () => {
+  let docuImpli = 0;
+  let acta = {};
+  
+  const buscarDatos = async (comiteId) => {
     const aprendices = await aprendices_implicados.findAll({
-      where: { comite_fk: idComite },
+      where: { comite_fk: comiteId },
+      include: [comites],
     });
-    if (aprendices) {
+
+    if (aprendices.length > 0) {
+      docuImpli = aprendices[0].documento;
       return aprendices;
+    } else {
+      res
+        .status(404)
+        .json({ mensaje: "no hay ningun aprendiz con el comite dado" });
+      return;
     }
-    return null;
   };
-  const apreImplicados = await buscarDatos();
-  if (apreImplicados) {
-    res.status(200).json(apreImplicados);
-    return;
-  } else {
-    res
-      .status(400)
-      .json({ mensaje: "no hay ningun aprendiz con el comite dado" });
-    return;
-  }
+
+  const buscarFicha = async (docuImpli) => {
+    const aprendiz = await aprendices.findOne({
+      where: { documento: docuImpli },
+      include: [ficha],
+    });
+    if (aprendiz.ficha) {
+      return aprendiz.ficha
+    }else{
+      res.status(404).json({mensaje:`error no hay una ficha para el aprendiz con documento ${docuImpli}`})
+    }
+
+  };
+
+  const implicados = await buscarDatos(idComite);
+  const fichaActa = await buscarFicha(docuImpli);
+
+  req.programaNom = fichaActa.programa
+  req.ficha = fichaActa.codigo
+  req.gestorFicha = fichaActa.instructor_id
+  req.InstructoresCita = implicados[0].comite.instructor_fk
+  
+  return res.status(200).json(fichaActa);
+;
   //programaNom, ficha, InstructoresCita, gestorFicha;
 };
 
