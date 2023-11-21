@@ -124,7 +124,7 @@ const crearActa = async (req, res) => {
   }
   const idcomite = req.comIdCreado;
   const entrada = `${__dirname}/../documentos_comite/citacion-variables.docx`;
-  const salida = `${__dirname}/../documentos_comite/citaciones generadas/citacion-${idcomite}.docx`;
+  const salida = `${__dirname}/../documentos_comite/citaciones/citacion-${idcomite}.docx`;
 
   // Realizar el reemplazo en el documento
   try {
@@ -139,7 +139,7 @@ const crearActa = async (req, res) => {
     const buffer1 = doc.getZip().generate({ type: "nodebuffer" });
     fs.writeFileSync(salida, buffer1);
     const crearcomite = req.resulAgregarApre
-    return res.status(200).json({  crearcomite, cita,involucrados});
+    return res.status(200).json({ cita,involucrados,crearcomite});
   } catch (error) {
     const e = {
       message: error.message,
