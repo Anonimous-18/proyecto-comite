@@ -10,7 +10,6 @@ const {
 const fs = require("fs");
 const Docxtemplater = require("docxtemplater");
 const PizZip = require("pizzip");
-const { log } = require("console");
 
 const crearActa = async (req, res) => {
   const involucrados = [];
@@ -19,8 +18,7 @@ const crearActa = async (req, res) => {
     capituloInvolucrado: "",
   };
   const aprendicesIds = req.body.aprendices_implicados.split(",");
-  const articulosIds = req.body.articulos.split(",");
-  console.log(articulosIds);
+  const articulosIds = req.body.articulos.toString().split(",");
   function formatearFecha(fecha) {
     const meses = [
       "enero",
@@ -58,7 +56,6 @@ const crearActa = async (req, res) => {
       datosFicha.instructor = (
         await usuarios.findOne({ where: { id: datosFicha.instructor_id } })
       ).nombre_completo;
-      console.log(datosFicha);
       return datosFicha ? datosFicha : null;
     }
     return null;
@@ -92,9 +89,9 @@ const crearActa = async (req, res) => {
         where: { documento: aprendicesIds[index] },
       });
 
-      if (datosUsuario) {
+      if (datosUsuario && datosAprendiz) {
         const ficha = await obtenerDatosFicha(aprendicesIds[index]);
-        if (index === 0) {
+        if (index === 0 && ficha) {
           cita.programa = ficha.programa;
           cita.primerApreNom = datosUsuario.nombre_completo;
           cita.primerApreDoc = datosUsuario.documento;
@@ -121,14 +118,13 @@ const crearActa = async (req, res) => {
 
   try {
     await obtenerInformacionAprendices(aprendicesIds, articulosIds);
-    res.status(200).json(cita);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Hubo un error al obtener los datos" });
+    throw error;
   }
-
-  const entrada = `${__dirname}/../documentos_comite/plantilla de citación - variables.docx`;
-  const salida = `${__dirname}/../documentos_comite/citación.docx`;
+  const idcomite = req.comIdCreado;
+  const entrada = `${__dirname}/../documentos_comite/citacion-variables.docx`;
+  const salida = `${__dirname}/../documentos_comite/citaciones generadas/citacion-${idcomite}.docx`;
 
   // Realizar el reemplazo en el documento
   try {
@@ -142,6 +138,8 @@ const crearActa = async (req, res) => {
     // Generar el archivo .docx modificado
     const buffer1 = doc.getZip().generate({ type: "nodebuffer" });
     fs.writeFileSync(salida, buffer1);
+    const crearcomite = req.resulAgregarApre
+    return res.status(200).json({  crearcomite, cita,involucrados});
   } catch (error) {
     const e = {
       message: error.message,
@@ -149,8 +147,8 @@ const crearActa = async (req, res) => {
       stack: error.stack,
       properties: error.properties,
     };
-    console.log(JSON.stringify({ error: e }));
-    throw error;
+    res.status(500).json({ error: "Hubo un error al obtener los datos" },e);
+    throw e;
   }
 };
 
@@ -172,24 +170,30 @@ const createComites = async (req, res, next) => {
      * | Este es id del comite creado: result.dataValues.id
      * ----------------------------------------------------------*/
     if (result.dataValues.id !== 0) {
+      req.comIdCreado = result.dataValues.id;
       /**---------------------------------------
        * | Agregamos los aprendices implicados
        * ---------------------------------------*/
 
       const comite = result.dataValues.id;
-      req.acta = req.body;
-      req.body.aprendices_implicados.split(",").forEach(async (aprendiz) => {
-        const usuario_id = (
-          await usuarios.findOne({ where: { documento: aprendiz } })
-        ).id;
-
-        await aprendices_implicados.create({
-          documento: aprendiz,
-          comite_fk: comite,
-          usuario_id,
-        });
+      
+      const aprendicesImplicado = req.body.aprendices_implicados.split(",");
+      const creaciones = aprendicesImplicado.map(async (aprendiz) => {
+        const usuario = await usuarios.findOne({ where: { documento: aprendiz } })
+        
+        if(usuario){
+          const nuevoAprendiz = await aprendices_implicados.create({
+            documento: aprendiz,
+            comite_fk: comite,
+            usuario_id: usuario.id
+          });
+          return nuevoAprendiz;
+        }
+        return null;
       });
-      res.sendStatus(204);
+
+      const resulAgregarApre = await Promise.all(creaciones);
+      req.resulAgregarApre = resulAgregarApre;
       return next();
     }
 
