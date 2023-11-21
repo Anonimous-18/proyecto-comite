@@ -75,11 +75,14 @@ const crearActa = async (req, res) => {
     const intrucSolici = (
       await usuarios.findOne({ where: { id: req.body.instructor_fk } })
     ).nombre_completo;
-    for (const articuloId of articulosIds) {
+
+    articulosIds.map(async(articuloId,index)=>{
       const articulo = await obtenerDatosArticulo(articuloId);
-      cita.capitulosInfligidos += `Capitulo ${articulo.cap_id} del articulo ${articuloId}, `;
-      cita.capituloInvolucrado += `\nCapitulo ${articulo.cap_id} del articulo ${articuloId} dice: ${articulo.art_descripcion}. `;
-    }
+      cita.capitulosInfligidos += `Capitulo ${articulo.cap_id} del articulo ${articuloId}`;
+      cita.capituloInvolucrado += `Capitulo ${articulo.cap_id} del articulo ${articuloId} dice: ${articulo.art_descripcion}`;
+
+    })
+    
     for (let index = 0; index < aprendicesIds.length; index++) {
       const datosAprendiz = await aprendices.findOne({
         where: { documento: aprendicesIds[index] },
