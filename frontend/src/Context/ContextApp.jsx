@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import fichaApi from "../api/ficha";
 import usuariosApi from "../api/usuarios";
 import novedadesApi from "../api/novedades";
 import instructorApi from "../api/instructor";
@@ -394,6 +395,16 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getFichas = async () => {
+    try {
+      const response = await fichaApi.getFichasRequest();
+      if (response && response.data) return response.data;
+      return null;
+    } catch (error) {
+      return null;
+    }
+  };
+
   const getInstructor = async (id) => {
     try {
       const response = await usuariosApi.getUserRequest(id);
@@ -553,7 +564,8 @@ export const ContextAppProvider = ({ children }) => {
         reducerModalDesactivo,
         reducerModoAceptar,
         reducerModoRechazar,
-        updateComite
+        updateComite,
+        getFichas
       }}
     >
       {children}
