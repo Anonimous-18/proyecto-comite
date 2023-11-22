@@ -33,10 +33,12 @@ const PizZip = require("pizzip");
       });
     }
   }
-  const gestor = await obtener(489);
+  const gestor = await obtener(gestorFi);
+  const instructor = await obtener(InstructoresCi);
 
-  res.status(200).json({...gestor});
- 
+  const gestorFicha = gestor.nombre_completo;
+  const InstructoresCita = instructor.nombre_completo;
+
   const actaNumero = req.body.actaNumero;
   const ciudadFecha = req.bodyciudadFecha;
   const HoraUno = req.body.HoraUno;
@@ -54,8 +56,6 @@ const PizZip = require("pizzip");
     programaNom,
     ficha,
   };
- 
-  res.status(200).json()
  };
  
 /**--------------------------------
