@@ -154,6 +154,8 @@ const citacion = async (req, res) => {
     if (datosAprendiz) {
       const fichaId = datosAprendiz.ficha_fk;
       const datosFicha = await ficha.findOne({ where: { id: fichaId } });
+      console.log(datosFicha);
+      
       datosFicha.instructor = (
         await usuarios.findOne({ where: { id: datosFicha.instructor_id } })
       ).nombre_completo;
@@ -250,7 +252,7 @@ const citacion = async (req, res) => {
       stack: error.stack,
       properties: error.properties,
     };
-    res.status(500).json({ error: "Hubo un error al obtener los datos" }, e);
+    res.status(500).json({ error: "Hubo un error al obtener los datos", e });
     throw e;
   }
 };

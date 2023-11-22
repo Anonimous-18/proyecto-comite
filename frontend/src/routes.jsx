@@ -11,7 +11,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Prueba from "./components/pruebas/Prueba";
 import { Spinner } from "./components/util/Spinner";
 import { useContextApp } from "./Context/ContextApp";
-import { Example } from "./components/tailwind/team";
+import { Example } from "./components/tailwind/stackedlists";
 import { Login } from "./components/InicioSesion/Login";
 import { FichaList } from "./components/util/FichaList";
 import { Register1 } from "./components/InicioSesion/Register1";
