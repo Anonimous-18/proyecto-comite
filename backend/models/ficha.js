@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       ficha.hasMany(models.aprendices,{ foreignKey: "ficha_fk" })
+      // ficha.belongsTo(models.usuarios, { foreignKey: 'instructor_id' })
     }
   }
   ficha.init({

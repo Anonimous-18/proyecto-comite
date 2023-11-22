@@ -27,15 +27,11 @@ export const Ficha = ({ ficha }) => {
               <div className="hidden md:block">
                 <div>
                   <p className="text-sm text-gray-900">
-                    {ficha.inicioLectiva.replace(/T.*/, "")}
+                    {"Inicia el " +  ficha.inicioLectiva.replace(/T.*/, "")}
                   </p>
                   <p className="mt-2 flex items-center text-sm text-gray-500">
-                    <HiIdentification
-                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-                      aria-hidden="true"
-                    />
                     <span className="inline-block">
-                      Identificación + filtrado[0].documento
+                      {ficha.modalidad + "-" +  ficha.jornada}
                     </span>
                   </p>
                 </div>
