@@ -19,12 +19,12 @@ const PizZip = require("pizzip");
   const gestorFi = req.gestorFicha;
   const InstructoresCi = req.InstructoresCita;
 
-  const obtenerUser = async(idUser = 0)=>{
+  const obtener = async(idUser = 0)=>{
     try {
       const result = await usuarios.findOne({ where: { id: idUser } });
   
       if (result.length !== 0) {
-        return res.status(200).json(result);
+        return result
       }
       return res.status(404).json({ message: "No hay usuarios" });
     } catch (error) {
@@ -33,7 +33,9 @@ const PizZip = require("pizzip");
       });
     }
   }
-  await obtenerUser(489);
+  const gestor = await obtener(489);
+
+  res.status(200).json({...gestor});
  
   const actaNumero = req.body.actaNumero;
   const ciudadFecha = req.bodyciudadFecha;
