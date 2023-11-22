@@ -14,6 +14,22 @@ const PizZip = require("pizzip");
  * funcion para crear word de citacion
  --------------------------------*/
 const crearActa = async (req, res) => {
+  const programaNom = req.programaNom;
+  const ficha = req.ficha;
+  const gestorFi = req.gestorFicha;
+  const InstructoresCi = req.InstructoresCita;
+
+  const busUsarios = async (id)=>{
+    const usua = await usuarios.findOne({where:{id}})
+    if (usua && usua.length > 0) {
+      return usua
+    }else{
+      return res.status(404).json({mensaje:"error no se encontro usuario"})
+    }
+  }
+  const gestorDatos = await busUsarios();
+  const instructorDatos = await busUsarios();
+
   const actaNumero = req.body.actaNumero;
   const ciudadFecha = req.bodyciudadFecha;
   const HoraUno = req.body.HoraUno;
@@ -28,57 +44,69 @@ const crearActa = async (req, res) => {
     HoraDos,
     lugarEnlace,
     objtivoRenion,
+    programaNom,
+    ficha,
   };
 };
 /**--------------------------------
  * funcion para buscar implicados
  --------------------------------*/
-const actaCasos = async (req, res) => {
+const actaCasos = async (req, res, next) => {
   const idComite = req.body.idComite;
   let docuImpli = 0;
-  let acta = {};
-  
-  const buscarDatos = async (comiteId) => {
-    const aprendices = await aprendices_implicados.findAll({
-      where: { comite_fk: comiteId },
-      include: [comites],
-    });
+  try {
+    const buscarDatos = async (comiteId) => {
+      const aprendices = await aprendices_implicados.findAll({
+        where: { comite_fk: comiteId },
+        include: [comites],
+      });
 
-    if (aprendices.length > 0) {
-      docuImpli = aprendices[0].documento;
-      return aprendices;
-    } else {
-      res
-        .status(404)
-        .json({ mensaje: "no hay ningun aprendiz con el comite dado" });
-      return;
-    }
-  };
+      if (aprendices && aprendices.length > 0) {
+        docuImpli = aprendices[0].documento;
+        return aprendices;
+      } else {
+        res
+          .status(404)
+          .json({ mensaje: "no hay ningun aprendiz con el comite dado" });
+        return;
+      }
+    };
 
-  const buscarFicha = async (docuImpli) => {
-    const aprendiz = await aprendices.findOne({
-      where: { documento: docuImpli },
-      include: [ficha],
-    });
-    if (aprendiz.ficha) {
-      return aprendiz.ficha
-    }else{
-      res.status(404).json({mensaje:`error no hay una ficha para el aprendiz con documento ${docuImpli}`})
-    }
+    const buscarFicha = async (docuImpli) => {
+      const aprendiz = await aprendices.findOne({
+        where: { documento: docuImpli },
+        include: [ficha],
+      });
+      if (aprendiz.ficha) {
+        return aprendiz.ficha;
+      } else {
+        res
+          .status(404)
+          .json({
+            mensaje: `error no hay una ficha para el aprendiz con documento ${docuImpli}`,
+          });
+      }
+    };
 
-  };
+    const implicados = await buscarDatos(idComite);
+    const fichaActa = await buscarFicha(docuImpli);
 
-  const implicados = await buscarDatos(idComite);
-  const fichaActa = await buscarFicha(docuImpli);
+    req.programaNom = fichaActa.programa;
+    req.ficha = fichaActa.codigo;
+    req.gestorFicha = fichaActa.instructor_id;
+    req.InstructoresCita = implicados[0].comite.instructor_fk;
 
-  req.programaNom = fichaActa.programa
-  req.ficha = fichaActa.codigo
-  req.gestorFicha = fichaActa.instructor_id
-  req.InstructoresCita = implicados[0].comite.instructor_fk
-  
-  return res.status(200).json(fichaActa);
-;
-  //programaNom, ficha, InstructoresCita, gestorFicha;
+    next();
+  } catch (error) {
+    const e = {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+      properties: error.properties,
+    };
+    res.status(500).json({ error: "Hubo un error al obtener los datos" }, e);
+    throw e;
+  }
 };
 
 /**--------------------------------
