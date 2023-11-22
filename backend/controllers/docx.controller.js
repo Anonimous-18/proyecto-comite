@@ -13,30 +13,35 @@ const PizZip = require("pizzip");
 /**--------------------------------
  * funcion para crear word de citacion
  --------------------------------*/
-const crearActa = async (req, res) => {
+ const crearActa = async (req, res) => {
   const programaNom = req.programaNom;
   const ficha = req.ficha;
   const gestorFi = req.gestorFicha;
   const InstructoresCi = req.InstructoresCita;
 
-  const busUsarios = async (id)=>{
-    const usua = await usuarios.findOne({where:{id}})
-    if (usua && usua.length > 0) {
-      return usua
-    }else{
-      return res.status(404).json({mensaje:"error no se encontro usuario"})
+  const obtenerUser = async(idUser = 0)=>{
+    try {
+      const result = await usuarios.findOne({ where: { id: idUser } });
+  
+      if (result.length !== 0) {
+        return res.status(200).json(result);
+      }
+      return res.status(404).json({ message: "No hay usuarios" });
+    } catch (error) {
+      res.status(500).json({
+        message: `Error al obtener todos los usuarios detalles: ${error.message}`,
+      });
     }
   }
-  const gestorDatos = await busUsarios();
-  const instructorDatos = await busUsarios();
-
+  await obtenerUser(489);
+ 
   const actaNumero = req.body.actaNumero;
   const ciudadFecha = req.bodyciudadFecha;
   const HoraUno = req.body.HoraUno;
   const HoraDos = req.body.HoraDos;
   const lugarEnlace = req.body.lugarEnlace;
   const objtivoRenion = req.body.objtivoRenion;
-
+ 
   const acta = {
     actaNumero,
     ciudadFecha,
@@ -47,7 +52,10 @@ const crearActa = async (req, res) => {
     programaNom,
     ficha,
   };
-};
+ 
+  res.status(200).json()
+ };
+ 
 /**--------------------------------
  * funcion para buscar implicados
  --------------------------------*/
