@@ -13,6 +13,7 @@ router
   .put("/api/comites/:id", controlComite.updateComite)
   .delete("/api/comites/:id", controlComite.deleteComite)
   
-  .post("/api/casos", controlDocx.crearActa)
+  .post("/api/casos", controlDocx.actaCasos)
+  .post("/api/crear-acta", controlDocx.crearActa)
 
 module.exports = router;

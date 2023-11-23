@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       allowNull: false
     },
+    tipo_documento: {
+      type: DataTypes.ENUM('CC', 'TI'),
+      allowNull: false
+    },
+
     comite_fk: {
       type: DataTypes.INTEGER,
       allowNull: false,
