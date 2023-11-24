@@ -27,9 +27,10 @@ const io = new SocketServer(server, {
 });
 
 app.use(
-  cors({
-    origin: [config.ORIGEN, "http://localhost:5173"],
-  })
+  // cors({
+  //   origin: [config.ORIGEN, "http://localhost:5173"],
+  // })
+  cors()
 );
 
 app.use(express.json());

@@ -488,6 +488,16 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getDetailsFicha = async (id) => {
+    try {
+      const response = await fichaApi.getDetailsRequest(id);
+      if (response && response.data) return response.data;
+      return null;
+    } catch (error) {
+      return null;
+    }
+  };
+
   const getEvidencia = async (nombreArchivo) => {
     try {
       const { token } = JSON.parse(localStorage.getItem("newToken"));
@@ -588,6 +598,7 @@ export const ContextAppProvider = ({ children }) => {
         getFichas,
         actaCasos,
         crearActa,
+        getDetailsFicha,
       }}
     >
       {children}

@@ -42,7 +42,10 @@ const fichabyId = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const fichaConsulta = await ficha.findOne({ where: { id } });
+    const fichaConsulta = await ficha.findOne({
+      where: { id },
+      include: [usuarios],
+    });
     if (fichaConsulta) {
       return res.status(200).json(fichaConsulta);
     } else {
