@@ -14,12 +14,6 @@ const PizZip = require("pizzip");
  * funcion para crear word de citacion
  --------------------------------*/
 const crearActa = async (req, res) => {
-  const programaNom = req.programaNom;
-  const ficha = req.ficha;
-  const gestorFi = req.gestorFicha;
-  const InstructoresCi = req.InstructoresCita;
-  const implicados = req.implicados;
-
   const obtener = async (idUser = 0) => {
     try {
       const result = await usuarios.findOne({ where: { id: idUser } });
@@ -34,31 +28,36 @@ const crearActa = async (req, res) => {
       });
     }
   };
-  const gestor = await obtener(gestorFi);
-  const instructor = await obtener(InstructoresCi);
-
-  const gestorFicha = gestor.nombre_completo;
-  const InstructoresCita = instructor.nombre_completo;
 
   const actaNumero = req.body.actaNumero;
-  const ciudadFecha = req.bodyciudadFecha;
+  const ciudadFecha = req.body.ciudadFecha;
   const HoraUno = req.body.HoraUno;
   const HoraDos = req.body.HoraDos;
   const lugarEnlace = req.body.lugarEnlace;
   const objtivoRenion = req.body.objtivoRenion;
 
-  const acta = {
-    actaNumero,
-    ciudadFecha,
-    HoraUno,
-    HoraDos,
-    lugarEnlace,
-    objtivoRenion,
-    programaNom,
-    ficha,
-    gestorFicha,
-    InstructoresCita,
-  };
+  const datosBd = req.datosBd;
+
+  // const gestor = await obtener(gestorFi);
+  // const instructor = await obtener(InstructoresCi);
+
+  // const gestorFicha = gestor.nombre_completo;
+  // const InstructoresCita = instructor.nombre_completo;
+
+  // const acta = {
+  //   actaNumero,
+  //   ciudadFecha,
+  //   HoraUno,
+  //   HoraDos,
+  //   lugarEnlace,
+  //   objtivoRenion,
+  //   programaNom,
+  //   ficha,
+  //   gestorFicha,
+  //   InstructoresCita,
+  // };
+
+  res.status(200).json({datosBd})
 };
 
 /**--------------------------------
@@ -78,7 +77,7 @@ const actaCasos = async (req, res, next) => {
           ? await usuarios.findOne({
               where: { documento: documento },
             })
-          : null
+          : null;
 
       if (result && result.length !== 0) {
         return result;
@@ -86,7 +85,7 @@ const actaCasos = async (req, res, next) => {
       return res.status(404).json({ message: "No se encontro aprendiz" });
     };
 
-    const buscarDatos = async (comiteId) => {
+    const buscarDatos = async (comiteId = 0) => {
       const aprendicesIm = await aprendices_implicados.findAll({
         where: { comite_fk: comiteId },
         include: [comites],
@@ -99,7 +98,7 @@ const actaCasos = async (req, res, next) => {
           aprendicesIm.map(async (implicado, index) => {
             implicado.dataValues.index = index + 1;
             const aprediz = await bucarAprediz(implicado.documento);
-            const usua = await bucarAprediz(implicado.documento,"usuarios");
+            const usua = await bucarAprediz(implicado.documento, "usuarios");
             implicado.dataValues.contrato = aprediz.contrato;
             implicado.dataValues.nombre = usua.nombre_completo;
             implicado.dataValues.fcComite = "Sin comites";
@@ -113,8 +112,7 @@ const actaCasos = async (req, res, next) => {
             return implicado;
           })
         );
-        console.log(casos);
-        
+
         return casos;
       } else {
         res
@@ -141,14 +139,19 @@ const actaCasos = async (req, res, next) => {
 
     const implicados = await buscarDatos(idComite);
     const fichaActa = await buscarFicha(docuImpli);
+    let datosBd = {};
 
-    req.programaNom = fichaActa.programa;
-    req.ficha = fichaActa.codigo;
-    req.gestorFicha = fichaActa.instructor_id;
-    req.InstructoresCita = implicados[0].comite.instructor_fk;
+    datosBd.programaNom = fichaActa.programa;
+    datosBd.ficha = fichaActa.codigo;
+    datosBd.gestorFicha = fichaActa.instructor_id;
+    datosBd.InstructoresCita = implicados[0].comite.instructor_fk;
+
+    req.datosBd = datosBd;
+    req.implicados = implicados;
 
     res.status(200).json({
       implicados,
+      datosBd,
     });
     return;
   } catch (error) {

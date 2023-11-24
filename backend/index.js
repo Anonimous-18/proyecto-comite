@@ -15,6 +15,7 @@ const instructorRoutes = require("./routes/instructor.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
 const notificacionRoutes = require("./routes/notificacion.routes.js");
 const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
+const gestorRoutes = require("./routes/gestor.routes.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -37,6 +38,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(adminRoutes);
 app.use(fichasRoutes);
+app.use(gestorRoutes);
 app.use(rolesPermisos);
 app.use(usuariosRoutes);
 app.use(evidenciaRoutes);

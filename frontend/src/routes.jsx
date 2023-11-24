@@ -11,7 +11,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Prueba from "./components/pruebas/Prueba";
 import { Spinner } from "./components/util/Spinner";
 import { useContextApp } from "./Context/ContextApp";
-import { Example } from "./components/tailwind/stackedlists";
+import { Example } from "./components/tailwind/Form";
 import { Login } from "./components/InicioSesion/Login";
 import { FichaList } from "./components/util/FichaList";
 import { Register1 } from "./components/InicioSesion/Register1";
@@ -64,6 +64,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
  * -----------------*/
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { Error404 } from "./components/util/erro404";
+import { FormActa } from "./pages/gestorcomite/formacta";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
@@ -171,6 +172,7 @@ const Router = () => {
           {/* Rutas de Gestor */}
           <Route path="/home-gestor" element={<HomeGestor />} />
           <Route path="/fichas" element={<FichaList />} />
+          <Route path="/acta" element={<FormActa />} />
 
           <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>
