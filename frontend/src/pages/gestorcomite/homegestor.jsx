@@ -3,7 +3,7 @@ import DefaultLayout from "../../Layout/DefaultLayout";
 // import { Filtrocomite } from "../../components/util/filtocomite";
 import { Carta } from "../../components/util/carta";
 import { useContextApp } from "../../Context/ContextApp";
-import { Modal } from "../../components/util/modal";
+import { Modal } from "../../components/util/Modal";
 
 import { useEffect, useState } from "react";
 

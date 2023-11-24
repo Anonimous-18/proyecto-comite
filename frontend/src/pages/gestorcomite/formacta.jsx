@@ -1,6 +1,6 @@
 export const FormActa = () => {
   return (
-    <div className="flex bg-gray-100 ">
+    <div className="flex min-h-screen bg-gray-100 ">
       <div className="m-auto">
         <div>
           <div className="mt-5 bg-white rounded-lg shadow">
@@ -82,7 +82,11 @@ export const FormActa = () => {
 
                 <p className="inline text-2xl font-semibold leading-none">
                  Contrato De Aprendizaje: 
-                </p><textarea name="" id="" cols="1" rows="1" defaultValue={"No"}></textarea>
+                </p><input
+                className="text-black placeholder-gray-600 px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto w-[] "
+
+                defaultValue={"No"}
+              />
                 <br />
                 <textarea name="" id="" cols="55" rows="1" defaultValue={"Sin historial"}></textarea>
 
@@ -124,6 +128,7 @@ export const FormActa = () => {
           </div>
         </div>
       </div>
+      
       
     </div>
   );
