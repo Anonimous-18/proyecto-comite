@@ -64,7 +64,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
  * -----------------*/
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { Error404 } from "./components/util/erro404";
-import { FormActa } from "./pages/gestorcomite/formacta";
+import { FormActa } from "./pages/gestorcomite/Formacta";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
