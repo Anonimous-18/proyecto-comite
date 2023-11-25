@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 import fichaApi from "../api/ficha";
@@ -34,7 +40,6 @@ const initialState = {
   id: 0,
   activado: false,
   modo: false,
-  
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -71,24 +76,22 @@ export const ContextAppProvider = ({ children }) => {
     3: "/home-invitado",
   };
 
-
   const [state, dispatch] = useReducer(reducer, initialState);
   const reducerColocarId = (id) => {
-    dispatch({ type: 'AgregarComiteId', payload: id });
+    dispatch({ type: "AgregarComiteId", payload: id });
   };
   const reducerModalActivo = () => {
-    dispatch({ type: 'confirmarComite' });
+    dispatch({ type: "confirmarComite" });
   };
   const reducerModalDesactivo = () => {
-    dispatch({ type: 'desactivarModal' });
-  }
+    dispatch({ type: "desactivarModal" });
+  };
   const reducerModoAceptar = () => {
-    dispatch({ type: 'modo' });
-  }
+    dispatch({ type: "modo" });
+  };
   const reducerModoRechazar = () => {
-    dispatch({ type: 'modalRechazar' });
-  }
-
+    dispatch({ type: "modalRechazar" });
+  };
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
@@ -345,7 +348,6 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error al crear un rol: ", error.message);
     }
   };
-  
 
   const deleteRoles = async (token, data) => {
     try {
@@ -367,7 +369,7 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error actualizar un rol: ", error.message);
     }
   };
-  const updateComite = async (data,id) => {
+  const updateComite = async (data, id) => {
     try {
       const res = await gestorApi.updateComiteRequest(data, id);
       return res;
@@ -503,8 +505,11 @@ export const ContextAppProvider = ({ children }) => {
       const { token } = JSON.parse(localStorage.getItem("newToken"));
 
       if (!token) return null;
-      const response = await instructorApi.getEvidenciaRequest(nombreArchivo, token);
-      
+      const response = await instructorApi.getEvidenciaRequest(
+        nombreArchivo,
+        token
+      );
+
       if (response) {
         return response.data;
       } else {
@@ -546,6 +551,28 @@ export const ContextAppProvider = ({ children }) => {
       return null;
     } catch (error) {
       return null;
+    }
+  };
+
+  const createFicha = async (body) => {
+    try {
+      const response = await fichaApi.createFichaRequest(body);
+
+      if (response) return response.status;
+      else return null;
+    } catch (error) {
+      return error.status;
+    }
+  };
+
+  const updateFicha = async (body, id) => {
+    try {
+      const response = await fichaApi.updateFichaRequest(body, id);
+
+      if (response) return response.status;
+      else return null;
+    } catch (error) {
+      return error.status;
     }
   };
 
@@ -599,6 +626,8 @@ export const ContextAppProvider = ({ children }) => {
         actaCasos,
         crearActa,
         getDetailsFicha,
+        createFicha,
+        updateFicha,
       }}
     >
       {children}

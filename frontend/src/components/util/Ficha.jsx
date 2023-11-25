@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { CgDetailsMore } from "react-icons/cg";
 import { ClimbingBoxLoader } from "react-spinners";
 
@@ -46,18 +47,17 @@ export const Ficha = ({ ficha }) => {
                                   style={{
                                     backgroundImage: `url(https://oei.int/downloads/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBalVZIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ada39e3ca828e4eec98acd60281f4ed73838f549/curso-virtual-jpg)`,
                                   }}
-                                >
-                                </div>
+                                ></div>
                                 <div className="p-4">
                                   <p className="uppercase tracking-wide text-sm font-bold text-gray-700">
-                                    {details.programa&&details.programa}
+                                    {details.programa && details.programa}
                                   </p>
                                   <p className="text-3xl text-gray-900">
-                                    {details.codigo&&details.codigo}
+                                    {details.codigo && details.codigo}
                                   </p>
                                   <p className="text-gray-700">
-                                    {"Instructor " +
-                                      details.usuario&&details.usuario.nombre_completo}
+                                    {"Instructor " + details.usuario &&
+                                      details.usuario.nombre_completo}
                                   </p>
                                 </div>
                                 <div className="grid grid-cols-2 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 p-4 border-t border-gray-300 text-gray-700">
@@ -66,7 +66,7 @@ export const Ficha = ({ ficha }) => {
                                       <span className="text-gray-900 font-bold">
                                         Jornada
                                       </span>{" "}
-                                      {details.jornada&&details.jornada}
+                                      {details.jornada && details.jornada}
                                     </p>
                                   </div>
                                   <div className="flex-1 inline-flex items-center">
@@ -74,7 +74,7 @@ export const Ficha = ({ ficha }) => {
                                       <span className="text-gray-900 font-bold">
                                         Modalidad
                                       </span>{" "}
-                                      {details.modalidad&&details.modalidad}
+                                      {details.modalidad && details.modalidad}
                                     </p>
                                   </div>
                                   <div className="flex-1 inline-flex items-center">
@@ -82,7 +82,11 @@ export const Ficha = ({ ficha }) => {
                                       <span className="text-gray-900 font-bold">
                                         Inicio Lectiva
                                       </span>{" "}
-                                      {details.inicioLectiva&&details.inicioLectiva.replace(/T.*/, "")}
+                                      {details.inicioLectiva &&
+                                        details.inicioLectiva.replace(
+                                          /T.*/,
+                                          ""
+                                        )}
                                     </p>
                                   </div>
                                 </div>
@@ -92,7 +96,8 @@ export const Ficha = ({ ficha }) => {
                                       Dependencia
                                     </p>
                                     <p className="text-xs text-gray-900">
-                                      {details.usuario&&details.usuario.dependencia}
+                                      {details.usuario &&
+                                        details.usuario.dependencia}
                                     </p>
                                   </div>
                                   <div>
@@ -100,7 +105,8 @@ export const Ficha = ({ ficha }) => {
                                       Creado el
                                     </p>
                                     <p className="text-xs text-gray-900">
-                                      {details.createdAt&&details.createdAt.replace(/T.*/, "")}
+                                      {details.createdAt &&
+                                        details.createdAt.replace(/T.*/, "")}
                                     </p>
                                   </div>
                                 </div>
@@ -126,13 +132,12 @@ export const Ficha = ({ ficha }) => {
             </div>
           </div>
           <div className="bg-gray-50 gap-4 px-4 py-3 flex flex-row-reverse">
-            <button
-              type="button"
+            <Link
+              to={`/actualizar-ficha/${ficha.id}`}
               className="inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
-              // onClick={}
             >
               Editar
-            </button>
+            </Link>
             <button
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-white px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-gray-100 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
