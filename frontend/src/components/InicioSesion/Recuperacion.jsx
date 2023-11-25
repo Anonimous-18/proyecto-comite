@@ -90,14 +90,14 @@ const Recuperacion = () => {
                       </button>
                     </div>
                     <hr className="mb-6 border-t" />
-                    <div className="text-center">
+                    {/* <div className="text-center">
                       <Link
                         className="text-sm ml-2 text-blue-500 hover:text-blue-700"
                         to="/register"
                       >
                         ¡Crear cuenta!
                       </Link>
-                    </div>
+                    </div> */}
                     <div className="text-center">
                       <span className="text-sm">¿Ya tienes una cuenta?</span>
                       <apan className="inline-block">

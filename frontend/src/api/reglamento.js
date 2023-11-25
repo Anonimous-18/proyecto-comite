@@ -17,6 +17,6 @@ export const getReglamentoRequest = async (token) => {
       return res;
     }
   } catch (error) {
-    console.log("Error al obtener el reglamento detalles: ", error.message);
+    //console.log("Error al obtener el reglamento detalles: ", error.message);
   }
 };

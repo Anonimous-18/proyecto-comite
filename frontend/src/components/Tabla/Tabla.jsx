@@ -19,7 +19,7 @@ export function Tabla({ datos, fun_eliminar, nombre_tabla }) {
     return <div>Cargando...</div>;
   }
   const handleDelete = async (id) => {
-    console.log("ELIMINAR");
+    //console.log("ELIMINAR");
     const admin = localStorage.getItem("admin");
     const token = JSON.parse(localStorage.getItem("newToken"));
 

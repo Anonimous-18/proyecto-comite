@@ -36,6 +36,17 @@ export const Carta = ({
     getUserName(instructor);
   }, [contextApi, instructor]);
 
+  const handleAceptar = () => {
+    contextApi.reducerModalActivo();
+    contextApi.reducerModoAceptar();
+    contextApi.reducerColocarId(comite_id);
+  };
+  const handleRechazar = () => {
+    contextApi.reducerModalActivo();
+    contextApi.reducerModoRechazar();
+    contextApi.reducerColocarId(comite_id);
+  };
+
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
@@ -50,7 +61,7 @@ export const Carta = ({
           <div className="flex-1">
             <p className="text-sm font-medium text-indigo-600">
               <Link
-                to={`/infocomiteinstrutor/${comite_id}`}
+                to={`/informacion-comite/${comite_id}`}
                 className="hover:underline"
               >
                 Ver mas
@@ -127,12 +138,30 @@ export const Carta = ({
           </div>
           {estado === "espera" && gestor ? (
             <div className="mt-4 flex gap-3">
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+              <button
+                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-lg"
+                onClick={handleAceptar}
+              >
                 Aceptar
               </button>
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+              <button
+                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-lg"
+                onClick={handleRechazar}
+              >
                 Rechazar
               </button>
+            </div>
+          ) : estado === "aceptado" && gestor ? (
+            <div className="mt-4 flex gap-3">
+              
+              <Link
+                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-lg"
+                to={`/form`}
+                type="button"
+              >
+                Crear Acta
+              </Link>
+              
             </div>
           ) : (
             <div className="h-12"></div>

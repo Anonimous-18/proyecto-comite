@@ -196,6 +196,22 @@ export const NavBar = () => {
                             </div>
                           </NavLink>
                           <NavLink
+                            to="/fichas"
+                            className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                          >
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <FaStreetView className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                            </div>
+                            <div className="ml-4">
+                              <p className="text-sm font-medium text-gray-900">
+                                Fichas
+                              </p>
+                              <p className="text-sm text-gray-500">
+                                Fichas descripción
+                              </p>
+                            </div>
+                          </NavLink>
+                          <NavLink
                             to="/reglamento"
                             className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >

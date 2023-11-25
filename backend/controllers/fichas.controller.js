@@ -1,4 +1,4 @@
-const { ficha } = require("../models");
+const { ficha, usuarios } = require("../models");
 
 /**--------------------------------
  * funcion para crear una ficha
@@ -21,7 +21,9 @@ const createFicha = async (req, res) => {
  -----------------------------------------*/
 const getFicha = async (req, res) => {
   try {
-    const result = await ficha.findAll();
+    const result = await ficha.findAll({
+      include: usuarios,
+    });
     if (result.length !== 0) {
       return res.status(200).json(result);
     }
@@ -40,7 +42,10 @@ const fichabyId = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const fichaConsulta = await ficha.findOne({ where: { id } });
+    const fichaConsulta = await ficha.findOne({
+      where: { id },
+      include: [usuarios],
+    });
     if (fichaConsulta) {
       return res.status(200).json(fichaConsulta);
     } else {

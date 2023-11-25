@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import fichaApi from "../api/ficha";
 import usuariosApi from "../api/usuarios";
 import novedadesApi from "../api/novedades";
 import instructorApi from "../api/instructor";
@@ -13,6 +14,7 @@ import { getReglamentoRequest } from "../api/reglamento";
 import { login, resetPass, registerUserRequest } from "../api/inicioSesion";
 import { getPermisosRequest, asignarPermisosRequest } from "../api/permisos";
 import { getPermisosRolRequest } from "../api/RolesPermisos";
+import gestorApi from "../api/gestor";
 
 import {
   getRolesRequest,
@@ -28,6 +30,29 @@ import {
 } from "../funciones/encode";
 // import jwtDecode from "jwt-decode";
 
+const initialState = {
+  id: 0,
+  activado: false,
+  modo: false,
+  
+};
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "AgregarComiteId":
+      return { ...state, id: action.payload };
+    case "confirmarComite":
+      return { ...state, activado: true };
+    case "desactivarModal":
+      return { ...state, activado: false };
+    case "modo":
+      return { ...state, modo: true };
+    case "modalRechazar":
+      return { ...state, modo: false };
+    default:
+      return state;
+  }
+};
+
 export const ContextApp = createContext();
 
 export const ContextAppProvider = ({ children }) => {
@@ -35,7 +60,6 @@ export const ContextAppProvider = ({ children }) => {
   const socket = io(`${API}`);
 
   // const [cargarPagina, setCargarPagina] = useState(false);
-
   const [usuario, setUsuario] = useState({});
   const [camposFil, setCamposFil] = useState(null);
   const [ruta, setRuta] = useState("");
@@ -46,6 +70,25 @@ export const ContextAppProvider = ({ children }) => {
     2: "/homeinstructor",
     3: "/home-invitado",
   };
+
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const reducerColocarId = (id) => {
+    dispatch({ type: 'AgregarComiteId', payload: id });
+  };
+  const reducerModalActivo = () => {
+    dispatch({ type: 'confirmarComite' });
+  };
+  const reducerModalDesactivo = () => {
+    dispatch({ type: 'desactivarModal' });
+  }
+  const reducerModoAceptar = () => {
+    dispatch({ type: 'modo' });
+  }
+  const reducerModoRechazar = () => {
+    dispatch({ type: 'modalRechazar' });
+  }
+
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
@@ -302,6 +345,7 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error al crear un rol: ", error.message);
     }
   };
+  
 
   const deleteRoles = async (token, data) => {
     try {
@@ -323,6 +367,14 @@ export const ContextAppProvider = ({ children }) => {
       console.log("Error actualizar un rol: ", error.message);
     }
   };
+  const updateComite = async (data,id) => {
+    try {
+      const res = await gestorApi.updateComiteRequest(data, id);
+      return res;
+    } catch (error) {
+      console.log("Error al actualizar el estado comite: ", error.message);
+    }
+  };
 
   const createComite = async (data) => {
     try {
@@ -331,7 +383,27 @@ export const ContextAppProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+  const actaCasos = async (data) => {
+    try {
+      await gestorApi.actaCasosRequest(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const crearActa = async (data) => {
+    try {
+      await gestorApi.crearActaRequest(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const crearActa1 = async (data) => {
+    try {
+      await gestorApi.crearActaRequest(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const getComites = async () => {
     try {
       const response = await instructorApi.getComitesRequest();
@@ -339,6 +411,16 @@ export const ContextAppProvider = ({ children }) => {
       return null;
     } catch (error) {
       console.log(error);
+      return null;
+    }
+  };
+
+  const getFichas = async () => {
+    try {
+      const response = await fichaApi.getFichasRequest();
+      if (response && response.data) return response.data;
+      return null;
+    } catch (error) {
       return null;
     }
   };
@@ -402,6 +484,16 @@ export const ContextAppProvider = ({ children }) => {
       return null;
     } catch (error) {
       console.log(error);
+      return null;
+    }
+  };
+
+  const getDetailsFicha = async (id) => {
+    try {
+      const response = await fichaApi.getDetailsRequest(id);
+      if (response && response.data) return response.data;
+      return null;
+    } catch (error) {
       return null;
     }
   };
@@ -496,6 +588,17 @@ export const ContextAppProvider = ({ children }) => {
         getEvidencia,
         idComite,
         setIdComite,
+        state,
+        reducerModalActivo,
+        reducerColocarId,
+        reducerModalDesactivo,
+        reducerModoAceptar,
+        reducerModoRechazar,
+        updateComite,
+        getFichas,
+        actaCasos,
+        crearActa,
+        getDetailsFicha,
       }}
     >
       {children}

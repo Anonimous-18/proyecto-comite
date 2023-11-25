@@ -1,13 +1,16 @@
-const { comites, aprendices_implicados, usuarios } = require("../models");
+const {
+  comites,
+  aprendices_implicados,
+  usuarios,
+} = require("../models");
 
 /**--------------------------------
  * funcion para crear un comite
  --------------------------------*/
-const createComites = async (req, res) => {
+const createComites = async (req, res, next) => {
   try {
     const { file } = req;
     const evidencia = file.filename;
-
     const result = await comites.create({
       articulos: req.body.articulos.toString(),
       instructor_fk: req.body.instructor_fk,
@@ -15,31 +18,37 @@ const createComites = async (req, res) => {
       descripcion_solicitud: req.body.descripcion_solicitud,
       evidencia,
     });
-
     /**----------------------------------------------------------
      * | Este es id del comite creado: result.dataValues.id
      * ----------------------------------------------------------*/
     if (result.dataValues.id !== 0) {
-      try {
-        /**---------------------------------------
-         * | Agregamos los aprendices implicados
-         * ---------------------------------------*/
-        const comite = result.dataValues.id;
-        req.body.aprendices_implicados.split(",").forEach(async (aprendiz) => {
+      req.comIdCreado = result.dataValues.id;
+      /**---------------------------------------
+       * | Agregamos los aprendices implicados
+       * ---------------------------------------*/
 
-          const usuario_id = (await usuarios.findOne({ where:{ documento: aprendiz }})).id
+      const comite = result.dataValues.id;
 
-          await aprendices_implicados.create({
+      const aprendicesImplicado = req.body.aprendices_implicados.split(",");
+      const creaciones = aprendicesImplicado.map(async (aprendiz) => {
+        const usuario = await usuarios.findOne({
+          where: { documento: aprendiz },
+        });
+
+        if (usuario) {
+          const nuevoAprendiz = await aprendices_implicados.create({
             documento: aprendiz,
             comite_fk: comite,
-            usuario_id 
+            usuario_id: usuario.id,
           });
-        });
-        return res.sendStatus(204);
-      } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: error.message });
-      }
+          return nuevoAprendiz;
+        }
+        return null;
+      });
+
+      const resulAgregarApre = await Promise.all(creaciones);
+      req.resulAgregarApre = resulAgregarApre;
+      return next();
     }
 
     return res.status(500).json({ message: "Error al crear un nuevo comite." });

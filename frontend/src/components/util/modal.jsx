@@ -1,37 +1,72 @@
 import { useEffect, useState } from "react";
 import { PiWarningBold } from "react-icons/pi";
+import { useContextApp } from "../../Context/ContextApp";
 
-export const Modal = ({ isOpen, aceptar = true }) => {
+export const Modal = ({ isOpen, estilosAceptar, id}) => {
   const [open, setOpen] = useState(false);
+  const contextApp = useContextApp();
 
   useEffect(() => {
     setOpen(isOpen);
   }, [isOpen]);
 
+  const handleDesactivar = () => {
+    contextApp.reducerModalDesactivo();
+  };
+  const handleRC = () => {
+    if(estilosAceptar){
+      contextApp.updateComite({
+        estado:"Aceptado"
+      },id)
+    }else{
+      contextApp.updateComite({
+        estado:"Rechazado"
+      },id)
+    }
+    contextApp.reducerModalDesactivo();
+    location.reload();
+  };
+
   return (
     <div
       className={`fixed z-50 inset-0 flex items-center justify-center ${
         open ? "" : "hidden"
-      }`}>
+      }`}
+    >
       <div className="fixed inset-0 bg-black opacity-50"></div>
       <div className="fixed z-60 w-[95%] inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
-            <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${aceptar ? 'bg-yellow-100' : 'bg-red-100' }  sm:mx-0 sm:h-10 sm:w-10 `}>
-              <PiWarningBold className={`${aceptar ? 'text-yellow-600 text-2xl' : 'text-red-600 text-2xl'}`}/>
+            <div
+              className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${
+                estilosAceptar ? "bg-yellow-100" : "bg-red-100"
+              }  sm:mx-0 sm:h-10 sm:w-10 `}
+            >
+              <PiWarningBold
+                className={`${
+                  estilosAceptar
+                    ? "text-yellow-600 text-2xl"
+                    : "text-red-600 text-2xl"
+                }`}
+              />
             </div>
             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3
                 className="text-lg leading-6 font-medium text-gray-900"
-                id="modal-headline">
+                id="modal-headline"
+              >
                 {" "}
-                { aceptar ? 'Aceptar': 'Rechazar' } Comite{" "}
+                {estilosAceptar ? "Aceptar" : "Rechazar"} Comite{" "}
               </h3>
               <div className="mt-2">
                 <p className="text-sm text-gray-500">
                   {" "}
-                  Se <span className="font-bold"> {aceptar ? 'Aceptara' : 'Rechazara'} el Comite</span> ¿Te
-                  encuentras segur@ de la accion?{" "}
+                  Se{" "}
+                  <span className="font-bold">
+                    {" "}
+                    {estilosAceptar ? "Aceptara" : "Rechazara"} el Comite
+                  </span>{" "}
+                  ¿Te encuentras segur@ de la accion?{" "}
                 </p>
               </div>
             </div>
@@ -40,14 +75,17 @@ export const Modal = ({ isOpen, aceptar = true }) => {
         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <button
             type="button"
-            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+            className={ estilosAceptar ? 'w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm' : 'w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm' }
+            onClick={handleRC}
+          >
             {" "}
-            {aceptar ? 'Aceptar' : 'Rechazar'}{" "}
+            {estilosAceptar ? "Aceptar" : "Rechazar"}{" "}
           </button>
           <button
             type="button"
             className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-            onClick={() => setOpen(false)}>
+            onClick={handleDesactivar}
+          >
             {" "}
             Cancelar{" "}
           </button>

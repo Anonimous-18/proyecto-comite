@@ -39,7 +39,7 @@ export const Homeinstructor = () => {
 
         if (token) {
           setFiltrar(contextApi.camposFil);
-          // console.log("Filtrar", filtrar);
+          // //console.log("Filtrar", filtrar);
           const decodedToken = hooks.useDecodedToken(token.token);
 
           const comitesByUser = response.filter(
@@ -160,8 +160,8 @@ export const Homeinstructor = () => {
           </ul>
           <div className="p-2">
             <Link
-              to={`/solicitudinstructor`}
-              className="block w-full px-3 bg-indigo-600 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              to={`/solicitud-instructor`}
+              className="block w-full px-3 bg-blue-800 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
               <span className="pl-2 mx-1">Crear Solicitud</span>
             </Link>

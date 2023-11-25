@@ -17,7 +17,7 @@ export const RolesDetails = () => {
     if (admin) {
       const getDetails = async () => {
         const response = await getRolesById(token.token, id);
-        console.log(response);
+        //console.log(response);
         if (response !== undefined) {
           setData(response);
         }
@@ -28,7 +28,7 @@ export const RolesDetails = () => {
     }
   }, [getRolesById, navigate]);
 
-  // console.log(data);
+  // //console.log(data);
 
   return (
     <>

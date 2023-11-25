@@ -19,7 +19,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       rol_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "roles", // Nombre de la tabla referenciada
+          key: "id",
+        },
       },
       tipo_documento: {
         type: Sequelize.STRING
@@ -42,6 +46,9 @@ module.exports = {
       },
       
     });
+
+    await queryInterface.addIndex("roles", ["rol_id"]);
+
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('usuarios');

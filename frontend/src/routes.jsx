@@ -11,8 +11,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Prueba from "./components/pruebas/Prueba";
 import { Spinner } from "./components/util/Spinner";
 import { useContextApp } from "./Context/ContextApp";
+import { Example } from "./components/tailwind/overscrollX";
 import { Login } from "./components/InicioSesion/Login";
-import { Example } from "./components/tailwind/BlogList";
+import { FichaList } from "./components/util/FichaList";
 import { Register1 } from "./components/InicioSesion/Register1";
 import { Reglamento } from "./components/Reglamento/Reglamento";
 import Recuperacion from "./components/InicioSesion/Recuperacion";
@@ -63,6 +64,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
  * -----------------*/
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { Error404 } from "./components/util/erro404";
+import { FormActa } from "./pages/gestorcomite/formacta";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
@@ -75,7 +77,7 @@ const Router = () => {
   };
 
   let ruta = rutaOpcion[usuario.rol_id] || "/";
-  // console.log(ruta);
+  // //console.log(ruta);
 
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
@@ -145,7 +147,10 @@ const Router = () => {
           {/* Rutas de Instructor */}
           <Route path="/home-instructor" element={<Homeinstructor />} />
           <Route path="/voto-comite/:comite" element={<Votoinstructor />} />
-          <Route path="/solicitudinstructor" element={<SolicitudIntructor />} />
+          <Route
+            path="/solicitud-instructor"
+            element={<SolicitudIntructor />}
+          />
           <Route path="/novedades-instructor" element={<NovedadInstructor />} />
           <Route
             path="/antecedentes"
@@ -156,20 +161,20 @@ const Router = () => {
             element={<SolicitudIntructor />}
           />
           <Route
-            path="/infocomiteinstrutor/:comite_id"
+            path="/informacion-comite/:comite_id"
             element={<Informacioncomiteinst />}
           />
 
           {/* Rutas de Subdirector */}
           <Route path="/home-subdirector" element={<Homesubdirector />} />
-
-          {/* Rutas de Subdirector */}
           <Route path="/infocomitesub" element={<Infocomitesub />} />
 
           {/* Rutas de Gestor */}
           <Route path="/home-gestor" element={<HomeGestor />} />
+          <Route path="/fichas" element={<FichaList />} />
+          <Route path="/acta" element={<FormActa />} />
 
-          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />  
+          <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>
       ) : (
         <>
@@ -178,7 +183,7 @@ const Router = () => {
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register1 />} />
-            <Route path="*" element={<Error404/>} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </>
       )}
