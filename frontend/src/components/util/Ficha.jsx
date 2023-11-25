@@ -1,19 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { CgDetailsMore } from "react-icons/cg";
+import { Link, useNavigate } from "react-router-dom";
 import { ClimbingBoxLoader } from "react-spinners";
 
 import { useContextApp } from "../../Context/ContextApp";
 
 export const Ficha = ({ ficha }) => {
+  const navigate = useNavigate();
+  const contextApi = useContextApp();
   const [open, setOpen] = useState(false);
   const [details, setDetails] = useState(null);
-  const contextApi = useContextApp();
 
   const getDetails = async (id) => {
     const res = await contextApi.getDetailsFicha(id);
 
     if (res) setDetails(res);
+  };
+
+  const handleDelete = async (id) => {
+    await contextApi.deleteFicha(id);
+    navigate(0);
   };
 
   return (
@@ -189,13 +194,15 @@ export const Ficha = ({ ficha }) => {
                 getDetails(ficha.id);
                 setOpen(!open);
               }}
-              className="inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              className="cursor-pointer inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
               Detalles
-              <CgDetailsMore
-                className="ml-3 -mr-1 h-5 w-5"
-                aria-hidden="true"
-              />
+            </div>
+            <div
+              onClick={() => handleDelete(ficha.id)}
+              className="inline-flex cursor-pointer ml-4 items-center rounded-md border border-transparent bg-rose-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+            >
+              Eliminar
             </div>
           </div>
         </div>
