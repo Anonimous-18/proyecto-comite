@@ -62,9 +62,11 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 /**-----------------
  * | Gestor
  * -----------------*/
-import { HomeGestor } from "./pages/gestorcomite/homegestor";
 import { Error404 } from "./components/util/erro404";
 import { FormActa } from "./pages/gestorcomite/Formacta";
+import { CrearFicha } from "./components/util/CrearFicha";
+import { HomeGestor } from "./pages/gestorcomite/homegestor";
+import { ActualizarFicha } from "./components/util/ActualizarFicha";
 
 const Router = () => {
   const { usuario, decode } = useContextApp();
@@ -173,6 +175,8 @@ const Router = () => {
           <Route path="/home-gestor" element={<HomeGestor />} />
           <Route path="/fichas" element={<FichaList />} />
           <Route path="/acta" element={<FormActa />} />
+          <Route path="/crear-ficha" element={<CrearFicha />} />
+          <Route path="/actualizar-ficha/:id" element={<ActualizarFicha />} />
 
           <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>

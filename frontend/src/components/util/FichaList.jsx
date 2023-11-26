@@ -1,6 +1,8 @@
 import { Ficha } from "./Ficha";
+import { Link } from "react-router-dom";
 import { Spinner } from "../util/Spinner";
 import { useEffect, useState } from "react";
+
 import DefaultLayout from "../../Layout/DefaultLayout";
 import { useContextApp } from "../../Context/ContextApp";
 
@@ -22,6 +24,7 @@ export const FichaList = () => {
   return (
     <DefaultLayout>
       <div className="overflow-hidden bg-white shadow sm:rounded-md">
+        <Link to={`/crear-ficha`} className="inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out m-2">Crear Ficha</Link>
         <ul role="list" className="divide-y divide-gray-200">
           {fichas ? (
             fichas.map((ficha) => <Ficha key={ficha.id} ficha={ficha} />)
