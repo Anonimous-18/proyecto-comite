@@ -6,7 +6,7 @@ const permisosMiddleware = require("../middlewares/permisosUsuario.meddleware");
 const router = Router();
 
 router
-  .post("/api/ficha", permisosMiddleware.comprobarPermiso("create-fichas"), fichaController.createFicha)
+  .post("/api/ficha", fichaController.createFicha)
   .get("/api/ficha", fichaController.getFicha)
   .get("/api/ficha/:id", fichaController.fichabyId)
   .put("/api/ficha/:id", fichaController.updateFicha)
