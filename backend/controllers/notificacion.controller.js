@@ -17,7 +17,7 @@ const createNotificacion = async (req, res) => {
        * | Buscamos en roles si existe un rol gestor
        * ----------------------------------------------*/
       const rol = await roles.findAll({
-        where: { nombre: "Gestor" || "gestor" },
+        where: { nombre: "Administrador" || "administrador" },
       });
 
       if (rol && rol[0] && rol[0].id) {
