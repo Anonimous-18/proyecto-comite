@@ -12,10 +12,6 @@ router
     "/api/notificaciones-usuarios",
     notificacionController.getNotificacionesUsuarios
   )
-  .post(
-    "/api/notificaciones-usuarios",
-    notificacionController.createNotificacionUsuario
-  )
   .get(
     "/api/notificaciones-usuarios/:id",
     notificacionController.getNotificacionUsuarioById
