@@ -40,6 +40,7 @@ const createComites = async (req, res, next) => {
             documento: aprendiz,
             comite_fk: comite,
             usuario_id: usuario.id,
+            tipo_documento: "CC"
           });
           return nuevoAprendiz;
         }

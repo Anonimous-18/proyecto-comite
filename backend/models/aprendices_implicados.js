@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('CC', 'TI'),
       allowNull: false
     },
-
     comite_fk: {
       type: DataTypes.INTEGER,
       allowNull: false,
