@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-11-2023 a las 11:29:45
+-- Tiempo de generación: 27-11-2023 a las 18:26:16
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -65,15 +65,49 @@ CREATE TABLE `aprendices_implicados` (
   `documento` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `comite_fk` int(11) DEFAULT NULL
+  `comite_fk` int(11) DEFAULT NULL,
+  `tipo_documento` enum('CC','TI') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `aprendices_implicados`
 --
 
-INSERT INTO `aprendices_implicados` (`id`, `usuario_id`, `documento`, `createdAt`, `updatedAt`, `comite_fk`) VALUES
-(42, 49, '33', '2023-11-19 17:54:27', '2023-11-19 17:54:27', 35);
+INSERT INTO `aprendices_implicados` (`id`, `usuario_id`, `documento`, `createdAt`, `updatedAt`, `comite_fk`, `tipo_documento`) VALUES
+(70, 48, '32', '2023-11-20 23:30:06', '2023-11-20 23:30:06', 48, 'CC'),
+(71, 49, '33', '2023-11-20 23:30:06', '2023-11-20 23:30:06', 48, 'CC'),
+(72, 48, '32', '2023-11-20 23:34:14', '2023-11-20 23:34:14', 49, 'CC'),
+(73, 48, '32', '2023-11-20 23:39:43', '2023-11-20 23:39:43', 50, 'CC'),
+(74, 48, '32', '2023-11-20 23:55:30', '2023-11-20 23:55:30', 51, 'CC'),
+(75, 49, '33', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(76, 50, '34', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(77, 53, '37', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(78, 54, '38', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(79, 52, '36', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(80, 51, '35', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(81, 55, '39', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(82, 48, '32', '2023-11-21 00:01:48', '2023-11-21 00:01:48', 52, 'CC'),
+(83, 49, '33', '2023-11-21 00:01:48', '2023-11-21 00:01:48', 52, 'CC'),
+(84, 50, '34', '2023-11-21 00:01:48', '2023-11-21 00:01:48', 52, 'CC'),
+(85, 49, '33', '2023-11-21 00:04:37', '2023-11-21 00:04:37', 53, 'CC'),
+(86, 48, '32', '2023-11-21 00:04:37', '2023-11-21 00:04:37', 53, 'CC'),
+(87, 19, '31', '2023-11-21 00:04:37', '2023-11-21 00:04:37', 53, 'CC'),
+(88, 49, '33', '2023-11-21 00:41:31', '2023-11-21 00:41:31', 54, 'CC'),
+(89, 49, '33', '2023-11-21 00:46:26', '2023-11-21 00:46:26', 55, 'CC'),
+(90, 50, '34', '2023-11-21 00:46:26', '2023-11-21 00:46:26', 55, 'CC'),
+(91, 48, '32', '2023-11-21 00:46:26', '2023-11-21 00:46:26', 55, 'CC'),
+(92, 49, '33', '2023-11-21 00:59:54', '2023-11-21 00:59:54', 56, 'CC'),
+(93, 19, '31', '2023-11-21 01:01:23', '2023-11-21 01:01:23', 57, 'CC'),
+(94, 19, '31', '2023-11-21 01:03:05', '2023-11-21 01:03:05', 58, 'CC'),
+(95, 19, '31', '2023-11-21 01:04:43', '2023-11-21 01:04:43', 59, 'CC'),
+(96, 48, '32', '2023-11-21 01:11:11', '2023-11-21 01:11:11', 60, 'CC'),
+(97, 49, '33', '2023-11-21 01:13:55', '2023-11-21 01:13:55', 61, 'CC'),
+(98, 48, '32', '2023-11-21 01:19:43', '2023-11-21 01:19:43', 62, 'CC'),
+(99, 48, '32', '2023-11-21 15:34:01', '2023-11-21 15:34:01', 63, 'CC'),
+(100, 49, '33', '2023-11-21 15:34:01', '2023-11-21 15:34:01', 63, 'CC'),
+(101, 49, '33', '2023-11-22 21:26:34', '2023-11-22 21:26:34', 64, 'CC'),
+(102, 19, '31', '2023-11-27 17:24:25', '2023-11-27 17:24:25', 65, 'CC'),
+(103, 48, '32', '2023-11-27 17:24:25', '2023-11-27 17:24:25', 65, 'CC');
 
 -- --------------------------------------------------------
 
@@ -220,7 +254,24 @@ CREATE TABLE `comites` (
 --
 
 INSERT INTO `comites` (`id`, `instructor_fk`, `tipo_falta`, `descripcion_solicitud`, `carpeta_anexos`, `acta`, `estado`, `recomendacion`, `anexar_plan_mejoramiento`, `resultado_plan_mejoramiento`, `createdAt`, `updatedAt`, `articulos`, `evidencia`) VALUES
-(35, 3, 'disciplinaria', 'sssssssssssssssssssssssssssss', 'valor_por_defecto', NULL, 'aceptado', NULL, NULL, NULL, '2023-11-19 17:54:27', '2023-11-19 18:04:32', '17', 'IMG_20230926_153230.jpg-1700416467307.jpg');
+(48, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'aceptado', NULL, NULL, NULL, '2023-11-20 23:30:06', '2023-11-21 14:37:32', '8', 'Cafe magico.png-1700523006130.png'),
+(49, 3, 'academica', 'res.status(500).json({ error: \"Hubo un error al obtener los datos\" });\r\n    throw error;', 'valor_por_defecto', NULL, 'aceptado', NULL, NULL, NULL, '2023-11-20 23:34:14', '2023-11-23 19:47:14', '2', 'Cafe magico.png-1700523254762.png'),
+(50, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-20 23:39:42', '2023-11-20 23:39:42', '3', 'Cafe magico.png-1700523582952.png'),
+(51, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'rechazado', NULL, NULL, NULL, '2023-11-20 23:55:30', '2023-11-23 20:02:11', '2', 'Cafe magico.png-1700524530838.png'),
+(52, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:01:48', '2023-11-21 00:01:48', '3', 'Cafe magico.png-1700524908626.png'),
+(53, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:04:37', '2023-11-21 00:04:37', '4', 'Cafe magico.png-1700525077496.png'),
+(54, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:41:31', '2023-11-21 00:41:31', '3', 'Cafe magico.png-1700527291730.png'),
+(55, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:46:26', '2023-11-21 00:46:26', '3', 'Cafe magico.png-1700527586633.png'),
+(56, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:59:54', '2023-11-21 00:59:54', '1', 'Cafe magico.png-1700528394437.png'),
+(57, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:01:23', '2023-11-21 01:01:23', '', 'Cafe magico.png-1700528483543.png'),
+(58, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:03:05', '2023-11-21 01:03:05', '', 'Cafe magico.png-1700528585659.png'),
+(59, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:04:43', '2023-11-21 01:04:43', '2', 'Cafe magico.png-1700528683495.png'),
+(60, 3, 'disciplinaria', 'articLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:11:11', '2023-11-21 01:11:11', '2', 'Cafe magico.png-1700529071163.png'),
+(61, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:13:55', '2023-11-21 01:13:55', '1,3', 'cafe.sql-1700529235769.sql'),
+(62, 3, 'academica', 'articuloId articuloId articuloId', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:19:42', '2023-11-21 01:19:42', '2', 'Cafe magico.png-1700529582892.png'),
+(63, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 15:34:01', '2023-11-21 15:34:01', '8', 'Cafe magico.png-1700580841174.png'),
+(64, 3, 'academica', 'descripccion', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-22 21:26:34', '2023-11-22 21:26:34', '14', 'cafe.sql-1700688394008.sql'),
+(65, 3, 'academica', 'falta falta', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-27 17:24:25', '2023-11-27 17:24:25', '2', 'Cafe magico.png-1701105865122.png');
 
 -- --------------------------------------------------------
 
@@ -275,6 +326,13 @@ CREATE TABLE `Notificacions` (
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `Notificacions`
+--
+
+INSERT INTO `Notificacions` (`id`, `titulo`, `descripcion`, `remitente_fk`, `createdAt`, `updatedAt`) VALUES
+(1, 'Nueva Solicitud a Comite', 'falta falta', 3, '2023-11-27 17:24:25', '2023-11-27 17:24:25');
 
 -- --------------------------------------------------------
 
@@ -503,7 +561,8 @@ INSERT INTO `SequelizeMeta` (`name`) VALUES
 ('20231107171111-agregar-columna-evidencia-comite.js'),
 ('20231113020843-agregar-foranea-comite-a-aprendices-implicados.js'),
 ('20231118212720-create-aprendices.js'),
-('20231119204320-addFichaIdToAprendices.js');
+('20231119204320-addFichaIdToAprendices.js'),
+('20231122230317-tipoDocApr_implidos.js');
 
 -- --------------------------------------------------------
 
@@ -701,13 +760,13 @@ ALTER TABLE `aprendices`
 -- AUTO_INCREMENT de la tabla `aprendices_implicados`
 --
 ALTER TABLE `aprendices_implicados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT de la tabla `comites`
 --
 ALTER TABLE `comites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `fichas`
@@ -725,7 +784,7 @@ ALTER TABLE `normas_infligidas`
 -- AUTO_INCREMENT de la tabla `Notificacions`
 --
 ALTER TABLE `Notificacions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Novedads`
