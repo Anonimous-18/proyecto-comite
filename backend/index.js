@@ -6,6 +6,7 @@ const { Server: SocketServer } = require("socket.io");
 const config = require("./config.js");
 
 const adminRoutes = require("./routes/admin.routes.js");
+const gestorRoutes = require("./routes/gestor.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
 const rolesPermisos = require("./routes/roles_permisos.routes.js");
 const usuariosRoutes = require("./routes/usuario.routes.js");
@@ -15,7 +16,6 @@ const instructorRoutes = require("./routes/instructor.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
 const notificacionRoutes = require("./routes/notificacion.routes.js");
 const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
-const gestorRoutes = require("./routes/gestor.routes.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -27,10 +27,10 @@ const io = new SocketServer(server, {
 });
 
 app.use(
-  // cors({
-  //   origin: [config.ORIGEN, "http://localhost:5173"],
-  // })
-  cors()
+  cors({
+    origin: [config.ORIGEN, "http://localhost:5173"],
+  })
+  // cors()
 );
 
 app.use(express.json());
@@ -50,37 +50,31 @@ app.use(notificacionRoutes);
 app.use(inicio_sesionRoutes);
 
 io.on("connection", (socket) => {
-  //console.log(`Usuario conectado ${socket.id}`);
+  console.log(`Usuario conectado ${socket.id}`);
 
   /**----------------
    * Sala instructor
    * ----------------*/
   socket.on("instructorConectado", () => {
-    //console.log("Sala de Instructor conectado");
+    console.log("Sala de Instructor Conectada");
     socket.join("instructor");
   });
 
   /**----------------
-   * Sala aprendiz
+   * Sala gestor
    * ----------------*/
-  socket.on("aprendizConectado", () => {
-    //console.log("Sala de aprendiz conectado");
-    socket.join("aprendiz");
+  socket.on("gestorConectado", () => {
+    console.log("Sala de Gestor Conectada");
+    socket.join("gestor");
   });
 
   /**----------------
    * Evento notificar
    * ----------------*/
   socket.on("notificar", () => {
-    io.to("aprendiz").emit("notificacionesAprendiz");
+    io.to("gestor").emit("nuevaNotificacion");
   });
 
-  /**-------------------------
-   * desconexion del usuario
-   * -------------------------*/
-  socket.on("disconnect", () => {
-    //console.log("Usuario desconectado");
-  });
 });
 
 server.listen(config.PORT, "0.0.0.0", () =>

@@ -45,7 +45,19 @@ export const SolicitudComite = () => {
       };
 
       Reglamento();
+
+      /**-----------------------------------------------
+       * | Manejo de la conexión con la sala instructor
+       * -----------------------------------------------*/
+      contextApi.socket.emit("instructorConectado");
     }
+
+    /**----------------------------------------
+     * | Limpieza al desmontar el componente
+     * ----------------------------------------*/
+    return () => {
+      contextApi.socket.off("instructorConectado");
+    };
   }, [navigate, contextApi, tokenExist, err]);
 
   const agregarArticulo = (values) => {
@@ -148,6 +160,16 @@ export const SolicitudComite = () => {
       if (formData) {
         try {
           await contextApi.createComite(formData);
+
+          /**-----------------------------
+           * | Creamos la notificación
+           * -----------------------------*/
+          await contextApi.createNotificacion({
+            titulo: "Nueva Solicitud a Comite",
+            descripcion: values.descripcion_falta,
+            remitente_fk: tokenDecoded.user.id,
+          });
+
           navigate(`/home-instructor`);
         } catch (error) {
           //console.log(error);

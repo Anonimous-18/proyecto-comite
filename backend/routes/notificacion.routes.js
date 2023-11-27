@@ -12,9 +12,9 @@ router
     "/api/notificaciones-usuarios",
     notificacionController.getNotificacionesUsuarios
   )
-  .post(
-    "/api/notificaciones-usuarios",
-    notificacionController.createNotificacionUsuario
+  .get(
+    "/api/notificaciones-usuario/:id",
+    notificacionController.getNotificacionesByUser
   )
   .get(
     "/api/notificaciones-usuarios/:id",

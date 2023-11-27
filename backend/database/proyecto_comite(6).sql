@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 20-11-2023 a las 11:29:45
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.1.17
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 27-11-2023 a las 20:09:52
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,15 +65,53 @@ CREATE TABLE `aprendices_implicados` (
   `documento` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `comite_fk` int(11) DEFAULT NULL
+  `comite_fk` int(11) DEFAULT NULL,
+  `tipo_documento` enum('CC','TI') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `aprendices_implicados`
 --
 
-INSERT INTO `aprendices_implicados` (`id`, `usuario_id`, `documento`, `createdAt`, `updatedAt`, `comite_fk`) VALUES
-(42, 49, '33', '2023-11-19 17:54:27', '2023-11-19 17:54:27', 35);
+INSERT INTO `aprendices_implicados` (`id`, `usuario_id`, `documento`, `createdAt`, `updatedAt`, `comite_fk`, `tipo_documento`) VALUES
+(70, 48, '32', '2023-11-20 23:30:06', '2023-11-20 23:30:06', 48, 'CC'),
+(71, 49, '33', '2023-11-20 23:30:06', '2023-11-20 23:30:06', 48, 'CC'),
+(72, 48, '32', '2023-11-20 23:34:14', '2023-11-20 23:34:14', 49, 'CC'),
+(73, 48, '32', '2023-11-20 23:39:43', '2023-11-20 23:39:43', 50, 'CC'),
+(74, 48, '32', '2023-11-20 23:55:30', '2023-11-20 23:55:30', 51, 'CC'),
+(75, 49, '33', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(76, 50, '34', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(77, 53, '37', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(78, 54, '38', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(79, 52, '36', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(80, 51, '35', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(81, 55, '39', '2023-11-20 23:55:31', '2023-11-20 23:55:31', 51, 'CC'),
+(82, 48, '32', '2023-11-21 00:01:48', '2023-11-21 00:01:48', 52, 'CC'),
+(83, 49, '33', '2023-11-21 00:01:48', '2023-11-21 00:01:48', 52, 'CC'),
+(84, 50, '34', '2023-11-21 00:01:48', '2023-11-21 00:01:48', 52, 'CC'),
+(85, 49, '33', '2023-11-21 00:04:37', '2023-11-21 00:04:37', 53, 'CC'),
+(86, 48, '32', '2023-11-21 00:04:37', '2023-11-21 00:04:37', 53, 'CC'),
+(87, 19, '31', '2023-11-21 00:04:37', '2023-11-21 00:04:37', 53, 'CC'),
+(88, 49, '33', '2023-11-21 00:41:31', '2023-11-21 00:41:31', 54, 'CC'),
+(89, 49, '33', '2023-11-21 00:46:26', '2023-11-21 00:46:26', 55, 'CC'),
+(90, 50, '34', '2023-11-21 00:46:26', '2023-11-21 00:46:26', 55, 'CC'),
+(91, 48, '32', '2023-11-21 00:46:26', '2023-11-21 00:46:26', 55, 'CC'),
+(92, 49, '33', '2023-11-21 00:59:54', '2023-11-21 00:59:54', 56, 'CC'),
+(93, 19, '31', '2023-11-21 01:01:23', '2023-11-21 01:01:23', 57, 'CC'),
+(94, 19, '31', '2023-11-21 01:03:05', '2023-11-21 01:03:05', 58, 'CC'),
+(95, 19, '31', '2023-11-21 01:04:43', '2023-11-21 01:04:43', 59, 'CC'),
+(96, 48, '32', '2023-11-21 01:11:11', '2023-11-21 01:11:11', 60, 'CC'),
+(97, 49, '33', '2023-11-21 01:13:55', '2023-11-21 01:13:55', 61, 'CC'),
+(98, 48, '32', '2023-11-21 01:19:43', '2023-11-21 01:19:43', 62, 'CC'),
+(99, 48, '32', '2023-11-21 15:34:01', '2023-11-21 15:34:01', 63, 'CC'),
+(100, 49, '33', '2023-11-21 15:34:01', '2023-11-21 15:34:01', 63, 'CC'),
+(101, 49, '33', '2023-11-22 21:26:34', '2023-11-22 21:26:34', 64, 'CC'),
+(102, 19, '31', '2023-11-27 17:24:25', '2023-11-27 17:24:25', 65, 'CC'),
+(103, 48, '32', '2023-11-27 17:24:25', '2023-11-27 17:24:25', 65, 'CC'),
+(104, 49, '33', '2023-11-27 18:38:02', '2023-11-27 18:38:02', 66, 'CC'),
+(105, 48, '32', '2023-11-27 18:38:02', '2023-11-27 18:38:02', 66, 'CC'),
+(106, 49, '33', '2023-11-27 18:41:41', '2023-11-27 18:41:41', 67, 'CC'),
+(107, 48, '32', '2023-11-27 18:41:41', '2023-11-27 18:41:41', 67, 'CC');
 
 -- --------------------------------------------------------
 
@@ -220,7 +258,26 @@ CREATE TABLE `comites` (
 --
 
 INSERT INTO `comites` (`id`, `instructor_fk`, `tipo_falta`, `descripcion_solicitud`, `carpeta_anexos`, `acta`, `estado`, `recomendacion`, `anexar_plan_mejoramiento`, `resultado_plan_mejoramiento`, `createdAt`, `updatedAt`, `articulos`, `evidencia`) VALUES
-(35, 3, 'disciplinaria', 'sssssssssssssssssssssssssssss', 'valor_por_defecto', NULL, 'aceptado', NULL, NULL, NULL, '2023-11-19 17:54:27', '2023-11-19 18:04:32', '17', 'IMG_20230926_153230.jpg-1700416467307.jpg');
+(48, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'aceptado', NULL, NULL, NULL, '2023-11-20 23:30:06', '2023-11-21 14:37:32', '8', 'Cafe magico.png-1700523006130.png'),
+(49, 3, 'academica', 'res.status(500).json({ error: \"Hubo un error al obtener los datos\" });\r\n    throw error;', 'valor_por_defecto', NULL, 'aceptado', NULL, NULL, NULL, '2023-11-20 23:34:14', '2023-11-23 19:47:14', '2', 'Cafe magico.png-1700523254762.png'),
+(50, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-20 23:39:42', '2023-11-20 23:39:42', '3', 'Cafe magico.png-1700523582952.png'),
+(51, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'rechazado', NULL, NULL, NULL, '2023-11-20 23:55:30', '2023-11-23 20:02:11', '2', 'Cafe magico.png-1700524530838.png'),
+(52, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:01:48', '2023-11-21 00:01:48', '3', 'Cafe magico.png-1700524908626.png'),
+(53, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:04:37', '2023-11-21 00:04:37', '4', 'Cafe magico.png-1700525077496.png'),
+(54, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:41:31', '2023-11-21 00:41:31', '3', 'Cafe magico.png-1700527291730.png'),
+(55, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:46:26', '2023-11-21 00:46:26', '3', 'Cafe magico.png-1700527586633.png'),
+(56, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 00:59:54', '2023-11-21 00:59:54', '1', 'Cafe magico.png-1700528394437.png'),
+(57, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:01:23', '2023-11-21 01:01:23', '', 'Cafe magico.png-1700528483543.png'),
+(58, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:03:05', '2023-11-21 01:03:05', '', 'Cafe magico.png-1700528585659.png'),
+(59, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:04:43', '2023-11-21 01:04:43', '2', 'Cafe magico.png-1700528683495.png'),
+(60, 3, 'disciplinaria', 'articLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:11:11', '2023-11-21 01:11:11', '2', 'Cafe magico.png-1700529071163.png'),
+(61, 3, 'academica', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:13:55', '2023-11-21 01:13:55', '1,3', 'cafe.sql-1700529235769.sql'),
+(62, 3, 'academica', 'articuloId articuloId articuloId', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 01:19:42', '2023-11-21 01:19:42', '2', 'Cafe magico.png-1700529582892.png'),
+(63, 3, 'disciplinaria', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-21 15:34:01', '2023-11-21 15:34:01', '8', 'Cafe magico.png-1700580841174.png'),
+(64, 3, 'academica', 'descripccion', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-22 21:26:34', '2023-11-22 21:26:34', '14', 'cafe.sql-1700688394008.sql'),
+(65, 3, 'academica', 'falta falta', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-27 17:24:25', '2023-11-27 17:24:25', '2', 'Cafe magico.png-1701105865122.png'),
+(66, 3, 'academica', 'adsdafasfdsddfasdfsadfsadf', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-27 18:38:02', '2023-11-27 18:38:02', '4', 'Nuevo Documento de texto.txt-1701110282410.txt'),
+(67, 3, 'academica', 'fdfsafaAAAAAAA', 'valor_por_defecto', NULL, 'espera', NULL, NULL, NULL, '2023-11-27 18:41:41', '2023-11-27 18:41:41', '21', 'Nuevo Documento de texto.txt-1701110501752.txt');
 
 -- --------------------------------------------------------
 
@@ -264,10 +321,10 @@ CREATE TABLE `normas_infligidas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Notificacions`
+-- Estructura de tabla para la tabla `notificacions`
 --
 
-CREATE TABLE `Notificacions` (
+CREATE TABLE `notificacions` (
   `id` int(11) NOT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
@@ -276,26 +333,46 @@ CREATE TABLE `Notificacions` (
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `notificacions`
+--
+
+INSERT INTO `notificacions` (`id`, `titulo`, `descripcion`, `remitente_fk`, `createdAt`, `updatedAt`) VALUES
+(1, 'Nueva Solicitud a Comite', 'falta falta', 3, '2023-11-27 17:24:25', '2023-11-27 17:24:25'),
+(3, 'Nueva Solicitud de Comite 2', 'Ejemplo de descripcion de la Solicitud 2', 3, '2023-11-27 18:37:00', '2023-11-27 18:37:00'),
+(4, 'Nueva Solicitud a Comite', 'adsdafasfdsddfasdfsadfsadf', 3, '2023-11-27 18:38:02', '2023-11-27 18:38:02'),
+(5, 'Nueva Solicitud de Comite 2', 'Ejemplo de descripcion de la Solicitud 2', 3, '2023-11-27 18:41:12', '2023-11-27 18:41:12'),
+(6, 'Nueva Solicitud a Comite', 'fdfsafaAAAAAAA', 3, '2023-11-27 18:41:41', '2023-11-27 18:41:41');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Notificacion_Usuarios`
+-- Estructura de tabla para la tabla `notificacion_usuarios`
 --
 
-CREATE TABLE `Notificacion_Usuarios` (
+CREATE TABLE `notificacion_usuarios` (
+  `id` int(11) NOT NULL,
   `notificacion_id` int(11) NOT NULL,
   `receptor_id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `notificacion_usuarios`
+--
+
+INSERT INTO `notificacion_usuarios` (`id`, `notificacion_id`, `receptor_id`, `createdAt`, `updatedAt`) VALUES
+(1, 5, 2, '2023-11-27 18:41:12', '2023-11-27 18:41:12'),
+(2, 6, 2, '2023-11-27 18:41:41', '2023-11-27 18:41:41');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Novedads`
+-- Estructura de tabla para la tabla `novedads`
 --
 
-CREATE TABLE `Novedads` (
+CREATE TABLE `novedads` (
   `id` int(11) NOT NULL,
   `descripcion_novedad` varchar(255) NOT NULL,
   `nombre_novedad` varchar(255) NOT NULL,
@@ -306,10 +383,10 @@ CREATE TABLE `Novedads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `Novedads`
+-- Volcado de datos para la tabla `novedads`
 --
 
-INSERT INTO `Novedads` (`id`, `descripcion_novedad`, `nombre_novedad`, `instructor_fk`, `aprendiz_fk`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `novedads` (`id`, `descripcion_novedad`, `nombre_novedad`, `instructor_fk`, `aprendiz_fk`, `createdAt`, `updatedAt`) VALUES
 (1, 'joven con problemas de sexualidad', ' dejarse tocar sus partes nobles', 3, 1, '2023-10-19 19:09:21', '2023-10-19 19:09:21'),
 (2, 'descripccion de novedad', 'novedad', 3, 13, '2023-11-16 20:09:37', '2023-11-16 20:09:37'),
 (3, 'fffff', 'fffff', 3, 54, '2023-11-19 16:41:39', '2023-11-19 16:41:39');
@@ -472,18 +549,18 @@ INSERT INTO `roles_permisos` (`id`, `rol_id`, `permisos_id`, `createdAt`, `updat
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `SequelizeMeta`
+-- Estructura de tabla para la tabla `sequelizemeta`
 --
 
-CREATE TABLE `SequelizeMeta` (
+CREATE TABLE `sequelizemeta` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `SequelizeMeta`
+-- Volcado de datos para la tabla `sequelizemeta`
 --
 
-INSERT INTO `SequelizeMeta` (`name`) VALUES
+INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20230907150132-create-permisos.js'),
 ('20230907150740-create-roles.js'),
 ('20230907150754-create-sessions.js'),
@@ -503,7 +580,8 @@ INSERT INTO `SequelizeMeta` (`name`) VALUES
 ('20231107171111-agregar-columna-evidencia-comite.js'),
 ('20231113020843-agregar-foranea-comite-a-aprendices-implicados.js'),
 ('20231118212720-create-aprendices.js'),
-('20231119204320-addFichaIdToAprendices.js');
+('20231119204320-addFichaIdToAprendices.js'),
+('20231122230317-tipoDocApr_implidos.js');
 
 -- --------------------------------------------------------
 
@@ -556,7 +634,7 @@ INSERT INTO `usuarios` (`id`, `nombre_completo`, `email`, `contrasenia`, `rol_id
 (49, 'aprendiz Tres', 'aprendizTres@gmail.com', '12345', 3, 'CC', '33', 'Aprendiz', '34320003', 'CAD', '2023-11-18 20:17:56'),
 (50, 'aprendiz Cuatro', 'aprendizCuatro@gmail.com', '12345', 3, 'CC', '34', 'Aprendiz', '34320004', 'CAD', '2023-11-18 20:17:56'),
 (51, 'aprendiz Cinco', 'aprendizCinco@gmail.com', '12345', 3, 'CC', '35', 'Aprendiz', '34320005', 'CAD', '2023-11-18 20:17:56'),
-(52, 'aprendiz Seis', 'aprendizSeis@gmail.com', '12345', 3, 'CC', '36', 'Aprendiz', '34320006', 'CAD', '2023-11-18 20:17:56'),
+(52, 'aprendiz Seis', 'aprendizSeis@gmail.com', '12345', 1, 'CC', '36', 'Aprendiz', '34320006', 'CAD', '2023-11-18 20:17:56'),
 (53, 'aprendiz Siete', 'aprendizSiete@gmail.com', '12345', 3, 'CC', '37', 'Aprendiz', '34320007', 'CAD', '2023-11-18 20:17:56'),
 (54, 'aprendiz Ocho', 'aprendizOcho@gmail.com', '12345', 3, 'CC', '38', 'Aprendiz', '34320008', 'CAD', '2023-11-18 20:17:56'),
 (55, 'aprendiz Nueve', 'aprendizNueve@gmail.com', '12345', 3, 'CC', '39', 'Aprendiz', '34320009', 'CAD', '2023-11-18 20:17:56'),
@@ -616,23 +694,24 @@ ALTER TABLE `normas_infligidas`
   ADD KEY `art_id` (`art_id`);
 
 --
--- Indices de la tabla `Notificacions`
+-- Indices de la tabla `notificacions`
 --
-ALTER TABLE `Notificacions`
+ALTER TABLE `notificacions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `notificacions_remitente_fk` (`remitente_fk`);
 
 --
--- Indices de la tabla `Notificacion_Usuarios`
+-- Indices de la tabla `notificacion_usuarios`
 --
-ALTER TABLE `Notificacion_Usuarios`
+ALTER TABLE `notificacion_usuarios`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `notificacion__usuarios_notificacion_id` (`notificacion_id`),
   ADD KEY `notificacion__usuarios_receptor_id` (`receptor_id`);
 
 --
--- Indices de la tabla `Novedads`
+-- Indices de la tabla `novedads`
 --
-ALTER TABLE `Novedads`
+ALTER TABLE `novedads`
   ADD PRIMARY KEY (`id`),
   ADD KEY `novedads_instructor_fk` (`instructor_fk`),
   ADD KEY `novedads_aprendiz_fk` (`aprendiz_fk`);
@@ -665,9 +744,9 @@ ALTER TABLE `roles_permisos`
   ADD KEY `permisos_id` (`permisos_id`);
 
 --
--- Indices de la tabla `SequelizeMeta`
+-- Indices de la tabla `sequelizemeta`
 --
-ALTER TABLE `SequelizeMeta`
+ALTER TABLE `sequelizemeta`
   ADD PRIMARY KEY (`name`),
   ADD UNIQUE KEY `name` (`name`);
 
@@ -701,13 +780,13 @@ ALTER TABLE `aprendices`
 -- AUTO_INCREMENT de la tabla `aprendices_implicados`
 --
 ALTER TABLE `aprendices_implicados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de la tabla `comites`
 --
 ALTER TABLE `comites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `fichas`
@@ -722,15 +801,21 @@ ALTER TABLE `normas_infligidas`
   MODIFY `nor_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Notificacions`
+-- AUTO_INCREMENT de la tabla `notificacions`
 --
-ALTER TABLE `Notificacions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `notificacions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `Novedads`
+-- AUTO_INCREMENT de la tabla `notificacion_usuarios`
 --
-ALTER TABLE `Novedads`
+ALTER TABLE `notificacion_usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `novedads`
+--
+ALTER TABLE `novedads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -811,22 +896,22 @@ ALTER TABLE `normas_infligidas`
   ADD CONSTRAINT `normas_infligidas_ibfk_1` FOREIGN KEY (`art_id`) REFERENCES `articulos` (`art_id`);
 
 --
--- Filtros para la tabla `Notificacions`
+-- Filtros para la tabla `notificacions`
 --
-ALTER TABLE `Notificacions`
+ALTER TABLE `notificacions`
   ADD CONSTRAINT `Notificacions_ibfk_1` FOREIGN KEY (`remitente_fk`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `Notificacion_Usuarios`
+-- Filtros para la tabla `notificacion_usuarios`
 --
-ALTER TABLE `Notificacion_Usuarios`
-  ADD CONSTRAINT `Notificacion_Usuarios_ibfk_1` FOREIGN KEY (`notificacion_id`) REFERENCES `Notificacions` (`id`),
+ALTER TABLE `notificacion_usuarios`
+  ADD CONSTRAINT `Notificacion_Usuarios_ibfk_1` FOREIGN KEY (`notificacion_id`) REFERENCES `notificacions` (`id`),
   ADD CONSTRAINT `Notificacion_Usuarios_ibfk_2` FOREIGN KEY (`receptor_id`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `Novedads`
+-- Filtros para la tabla `novedads`
 --
-ALTER TABLE `Novedads`
+ALTER TABLE `novedads`
   ADD CONSTRAINT `Novedads_ibfk_1` FOREIGN KEY (`instructor_fk`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `Novedads_ibfk_2` FOREIGN KEY (`aprendiz_fk`) REFERENCES `usuarios` (`id`);
 

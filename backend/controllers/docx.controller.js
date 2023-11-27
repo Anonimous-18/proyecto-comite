@@ -67,7 +67,7 @@ const actaCasos = async (req, res, next) => {
   const idComite = req.body.idComite;
   let docuImpli = 0;
   try {
-    const bucarAprediz = async (documento = 0, model = "aprendices") => {
+    const bucarAprediz = async (documento = 0, model = "aprendices", id=null) => {
       const result =
         model === "aprendices"
           ? await aprendices.findOne({
@@ -77,7 +77,9 @@ const actaCasos = async (req, res, next) => {
           ? await usuarios.findOne({
               where: { documento: documento },
             })
-          : null;
+          : await usuarios.findOne({
+            where: { id },
+          });
 
       if (result && result.length !== 0) {
         return result;
@@ -139,12 +141,14 @@ const actaCasos = async (req, res, next) => {
 
     const implicados = await buscarDatos(idComite);
     const fichaActa = await buscarFicha(docuImpli);
+    const gestorFicha = await bucarAprediz(0,"",fichaActa.instructor_id );
+    const InstructoresCita = await bucarAprediz(0,"",implicados[0].comite.instructor_fk);
     let datosBd = {};
 
     datosBd.programaNom = fichaActa.programa;
     datosBd.ficha = fichaActa.codigo;
-    datosBd.gestorFicha = fichaActa.instructor_id;
-    datosBd.InstructoresCita = implicados[0].comite.instructor_fk;
+    datosBd.gestorFicha = gestorFicha.nombre_completo;
+    datosBd.InstructoresCita = InstructoresCita.nombre_completo;
 
     req.datosBd = datosBd;
     req.implicados = implicados;
