@@ -13,6 +13,10 @@ router
     notificacionController.getNotificacionesUsuarios
   )
   .get(
+    "/api/notificaciones-usuario/:id",
+    notificacionController.getNotificacionesByUser
+  )
+  .get(
     "/api/notificaciones-usuarios/:id",
     notificacionController.getNotificacionUsuarioById
   )

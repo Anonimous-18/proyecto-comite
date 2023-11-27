@@ -64,6 +64,37 @@ const getNotificaciones = async (req, res) => {
   }
 };
 
+const getNotificacionesByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Notificacion_Usuario.findAll({
+      where: { receptor_id: id },
+      include: [
+        {
+          model: Notificacion,
+          as: "notificacion",
+        },
+        {
+          model: usuarios,
+          as: "receptor",
+        },
+      ],
+    });
+
+    if (result.length !== 0) {
+      return res.status(200).json(result);
+    }
+    return res
+      .status(404)
+      .json({ message: "No notificaciones para ese usuario." });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 const getNotificacionById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -165,6 +196,7 @@ module.exports = {
   deleteNotificacion,
   createNotificacion,
   getNotificacionById,
+  getNotificacionesByUser,
   getNotificacionesUsuarios,
   deleteNotificacionUsuario,
   getNotificacionUsuarioById,
