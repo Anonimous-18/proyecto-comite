@@ -73,7 +73,6 @@ const getAntecedenteForAprendiz = async (req, res) => {
       const comites_fk = await aprendices_implicados.findAll({
         where: { documento },
       });
-      console.log(comites_fk)
       
       const comitesIds = comites_fk.map(
         (comite_fk) => comite_fk.dataValues.comite_fk

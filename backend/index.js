@@ -6,6 +6,7 @@ const { Server: SocketServer } = require("socket.io");
 const config = require("./config.js");
 
 const adminRoutes = require("./routes/admin.routes.js");
+const gestorRoutes = require("./routes/gestor.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
 const rolesPermisos = require("./routes/roles_permisos.routes.js");
 const usuariosRoutes = require("./routes/usuario.routes.js");
@@ -15,7 +16,6 @@ const instructorRoutes = require("./routes/instructor.routes.js");
 const reglamentoRoutes = require("./routes/reglamento.routes.js");
 const notificacionRoutes = require("./routes/notificacion.routes.js");
 const inicio_sesionRoutes = require("./routes/inicio_sesion.routes.js");
-const gestorRoutes = require("./routes/gestor.routes.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -27,10 +27,10 @@ const io = new SocketServer(server, {
 });
 
 app.use(
-  // cors({
-  //   origin: [config.ORIGEN, "http://localhost:5173"],
-  // })
-  cors()
+  cors({
+    origin: [config.ORIGEN, "http://localhost:5173"],
+  })
+  // cors()
 );
 
 app.use(express.json());
