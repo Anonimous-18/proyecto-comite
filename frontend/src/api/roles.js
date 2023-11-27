@@ -85,8 +85,11 @@ export const getRolByIdRequest = async (token, id) => {
     });
     if (res) {
       return res.data;
+    } else {
+      return null;
     }
   } catch (error) {
     //console.log("Error al obtener los roles detalles: ", error.message);
+    return null;
   }
 };
