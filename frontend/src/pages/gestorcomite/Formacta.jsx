@@ -202,15 +202,12 @@ export const FormActa = () => {
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                       defaultValue={implicado.fcComite}
                     />
-                    <textarea
+                    <input
                       {...register(`descripccion${implicado.index}`)}
-                      name=""
-                      id=""
-                      rows="2"
                       defaultValue={implicado.descripcion}
                       style={textAreaStyle}
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    ></textarea>
+                    />
                   </div>
                   <div className="flex-none pt-2.5 pr-2.5 pl-1"></div>
                 </div>
@@ -226,13 +223,13 @@ export const FormActa = () => {
             </div>
             <div className="flex justify-center"></div>
             <div className="flex justify-center">
-              <textarea
+              <input
                 {...register(`objtivoRenion`)}
                 name=""
                 id=""
                 rows="2"
                 className="text-black placeholder-gray-600 px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 w-[90%] mx-auto"
-              ></textarea>
+              />
             </div>
             <br />
             <br />
@@ -296,14 +293,11 @@ export const FormActa = () => {
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                       placeholder={casoOption ? "Nombre aprendiz" : "Nombre"}
                     />
-                    <textarea
+                    <input
                       {...register(`descripccionCaso${div}`)}
-                      name=""
-                      id=""
-                      rows="4"
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                       placeholder="Opinion o descripcion de caso"
-                    ></textarea>
+                    />
                   </div>
                 ))}
               </div>
@@ -311,18 +305,10 @@ export const FormActa = () => {
               <div className="flex flex-row-reverse p-3">
                 <div className="flex-initial pl-3">
                   <button
-                    type="button"
+                    type="submit"
                     className="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out"
                   >
                     <span className="pl-2 mx-1 ">Crear acta</span>
-                  </button>
-                </div>
-                <div className="flex-initial">
-                  <button
-                    type="button"
-                    className="flex items-center px-5 py-2.5 font-medium tracking-wide text-black capitalize rounded-md  hover:bg-red-200 hover:fill-current hover:text-red-600  focus:outline-none  transition duration-300 transform active:scale-95 ease-in-out"
-                  >
-                    <span className="pl-2 mx-1">Delete</span>
                   </button>
                 </div>
               </div>
