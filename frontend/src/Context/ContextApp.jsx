@@ -337,6 +337,7 @@ export const ContextAppProvider = ({ children }) => {
       return res;
     } catch (error) {
       console.log("Error al filtrar el rol por id: ", error.message);
+      return null;
     }
   };
 
@@ -482,6 +483,17 @@ export const ContextAppProvider = ({ children }) => {
   const getAntecedentes = async (id) => {
     try {
       const response = await usuariosApi.getAntecedentesRequest(id);
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getNotificacionesByUser = async (id) => {
+    try {
+      const response = await notificacionesApi.getNotificacionByUserRequest(id);
       if (response) return response.data;
       return null;
     } catch (error) {
@@ -640,6 +652,7 @@ export const ContextAppProvider = ({ children }) => {
         createFicha,
         updateFicha,
         deleteFicha,
+        getNotificacionesByUser,
       }}
     >
       {children}

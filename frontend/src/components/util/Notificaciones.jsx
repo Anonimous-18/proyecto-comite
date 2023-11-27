@@ -1,9 +1,53 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { BiSolidUser } from "react-icons/bi";
 
+import hooks from "../../hooks/useFunction";
 import DefaultLayout from "../../Layout/DefaultLayout";
+import { useContextApp } from "../../Context/ContextApp";
 
 export const Notificaciones = () => {
+  const contextApi = useContextApp();
+  const [noti, setNoti] = useState(null);
+
+  const token = JSON.parse(localStorage.getItem("newToken"));
+  const tokenDecoded = hooks.useDecodedToken(token.token);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+
+    const getRolDetails = async () => {
+      const res = await contextApi.getRolesById(
+        token.token,
+        tokenDecoded.user.rol_id
+      );
+
+      if (res && res !== null) {
+        /**-----------------------------------------------
+         * | Validamos que sea un Administrador (Gestor)
+         * | Y consultamos sus notificaciones
+         * -----------------------------------------------*/
+
+        if (res.nombre && res.nombre === "Administrador") {
+          contextApi.socket.emit("gestorConectado");
+          const notificaciones = await contextApi.getNotificacionesByUser(
+            tokenDecoded.user.id
+          );
+
+          if (!noti && notificaciones) {
+            setNoti(notificaciones);
+          }
+        }
+      }
+    };
+
+    getRolDetails();
+
+    return () => {
+      contextApi.socket.off("gestorConectado");
+    };
+  }, [contextApi, tokenDecoded, token, noti]);
+
   return (
     <DefaultLayout>
       <main className="max-w-full h-full flex flex-col items-center justify-center">
