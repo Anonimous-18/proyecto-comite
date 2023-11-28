@@ -1,8 +1,9 @@
 import { SlMenu } from "react-icons/sl";
-import { GiCancel } from "react-icons/gi";
+import { GiCancel, GiGears } from "react-icons/gi";
 import { FaStreetView } from "react-icons/fa";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
+import { AiOutlineContacts } from "react-icons/ai";
 import { Fragment, useEffect, useState } from "react";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { BsJournalBookmarkFill } from "react-icons/bs";
@@ -13,14 +14,17 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import hooks from "../hooks/useFunction";
+import { useContextApp } from "../Context/ContextApp";
 
 export const NavBar = () => {
   const [userName, setUserName] = useState(null);
+  const [user, setUser] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const { decode } = useContextApp();
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("newToken"));
+    const token = decode(sessionStorage.getItem("Datos"));
     const handleScroll = () => {
       setIsScrolled(true);
       if (window.scrollY === 0) {
@@ -31,8 +35,9 @@ export const NavBar = () => {
     window.addEventListener("scroll", handleScroll);
 
     if (token) {
-      const decodedToken = hooks.useDecodedToken(token.token);
+      const decodedToken = hooks.useDecodedToken(token);
       setUserName(decodedToken.user.nombre_completo);
+      setUser(decodedToken.user);
     }
   }, []);
 
@@ -78,14 +83,14 @@ export const NavBar = () => {
           <div className="ml-1">
             <Link
               to={`${
-                localStorage.getItem("instructor")
+                user && user.rol_id === 2
                   ? "/home-instructor"
-                  : localStorage.getItem("aprendiz")
+                  : user && user.rol_id === 3
                   ? "/home-aprendiz"
                   : localStorage.getItem("invitado")
                   ? "/home-invitado"
-                  : localStorage.getItem("admin")
-                  ? "/home-admin"
+                  : user && user.rol_id === 1
+                  ? "/home-gestor"
                   : "/"
               }`}
             >
@@ -131,11 +136,11 @@ export const NavBar = () => {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-64 transform px-6 ">
-                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
-                        <div className="relative grid grid-cols-1 gap-4 bg-white p-7 ">
-                          {localStorage.getItem("instructor") ||
-                          localStorage.getItem("admin") ? (
+                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-64 sm:-translate-x-[500px] transform px-6 ">
+                      <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
+                        <div className="relative grid grid-cols-1 gap-4 bg-white p-7 overflow-y-auto max-h-[400px] sm:max-h-[500px]">
+                          {(user && user.rol_id === 2) ||
+                          (user && user.rol_id === 1) ? (
                             <NavLink
                               to="/antecedentes"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
@@ -157,11 +162,11 @@ export const NavBar = () => {
                           )}
                           <NavLink
                             to={`/notificaciones/${
-                              localStorage.getItem("admin")
+                              user && user.rol_id === 1
                                 ? "admin"
-                                : localStorage.getItem("instructor")
+                                : user && user.rol_id === 2
                                 ? "instructor"
-                                : localStorage.getItem("aprendiz")
+                                : user && user.rol_id === 3
                                 ? "aprendiz"
                                 : "sin usuario"
                             }`}
@@ -213,7 +218,7 @@ export const NavBar = () => {
                           </NavLink>
                           <NavLink
                             to="/reglamento"
-                            className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                            className="text-lg inline-flex sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
                               <BsJournalBookmarkFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
@@ -227,8 +232,8 @@ export const NavBar = () => {
                               </p>
                             </div>
                           </NavLink>
-                          {localStorage.getItem("instructor") ||
-                          localStorage.getItem("admin") ? (
+                          {(user && user.rol_id === 2) ||
+                          (user && user.rol_id === 1) ? (
                             <NavLink
                               to="/novedades-instructor"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
@@ -261,28 +266,51 @@ export const NavBar = () => {
                               </p>
                             </div>
                           </div>
-                          {localStorage.getItem("admin") ? (
-                            <NavLink
-                              to="/home-admin"
-                              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-                            >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                                <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
-                              </div>
-                              <div className="ml-4">
-                                <p className="text-sm font-medium text-gray-900">
-                                  Roles
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                  Roles solo admin
-                                </p>
-                              </div>
-                            </NavLink>
+                          {user && user.rol_id === 1 ? (
+                            <>
+                              <NavLink
+                                to="/roles"
+                                className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                              >
+                                <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                                  <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                                </div>
+                                <div className="ml-4">
+                                  <p className="text-sm font-medium text-gray-900">
+                                    Roles
+                                  </p>
+                                  <p className="text-sm text-gray-500">
+                                    Roles solo admin
+                                  </p>
+                                </div>
+                              </NavLink>
+                              <NavLink
+                                to="/home-gestor"
+                                className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                              >
+                                <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                                  <div>
+                                    <AiOutlineContacts className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                                  </div>
+                                  <div>
+                                    <GiGears  className="max-w-xs text-3xl text-blue-800 flex flex-col items-center justify-center" />
+                                  </div>
+                                </div>
+                                <div className="ml-4">
+                                  <p className="text-sm font-medium text-gray-900">
+                                    Comites
+                                  </p>
+                                  <p className="text-sm text-gray-500">
+                                    procesos de comites
+                                  </p>
+                                </div>
+                              </NavLink>
+                            </>
                           ) : (
                             <></>
                           )}
                         </div>
-                        <div className="bg-gray-50 p-4">
+                        <div className="bg-gray-50 p-4 flex justify-center">
                           <button
                             onClick={() => handleClick()}
                             className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-800 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"

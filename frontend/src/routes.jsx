@@ -73,7 +73,7 @@ const Router = () => {
   let usuarioRoles = usuario;
 
   const rutaOpcion = {
-    1: "/home-admin",
+    1: "/home-gestor",
     2: "/home-instructor",
     3: "/home-invitado",
   };
@@ -124,13 +124,19 @@ const Router = () => {
               />
             }
           >
-            <Route path="/home-admin" element={<Roles />} />
+            <Route path="/roles" element={<Roles />} />
             <Route path="form-roles" element={<FormularioRoles />} />
             <Route
               path="/form-roles/:params/:id"
               element={<FormularioRoles />}
             />
             <Route path="/see-roles/:id" element={<RolesDetails />} />
+
+            <Route path="/home-gestor" element={<HomeGestor />} />
+            <Route path="/fichas" element={<FichaList />} />
+            <Route path="/acta" element={<FormActa />} />
+            <Route path="/crear-ficha" element={<CrearFicha />} />
+            <Route path="/actualizar-ficha/:id" element={<ActualizarFicha />} />
           </Route>
 
           {/* Rutas de Aprendiz */}
@@ -172,11 +178,6 @@ const Router = () => {
           <Route path="/infocomitesub" element={<Infocomitesub />} />
 
           {/* Rutas de Gestor */}
-          <Route path="/home-gestor" element={<HomeGestor />} />
-          <Route path="/fichas" element={<FichaList />} />
-          <Route path="/acta" element={<FormActa />} />
-          <Route path="/crear-ficha" element={<CrearFicha />} />
-          <Route path="/actualizar-ficha/:id" element={<ActualizarFicha />} />
 
           <Route path="*" element={<Navigate to={`${ruta}`} replace />} />
         </Routes>
