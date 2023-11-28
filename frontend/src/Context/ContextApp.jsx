@@ -141,7 +141,7 @@ export const ContextAppProvider = ({ children }) => {
         const admin = await filterRol(response.data.token, "Administrador");
         if (admin) {
           localStorage.setItem("admin", admin);
-          navigate(`/home-admin`);
+          navigate(`/home-gestor`);
         } else if (invitado) {
           localStorage.setItem("invitado", invitado);
           navigate(`/home-invitado`);
