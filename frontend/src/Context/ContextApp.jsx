@@ -141,7 +141,7 @@ export const ContextAppProvider = ({ children }) => {
         const admin = await filterRol(response.data.token, "Administrador");
         if (admin) {
           localStorage.setItem("admin", admin);
-          navigate(`/home-admin`);
+          navigate(`/home-gestor`);
         } else if (invitado) {
           localStorage.setItem("invitado", invitado);
           navigate(`/home-invitado`);
@@ -502,6 +502,19 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getDetallesComiteNotificadoRequest = async (fecha) => {
+    try {
+      const response = await notificacionesApi.getDetallesComiteNotificado(
+        fecha
+      );
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   const getDetailsFicha = async (id) => {
     try {
       const response = await fichaApi.getDetailsRequest(id);
@@ -599,6 +612,17 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const deleteNotificacion = async (id) => {
+    try {
+      const response = await notificacionesApi.deleteNotificacionRequest(id);
+
+      if (response) return response.status;
+      else return null;
+    } catch (error) {
+      return error.status;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -653,6 +677,8 @@ export const ContextAppProvider = ({ children }) => {
         updateFicha,
         deleteFicha,
         getNotificacionesByUser,
+        getDetallesComiteNotificadoRequest,
+        deleteNotificacion,
       }}
     >
       {children}

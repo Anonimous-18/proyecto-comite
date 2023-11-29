@@ -66,14 +66,14 @@ const getAntecedenteForAprendiz = async (req, res) => {
 
     if (aprendiz) {
       const documento = aprendiz.dataValues.documento;
-      
+
       /**------------------------------------------------
        * | Informacion de Comites para un aprendiz
        * ------------------------------------------------*/
       const comites_fk = await aprendices_implicados.findAll({
         where: { documento },
       });
-      
+
       const comitesIds = comites_fk.map(
         (comite_fk) => comite_fk.dataValues.comite_fk
       );

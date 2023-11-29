@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BiSolidUser } from "react-icons/bi";
 
+import { Spinner } from "./Spinner";
 import hooks from "../../hooks/useFunction";
 import DefaultLayout from "../../Layout/DefaultLayout";
 import { useContextApp } from "../../Context/ContextApp";
 
 export const Notificaciones = () => {
+  const navigate = useNavigate();
   const contextApi = useContextApp();
   const [noti, setNoti] = useState(null);
 
@@ -48,45 +49,79 @@ export const Notificaciones = () => {
     };
   }, [contextApi, tokenDecoded, token, noti]);
 
+  const handleClick = async (fecha) => {
+    const response = await contextApi.getDetallesComiteNotificadoRequest(fecha);
+
+    if (response && response.id) {
+      navigate(`/informacion-comite/${response.id}`);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    const response = await contextApi.deleteNotificacion(id);
+console.log(response)
+    if (response && response === 200) {
+      // navigate(0);
+    }
+  };
+
   return (
     <DefaultLayout>
-      <main className="max-w-full h-full flex flex-col items-center justify-center">
-        <article className="w-full h-full flex flex-row items-center justify-start">
-          <h1 className="text-white text-center p-4 cursor-pointer bg-black rounded-bl-2xl">
-            RECIBIDOS
-          </h1>
-        </article>
-        <figure className="bg-transparent border border-black shadow shadow-black rounded-l-xl rounded-tr-xl flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-col items-center justify-center w-full h-full">
-          <div className="rounded-xl bg-gray-200 flex flex-col items-center justify-center text-center text-black w-32 2xl:w-72 xl:w-72 lg:w-72 md:w-72 sm:w-44 h-full">
-            <BiSolidUser className="w-20 h-20 2xl:w-36 2xl:h-36 xl:w-36 xl:h-36 lg:w-36 lg:h-36 md:w-36 md:h-36 sm:w-24 sm:h-24" />
-            <h1>nombre</h1>
-          </div>
-
-          {/* <div className="h-40 w-4/5 relative overflow-x-auto"> */}
-          <div className="h-40 w-full relative overflow-x-auto">
-            <p className="text-base p-11 w-30 text-black ">Sin mensajes...</p>
-          </div>
-        </figure>
-        <div className="flex flex-row gap-3 items-start justify-start w-full h-16 mt-11">
-          <Link
-            to={`${
-              localStorage.getItem("instructor")
-                ? "/home-instructor"
-                : localStorage.getItem("aprendiz")
-                ? "/home-aprendiz"
-                : localStorage.getItem("invitado")
-                ? "/home-invitado"
-                : localStorage.getItem("admin")
-                ? "/home-admin"
-                : "/"
-            }`}
+      {noti && noti ? (
+        noti.map((notificacion) => (
+          <div
+            className="flex flex-col w-full p-8 bg-gray-800 shadow-md hover:shodow-lg rounded-2xl"
+            key={notificacion.id}
           >
-            <button className="relative inline-flex items-center rounded-md border border-transparent bg-blue-700 px-10 py-2 font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2">
-              Volver
+            <div className="flex items-center justify-between w-full">
+              <div className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row gap-4 w-full items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-16 h-16 rounded-2xl p-3 border border-gray-800 text-blue-400 bg-gray-900"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <div className="flex flex-col m-3 w-full ">
+                  <div className="font-bold leading-none text-gray-100 text-sm 2xl:text-lg xl:text-base">
+                    {"Asunto: " + notificacion.titulo}
+                  </div>
+                  <div className="text-gray-100 text-sm mt-1">
+                    {"Por " + notificacion.remitente.nombre_completo}
+                  </div>
+                  <p className="text-sm text-gray-500 leading-none mt-1">
+                    {notificacion.descripcion}
+                  </p>
+                  <div className="text-gray-100 text-sm mt-1">
+                    {"Enviado el " + notificacion.createdAt.replace(/T.*/, "")}
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => handleClick(notificacion.createdAt)}
+                className="cursor-pointer inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              >
+                Ver
+              </button>
+            </div>
+            <button
+              onClick={() => handleDelete(notificacion.id)}
+              className="cursor-pointer w-full text-center inline-flex items-center justify-center rounded-md border border-transparent bg-rose-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+            >
+              Eliminar
             </button>
-          </Link>
-        </div>
-      </main>
+          </div>
+        ))
+      ) : (
+        <Spinner />
+      )}
     </DefaultLayout>
   );
 };

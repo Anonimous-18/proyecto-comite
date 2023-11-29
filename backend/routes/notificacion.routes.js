@@ -17,6 +17,10 @@ router
     notificacionController.getNotificacionesByUser
   )
   .get(
+    "/api/detalles-comite/:fecha",
+    notificacionController.getDetallesDeComiteNotificado
+  )
+  .get(
     "/api/notificaciones-usuarios/:id",
     notificacionController.getNotificacionUsuarioById
   )
