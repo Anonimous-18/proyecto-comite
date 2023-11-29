@@ -14,6 +14,9 @@ const getNotificacionByUserRequest = async (id) =>
 const getNotificacionesRequest = async () =>
   await axios.get(`${API}/api/notificaciones`);
 
+const getDetallesComiteNotificado = async (fecha) =>
+  await axios.get(`${API}/api/detalles-comite/${fecha}`);
+
 const getNotificacionesUsuRequest = async () =>
   await axios.get(`${API}/api/notificaciones-usuarios`);
 
@@ -21,6 +24,7 @@ export default {
   getNotificacionesRequest,
   createNotificacionRequest,
   getNotificacionesUsuRequest,
-  getNotificacionByUserRequest,
   createNotificacionUsuRequest,
+  getNotificacionByUserRequest,
+  getDetallesComiteNotificado,
 };

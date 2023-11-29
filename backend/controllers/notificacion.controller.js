@@ -2,6 +2,7 @@ const {
   Notificacion,
   Notificacion_Usuario,
   usuarios,
+  comites,
   roles,
 } = require("../models");
 
@@ -64,6 +65,24 @@ const getNotificaciones = async (req, res) => {
   }
 };
 
+const getDetallesDeComiteNotificado = async (req, res) => {
+  try {
+    const { fecha } = req.params;
+
+    const result = await comites.findOne({ where: { createdAt: fecha }});
+
+    console.log(result)
+    if (result) {
+      return res.status(200).json(result);
+    }
+    return res.status(404).json({ message: "No hay un comite con esa fecha." });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 const getNotificacionesByUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -83,7 +102,20 @@ const getNotificacionesByUser = async (req, res) => {
     });
 
     if (result.length !== 0) {
-      return res.status(200).json(result);
+      const notificacionDetalles = result.map(async (notificacion) => {
+        const detalles = await Notificacion.findOne({
+          where: { id: notificacion.notificacion_id },
+          include: [{ model: usuarios, as: "remitente" }],
+        });
+
+        console.log(detalles.dataValues);
+
+        return detalles.dataValues;
+      });
+
+      const notificaciones = await Promise.all(notificacionDetalles);
+
+      return res.status(200).json(notificaciones);
     }
     return res
       .status(404)
@@ -200,4 +232,5 @@ module.exports = {
   getNotificacionesUsuarios,
   deleteNotificacionUsuario,
   getNotificacionUsuarioById,
+  getDetallesDeComiteNotificado,
 };

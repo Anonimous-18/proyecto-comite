@@ -502,6 +502,19 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const getDetallesComiteNotificadoRequest = async (fecha) => {
+    try {
+      const response = await notificacionesApi.getDetallesComiteNotificado(
+        fecha
+      );
+      if (response) return response.data;
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   const getDetailsFicha = async (id) => {
     try {
       const response = await fichaApi.getDetailsRequest(id);
@@ -653,6 +666,7 @@ export const ContextAppProvider = ({ children }) => {
         updateFicha,
         deleteFicha,
         getNotificacionesByUser,
+        getDetallesComiteNotificadoRequest,
       }}
     >
       {children}
