@@ -62,11 +62,11 @@ export const Notificaciones = () => {
       {noti && noti ? (
         noti.map((notificacion) => (
           <div
-            className="flex flex-col p-8 bg-gray-800 shadow-md hover:shodow-lg rounded-2xl"
+            className="flex flex-col w-full p-8 bg-gray-800 shadow-md hover:shodow-lg rounded-2xl"
             key={notificacion.id}
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
+            <div className="flex items-center justify-between w-full">
+              <div className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row gap-4 w-full items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-16 h-16 rounded-2xl p-3 border border-gray-800 text-blue-400 bg-gray-900"
@@ -81,8 +81,8 @@ export const Notificaciones = () => {
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-                <div className="flex flex-col ml-3">
-                  <div className="font-bold leading-none text-gray-100">
+                <div className="flex flex-col m-3 w-full ">
+                  <div className="font-bold leading-none text-gray-100 text-sm 2xl:text-lg xl:text-base">
                     {"Asunto: " + notificacion.titulo}
                   </div>
                   <div className="text-gray-100 text-sm mt-1">
@@ -98,11 +98,17 @@ export const Notificaciones = () => {
               </div>
               <button
                 onClick={() => handleClick(notificacion.createdAt)}
-                className="flex-no-shrink bg-red-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full"
+                className="cursor-pointer inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
               >
                 Ver
               </button>
             </div>
+            <button
+              onClick={() => handleClick(notificacion.createdAt)}
+              className="cursor-pointer w-full text-center inline-flex items-center justify-center rounded-md border border-transparent bg-rose-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+            >
+              Eliminar
+            </button>
           </div>
         ))
       ) : (
