@@ -75,14 +75,40 @@ export const FormActa = () => {
   const onSubmit = handleSubmit((data) => {
     //eliminar datos que no se encuentran en el array de divs
     Object.keys(data).map((key) => {
-      const keysReunion = key.slice(-2, -1);
-      if(keysReunion === '_'){
-        const numeroDiv = key.slice(-1);
-        !divs.includes(numeroDiv) && delete data[`${key}`]
+      const guion = key.slice(-2, -1);
+      if (guion === "_") {
+        const numeroDivString = key.slice(-1);
+        const numeroDiv = parseInt(numeroDivString);
+        !divs.includes(numeroDiv)
+          ? delete data[`${key}`]
+          : null
       }
     });
-    console.log(divs);
-    console.log(data);
+    let desrrolloReunion = [];
+
+    let i = 0;
+    while (data) {
+      if (divs[i]){
+        let reunion = {}
+        Object.keys(data).map((key) => {
+          const guion = key.slice(-2, -1);
+          if (guion === "_") {
+            const numeroDivString = key.slice(-1);
+            const numeroDiv = parseInt(numeroDivString);
+            if ( numeroDiv === i ) {
+              reunion[`${key}`] = data[`${key}`];
+              delete data[`${key}`];
+            }
+          }
+        })
+        desrrolloReunion.push(reunion);
+      }else if(i === divs.length){
+        break;
+      }
+      i++;
+    }
+   data.desrrolloReunion = desrrolloReunion;
+   console.log(data);
   });
 
   return (
