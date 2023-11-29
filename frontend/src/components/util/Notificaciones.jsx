@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BiSolidUser } from "react-icons/bi";
 
+import { Spinner } from "./Spinner";
 import hooks from "../../hooks/useFunction";
 import DefaultLayout from "../../Layout/DefaultLayout";
 import { useContextApp } from "../../Context/ContextApp";
 
 export const Notificaciones = () => {
+  const navigate = useNavigate();
   const contextApi = useContextApp();
   const [noti, setNoti] = useState(null);
 
@@ -48,6 +49,14 @@ export const Notificaciones = () => {
     };
   }, [contextApi, tokenDecoded, token, noti]);
 
+  const handleClick = async (fecha) => {
+    const response = await contextApi.getDetallesComiteNotificadoRequest(fecha);
+
+    if (response && response.id) {
+      navigate(`/informacion-comite/${response.id}`);
+    }
+  };
+
   return (
     <DefaultLayout>
       {noti && noti ? (
@@ -73,23 +82,31 @@ export const Notificaciones = () => {
                   ></path>
                 </svg>
                 <div className="flex flex-col ml-3">
-                  <div className="font-medium leading-none text-gray-100">
-                    {notificacion.notificacion.titulo}
+                  <div className="font-bold leading-none text-gray-100">
+                    {"Asunto: " + notificacion.titulo}
                   </div>
-                  <small className="text-gray-100 m-1">Nombre del remisor</small>
+                  <div className="text-gray-100 text-sm mt-1">
+                    {"Por " + notificacion.remitente.nombre_completo}
+                  </div>
                   <p className="text-sm text-gray-500 leading-none mt-1">
-                    By deleting your account you will lose your all data
+                    {notificacion.descripcion}
                   </p>
+                  <div className="text-gray-100 text-sm mt-1">
+                    {"Enviado el " + notificacion.createdAt.replace(/T.*/, "")}
+                  </div>
                 </div>
               </div>
-              <button className="flex-no-shrink bg-red-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full">
-                Delete
+              <button
+                onClick={() => handleClick(notificacion.createdAt)}
+                className="flex-no-shrink bg-red-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full"
+              >
+                Ver
               </button>
             </div>
           </div>
         ))
       ) : (
-        <div>Spinner</div>
+        <Spinner />
       )}
     </DefaultLayout>
   );
