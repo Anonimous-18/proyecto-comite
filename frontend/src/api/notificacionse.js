@@ -11,6 +11,9 @@ const createNotificacionUsuRequest = async (data) =>
 const getNotificacionByUserRequest = async (id) =>
   await axios.get(`${API}/api/notificaciones-usuario/${id}`);
 
+const deleteNotificacionRequest = async (id) =>
+  await axios.delete(`${API}/api/notificaciones/${id}`);
+
 const getNotificacionesRequest = async () =>
   await axios.get(`${API}/api/notificaciones`);
 
@@ -22,9 +25,10 @@ const getNotificacionesUsuRequest = async () =>
 
 export default {
   getNotificacionesRequest,
+  deleteNotificacionRequest,
   createNotificacionRequest,
   getNotificacionesUsuRequest,
+  getDetallesComiteNotificado,
   createNotificacionUsuRequest,
   getNotificacionByUserRequest,
-  getDetallesComiteNotificado,
 };

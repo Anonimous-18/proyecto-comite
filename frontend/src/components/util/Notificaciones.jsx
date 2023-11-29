@@ -57,6 +57,14 @@ export const Notificaciones = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    const response = await contextApi.deleteNotificacion(id);
+console.log(response)
+    if (response && response === 200) {
+      // navigate(0);
+    }
+  };
+
   return (
     <DefaultLayout>
       {noti && noti ? (
@@ -104,7 +112,7 @@ export const Notificaciones = () => {
               </button>
             </div>
             <button
-              onClick={() => handleClick(notificacion.createdAt)}
+              onClick={() => handleDelete(notificacion.id)}
               className="cursor-pointer w-full text-center inline-flex items-center justify-center rounded-md border border-transparent bg-rose-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
               Eliminar

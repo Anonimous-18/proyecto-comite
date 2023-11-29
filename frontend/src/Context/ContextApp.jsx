@@ -612,6 +612,17 @@ export const ContextAppProvider = ({ children }) => {
     }
   };
 
+  const deleteNotificacion = async (id) => {
+    try {
+      const response = await notificacionesApi.deleteNotificacionRequest(id);
+
+      if (response) return response.status;
+      else return null;
+    } catch (error) {
+      return error.status;
+    }
+  };
+
   return (
     <ContextApp.Provider
       value={{
@@ -667,6 +678,7 @@ export const ContextAppProvider = ({ children }) => {
         deleteFicha,
         getNotificacionesByUser,
         getDetallesComiteNotificadoRequest,
+        deleteNotificacion,
       }}
     >
       {children}
