@@ -87,7 +87,7 @@ export const FormActa = () => {
     let desrrolloReunion = [];
 
     let i = 0;
-    while (true) {
+    while (data) {
       if (divs[i]){
         let reunion = {}
         Object.keys(data).map((key) => {
