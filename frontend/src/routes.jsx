@@ -62,7 +62,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 /**-----------------
  * | Gestor
  * -----------------*/
-import { Error404 } from "./components/util/erro404";
+// import { Error404 } from "./components/util/erro404";
 import { FormActa } from "./pages/gestorcomite/Formacta";
 import { CrearFicha } from "./components/util/CrearFicha";
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
