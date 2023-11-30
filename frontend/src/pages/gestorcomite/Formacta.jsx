@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useContextApp } from "../../Context/ContextApp";
 
@@ -10,6 +11,8 @@ export const FormActa = () => {
   const [divs, setDivs] = useState([null]);
   const [casoOption, setCasoOption] = useState(false);
   const [ocultar, setOcultar] = useState(false);
+  const [cont, setCont] = useState(0);
+  const { id } = useParams();
 
   useEffect(() => {
     const datosFormulario = async (id) => {
@@ -17,16 +20,20 @@ export const FormActa = () => {
       if (prueba && prueba.length !== 0) {
         setImplicados(prueba.data.implicados);
         setDatosBd(prueba.data.datosBd);
+
+        setDivs([...divs, divs.length]);
+        setDivs([...divs, divs.length]);
       }
     };
-    datosFormulario(48);
-  }, [contextApp, divs]);
+    datosFormulario(id);
+  }, [contextApp, id]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate()
   // console.log(errors);
   const handleClick = () => {
     setDivs([...divs, divs.length]);
@@ -56,6 +63,9 @@ export const FormActa = () => {
   };
   const handleOcultar = () => {
     setOcultar(!ocultar);
+  };
+  const handleCont = () => {
+    setCont(cont + 1);
   };
 
   const onSubmit = handleSubmit((data) => {
@@ -92,8 +102,15 @@ export const FormActa = () => {
       i++;
     }
     data.desrrolloReunion = desrrolloReunion;
-    console.log(data);
-    contextApp.crearActa(data);
+    
+    if (cont > 0) {
+      console.log(data);
+      contextApp.crearActa(data);
+      contextApp.updateComite({
+        estado:"ejecucion"
+      },id);
+      navigate(-1);
+    }
   });
 
   return (
@@ -642,6 +659,7 @@ export const FormActa = () => {
                 <div className="flex-initial pl-3">
                   <button
                     type="submit"
+                    onClick={handleCont}
                     className="inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
                   >
                     <span className="pl-2 mx-1 ">Crear acta</span>
