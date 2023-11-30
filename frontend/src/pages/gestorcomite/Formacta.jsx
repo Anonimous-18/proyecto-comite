@@ -14,13 +14,13 @@ export const FormActa = () => {
   useEffect(() => {
     const datosFormulario = async (id) => {
       const prueba = await contextApp.actaCasos({ idComite: id });
-      if (prueba && prueba.length !== null) {
+      if (prueba && prueba.length !== 0) {
         setImplicados(prueba.data.implicados);
         setDatosBd(prueba.data.datosBd);
       }
     };
     datosFormulario(48);
-  }, [contextApp,divs]);
+  }, [contextApp, divs]);
 
   const {
     register,
@@ -240,17 +240,22 @@ export const FormActa = () => {
                 </label>
                 <br />
                 <input
-                  {...register("programaNom",)}
+                  {...register("programaNom", {
+                    required: {
+                      value: true,
+                      message: "Este campo es requerido",
+                    },
+                  })}
                   placeholder="Programa"
                   className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto mr-1"
                   defaultValue={datosBd.programaNom}
                 />
                 <br />
                 {errors.programaNom && (
-                  <span className="text-red-500 text-sm">
-                    {errors.programaNom.message}
-                  </span>
-                )}
+                    <span className="text-red-500 text-sm">
+                      {errors.programaNom.message}
+                    </span>
+                  )}
               </div>
 
               <div>
@@ -262,7 +267,12 @@ export const FormActa = () => {
                 </label>
                 <br />
                 <input
-                  {...register("ficha")}
+                  {...register("ficha", {
+                    required: {
+                      value: true,
+                      message: "Este campo es requerido",
+                    },
+                  })}
                   placeholder="Ficha"
                   className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto"
                   defaultValue={datosBd.ficha}
@@ -286,7 +296,12 @@ export const FormActa = () => {
                 </label>
                 <br />
                 <input
-                  {...register("gestorFicha")}
+                  {...register("gestorFicha", {
+                    required: {
+                      value: true,
+                      message: "Este campo es requerido",
+                    },
+                  })}
                   placeholder="Gestor ficha"
                   className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto mr-1"
                   defaultValue={datosBd.gestorFicha}
@@ -308,7 +323,12 @@ export const FormActa = () => {
                 </label>
                 <br />
                 <input
-                  {...register("InstructoresCita")}
+                  {...register("InstructoresCita", {
+                    required: {
+                      value: true,
+                      message: "Este campo es requerido",
+                    },
+                  })}
                   placeholder="Instructor(es) que Cita(n)"
                   className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto"
                   defaultValue={datosBd.InstructoresCita}
