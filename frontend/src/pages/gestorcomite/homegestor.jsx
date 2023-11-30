@@ -6,13 +6,13 @@ import { useContextApp } from "../../Context/ContextApp";
 import { Modal } from "../../components/util/Modal";
 
 import { useEffect, useState } from "react";
+import { Spinner } from "../../components/util/Spinner";
 
 export const HomeGestor = () => {
   const contextApp = useContextApp();
   const [comites, setComites] = useState([]);
+  const [carga, setCarga] = useState(true);
   // const [filtrar, setFiltrar] = useState(null);
-
-  
 
   const [currentPage, setCurrentPage] = useState(1);
   const [comitesPerPage] = useState(9);
@@ -20,10 +20,10 @@ export const HomeGestor = () => {
   const indexOfFirstComite = indexOfLastComite - comitesPerPage;
   const currentComites = comites.slice(indexOfFirstComite, indexOfLastComite);
 
-  // const paginate = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  //   window.scroll(0, 50);
-  // };
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scroll(0, 0);
+  };
 
   useEffect(() => {
     window.scroll(0, 300);
@@ -34,16 +34,21 @@ export const HomeGestor = () => {
     getComites()
       .then((res) => {
         setComites(res);
+        setCarga(false);
       })
       .catch((err) => {
         console.log("error ", err);
       });
-  }, []);
+  }, [contextApp]);
   return (
     <DefaultLayout>
       <div className="max-w-full h-full flex flex-col items-center justify-center">
         <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center">
-          {comites && comites.length !== 0 ? (
+          {carga ? (
+            <>
+              <Spinner />
+            </>
+          ) : comites && comites.length !== 0 ? (
             <>
               {currentComites.map((comite, index) => (
                 <Carta
@@ -64,7 +69,27 @@ export const HomeGestor = () => {
           )}
         </div>
       </div>
-      <Modal isOpen={ contextApp.state.activado } estilosAceptar={ contextApp.state.modo } id={ contextApp.state.id } />
+      <ul className="flex flex-row justify-center items-center">
+            {Array.from({
+              length: Math.ceil(comites.length / comitesPerPage),
+            }).map((_, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => paginate(index + 1)}
+                  className={`bg-gray-200 text-black px-3 py-1 rounded-md ${
+                    currentPage === index + 1 ? "bg-gray-500" : ""
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
+      <Modal
+        isOpen={contextApp.state.activado}
+        estilosAceptar={contextApp.state.modo}
+        id={contextApp.state.id}
+      />
     </DefaultLayout>
   );
 };

@@ -134,9 +134,9 @@ const Router = () => {
 
             <Route path="/home-gestor" element={<HomeGestor />} />
             <Route path="/fichas" element={<FichaList />} />
-            <Route path="/acta" element={<FormActa />} />
             <Route path="/crear-ficha" element={<CrearFicha />} />
             <Route path="/actualizar-ficha/:id" element={<ActualizarFicha />} />
+            <Route path="/acta/:id" element={<FormActa />} />
           </Route>
 
           {/* Rutas de Aprendiz */}
@@ -188,7 +188,6 @@ const Router = () => {
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register1 />} />
-            <Route path="*" element={<Error404 />} />
           </Routes>
         </>
       )}
