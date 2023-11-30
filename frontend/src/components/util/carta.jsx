@@ -49,11 +49,11 @@ export const Carta = ({
 
   return (
     <>
-      <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-        <div className="flex-shrink-0">
+      <div className="flex flex-col overflow-hidden rounded-lg shadow-lg border">
+        <div className="flex justify-center">
           <img
-            className="h-48 w-full object-cover"
-            src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
+            className="h-48 w-2/6 object-cover"
+            src="../../../public/logoSena.png"
             alt={tipo_falta}
           />
         </div>
@@ -119,7 +119,7 @@ export const Carta = ({
               <span className="sr-only">{nombreInstructor}</span>
               <img
                 className="h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src="../../../public/logoSena.png"
                 alt={nombreInstructor}
               />
             </div>
@@ -156,7 +156,7 @@ export const Carta = ({
               
               <Link
                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-lg"
-                to={`/form`}
+                to={`/acta/${comite_id}`}
                 type="button"
               >
                 Crear Acta
