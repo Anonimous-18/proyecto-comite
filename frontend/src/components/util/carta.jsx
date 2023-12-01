@@ -50,7 +50,7 @@ export const Carta = ({
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded-lg shadow-lg border">
-        <div className="flex flex-col justify-center w-[448px] h-[224px] items-center">
+        <div className="flex flex-col justify-center  h-[224px] items-center">
           <img
             className="flex items-center justify-center text-center w-full h-full"
             src="../../../public/f.jpg"

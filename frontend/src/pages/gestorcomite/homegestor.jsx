@@ -42,8 +42,8 @@ export const HomeGestor = () => {
   }, [contextApp]);
   return (
     <DefaultLayout>
-      <div className="max-w-full h-full flex flex-col items-center justify-center">
-        <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center">
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="grid grid-cols-1 gap-5 md:min-w-[600px] md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {carga ? (
             <>
               <Spinner />
@@ -69,22 +69,22 @@ export const HomeGestor = () => {
           )}
         </div>
       </div>
-      <ul className="flex flex-row justify-center items-center">
-            {Array.from({
-              length: Math.ceil(comites.length / comitesPerPage),
-            }).map((_, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => paginate(index + 1)}
-                  className={`bg-gray-200 text-black px-3 py-1 rounded-md ${
-                    currentPage === index + 1 ? "bg-gray-500" : ""
-                  }`}
-                >
-                  {index + 1}
-                </button>
-              </li>
-            ))}
-          </ul>
+      <ul className="flex flex-row justify-center items-center mt-8">
+        {Array.from({
+          length: Math.ceil(comites.length / comitesPerPage),
+        }).map((_, index) => (
+          <li key={index}>
+            <button
+              onClick={() => paginate(index + 1)}
+              className={`bg-gray-200 text-black px-3 py-1 rounded-md ${
+                currentPage === index + 1 ? "bg-gray-500" : ""
+              }`}
+            >
+              {index + 1}
+            </button>
+          </li>
+        ))}
+      </ul>
       <Modal
         isOpen={contextApp.state.activado}
         estilosAceptar={contextApp.state.modo}
