@@ -50,10 +50,10 @@ export const Carta = ({
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded-lg shadow-lg border">
-        <div className="flex justify-center">
+        <div className="flex flex-col justify-center w-[448px] h-[224px] items-center">
           <img
-            className="h-48 w-2/6 object-cover"
-            src="../../../public/logoSena.png"
+            className="flex items-center justify-center text-center w-full h-full"
+            src="../../../public/f.jpg"
             alt={tipo_falta}
           />
         </div>
