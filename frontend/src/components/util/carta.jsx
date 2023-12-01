@@ -57,14 +57,14 @@ export const Carta = ({
             alt={tipo_falta}
           />
         </div>
-        <div className="flex flex-1 flex-col justify-between bg-white p-6">
+        <div className="flex flex-1 flex-col justify-between bg-white p-4">
           <div className="flex-1">
             <p className="text-sm font-medium text-indigo-600">
               <Link
                 to={`/informacion-comite/${comite_id}`}
-                className="hover:underline"
+                className="text-center block hover:underline w-20 bg-blue-800 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
               >
-                Ver mas
+                Ver Más
               </Link>
             </p>
             <div className="mt-2 block">

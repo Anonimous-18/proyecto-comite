@@ -26,8 +26,8 @@ export const Login = () => {
 
   return (
     <>
-      <div className="h-screen md:flex">
-        <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
+      <div className="h-screen md:flex sena">
+        <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-blue-600 i justify-around items-center hidden">
           <div>
             <h1 className="text-white font-bold text-4xl font-sans">
               SE-JustApp
@@ -125,7 +125,7 @@ export const Login = () => {
           <div className="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
-        <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
+        <div className="flex md:w-1/2 justify-center py-10 sena items-center">
           <Formik
             initialValues={{
               documento: "",
@@ -146,7 +146,7 @@ export const Login = () => {
             className="space-y-4 md:space-y-6"
           >
             {(formik) => (
-              <form onSubmit={formik.handleSubmit} className="bg-white">
+              <form onSubmit={formik.handleSubmit} className="bg-white  p-6 bg-opacity-95 rounded-md">
                 <h1 className="text-gray-800 font-bold text-2xl mb-1">
                   ¡Hola de Nuevo!
                 </h1>

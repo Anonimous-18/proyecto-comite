@@ -1,10 +1,11 @@
+import { Fragment, useEffect, useState } from "react";
+
 import { SlMenu } from "react-icons/sl";
-import { GiCancel, GiGears } from "react-icons/gi";
 import { FaStreetView } from "react-icons/fa";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineContacts } from "react-icons/ai";
-import { Fragment, useEffect, useState } from "react";
+import { GiCancel, GiGears } from "react-icons/gi";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { BsJournalBookmarkFill } from "react-icons/bs";
 import { Popover, Transition } from "@headlessui/react";
@@ -17,29 +18,20 @@ import hooks from "../hooks/useFunction";
 import { useContextApp } from "../Context/ContextApp";
 
 export const NavBar = () => {
-  const [userName, setUserName] = useState(null);
-  const [user, setUser] = useState(null);
-  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const { decode } = useContextApp();
+  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState(null);
 
   useEffect(() => {
     const token = decode(sessionStorage.getItem("Datos"));
-    const handleScroll = () => {
-      setIsScrolled(true);
-      if (window.scrollY === 0) {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
 
     if (token) {
       const decodedToken = hooks.useDecodedToken(token);
       setUserName(decodedToken.user.nombre_completo);
       setUser(decodedToken.user);
     }
-  }, []);
+  }, [decode]);
 
   const handleClick = () => {
     localStorage.clear();
@@ -71,9 +63,7 @@ export const NavBar = () => {
   return (
     <nav
       id="navbar"
-      className={`w-full py-4 top-0 z-40 fixed ${
-        isScrolled ? "shadow-md" : "border border-b-[2px]"
-      } bg-gradient-to-t from-white via-white to-blue-100 transition`}
+      className={`w-full py-4 top-0 z-40 fixed shadow-md border-black bg-gradient-to-t from-blue-100 to-blue-300 transition`}
     >
       <div className="w-full flex flex-row justify-between">
         <div
