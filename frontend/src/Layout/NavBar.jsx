@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 
 import { SlMenu } from "react-icons/sl";
-import { FaStreetView } from "react-icons/fa";
+import { MdClass } from "react-icons/md";
+import { GiCancel} from "react-icons/gi";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineContacts } from "react-icons/ai";
-import { GiCancel, GiGears } from "react-icons/gi";
+// import { SiGoogleclassroom } from "react-icons/si";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { BsJournalBookmarkFill } from "react-icons/bs";
 import { Popover, Transition } from "@headlessui/react";
@@ -190,22 +191,26 @@ export const NavBar = () => {
                               </p>
                             </div>
                           </NavLink> */}
-                          <NavLink
-                            to="/fichas"
-                            className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-                          >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                              <FaStreetView className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
-                            </div>
-                            <div className="ml-4">
-                              <p className="text-sm font-medium text-gray-900">
-                                Fichas
-                              </p>
-                              <p className="text-sm text-gray-500">
-                                Fichas descripción
-                              </p>
-                            </div>
-                          </NavLink>
+                          {user && user.rol_id === 1 ? (
+                            <NavLink
+                              to="/fichas"
+                              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                                <MdClass className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                              </div>
+                              <div className="ml-4">
+                                <p className="text-sm font-medium text-gray-900">
+                                  Fichas
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  Fichas descripción
+                                </p>
+                              </div>
+                            </NavLink>
+                          ) : (
+                            <></>
+                          )}
                           <NavLink
                             to="/reglamento"
                             className="text-lg inline-flex sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
@@ -282,9 +287,9 @@ export const NavBar = () => {
                                   <div>
                                     <AiOutlineContacts className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                                   </div>
-                                  <div>
-                                    <GiGears  className="max-w-xs text-3xl text-blue-800 flex flex-col items-center justify-center" />
-                                  </div>
+                                  {/* <div>
+                                    <SiGoogleclassroom className="max-w-xs text-3xl text-blue-800 flex flex-col items-center justify-center" />
+                                  </div> */}
                                 </div>
                                 <div className="ml-4">
                                   <p className="text-sm font-medium text-gray-900">
