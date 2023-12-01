@@ -184,7 +184,7 @@ export const NavBar = () => {
                               </p>
                             </div>
                           </NavLink>
-                          <NavLink
+                          {/* <NavLink
                             to="/"
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
@@ -199,7 +199,7 @@ export const NavBar = () => {
                                 Descripcion Instructores
                               </p>
                             </div>
-                          </NavLink>
+                          </NavLink> */}
                           <NavLink
                             to="/fichas"
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
