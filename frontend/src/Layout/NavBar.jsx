@@ -68,9 +68,9 @@ export const NavBar = () => {
       <div className="w-full flex flex-row justify-between">
         <div
           // className="flex flex-col justify-between items-center px-2 sm:-ml-4 sm:-mt-2 sm:flex-row sm:flex-nowrap md:px-12"
-          className="flex flex-row justify-between px-2 w-full"
+          className="flex flex-row justify-between w-full h-full"
         >
-          <div className="ml-1">
+          <div className="ml-3 w-[50%]">
             <Link
               to={`${
                 user && user.rol_id === 2
@@ -87,7 +87,7 @@ export const NavBar = () => {
               <img src="../../public/logoSena.png" width={70} height={60} />
             </Link>
           </div>
-          <div className="w-72 flex flex-row items-center justify-end">
+          <div className="w-[50%] 2xl:w-[20%] xl:w-[25%] lg:w-[30%] flex flex-row items-center justify-end">
             <NavLink
               to="/reglamento"
               className="w-2/6 hidden text-lg 2xl:flex xl:flex lg:flex md:flex sm:flex flex-col items-center justify-center text-center font-medium text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3 relative"
@@ -103,7 +103,7 @@ export const NavBar = () => {
                 {userName && userName ? userName : "Sin nombre"}
               </div>
             </div>
-            <Popover className="w-2/6 relative">
+            <Popover className="w-1/3 relative">
               {({ open }) => (
                 <>
                   <Popover.Button
@@ -126,7 +126,7 @@ export const NavBar = () => {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-64 sm:-translate-x-[500px] transform px-6 ">
+                    <Popover.Panel className="absolute z-10 mt-6 w-screen max-w-md -translate-x-64 sm:-translate-x-[300px] transform">
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
                         <div className="relative grid grid-cols-1 gap-4 bg-white p-7 overflow-y-auto max-h-[400px] sm:max-h-[500px]">
                           {(user && user.rol_id === 2) ||
@@ -300,10 +300,10 @@ export const NavBar = () => {
                             <></>
                           )}
                         </div>
-                        <div className="bg-gray-50 p-4 flex justify-center">
+                        <div className="bg-gray-50 p-4 flex justify-start items-start">
                           <button
                             onClick={() => handleClick()}
-                            className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-800 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                            className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-800 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
                           >
                             Cerrar sesion
                             <PulseLoader

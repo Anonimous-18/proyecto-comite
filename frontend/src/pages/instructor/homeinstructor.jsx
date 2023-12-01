@@ -122,7 +122,7 @@ export const Homeinstructor = () => {
 
         {/* <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 gap-4 py-11 w-full h-full items-center justify-center"> */}
         {/* <div className="mx-auto mt-12 grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 max-w-lg gap-5 lg:max-w-none"> */}
-        <div className="mx-auto mt-12 grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 max-w-full gap-5 lg:max-w-full">
+        <div className="mx-auto mt-12 grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 max-w-full gap-5 lg:max-w-full">
           {comites && comites.length !== 0 ? (
             <>
               {currentComites.map((comite) => (
