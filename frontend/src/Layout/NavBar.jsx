@@ -130,6 +130,19 @@ export const NavBar = () => {
                     <Popover.Panel className="absolute z-10 mt-6 w-screen max-w-md -translate-x-64 sm:-translate-x-[300px] transform">
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
                         <div className="relative grid grid-cols-1 gap-4 bg-white p-7 overflow-y-auto max-h-[400px] sm:max-h-[500px]">
+                          <div className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                            </div>
+                            <div className="ml-4">
+                              <p className="text-sm font-bold text-gray-900">
+                                {userName && userName ? userName : "Sin nombre"}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                Usuario que ha Iniciado Sesión
+                              </p>
+                            </div>
+                          </div>
                           {(user && user.rol_id === 2) ||
                           (user && user.rol_id === 1) ? (
                             <NavLink
@@ -143,8 +156,8 @@ export const NavBar = () => {
                                 <p className="text-sm font-medium text-gray-900">
                                   Antecedente Aprendiz
                                 </p>
-                                <p className="text-sm text-gray-500">
-                                  Descripcion Antecedente Aprendiz
+                                <p className="text-xs text-gray-500">
+                                  Historial de Comites y Novedades
                                 </p>
                               </div>
                             </NavLink>
@@ -170,8 +183,8 @@ export const NavBar = () => {
                               <p className="text-sm font-medium text-gray-900">
                                 Notificaciones
                               </p>
-                              <p className="text-sm text-gray-500">
-                                Descripcion Notificaciones
+                              <p className="text-xs text-gray-500">
+                                Referentes a las Solicitudes de Comite
                               </p>
                             </div>
                           </NavLink>
@@ -203,8 +216,8 @@ export const NavBar = () => {
                                 <p className="text-sm font-medium text-gray-900">
                                   Fichas
                                 </p>
-                                <p className="text-sm text-gray-500">
-                                  Fichas descripción
+                                <p className="text-xs text-gray-500">
+                                  Gestiona las Fichas Existentes
                                 </p>
                               </div>
                             </NavLink>
@@ -222,8 +235,8 @@ export const NavBar = () => {
                               <p className="text-sm font-medium text-gray-900">
                                 Reglamento
                               </p>
-                              <p className="text-sm text-gray-500">
-                                Reglamento SENA
+                              <p className="text-xs text-gray-500">
+                                Reglamento del Aprendiz SENA
                               </p>
                             </div>
                           </NavLink>
@@ -240,27 +253,14 @@ export const NavBar = () => {
                                 <p className="text-sm font-medium text-gray-900">
                                   Novedades
                                 </p>
-                                <p className="text-sm text-gray-500">
-                                  Descripcion novedades
+                                <p className="text-xs text-gray-500">
+                                  Registra Novedades Para un Aprendiz
                                 </p>
                               </div>
                             </NavLink>
                           ) : (
                             <></>
                           )}
-                          <div className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                              <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
-                            </div>
-                            <div className="ml-4">
-                              <p className="text-sm font-bold text-gray-900">
-                                {userName && userName ? userName : "Sin nombre"}
-                              </p>
-                              <p className="text-sm text-gray-500">
-                                Usuario Logueado
-                              </p>
-                            </div>
-                          </div>
                           {user && user.rol_id === 1 ? (
                             <>
                               <NavLink
@@ -274,8 +274,8 @@ export const NavBar = () => {
                                   <p className="text-sm font-medium text-gray-900">
                                     Roles
                                   </p>
-                                  <p className="text-sm text-gray-500">
-                                    Roles solo admin
+                                  <p className="text-xs text-gray-500">
+                                    Gestiona los Roles de la Aplicación
                                   </p>
                                 </div>
                               </NavLink>
@@ -295,8 +295,8 @@ export const NavBar = () => {
                                   <p className="text-sm font-medium text-gray-900">
                                     Comites
                                   </p>
-                                  <p className="text-sm text-gray-500">
-                                    procesos de comites
+                                  <p className="text-xs text-gray-500">
+                                    Gestiona el Proceso de Varios Comites
                                   </p>
                                 </div>
                               </NavLink>
