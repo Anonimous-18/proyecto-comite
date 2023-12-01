@@ -24,8 +24,8 @@ export const Homeinstructor = () => {
   const currentComites = comites.slice(indexOfFirstComite, indexOfLastComite);
 
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
     window.scroll(0, 0);
+    setCurrentPage(pageNumber);
   };
 
   useEffect(() => {

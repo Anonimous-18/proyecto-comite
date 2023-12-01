@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ClimbingBoxLoader } from "react-spinners";
 
@@ -9,6 +9,10 @@ export const Ficha = ({ ficha }) => {
   const contextApi = useContextApp();
   const [open, setOpen] = useState(false);
   const [details, setDetails] = useState(null);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [])
 
   const getDetails = async (id) => {
     const res = await contextApi.getDetailsFicha(id);

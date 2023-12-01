@@ -11,6 +11,8 @@ export const FichaList = () => {
   const contextApi = useContextApp();
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     const getFichas = async () => {
       const res = await contextApi.getFichas();
 
