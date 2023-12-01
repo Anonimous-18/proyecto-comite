@@ -16,11 +16,11 @@ export const Modal = ({ isOpen, estilosAceptar, id}) => {
   const handleRC = () => {
     if(estilosAceptar){
       contextApp.updateComite({
-        estado:"Aceptado"
+        estado:"aceptado"
       },id)
     }else{
       contextApp.updateComite({
-        estado:"Rechazado"
+        estado:"rechazado"
       },id)
     }
     contextApp.reducerModalDesactivo();

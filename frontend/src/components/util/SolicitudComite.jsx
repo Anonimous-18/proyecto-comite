@@ -1,5 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ClimbingBoxLoader } from "react-spinners";
+import { Link, useNavigate } from "react-router-dom";
 
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
@@ -89,9 +90,29 @@ export const SolicitudComite = () => {
   };
 
   if (reglamento === null || reglamento === undefined) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <ClimbingBoxLoader
+          color="#160ccc"
+          size={16}
+          loading={true}
+          className="inline-block"
+        />
+        <small className="inline-flex">Cargando</small>
+      </div>
+    );
   } else if (reglamento.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <ClimbingBoxLoader
+          color="#160ccc"
+          size={16}
+          loading={true}
+          className="inline-block"
+        />
+        <small className="inline-flex">Cargando</small>
+      </div>
+    );
   }
   const result = contextApi.orderReglamento(reglamento);
 
@@ -220,7 +241,7 @@ export const SolicitudComite = () => {
                       name="capitulo"
                       placeholder="Capitulo del Reglamento"
                       value={formik.values.capitulo}
-                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                     >
                       {result.map((capitulo) => (
                         <option
@@ -240,7 +261,7 @@ export const SolicitudComite = () => {
                       id="articulo"
                       name="articulo"
                       value={formik.values.articulo}
-                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                     >
                       <option value="">Seleccione un Articulo</option>
                       {getArticulos(result, formik.values).contenido.map(
@@ -310,7 +331,7 @@ export const SolicitudComite = () => {
                           onChange={(e) =>
                             actualizarIdentificacion(index, e.target.value)
                           }
-                          className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                          className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                           placeholder="Identificacion"
                         />
                       </div>
@@ -339,7 +360,7 @@ export const SolicitudComite = () => {
                     <Field
                       as="textarea"
                       name="descripcion_falta"
-                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:text-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-gray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                       placeholder="Descripción de la Falta"
                     />
                     <div className="text-red-600 font-bold text-sm">
@@ -350,7 +371,7 @@ export const SolicitudComite = () => {
                       id="tipo_falta"
                       name="tipo_falta"
                       value={formik.values.tipo_falta}
-                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:text-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                     >
                       <option value="">Seleccione el Tipo de Falta</option>
                       <option value="Academica">Academica</option>

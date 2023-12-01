@@ -1,10 +1,12 @@
+import { Fragment, useEffect, useState } from "react";
+
 import { SlMenu } from "react-icons/sl";
-import { GiCancel, GiGears } from "react-icons/gi";
-import { FaStreetView } from "react-icons/fa";
+import { MdClass } from "react-icons/md";
+import { GiCancel} from "react-icons/gi";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineContacts } from "react-icons/ai";
-import { Fragment, useEffect, useState } from "react";
+// import { SiGoogleclassroom } from "react-icons/si";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { BsJournalBookmarkFill } from "react-icons/bs";
 import { Popover, Transition } from "@headlessui/react";
@@ -17,29 +19,20 @@ import hooks from "../hooks/useFunction";
 import { useContextApp } from "../Context/ContextApp";
 
 export const NavBar = () => {
-  const [userName, setUserName] = useState(null);
-  const [user, setUser] = useState(null);
-  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const { decode } = useContextApp();
+  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState(null);
 
   useEffect(() => {
     const token = decode(sessionStorage.getItem("Datos"));
-    const handleScroll = () => {
-      setIsScrolled(true);
-      if (window.scrollY === 0) {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
 
     if (token) {
       const decodedToken = hooks.useDecodedToken(token);
       setUserName(decodedToken.user.nombre_completo);
       setUser(decodedToken.user);
     }
-  }, []);
+  }, [decode]);
 
   const handleClick = () => {
     localStorage.clear();
@@ -71,16 +64,14 @@ export const NavBar = () => {
   return (
     <nav
       id="navbar"
-      className={`w-full py-4 top-0 z-40 fixed ${
-        isScrolled ? "shadow-md" : "border border-b-[2px]"
-      } bg-gradient-to-t from-white via-white to-blue-100 transition`}
+      className={`w-full py-4 top-0 z-40 fixed shadow-md border-black bg-gradient-to-t from-blue-100 to-blue-300 transition`}
     >
       <div className="w-full flex flex-row justify-between">
         <div
           // className="flex flex-col justify-between items-center px-2 sm:-ml-4 sm:-mt-2 sm:flex-row sm:flex-nowrap md:px-12"
-          className="flex flex-row justify-between px-2 w-full"
+          className="flex flex-row justify-between w-full h-full"
         >
-          <div className="ml-1">
+          <div className="ml-3 w-[50%]">
             <Link
               to={`${
                 user && user.rol_id === 2
@@ -97,7 +88,7 @@ export const NavBar = () => {
               <img src="../../public/logoSena.png" width={70} height={60} />
             </Link>
           </div>
-          <div className="w-72 flex flex-row items-center justify-end">
+          <div className="w-[50%] 2xl:w-[20%] xl:w-[25%] lg:w-[30%] flex flex-row items-center justify-end">
             <NavLink
               to="/reglamento"
               className="w-2/6 hidden text-lg 2xl:flex xl:flex lg:flex md:flex sm:flex flex-col items-center justify-center text-center font-medium text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3 relative"
@@ -113,7 +104,7 @@ export const NavBar = () => {
                 {userName && userName ? userName : "Sin nombre"}
               </div>
             </div>
-            <Popover className="w-2/6 relative">
+            <Popover className="w-1/3 relative">
               {({ open }) => (
                 <>
                   <Popover.Button
@@ -136,9 +127,22 @@ export const NavBar = () => {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute z-10 mt-3 w-screen max-w-xl -translate-x-64 sm:-translate-x-[500px] transform px-6 ">
+                    <Popover.Panel className="absolute z-10 mt-6 w-screen max-w-md -translate-x-64 sm:-translate-x-[300px] transform">
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
                         <div className="relative grid grid-cols-1 gap-4 bg-white p-7 overflow-y-auto max-h-[400px] sm:max-h-[500px]">
+                          <div className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                            </div>
+                            <div className="ml-4">
+                              <p className="text-sm font-bold text-gray-900">
+                                {userName && userName ? userName : "Sin nombre"}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                Usuario que ha Iniciado Sesión
+                              </p>
+                            </div>
+                          </div>
                           {(user && user.rol_id === 2) ||
                           (user && user.rol_id === 1) ? (
                             <NavLink
@@ -152,8 +156,8 @@ export const NavBar = () => {
                                 <p className="text-sm font-medium text-gray-900">
                                   Antecedente Aprendiz
                                 </p>
-                                <p className="text-sm text-gray-500">
-                                  Descripcion Antecedente Aprendiz
+                                <p className="text-xs text-gray-500">
+                                  Historial de Comites y Novedades
                                 </p>
                               </div>
                             </NavLink>
@@ -179,12 +183,12 @@ export const NavBar = () => {
                               <p className="text-sm font-medium text-gray-900">
                                 Notificaciones
                               </p>
-                              <p className="text-sm text-gray-500">
-                                Descripcion Notificaciones
+                              <p className="text-xs text-gray-500">
+                                Referentes a las Solicitudes de Comite
                               </p>
                             </div>
                           </NavLink>
-                          <NavLink
+                          {/* <NavLink
                             to="/"
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
@@ -199,23 +203,27 @@ export const NavBar = () => {
                                 Descripcion Instructores
                               </p>
                             </div>
-                          </NavLink>
-                          <NavLink
-                            to="/fichas"
-                            className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
-                          >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                              <FaStreetView className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
-                            </div>
-                            <div className="ml-4">
-                              <p className="text-sm font-medium text-gray-900">
-                                Fichas
-                              </p>
-                              <p className="text-sm text-gray-500">
-                                Fichas descripción
-                              </p>
-                            </div>
-                          </NavLink>
+                          </NavLink> */}
+                          {user && user.rol_id === 1 ? (
+                            <NavLink
+                              to="/fichas"
+                              className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                                <MdClass className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                              </div>
+                              <div className="ml-4">
+                                <p className="text-sm font-medium text-gray-900">
+                                  Fichas
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  Gestiona las Fichas Existentes
+                                </p>
+                              </div>
+                            </NavLink>
+                          ) : (
+                            <></>
+                          )}
                           <NavLink
                             to="/reglamento"
                             className="text-lg inline-flex sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
@@ -227,8 +235,8 @@ export const NavBar = () => {
                               <p className="text-sm font-medium text-gray-900">
                                 Reglamento
                               </p>
-                              <p className="text-sm text-gray-500">
-                                Reglamento SENA
+                              <p className="text-xs text-gray-500">
+                                Reglamento del Aprendiz SENA
                               </p>
                             </div>
                           </NavLink>
@@ -245,27 +253,14 @@ export const NavBar = () => {
                                 <p className="text-sm font-medium text-gray-900">
                                   Novedades
                                 </p>
-                                <p className="text-sm text-gray-500">
-                                  Descripcion novedades
+                                <p className="text-xs text-gray-500">
+                                  Registra Novedades Para un Aprendiz
                                 </p>
                               </div>
                             </NavLink>
                           ) : (
                             <></>
                           )}
-                          <div className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                              <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
-                            </div>
-                            <div className="ml-4">
-                              <p className="text-sm font-bold text-gray-900">
-                                {userName && userName ? userName : "Sin nombre"}
-                              </p>
-                              <p className="text-sm text-gray-500">
-                                Usuario Logueado
-                              </p>
-                            </div>
-                          </div>
                           {user && user.rol_id === 1 ? (
                             <>
                               <NavLink
@@ -279,8 +274,8 @@ export const NavBar = () => {
                                   <p className="text-sm font-medium text-gray-900">
                                     Roles
                                   </p>
-                                  <p className="text-sm text-gray-500">
-                                    Roles solo admin
+                                  <p className="text-xs text-gray-500">
+                                    Gestiona los Roles de la Aplicación
                                   </p>
                                 </div>
                               </NavLink>
@@ -292,16 +287,16 @@ export const NavBar = () => {
                                   <div>
                                     <AiOutlineContacts className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                                   </div>
-                                  <div>
-                                    <GiGears  className="max-w-xs text-3xl text-blue-800 flex flex-col items-center justify-center" />
-                                  </div>
+                                  {/* <div>
+                                    <SiGoogleclassroom className="max-w-xs text-3xl text-blue-800 flex flex-col items-center justify-center" />
+                                  </div> */}
                                 </div>
                                 <div className="ml-4">
                                   <p className="text-sm font-medium text-gray-900">
                                     Comites
                                   </p>
-                                  <p className="text-sm text-gray-500">
-                                    procesos de comites
+                                  <p className="text-xs text-gray-500">
+                                    Gestiona el Proceso de Varios Comites
                                   </p>
                                 </div>
                               </NavLink>
@@ -310,10 +305,10 @@ export const NavBar = () => {
                             <></>
                           )}
                         </div>
-                        <div className="bg-gray-50 p-4 flex justify-center">
+                        <div className="bg-gray-50 p-4 flex justify-start items-start">
                           <button
                             onClick={() => handleClick()}
-                            className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-800 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+                            className="ml-3 relative inline-flex items-center rounded-md border border-transparent bg-blue-800 px-10 py-2 text-lg font-bold text-white shadow-xl transition duration-300 ease-in-out hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
                           >
                             Cerrar sesion
                             <PulseLoader

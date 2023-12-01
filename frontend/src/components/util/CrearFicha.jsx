@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Formik } from "formik";
 
@@ -12,6 +13,10 @@ export const CrearFicha = () => {
 
   const token = JSON.parse(localStorage.getItem("newToken"));
   const tokenDecoded = hooks.useDecodedToken(token.token);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [])
 
   const handleCreate = async (values) => {
     await contextApi.createFicha(values);

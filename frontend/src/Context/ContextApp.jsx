@@ -388,21 +388,14 @@ export const ContextAppProvider = ({ children }) => {
   };
   const actaCasos = async (data) => {
     try {
-      await gestorApi.actaCasosRequest(data);
+      return await gestorApi.actaCasosRequest(data);
     } catch (error) {
       console.log(error);
     }
   };
   const crearActa = async (data) => {
     try {
-      await gestorApi.crearActaRequest(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const crearActa1 = async (data) => {
-    try {
-      await gestorApi.crearActaRequest(data);
+      return await gestorApi.crearActaRequest(data);
     } catch (error) {
       console.log(error);
     }

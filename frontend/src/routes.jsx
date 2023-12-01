@@ -62,7 +62,7 @@ import { NovedadInvitado } from "./pages/invitado/NovedadInvitado";
 /**-----------------
  * | Gestor
  * -----------------*/
-import { Error404 } from "./components/util/erro404";
+// import { Error404 } from "./components/util/erro404";
 import { FormActa } from "./pages/gestorcomite/Formacta";
 import { CrearFicha } from "./components/util/CrearFicha";
 import { HomeGestor } from "./pages/gestorcomite/homegestor";
@@ -134,9 +134,9 @@ const Router = () => {
 
             <Route path="/home-gestor" element={<HomeGestor />} />
             <Route path="/fichas" element={<FichaList />} />
-            <Route path="/acta" element={<FormActa />} />
             <Route path="/crear-ficha" element={<CrearFicha />} />
             <Route path="/actualizar-ficha/:id" element={<ActualizarFicha />} />
+            <Route path="/acta/:id" element={<FormActa />} />
           </Route>
 
           {/* Rutas de Aprendiz */}
@@ -188,7 +188,6 @@ const Router = () => {
             <Route path="/recuperacion-contraseña" element={<Recuperacion />} />
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register1 />} />
-            <Route path="*" element={<Error404 />} />
           </Routes>
         </>
       )}

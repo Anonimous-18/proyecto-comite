@@ -1,46 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useContextApp } from "../../Context/ContextApp";
 
 export const FormActa = () => {
-  const dataApi = {
-    implicados: [
-      {
-        documento: 32,
-        tipo_documento: "CC",
-        index: 1,
-        contrato: "no",
-        nombre: "aprendiz Dos",
-        fcComite: "Sin comites",
-        descripcion: "No hay descripccion",
-      },
-      {
-        documento: 33,
-        tipo_documento: "CC",
-        index: 2,
-        contrato: "si",
-        nombre: "aprendiz Tres",
-        fcComite: "Sin comites",
-        descripcion: "No hay descripccion",
-      },
-    ],
-    datosBd: {
-      programaNom: "ADSI",
-      ficha: "250678453",
-      gestorFicha: "Brayan Gomez Noguera",
-      InstructoresCita: "Alejandro Toro",
-    },
-  };
-  const implicados = dataApi.implicados;
-  const datosBd = dataApi.datosBd;
+  const contextApp = useContextApp();
+  const [implicados, setImplicados] = useState([]);
+  const [datosBd, setDatosBd] = useState([]);
   const [divs, setDivs] = useState([null]);
   const [casoOption, setCasoOption] = useState(false);
   const [ocultar, setOcultar] = useState(false);
+  const [cont, setCont] = useState(0);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const datosFormulario = async (id) => {
+      const prueba = await contextApp.actaCasos({ idComite: id });
+      if (prueba && prueba.length !== 0) {
+        setImplicados(prueba.data.implicados);
+        setDatosBd(prueba.data.datosBd);
+
+        setDivs([...divs, divs.length]);
+        setDivs([...divs, divs.length]);
+      }
+    };
+    datosFormulario(id);
+  }, [contextApp, id]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate()
   // console.log(errors);
   const handleClick = () => {
     setDivs([...divs, divs.length]);
@@ -71,6 +64,9 @@ export const FormActa = () => {
   const handleOcultar = () => {
     setOcultar(!ocultar);
   };
+  const handleCont = () => {
+    setCont(cont + 1);
+  };
 
   const onSubmit = handleSubmit((data) => {
     //eliminar datos que no se encuentran en el array de divs
@@ -79,36 +75,42 @@ export const FormActa = () => {
       if (guion === "_") {
         const numeroDivString = key.slice(-1);
         const numeroDiv = parseInt(numeroDivString);
-        !divs.includes(numeroDiv)
-          ? delete data[`${key}`]
-          : null
+        !divs.includes(numeroDiv) ? delete data[`${key}`] : null;
       }
     });
     let desrrolloReunion = [];
 
     let i = 0;
     while (data) {
-      if (divs[i]){
-        let reunion = {}
+      if (divs[i]) {
+        let reunion = {};
         Object.keys(data).map((key) => {
           const guion = key.slice(-2, -1);
           if (guion === "_") {
             const numeroDivString = key.slice(-1);
             const numeroDiv = parseInt(numeroDivString);
-            if ( numeroDiv === i ) {
+            if (numeroDiv === i) {
               reunion[`${key}`] = data[`${key}`];
               delete data[`${key}`];
             }
           }
-        })
+        });
         desrrolloReunion.push(reunion);
-      }else if(i === divs.length){
+      } else if (i === divs.length) {
         break;
       }
       i++;
     }
-   data.desrrolloReunion = desrrolloReunion;
-   console.log(data);
+    data.desrrolloReunion = desrrolloReunion;
+    
+    if (cont > 0) {
+      console.log(data);
+      contextApp.crearActa(data);
+      contextApp.updateComite({
+        estado:"ejecucion"
+      },id);
+      navigate(-1);
+    }
   });
 
   return (
@@ -124,7 +126,7 @@ export const FormActa = () => {
           Ocultar formulario
         </button>
         <div className="flex-col justify-center ">
-          <div className="mt-5 bg-white sm:rounded-lg shadow overflow-y-auto max-h-[700px]">
+          <div className="mt-5 bg-white sm:rounded-lg shadow hover:overflow-auto overflow-hidden transition-transform duration-300 ease-in-out max-h-[700px]">
             <div className="px-5 pb-5 ">
               <div className="flex">
                 <div className="flex-1 py-5 pl-5 overflow-hidden">
@@ -236,9 +238,9 @@ export const FormActa = () => {
               </div>
             </div>
 
-            <div className="flex">
+            <div className="flex mt-4">
               <div className="flex-1 py-5 pl-5 overflow-hidden">
-                <h2 className="inline text-2xl font-semibold leading-none">
+                <h2 className="inline text-2xl font-semibold leading-none ml-4">
                   Agenda o puntos para desarrollar
                 </h2>
               </div>
@@ -249,7 +251,7 @@ export const FormActa = () => {
               <div>
                 <label
                   htmlFor="programaNom"
-                  className="inline text-lg font-semibold leading-none mr-1"
+                  className="inline text-[18px] font-semibold leading-none mr-1"
                 >
                   Programa:
                 </label>
@@ -267,16 +269,16 @@ export const FormActa = () => {
                 />
                 <br />
                 {errors.programaNom && (
-                  <span className="text-red-500 text-sm">
-                    {errors.programaNom.message}
-                  </span>
-                )}
+                    <span className="text-red-500 text-sm">
+                      {errors.programaNom.message}
+                    </span>
+                  )}
               </div>
 
               <div>
                 <label
                   htmlFor="ficha"
-                  className="inline text-lg font-semibold leading-none mr-1"
+                  className="inline text-[18px] font-semibold leading-none mr-1"
                 >
                   Ficha:
                 </label>
@@ -301,19 +303,76 @@ export const FormActa = () => {
               </div>
             </div>
 
+            <div className="px-5 pb-5 flex flex-col justify-center sm:flex-row">
+              <div>
+                <label
+                  htmlFor="gestorFicha"
+                  className="inline text-[18px] font-semibold leading-none mr-1"
+                >
+                  Gestor comite:
+                </label>
+                <br />
+                <input
+                  {...register("gestorFicha", {
+                    required: {
+                      value: true,
+                      message: "Este campo es requerido",
+                    },
+                  })}
+                  placeholder="Gestor ficha"
+                  className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto mr-1"
+                  defaultValue={datosBd.gestorFicha}
+                />
+                <br />
+                {errors.gestorFicha && (
+                  <span className="text-red-500 text-sm">
+                    {errors.gestorFicha.message}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="InstructoresCita"
+                  className="inline text-[18px] font-semibold leading-none mr-1"
+                >
+                  {"Instructor(es) que Cita(n)"}
+                </label>
+                <br />
+                <input
+                  {...register("InstructoresCita", {
+                    required: {
+                      value: true,
+                      message: "Este campo es requerido",
+                    },
+                  })}
+                  placeholder="Instructor(es) que Cita(n)"
+                  className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto"
+                  defaultValue={datosBd.InstructoresCita}
+                />
+                <br />
+                {errors.InstructoresCita && (
+                  <span className="text-red-500 text-sm">
+                    {errors.InstructoresCita.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex mt-4">
+              <div className="flex-1 py-5 pl-5 overflow-hidden">
+                <h2 className="inline text-2xl font-semibold leading-none ml-4">
+                  Casos
+                </h2>
+              </div>
+              <div className="flex-none pt-2.5 pr-2.5 pl-1"></div>
+            </div>
             {implicados.map((implicado, index) => {
               return (
-                <div key={index} className="flex mt-1">
+                <div key={index} className="flex ">
                   <div className="flex-1 py-5 pl-5 overflow-hidden">
-                    <div className="flex flex-col justify-center sm:flex-row w-full">
+                    <div>
                       <div>
-                        <label
-                          htmlFor={`caso${implicado.index}`}
-                          className="inline text-lg font-semibold leading-none "
-                        >
-                          Caso:
-                        </label>
-                        <br />
                         <input
                           {...register(`caso${implicado.index}`, {
                             required: {
@@ -331,10 +390,12 @@ export const FormActa = () => {
                           </span>
                         )}
                       </div>
-                      <div>
+                    </div>
+                    <div className="flex flex-col sm:flex-row w-full">
+                      <div className="flex-grow w-5/4 ">
                         <label
                           htmlFor={`nombre${implicado.index}`}
-                          className="inline text-lg font-semibold leading-none "
+                          className="inline text-[18px] font-semibold leading-none "
                         >
                           Nombre:
                         </label>
@@ -346,7 +407,7 @@ export const FormActa = () => {
                               message: "Este campo es requerido",
                             },
                           })}
-                          className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto ml-1"
+                          className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto ml-1 "
                           defaultValue={implicado.nombre}
                         />
                         <br />
@@ -356,35 +417,37 @@ export const FormActa = () => {
                           </span>
                         )}
                       </div>
+                      <div className="flex-grow w-2/5">
+                        <label
+                          htmlFor={`contrato${implicado.index}`}
+                          className="inline text-[18px] font-semibold leading-none "
+                        >
+                          Contranto:
+                        </label>
+                        <br />
+                        <input
+                          {...register(`contrato${implicado.index}`, {
+                            required: {
+                              value: true,
+                              message: "Este campo es requerido",
+                            },
+                          })}
+                          className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto ml-1 w-[89px] "
+                          defaultValue={implicado.contrato}
+                        />
+                        <br />
+                        {errors[`contrato${implicado.index}`] && (
+                          <span className="text-red-500 text-sm">
+                            {errors[`contrato${implicado.index}`].message}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <label
-                        htmlFor={`contrato${implicado.index}`}
-                        className="inline text-lg font-semibold leading-none "
-                      >
-                        Contrato De Aprendizaje:
-                      </label>
-                      <input
-                        {...register(`contrato${implicado.index}`, {
-                          required: {
-                            value: true,
-                            message: "Este campo es requerido",
-                          },
-                        })}
-                        className="text-black placeholder-gray-600 min-w-[100px] max-w-[300px] px-4 py-2.5 text-base transition duration-500 ease-in-out transform border-transparent sm:rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400 m-auto ml-1 w-[89px] mt-1 "
-                        defaultValue={implicado.contrato}
-                      />
-                      <br />
-                      {errors[`contrato${implicado.index}`] && (
-                        <span className="text-red-500 text-sm">
-                          {errors[`contrato${implicado.index}`].message}
-                        </span>
-                      )}
-                    </div>
+
                     <br />
                     <label
                       htmlFor={`fcComite${implicado.index}`}
-                      className="inline text-lg font-semibold leading-none "
+                      className="inline text-[18px] font-semibold leading-none "
                     >
                       {" "}
                       Fecha del ultimo comite:{" "}
@@ -410,7 +473,7 @@ export const FormActa = () => {
                     <div>
                       <label
                         htmlFor={`descripccion${implicado.index}`}
-                        className="inline text-lg font-semibold leading-none "
+                        className="inline text-[18px] font-semibold leading-none "
                       >
                         Descripccion falta:
                       </label>
@@ -490,7 +553,7 @@ export const FormActa = () => {
           Mostrar formulario
         </button>
         <div>
-          <div className="mt-2 bg-white sm:rounded-lg shadow overflow-y-auto max-h-[700px]">
+          <div className="mt-2 bg-white sm:rounded-lg shadow hover:overflow-auto overflow-hidden transition-transform duration-300 ease-in-out max-h-[700px]">
             <div className="px-5 pb-5 min-w-[320px]">
               <div className="flex">
                 <div className="flex-1 py-5 pl-5 overflow-hidden">
@@ -596,6 +659,7 @@ export const FormActa = () => {
                 <div className="flex-initial pl-3">
                   <button
                     type="submit"
+                    onClick={handleCont}
                     className="inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
                   >
                     <span className="pl-2 mx-1 ">Crear acta</span>

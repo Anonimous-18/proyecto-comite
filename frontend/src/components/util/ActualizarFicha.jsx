@@ -18,6 +18,8 @@ export const ActualizarFicha = () => {
   const tokenDecoded = hooks.useDecodedToken(token.token);
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     if (id && id) {
       const getFicha = async () => {
         const res = await contextApi.getDetailsFicha(id);

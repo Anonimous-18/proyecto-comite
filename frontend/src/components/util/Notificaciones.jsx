@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ClimbingBoxLoader } from "react-spinners"
 
-import { Spinner } from "./Spinner";
 import hooks from "../../hooks/useFunction";
 import DefaultLayout from "../../Layout/DefaultLayout";
 import { useContextApp } from "../../Context/ContextApp";
@@ -59,7 +59,7 @@ export const Notificaciones = () => {
 
   const handleDelete = async (id) => {
     const response = await contextApi.deleteNotificacion(id);
-console.log(response)
+    console.log(response);
     if (response && response === 200) {
       // navigate(0);
     }
@@ -120,7 +120,15 @@ console.log(response)
           </div>
         ))
       ) : (
-        <Spinner />
+        <div className="flex flex-col items-center justify-center">
+          <ClimbingBoxLoader
+            color="#160ccc"
+            size={16}
+            loading={true}
+            className="inline-block"
+          />
+          <small className="inline-flex">Sin Notificaciones</small>
+        </div>
       )}
     </DefaultLayout>
   );

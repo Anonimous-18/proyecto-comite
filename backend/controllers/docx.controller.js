@@ -8,56 +8,215 @@ const {
 } = require("../models");
 const fs = require("fs");
 const Docxtemplater = require("docxtemplater");
+var officegen = require("officegen");
 const PizZip = require("pizzip");
-
+/*
+{
+    "actaNumero": "1",
+    "ciudadFecha": "Manizales, 24 de noviembre de 2023",
+    "HoraUno": "12:48",
+    "HoraDos": "12:48",
+    "lugarEnlace": "https://meet...",
+    "programaNom": "ADSI",
+    "ficha": "250678453",
+    "gestorFicha": "Brayan Gomez Noguera",
+    "InstructoresCita": "Alejandro Toro",
+    "objtivoRenion": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500",
+    "caso1": "Caso 1",
+    "nombre1": "aprendiz Dos",
+    "contrato1": "no",
+    "fcComite1": "Sin comites",
+    "descripccion1": "No hay descripccion",
+    "caso2": "Caso 2",
+    "nombre2": "aprendiz Tres",
+    "contrato2": "si",
+    "fcComite2": "Sin comites",
+    "descripccion2": "No hay descripccion",
+    "desrrolloReunion": [
+        {
+            "cargoCaso_4": "APRENDIZ",
+            "nombre_4": "Alejandra",
+            "descripccionCaso_4": "Opinion de alejandra"
+        },
+        {
+            "cargoCaso_5": "APOYO ADMINISTRATIVO A COORDINACIÓN ACADÉMICA DEL CENTRO",
+            "nombre_5": "Alejandro",
+            "descripccionCaso_5": "Opinion de alejandro"
+        }
+    ]
+}
+*/
 /**--------------------------------
  * funcion para crear word de citacion
  --------------------------------*/
 const crearActa = async (req, res) => {
-  const obtener = async (idUser = 0) => {
-    try {
-      const result = await usuarios.findOne({ where: { id: idUser } });
-
-      if (result && result.length !== 0) {
-        return result;
-      }
-      return res.status(404).json({ message: "No hay usuarios" });
-    } catch (error) {
-      res.status(500).json({
-        message: `Error al obtener todos los usuarios detalles: ${error.message}`,
-      });
-    }
-  };
-
   const actaNumero = req.body.actaNumero;
   const ciudadFecha = req.body.ciudadFecha;
   const HoraUno = req.body.HoraUno;
   const HoraDos = req.body.HoraDos;
   const lugarEnlace = req.body.lugarEnlace;
   const objtivoRenion = req.body.objtivoRenion;
+  const programaNom = req.body.programaNom;
+  const ficha = req.body.ficha;
+  const InstructoresCita = req.body.InstructoresCita;
+  const gestorFicha = req.body.gestorFicha;
+  const desrrolloReunion = req.body.desrrolloReunion;
 
-  const datosBd = req.datosBd;
+  const acta = {
+    actaNumero,
+    ciudadFecha,
+    HoraUno,
+    HoraDos,
+    lugarEnlace,
+    objtivoRenion,
+    programaNom,
+    ficha,
+    gestorFicha,
+    InstructoresCita,
+  };
+  const idComite = req.app.datosBd.idComite;
 
-  // const gestor = await obtener(gestorFi);
-  // const instructor = await obtener(InstructoresCi);
+  const casos = req.app.implicados.map(aprendiz => ({
+    documento: aprendiz.dataValues.documento,
+    tipo_documento: aprendiz.dataValues.tipo_documento,
+    index: aprendiz.dataValues.index,
+    contrato: aprendiz.dataValues.contrato,
+    nombre: aprendiz.dataValues.nombre,
+    fcComite: aprendiz.dataValues.fcComite,
+    descripcion: aprendiz.dataValues.descripcion
+   }));
+   
+  const entradaActa = `${__dirname}/../documentos_comite/acta-variables.docx`;
+  const actaBorrador = `${__dirname}/../documentos_comite/reuniones/actaBorrador-${idComite}.docx`;
 
-  // const gestorFicha = gestor.nombre_completo;
-  // const InstructoresCita = instructor.nombre_completo;
+  // Cargar un archivo .docx
+  const content = fs.readFileSync(entradaActa, "binary");
+  const zip = new PizZip(content);
 
-  // const acta = {
-  //   actaNumero,
-  //   ciudadFecha,
-  //   HoraUno,
-  //   HoraDos,
-  //   lugarEnlace,
-  //   objtivoRenion,
-  //   programaNom,
-  //   ficha,
-  //   gestorFicha,
-  //   InstructoresCita,
-  // };
+  const doc = new Docxtemplater(zip);
+  doc.setData({ ...acta, casos });
 
-  res.status(200).json({datosBd})
+  try {
+    doc.render();
+    // Generar el archivo .docx modificado
+    const buffer1 = doc.getZip().generate({ type: "nodebuffer" });
+    fs.writeFileSync(actaBorrador, buffer1);
+  } catch (error) {
+    const e = {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+      properties: error.properties,
+    };
+    res.status(500).json({ error: "Hubo un error al obtener los datos", e });
+    throw e;
+  }
+
+  const salidaReunion = `${__dirname}/../documentos_comite/reuniones/reunionDesarrollo-${idComite}.docx`;
+  const reunion = desrrolloReunion.map((obj) => {
+    let newObj = {};
+    Object.entries(obj).forEach(([key, value]) => {
+      let newKey = key.replace(/_\d+$/, ""); // Elimina la parte de la clave que termina con un número
+      newObj[newKey] = value;
+    });
+    return newObj;
+  });
+
+  const docOficegen = officegen("docx");
+  docOficegen.on("error", function (err) {
+    console.log(err);
+  });
+
+  let pObj0 = docOficegen.createP();
+
+  pObj0.addText("DESARROLLO DE LA REUNIÓN: ", {
+    bold: true,
+    font_face: "Calibri",
+    font_size: 10,
+    color: "000000",
+    shading: {
+      fill: "FFFF00",
+      color: "FFFF00",
+      val: "clear",
+    },
+  });
+
+  pObj0.addText("\n");
+
+  let cont = 1;
+
+  reunion.map((item) => {
+    let pObj = docOficegen.createP();
+
+    if (item.cargoCaso === "CASO") {
+      pObj.addText(`${item.cargoCaso} ${cont}`, {
+        underline: true,
+        bold: true,
+        font_face: "Calibri",
+        font_size: 10,
+        color: "000000",
+        shading: {
+          fill: "FFFF00",
+          color: "FFFF00",
+          val: "clear",
+        },
+      });
+      pObj.addText("\n");
+      pObj.addText(item.nombre, {
+        underline: true,
+        bold: true,
+        font_face: "Calibri",
+        font_size: 10,
+        shading: {
+          fill: "FFFF00",
+          val: "clear",
+        },
+      });
+      pObj.addText("\n");
+      pObj.addText(item.descripccionCaso, {
+        font_face: "Calibri",
+        font_size: 10,
+        shading: {
+          fill: "FFFF00",
+          val: "clear",
+        },
+      });
+      pObj.addText("\n");
+      cont++;
+    } else {
+      pObj.addText(`${item.nombre} (${item.cargoCaso}):`, {
+        underline: true,
+        bold: true,
+        font_face: "Calibri",
+        font_size: 10,
+        color: "000000",
+        shading: {
+          fill: "FFFF00",
+          color: "FFFF00",
+          val: "clear",
+        },
+      });
+      pObj.addText("\n");
+      pObj.addText(item.descripccionCaso, {
+        font_face: "Calibri",
+        font_size: 10,
+        shading: {
+          fill: "FFFF00",
+          val: "clear",
+        },
+      });
+      pObj.addText("\n");
+    }
+  });
+
+  let out = fs.createWriteStream(salidaReunion);
+
+  out.on("error", function (err) {
+    console.log(err);
+  });
+
+  docOficegen.generate(out);
+  res.status(200).json(acta);
 };
 
 /**--------------------------------
@@ -67,7 +226,11 @@ const actaCasos = async (req, res, next) => {
   const idComite = req.body.idComite;
   let docuImpli = 0;
   try {
-    const bucarAprediz = async (documento = 0, model = "aprendices", id=null) => {
+    const bucarAprediz = async (
+      documento = 0,
+      model = "aprendices",
+      id = null
+    ) => {
       const result =
         model === "aprendices"
           ? await aprendices.findOne({
@@ -78,8 +241,8 @@ const actaCasos = async (req, res, next) => {
               where: { documento: documento },
             })
           : await usuarios.findOne({
-            where: { id },
-          });
+              where: { id },
+            });
 
       if (result && result.length !== 0) {
         return result;
@@ -141,17 +304,23 @@ const actaCasos = async (req, res, next) => {
 
     const implicados = await buscarDatos(idComite);
     const fichaActa = await buscarFicha(docuImpli);
-    const gestorFicha = await bucarAprediz(0,"",fichaActa.instructor_id );
-    const InstructoresCita = await bucarAprediz(0,"",implicados[0].comite.instructor_fk);
+    const gestorFicha = await bucarAprediz(0, "", fichaActa.instructor_id);
+    const InstructoresCita = await bucarAprediz(
+      0,
+      "",
+      implicados[0].comite.instructor_fk
+    );
     let datosBd = {};
 
     datosBd.programaNom = fichaActa.programa;
     datosBd.ficha = fichaActa.codigo;
     datosBd.gestorFicha = gestorFicha.nombre_completo;
     datosBd.InstructoresCita = InstructoresCita.nombre_completo;
+    datosBd.idComite = idComite;
 
     req.datosBd = datosBd;
-    req.implicados = implicados;
+    req.app.datosBd = datosBd;
+    req.app.implicados = implicados;
 
     res.status(200).json({
       implicados,

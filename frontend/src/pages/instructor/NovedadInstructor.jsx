@@ -1,6 +1,6 @@
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Formik } from "formik";
 
 import hooks from "../../hooks/useFunction";
@@ -9,12 +9,15 @@ import { useContextApp } from "../../Context/ContextApp";
 
 export const NovedadInstructor = () => {
   const [aprendices, setAprendices] = useState(null);
+  const navigate = useNavigate();
   const context = useContextApp();
 
   const token = JSON.parse(localStorage.getItem("newToken"));
   const tokenDecoded = hooks.useDecodedToken(token.token);
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     const getAprendices = async () => {
       const res = await context.getAprendices();
 
@@ -27,13 +30,20 @@ export const NovedadInstructor = () => {
   }, [context]);
 
   const handleSubmit = async (values) => {
-    const response = await context.createNovedad(values);
-
-    if (response && response === 204) {
-      //console.log("BIEN");
-    } else {
-      //console.log("MAL");
-    }
+    await context.createNovedad(values);
+    navigate(
+      `${
+        localStorage.getItem("instructor")
+          ? "/home-instructor"
+          : localStorage.getItem("aprendiz")
+          ? "/home-aprendiz"
+          : localStorage.getItem("invitado")
+          ? "/home-invitado"
+          : localStorage.getItem("admin")
+          ? "/home-admin"
+          : "/"
+      }`
+    );
   };
 
   return (
@@ -101,10 +111,19 @@ export const NovedadInstructor = () => {
                       placeholder="Aprendices"
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
                     >
-                      <option className="text-sm text-white text-center font-bold" value="">Seleccione el Aprendiz</option>
+                      <option
+                        className="text-sm text-white text-center font-bold"
+                        value=""
+                      >
+                        Seleccione el Aprendiz
+                      </option>
                       {aprendices && aprendices.length > 0 ? (
                         aprendices.map((aprendiz) => (
-                          <option className="text-sm text-white text-center" key={aprendiz.id} value={aprendiz.id}>
+                          <option
+                            className="text-sm text-white text-center"
+                            key={aprendiz.id}
+                            value={aprendiz.id}
+                          >
                             {aprendiz.nombre_completo}
                           </option>
                         ))
