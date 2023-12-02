@@ -24,7 +24,6 @@ export const Modal = ({ isOpen, estilosAceptar, id}) => {
       },id)
     }
     contextApp.reducerModalDesactivo();
-    location.reload();
   };
 
   return (
