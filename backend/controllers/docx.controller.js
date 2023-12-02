@@ -459,7 +459,7 @@ const citacion = async (req, res) => {
   }
   const idcomite = req.comIdCreado;
   const entrada = `${__dirname}/../documentos_comite/citacion-variables.docx`;
-  const salida = `${__dirname}/../documentos_comite/citaciones/citacion-${idcomite}.docx`;
+  const salida = `${__dirname}/../documentos_comite/citacionesCreadas/citacion-${idcomite}.docx`;
 
   // Realizar el reemplazo en el documento
   try {
