@@ -20,9 +20,6 @@ export const FormActa = () => {
       if (prueba && prueba.length !== 0) {
         setImplicados(prueba.data.implicados);
         setDatosBd(prueba.data.datosBd);
-
-        setDivs([...divs, divs.length]);
-        setDivs([...divs, divs.length]);
       }
     };
     datosFormulario(id);
@@ -33,7 +30,7 @@ export const FormActa = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // console.log(errors);
   const handleClick = () => {
     setDivs([...divs, divs.length]);
@@ -102,14 +99,24 @@ export const FormActa = () => {
       i++;
     }
     data.desrrolloReunion = desrrolloReunion;
-    
-    if (cont > 0) {
-      console.log(data);
+
+    if (cont < 6) {
       contextApp.crearActa(data);
-      contextApp.updateComite({
-        estado:"ejecucion"
-      },id);
-      navigate(-1);
+      contextApp
+        .updateComite(
+          {
+            estado: "ejecucion",
+          },
+          id
+        )
+        .then((res) => {
+          console.log(res);
+          navigate('home-gestor')
+        })
+        .catch((err) => {
+          console.log(err);
+          navigate("home-gestor");
+        });
     }
   });
 
@@ -269,10 +276,10 @@ export const FormActa = () => {
                 />
                 <br />
                 {errors.programaNom && (
-                    <span className="text-red-500 text-sm">
-                      {errors.programaNom.message}
-                    </span>
-                  )}
+                  <span className="text-red-500 text-sm">
+                    {errors.programaNom.message}
+                  </span>
+                )}
               </div>
 
               <div>
