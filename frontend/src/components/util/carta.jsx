@@ -10,6 +10,7 @@ import { GiSandsOfTime } from "react-icons/gi";
 import { CiSaveDown2 } from "react-icons/ci";
 
 import { useContextApp } from "../../Context/ContextApp";
+import { dowloadFile } from "../../hooks/dowloadFile";
 
 export const Carta = ({
   tipo_falta,
@@ -47,7 +48,17 @@ export const Carta = ({
     contextApi.reducerModoRechazar();
     contextApi.reducerColocarId(comite_id);
   };
-
+  const handleArchivo = async (comite_id, ruta) => {
+    if (ruta === "reuniones") {
+      const response = await contextApi.envioDoc(comite_id, ruta);
+      dowloadFile(response, `acta-${comite_id}.docx`);
+    }else{
+      const response = await contextApi.envioDoc(comite_id, ruta);
+      dowloadFile(response, `citacion-${comite_id}.docx`);
+    }
+  };
+  //citacionesCreadas
+  //reuniones
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded-lg shadow-lg border">
@@ -164,22 +175,31 @@ export const Carta = ({
             </div>
           ) : estado === "ejecucion" && gestor ? (
             <div className="mt-4 flex flex-col gap-3">
-              
               <div className="flex justify-center">
-                <Link
+                <button
+                  disabled={!comite_id}
+                  onClick={
+                    comite_id
+                      ? () => handleArchivo(comite_id, "reuniones")
+                      : null
+                  }
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-lg min-w-[27%]"
-                  to={`/acta/${comite_id}`}
-                  type="button"
                 >
-                  <CiSaveDown2 className="text-3xl w-[20%]" />Citacion
-                </Link>
-                <Link
+                  <CiSaveDown2 className="text-3xl w-[45%]" />
+                  Acta
+                </button>
+                <button
+                  disabled={!comite_id}
+                  onClick={
+                    comite_id
+                      ? () => handleArchivo(comite_id, "citacionesCreadas")
+                      : null
+                  }
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-lg min-w-[27%]"
-                  to={`/acta/${comite_id}`}
-                  type="button"
                 >
-                  <CiSaveDown2 className="text-3xl w-[30%]" />Acta
-                </Link>
+                  <CiSaveDown2 className="text-3xl w-[30%]" />
+                  Citacion
+                </button>
               </div>
             </div>
           ) : (

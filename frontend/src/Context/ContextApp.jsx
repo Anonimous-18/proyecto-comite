@@ -538,6 +538,24 @@ export const ContextAppProvider = ({ children }) => {
       return null;
     }
   };
+  const envioDoc = async (comiteId, ruta) => {
+    try {
+
+      const response = await gestorApi.getEnvioDoc(
+        comiteId,
+        ruta,
+      );
+
+      if (response) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
   const createNovedad = async (body) => {
     try {
@@ -672,6 +690,7 @@ export const ContextAppProvider = ({ children }) => {
         getNotificacionesByUser,
         getDetallesComiteNotificadoRequest,
         deleteNotificacion,
+        envioDoc,
       }}
     >
       {children}
