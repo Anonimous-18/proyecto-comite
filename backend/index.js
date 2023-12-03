@@ -6,6 +6,7 @@ const { Server: SocketServer } = require("socket.io");
 const config = require("./config.js");
 
 const adminRoutes = require("./routes/admin.routes.js");
+const envioRoutes = require("./routes/envio.routes.js");
 const gestorRoutes = require("./routes/gestor.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
 const rolesPermisos = require("./routes/roles_permisos.routes.js");
@@ -38,6 +39,7 @@ app.use(express.static(`uploads`));
 app.use(express.urlencoded({ extended: true }))
 
 app.use(adminRoutes);
+app.use(envioRoutes);
 app.use(fichasRoutes);
 app.use(gestorRoutes);
 app.use(rolesPermisos);
