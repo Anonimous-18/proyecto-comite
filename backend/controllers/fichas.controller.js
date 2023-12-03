@@ -72,7 +72,7 @@ const updateFicha = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
+        .json({ message: "No existe un ficha con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -93,7 +93,7 @@ const deleteFicha = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
+        .json({ message: "No existe un ficha con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -1,8 +1,4 @@
-const {
-  comites,
-  aprendices_implicados,
-  usuarios,
-} = require("../models");
+const { comites, aprendices_implicados, usuarios } = require("../models");
 
 /**--------------------------------
  * funcion para crear un comite
@@ -40,7 +36,7 @@ const createComites = async (req, res, next) => {
             documento: aprendiz,
             comite_fk: comite,
             usuario_id: usuario.id,
-            tipo_documento: "CC"
+            tipo_documento: "CC",
           });
           return nuevoAprendiz;
         }
@@ -112,11 +108,11 @@ const updateComite = async (req, res) => {
     if (updated) {
       const actualizado = await comites.findOne({ where: { id } });
       return res.status(200).json(actualizado);
-    } else {
-      return res
-        .status(404)
-        .json({ message: "No existe un usuario con este id." });
     }
+    
+    return res
+      .status(404)
+      .json({ message: "No existe un comite con este id." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -136,7 +132,7 @@ const deleteComite = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
+        .json({ message: "No existe un comite con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
