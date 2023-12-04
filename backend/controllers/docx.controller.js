@@ -109,7 +109,7 @@ const crearActa = async (req, res) => {
       properties: error.properties,
     };
     res.status(500).json({ error: "Hubo un error al obtener los datos", e });
-    throw e;
+    
   }
 
   const salidaReunion = `${__dirname}/../documentos_comite/reuniones/reunionDesarrollo-${idComite}.docx`;
@@ -335,7 +335,7 @@ const actaCasos = async (req, res, next) => {
       properties: error.properties,
     };
     res.status(500).json({ error: "Hubo un error al obtener los datos", e });
-    throw e;
+    console.log(e);
   }
 };
 
@@ -483,7 +483,7 @@ const citacion = async (req, res) => {
       properties: error.properties,
     };
     res.status(500).json({ error: "Hubo un error al obtener los datos", e });
-    throw e;
+    console.log(e);
   }
 };
 
