@@ -455,7 +455,7 @@ const citacion = async (req, res) => {
     await obtenerInformacionAprendices(aprendicesIds, articulosIds);
   } catch (error) {
     res.status(500).json({ error: "Hubo un error al obtener los datos" });
-    throw error;
+    console.log(e);
   }
   const idcomite = req.comIdCreado;
   const entrada = `${__dirname}/../documentos_comite/citacion-variables.docx`;
