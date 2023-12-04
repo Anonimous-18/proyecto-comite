@@ -12,7 +12,7 @@ const getNotificacionByUserRequest = async (id) =>
   await axios.get(`${API}/api/notificaciones-usuario/${id}`);
 
 const deleteNotificacionRequest = async (id) =>
-  await axios.delete(`${API}/api/notificaciones/${id}`);
+  await axios.delete(`${API}/api/notificaciones-usuarios/${id}`);
 
 const getNotificacionesRequest = async () =>
   await axios.get(`${API}/api/notificaciones`);

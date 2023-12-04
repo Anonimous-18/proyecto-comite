@@ -69,9 +69,9 @@ const getDetallesDeComiteNotificado = async (req, res) => {
   try {
     const { fecha } = req.params;
 
-    const result = await comites.findOne({ where: { createdAt: fecha }});
+    const result = await comites.findOne({ where: { createdAt: fecha } });
 
-    console.log(result)
+    console.log(result);
     if (result) {
       return res.status(200).json(result);
     }
@@ -205,13 +205,15 @@ const getNotificacionUsuarioById = async (req, res) => {
 };
 
 const deleteNotificacionUsuario = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
+
     const deleted = await Notificacion_Usuario.destroy({
-      where: { id },
+      where: { notificacion_id: id },
     });
 
     if (deleted) {
+      await Notificacion.destroy({ where: { id: id } });
       return res.json({ message: "Notificacion con receptor eliminada." });
     } else {
       return res
