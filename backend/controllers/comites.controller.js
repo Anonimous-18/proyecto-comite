@@ -1,4 +1,23 @@
-const { comites, aprendices_implicados, usuarios } = require("../models");
+const nodemailer = require("nodemailer");
+const { EMAIL, EMAIL_PASSWORD } = require("../config");
+const {
+  comites,
+  aprendices_implicados,
+  roles,
+  usuarios,
+} = require("../models");
+
+/**--------------------------------
+ * |  Remitente del email
+ * --------------------------------*/
+const transport = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  auth: {
+    user: `${EMAIL}`,
+    pass: `${EMAIL_PASSWORD}`,
+  },
+});
 
 /**--------------------------------
  * funcion para crear un comite
@@ -18,6 +37,39 @@ const createComites = async (req, res, next) => {
      * | Este es id del comite creado: result.dataValues.id
      * ----------------------------------------------------------*/
     if (result.dataValues.id !== 0) {
+      /**-----------------------------------------
+       * | Envio de la notificación al gestor de
+       * | solicitud de citación a comite
+       * ------------------------------------------*/
+      const rol = await roles.findAll({
+        where: { nombre: "Administrador" || "administrador" },
+      });
+
+      if (rol && rol[0] && rol[0].email) {
+        /**----------------------------------------------
+         * | Si existe el rol gestor buscamos un usuario
+         * | Con ese rol id osea gestor
+         * ----------------------------------------------*/
+        const gestor = await usuarios.findAll({ where: { rol_id: rol[0].id } });
+
+        if (gestor && gestor.length !== 0) {
+          /**-----------------------
+           * | Email del gestor
+           * -----------------------*/
+          const email = gestor[0].email;
+
+          const mailOptions = {
+            from: `${EMAIL}`,
+            to: email,
+            subject: "Solicitud de Citación a Comite",
+            html: `<p>
+          Solicitud de comite del instructor Manuel Felipe
+        </p>`,
+          };
+          await transport.sendMail(mailOptions);
+        }
+      }
+
       req.comIdCreado = result.dataValues.id;
       /**---------------------------------------
        * | Agregamos los aprendices implicados
@@ -109,7 +161,7 @@ const updateComite = async (req, res) => {
       const actualizado = await comites.findOne({ where: { id } });
       return res.status(200).json(actualizado);
     }
-    
+
     return res
       .status(404)
       .json({ message: "No existe un comite con este id." });
