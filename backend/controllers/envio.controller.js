@@ -3,6 +3,7 @@ const path = require("path");
 const { comites } = require("../models");
 
 const envioDocumentos = async (req, res) => {
+  console.log(req.app.userData);
   try {
     const { idDesdeClie, rutOpcion } = req.params;
     //citacionesCreadas

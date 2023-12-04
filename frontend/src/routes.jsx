@@ -80,7 +80,7 @@ const Router = () => {
 
   let ruta = rutaOpcion[usuario.rol_id] || "/";
   // //console.log(ruta);
-
+  console.log(usuarioRoles);
   useEffect(() => {
     if (sessionStorage.getItem("Datos")) {
       const token = decode(sessionStorage.getItem("Datos"));
