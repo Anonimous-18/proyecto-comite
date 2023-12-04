@@ -261,12 +261,11 @@ export const ContextAppProvider = ({ children }) => {
   const getReglamento = async (token) => {
     try {
       const response = await getReglamentoRequest(token);
-      if (response === undefined) {
-        return null;
-      }
-      return response.data;
+
+      if (response&&response) return response.data
+      else return response.status;
     } catch (error) {
-      console.log(error.message);
+      return error.response.status
     }
   };
 
@@ -538,6 +537,24 @@ export const ContextAppProvider = ({ children }) => {
       return null;
     }
   };
+  const envioDoc = async (comiteId, ruta) => {
+    try {
+
+      const response = await gestorApi.getEnvioDoc(
+        comiteId,
+        ruta,
+      );
+
+      if (response) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
   const createNovedad = async (body) => {
     try {
@@ -672,6 +689,7 @@ export const ContextAppProvider = ({ children }) => {
         getNotificacionesByUser,
         getDetallesComiteNotificadoRequest,
         deleteNotificacion,
+        envioDoc,
       }}
     >
       {children}

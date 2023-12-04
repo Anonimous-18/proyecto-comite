@@ -43,31 +43,29 @@ export const HomeGestor = () => {
   return (
     <DefaultLayout>
       <div className="w-full h-full flex flex-col items-center justify-center">
-        <div className="grid grid-cols-1 gap-5 md:min-w-[600px] md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-          {carga ? (
-            <>
-              <Spinner />
-            </>
-          ) : comites && comites.length !== 0 ? (
-            <>
-              {currentComites.map((comite, index) => (
-                <Carta
-                  key={index}
-                  id={comite.id}
-                  comite_id={comite.id}
-                  tipo_falta={comite.tipo_falta}
-                  descripcion_solicitud={comite.descripcion_solicitud}
-                  instructor={comite.instructor_fk}
-                  fecha={comite.createdAt.replace(/T.*/, "")}
-                  estado={comite.estado}
-                  gestor={true}
-                />
-              ))}
-            </>
-          ) : (
-            <h1>Sin Comites</h1>
-          )}
-        </div>
+        {carga ? (
+          <div className="flex justify-center w-full h-screen">
+            <Spinner />
+          </div>
+        ) : comites && comites.length !== 0 ? (
+          <div className="grid grid-cols-1 gap-5 md:min-w-[600px] md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            {currentComites.map((comite, index) => (
+              <Carta
+                key={index}
+                id={comite.id}
+                comite_id={comite.id}
+                tipo_falta={comite.tipo_falta}
+                descripcion_solicitud={comite.descripcion_solicitud}
+                instructor={comite.instructor_fk}
+                fecha={comite.createdAt.replace(/T.*/, "")}
+                estado={comite.estado}
+                gestor={true}
+              />
+            ))}
+          </div>
+        ) : (
+          <h1>Sin Comites</h1>
+        )}
       </div>
       <ul className="flex flex-row justify-center items-center mt-8">
         {Array.from({

@@ -1,14 +1,14 @@
 import { Fragment, useEffect, useState } from "react";
 
 import { SlMenu } from "react-icons/sl";
+import { FaBook } from "react-icons/fa";
 import { MdClass } from "react-icons/md";
 import { GiCancel} from "react-icons/gi";
-import { BiSolidFoodMenu } from "react-icons/bi";
+import { FaFileAlt } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineContacts } from "react-icons/ai";
 // import { SiGoogleclassroom } from "react-icons/si";
 import { IoNotificationsSharp } from "react-icons/io5";
-import { BsJournalBookmarkFill } from "react-icons/bs";
 import { Popover, Transition } from "@headlessui/react";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { NavLink, Link, useNavigate } from "react-router-dom";
@@ -93,7 +93,7 @@ export const NavBar = () => {
               to="/reglamento"
               className="w-2/6 hidden text-lg 2xl:flex xl:flex lg:flex md:flex sm:flex flex-col items-center justify-center text-center font-medium text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3 relative"
             >
-              <BsJournalBookmarkFill className="w-10 h-10 text-black" />
+              <FaBook className="w-10 h-10 text-black" />
               <div className="w-32 text-xs font-bold hover:border-blue-800 transition duration-200 ease-in-out">
                 Reglamento
               </div>
@@ -131,7 +131,7 @@ export const NavBar = () => {
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
                         <div className="relative grid grid-cols-1 gap-4 bg-white p-7 overflow-y-auto max-h-[400px] sm:max-h-[500px]">
                           <div className="text-lg inline-flex 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
                               <BsFillPersonFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                             </div>
                             <div className="ml-4">
@@ -149,8 +149,8 @@ export const NavBar = () => {
                               to="/antecedentes"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                                <BiSolidFoodMenu className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                                <FaFileAlt className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                               </div>
                               <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-900">
@@ -176,7 +176,7 @@ export const NavBar = () => {
                             }`}
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
                               <IoNotificationsSharp className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                             </div>
                             <div className="ml-4">
@@ -192,7 +192,7 @@ export const NavBar = () => {
                             to="/"
                             className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
                               <FaStreetView className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                             </div>
                             <div className="ml-4">
@@ -209,7 +209,7 @@ export const NavBar = () => {
                               to="/fichas"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
                                 <MdClass className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                               </div>
                               <div className="ml-4">
@@ -228,8 +228,8 @@ export const NavBar = () => {
                             to="/reglamento"
                             className="text-lg inline-flex sm:hidden font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                           >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
-                              <BsJournalBookmarkFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <FaBook className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                             </div>
                             <div className="ml-4">
                               <p className="text-sm font-medium text-gray-900">
@@ -246,7 +246,7 @@ export const NavBar = () => {
                               to="/novedades-instructor"
                               className="text-lg inline-flex font-medium leading-6 text-gray-900 border-b-2 border-transparent hover:border-blue-800 transition duration-200 ease-in-out mx-3"
                             >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center shadow-lg border-2 rounded-lg text-gray-100 sm:h-12 sm:w-12">
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center  rounded-lg text-gray-100 sm:h-12 sm:w-12">
                                 <BsFillJournalBookmarkFill className="max-w-xs text-5xl text-blue-800 flex flex-col items-center justify-center" />
                               </div>
                               <div className="ml-4">

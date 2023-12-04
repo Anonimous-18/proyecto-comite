@@ -61,7 +61,7 @@ export const Notificaciones = () => {
     const response = await contextApi.deleteNotificacion(id);
     console.log(response);
     if (response && response === 200) {
-      // navigate(0);
+      navigate(0);
     }
   };
 
@@ -70,7 +70,7 @@ export const Notificaciones = () => {
       {noti && noti ? (
         noti.map((notificacion) => (
           <div
-            className="flex flex-col w-full p-8 bg-gray-800 shadow-md hover:shodow-lg rounded-2xl"
+            className="flex flex-col w-full p-4 bg-gray-800 shadow-md mb-3 hover:shodow-lg rounded-2xl"
             key={notificacion.id}
           >
             <div className="flex items-center justify-between w-full">
@@ -106,14 +106,14 @@ export const Notificaciones = () => {
               </div>
               <button
                 onClick={() => handleClick(notificacion.createdAt)}
-                className="cursor-pointer inline-flex items-center rounded-md border border-transparent bg-blue-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+                className="cursor-pointer inline-flex items-center rounded-md border border-transparent bg-blue-800 px-3 py-1 text-base font-medium text-white shadow-sm hover:bg-blue-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
               >
                 Ver
               </button>
             </div>
             <button
               onClick={() => handleDelete(notificacion.id)}
-              className="cursor-pointer w-full text-center inline-flex items-center justify-center rounded-md border border-transparent bg-rose-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              className="cursor-pointer w-full text-center inline-flex items-center justify-center rounded-md border border-transparent bg-rose-800 px-3 py-1 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:ring-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
             >
               Eliminar
             </button>

@@ -4,7 +4,7 @@
 const jwt = require("jsonwebtoken");
 const pool = require("../database/db.js");
 const { secretKey } = require("../controllers/inicio_sesion.controller.js");
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require("express-validator");
 
 /**------------------------------------------------------------
  * |  Middleware para verificar el rol del usuario autenticado
@@ -20,13 +20,13 @@ const verifyToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Token no proporcionado" });
   }
-  
+
   try {
     /**-------------------------------------------------------
      * |  Verificar el token y obtener los datos decodificados
     -------------------------------------------------------*/
     const decodedToken = jwt.verify(token, key);
-    
+
     /**---------------------------------------------
      * |  Guardamos los datos del usuario logueado
     ---------------------------------------------*/
@@ -34,8 +34,7 @@ const verifyToken = (req, res, next) => {
     //console.log(req.userData);
     if (decodedToken) {
       next();
-    }
-    else {
+    } else {
       return res.status(401).json({ message: "Token invalido" });
     }
   } catch (error) {
@@ -86,10 +85,15 @@ const filtrarRol = (req, res, next) => {
 // Regla personalizada para verificar si un objeto tiene las propiedades requeridas
 const hasRequiredProperties = (value) => {
   if (!Array.isArray(value)) {
-    throw new Error('El campo debe ser un arreglo de objetos.');
+    throw new Error("El campo debe ser un arreglo de objetos.");
   }
 
-  const requiredProperties = ['Nombre Completo', 'Documento', 'Email', 'Telefono'];
+  const requiredProperties = [
+    "Nombre Completo",
+    "Documento",
+    "Email",
+    "Telefono",
+  ];
 
   for (const obj of value) {
     for (const prop of requiredProperties) {
@@ -103,10 +107,16 @@ const hasRequiredProperties = (value) => {
 // Middleware para validar la estructura del cuerpo de la solicitud
 const validateRequestBody = [
   // Verifica si 'data' está presente y es un arreglo de objetos con propiedades requeridas
-  body('data').custom(hasRequiredProperties).withMessage('El campo "data" debe ser un arreglo de objetos con propiedades requeridas.'),
+  body("data")
+    .custom(hasRequiredProperties)
+    .withMessage(
+      'El campo "data" debe ser un arreglo de objetos con propiedades requeridas.'
+    ),
 
   // Verifica si 'cargo' está presente y es una cadena de texto
-  body('cargo').isString().withMessage('El campo "cargo" debe ser una cadena de texto.'),
+  body("cargo")
+    .isString()
+    .withMessage('El campo "cargo" debe ser una cadena de texto.'),
 
   // Maneja errores de validación
   (req, res, next) => {

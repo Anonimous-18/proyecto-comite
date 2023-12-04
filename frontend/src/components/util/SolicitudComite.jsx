@@ -40,8 +40,10 @@ export const SolicitudComite = () => {
         const token = JSON.parse(localStorage.getItem("newToken"));
         const res = await contextApi.getReglamento(token.token);
 
-        if (res !== null || res !== undefined) {
+        if (res && res !== 401) {
           setReglamento(res);
+        } else {
+          navigate(`/`)
         }
       };
 

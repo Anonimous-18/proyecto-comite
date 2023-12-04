@@ -7,8 +7,10 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 import { GiSandsOfTime } from "react-icons/gi";
+import { CiSaveDown2 } from "react-icons/ci";
 
 import { useContextApp } from "../../Context/ContextApp";
+import { dowloadFile } from "../../hooks/dowloadFile";
 
 export const Carta = ({
   tipo_falta,
@@ -46,7 +48,17 @@ export const Carta = ({
     contextApi.reducerModoRechazar();
     contextApi.reducerColocarId(comite_id);
   };
-
+  const handleArchivo = async (comite_id, ruta) => {
+    if (ruta === "reuniones") {
+      const response = await contextApi.envioDoc(comite_id, ruta);
+      dowloadFile(response, `acta-${comite_id}.docx`);
+    }else{
+      const response = await contextApi.envioDoc(comite_id, ruta);
+      dowloadFile(response, `citacion-${comite_id}.docx`);
+    }
+  };
+  //citacionesCreadas
+  //reuniones
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded-lg shadow-lg border">
@@ -59,7 +71,7 @@ export const Carta = ({
         </div>
         <div className="flex flex-1 flex-col justify-between bg-white p-4">
           <div className="flex-1">
-            <p className="text-sm font-medium text-indigo-600">
+            <p className="text-sm font-medium text-blue-600">
               <Link
                 to={`/informacion-comite/${comite_id}`}
                 className="text-center block hover:underline w-20 bg-blue-800 tracking-wide mt-4 py-2 rounded-2xl text-white capitalize font-semibold mb-2 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
@@ -137,7 +149,7 @@ export const Carta = ({
             </div>
           </div>
           {estado === "espera" && gestor ? (
-            <div className="mt-4 flex gap-3">
+            <div className="mt-4 flex justify-center gap-3">
               <button
                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-lg"
                 onClick={handleAceptar}
@@ -153,7 +165,6 @@ export const Carta = ({
             </div>
           ) : estado === "aceptado" && gestor ? (
             <div className="mt-4 flex gap-3">
-              
               <Link
                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-lg"
                 to={`/acta/${comite_id}`}
@@ -161,7 +172,35 @@ export const Carta = ({
               >
                 Crear Acta
               </Link>
-              
+            </div>
+          ) : estado === "ejecucion" && gestor ? (
+            <div className="mt-4 flex flex-col gap-3">
+              <div className="flex justify-center">
+                <button
+                  disabled={!comite_id}
+                  onClick={
+                    comite_id
+                      ? () => handleArchivo(comite_id, "reuniones")
+                      : null
+                  }
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-lg min-w-[27%]"
+                >
+                  <CiSaveDown2 className="text-3xl w-[45%]" />
+                  Acta
+                </button>
+                <button
+                  disabled={!comite_id}
+                  onClick={
+                    comite_id
+                      ? () => handleArchivo(comite_id, "citacionesCreadas")
+                      : null
+                  }
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-lg min-w-[27%]"
+                >
+                  <CiSaveDown2 className="text-3xl w-[30%]" />
+                  Citacion
+                </button>
+              </div>
             </div>
           ) : (
             <div className="h-12"></div>

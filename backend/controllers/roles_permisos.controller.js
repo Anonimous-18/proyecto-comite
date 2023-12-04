@@ -74,18 +74,18 @@ const updateFicha = async (req, res) => {
     if (updated) {
       const actualizado = await ficha.findOne({ where: { id } });
       return res.status(200).json(actualizado);
-    } else {
-      return res
+    } 
+      
+    return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
-    }
+        .json({ message: "No existe un ficha con este id." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
 /**--------------------------------
- * funciones para eliminar un ficha
+ * funciones para eliminar un permiso
  --------------------------------*/
 const deleteFicha = async (req, res) => {
   const { id } = req.params;
@@ -98,7 +98,7 @@ const deleteFicha = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "No existe un usuario con este id." });
+        .json({ message: "No existe un permiso con este id." });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

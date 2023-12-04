@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 const { EMAIL, EMAIL_PASSWORD } = require("../config.js");
 const sequelize = require("../sequelize-config.js");
 const { usuarios, roles, permisos, roles_permisos } = require("../models");
- 
+
 const secretKey = v4();
 
 /**------------------------------
@@ -38,14 +38,14 @@ const login = async (req, res) => {
       tipo_documento: userRes.tipo_documento,
       documento: userRes.documento,
       rol_id: userRes.rol_id,
-      // rol: userRes.role.dataValues
+      telefono: userRes.telefono,
     };
     req.userData = user;
+    req.app.userData = user;
 
     if (!req.userData.rol_id) {
       req.userData.permisos = null;
-      
-    }else{
+    } else {
       const permisosRol = await roles_permisos.findAll({
         where: { rol_id: req.userData.rol_id },
         include: [
@@ -59,9 +59,9 @@ const login = async (req, res) => {
         (permisoRol) => permisoRol.permisos.nombre
       );
       req.userData.permisos = permisosNom;
+      req.app.userData.permisos = permisosNom;
       //console.log(req.userData);
     }
-
 
     /**-----------------------------------------------------
      * |  Creamos el Token de sesión con el tiempo de expiración

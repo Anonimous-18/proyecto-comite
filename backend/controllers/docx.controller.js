@@ -109,7 +109,7 @@ const crearActa = async (req, res) => {
       properties: error.properties,
     };
     res.status(500).json({ error: "Hubo un error al obtener los datos", e });
-    throw e;
+    
   }
 
   const salidaReunion = `${__dirname}/../documentos_comite/reuniones/reunionDesarrollo-${idComite}.docx`;
@@ -335,7 +335,7 @@ const actaCasos = async (req, res, next) => {
       properties: error.properties,
     };
     res.status(500).json({ error: "Hubo un error al obtener los datos", e });
-    throw e;
+    console.log(e);
   }
 };
 
@@ -455,11 +455,11 @@ const citacion = async (req, res) => {
     await obtenerInformacionAprendices(aprendicesIds, articulosIds);
   } catch (error) {
     res.status(500).json({ error: "Hubo un error al obtener los datos" });
-    throw error;
+    console.log(e);
   }
   const idcomite = req.comIdCreado;
   const entrada = `${__dirname}/../documentos_comite/citacion-variables.docx`;
-  const salida = `${__dirname}/../documentos_comite/citaciones/citacion-${idcomite}.docx`;
+  const salida = `${__dirname}/../documentos_comite/citacionesCreadas/citacion-${idcomite}.docx`;
 
   // Realizar el reemplazo en el documento
   try {
@@ -483,7 +483,7 @@ const citacion = async (req, res) => {
       properties: error.properties,
     };
     res.status(500).json({ error: "Hubo un error al obtener los datos", e });
-    throw e;
+    console.log(e);
   }
 };
 
