@@ -28,6 +28,7 @@ export const SolicitudComite = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
+
     /**-------------------------------------------------------
      * |  Validamos el token de sesión
      -------------------------------------------------------*/
@@ -43,7 +44,7 @@ export const SolicitudComite = () => {
         if (res && res !== 401) {
           setReglamento(res);
         } else {
-          navigate(`/`)
+          navigate(`/`);
         }
       };
 
@@ -191,6 +192,10 @@ export const SolicitudComite = () => {
             titulo: "Nueva Solicitud a Comite",
             descripcion: values.descripcion_falta,
             remitente_fk: tokenDecoded.user.id,
+          });
+
+          await contextApi.sendMessage({
+            instructor: `${tokenDecoded.user.nombre_completo}`,
           });
 
           navigate(`/home-instructor`);

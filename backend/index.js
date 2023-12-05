@@ -6,6 +6,7 @@ const { Server: SocketServer } = require("socket.io");
 const config = require("./config.js");
 
 const adminRoutes = require("./routes/admin.routes.js");
+const venomRoutes = require("./routes/venomBot.routes.js");
 const envioRoutes = require("./routes/envio.routes.js");
 const gestorRoutes = require("./routes/gestor.routes.js");
 const fichasRoutes = require("./routes/fichas.routes.js");
@@ -38,6 +39,7 @@ app.use(express.json());
 app.use(express.static(`uploads`));
 app.use(express.urlencoded({ extended: true }))
 
+app.use(venomRoutes);
 app.use(adminRoutes);
 app.use(envioRoutes);
 app.use(fichasRoutes);
