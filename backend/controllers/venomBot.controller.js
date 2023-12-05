@@ -1,6 +1,6 @@
 const path = require("path");
 const venom = require("venom-bot");
-const fs = require("fs")
+const { roles, usuarios } = require("../models");
 
 /**------------------------------------------------------------
  * 1. Mensaje normal
@@ -71,18 +71,9 @@ const start = async (req, res, client) => {
 
       console.log(rutaArchivo);
 
-      const base64File = fs.readFileSync(rutaArchivo, { encoding: "base64" });
-
-      // const result = await client.sendFile(
-      //   "3016542310@c.us",
-      //   `${rutaArchivo}`,
-      //   archivo.filename,
-      //   captionText
-      // );
-
-      const result = await client.sendFileFromBase64(
+      const result = await client.sendFile(
         "3016542310@c.us",
-        base64File,
+        `${rutaArchivo}`,
         archivo.filename,
         captionText
       );
@@ -98,15 +89,44 @@ const start = async (req, res, client) => {
       /**---------------------------
        * Para el mensaje de texto
        * ---------------------------*/
-    } else {
-      const result = await client.sendText("3016542310@c.us", "Hola Mundo");
+    } else if (req.body) {
+      const rol = await roles.findAll({
+        where: { nombre: "Administrador" || "administrador" },
+      });
 
-      if (result && result) {
-        console.log("Mensaje enviado, id: ", result); // En caso de éxito se imprimirá el id del mensaje
-        return res.status(200).json({ result });
+      if (rol && rol[0] && rol[0].id) {
+        const gestor = await usuarios.findAll({ where: { rol_id: rol[0].id } });
+
+        if (gestor && gestor) {
+          const celular = gestor[0].telefono;
+          const instructor = req.body.instructor || "";
+
+          const fechaHoraActual = new Date();
+          const fechaHoraFormateada = fechaHoraActual.toLocaleString();
+
+          console.log(celular, instructor);
+
+          const result = await client.sendText(
+            `${celular}@c.us`,
+            `El instructor *${instructor}* hizo una solicitud de comité el dia ${fechaHoraFormateada} Para ver los detalles de esta solicitud, vaya a SE-JustApp.`
+          );
+
+          if (result && result) {
+            console.log("Mensaje enviado, id: ", result); // En caso de éxito se imprimirá el id del mensaje
+            return res.status(200).json({ result });
+          } else {
+            return res
+              .status(500)
+              .json({ error: "Error al enviar el mensaje 1." });
+          }
+        } else {
+          return res.status(404).json({ msg: "No existe un gestor." });
+        }
       } else {
-        return res.status(500).json({ error: "Error al enviar el mensaje 1." });
+        return res.status(404).json({ msg: "No existe un gestor." });
       }
+    } else {
+      return;
     }
   } catch (error) {
     console.error("Error al enviar mensaje: ", error); // En caso de error se imprimirá el error

@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import fichaApi from "../api/ficha";
+import venomApi from "../api/venom.api";
 import usuariosApi from "../api/usuarios";
 import novedadesApi from "../api/novedades";
 import instructorApi from "../api/instructor";
@@ -262,10 +263,10 @@ export const ContextAppProvider = ({ children }) => {
     try {
       const response = await getReglamentoRequest(token);
 
-      if (response&&response) return response.data
+      if (response && response) return response.data;
       else return response.status;
     } catch (error) {
-      return error.response.status
+      return error.response.status;
     }
   };
 
@@ -539,11 +540,7 @@ export const ContextAppProvider = ({ children }) => {
   };
   const envioDoc = async (comiteId, ruta) => {
     try {
-
-      const response = await gestorApi.getEnvioDoc(
-        comiteId,
-        ruta,
-      );
+      const response = await gestorApi.getEnvioDoc(comiteId, ruta);
 
       if (response) {
         return response.data;
@@ -592,6 +589,17 @@ export const ContextAppProvider = ({ children }) => {
   const createFicha = async (body) => {
     try {
       const response = await fichaApi.createFichaRequest(body);
+
+      if (response) return response.status;
+      else return null;
+    } catch (error) {
+      return error.status;
+    }
+  };
+
+  const sendMessage = async (body) => {
+    try {
+      const response = await venomApi.sendMessageRequest(body);
 
       if (response) return response.status;
       else return null;
@@ -690,6 +698,7 @@ export const ContextAppProvider = ({ children }) => {
         getDetallesComiteNotificadoRequest,
         deleteNotificacion,
         envioDoc,
+        sendMessage,
       }}
     >
       {children}
