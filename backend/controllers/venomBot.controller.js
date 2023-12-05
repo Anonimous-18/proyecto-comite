@@ -9,14 +9,7 @@ const { roles, usuarios } = require("../models");
  * ------------------------------------------------------------*/
 
 const envioMensaje = (req, res) => {
-  //   req.app.userData.telefono = "3013816950";
-  const numero = "3016542310";
-  //   const id = req.app.userData.id;
-  let sesion = null;
-  if (numero) {
-    sesion = numero;
-  } else sesion = id;
-
+  const sesion = "justApp"
   venom
     .create(
       sesion,
@@ -32,7 +25,7 @@ const envioMensaje = (req, res) => {
 
         const imageBuffer = response;
         require("fs").writeFile(
-          `${__dirname}/qrWhatsapp/qr${sesion}.png`,
+          `${__dirname}/qrWhatsapp/${sesion}qr.png`,
           imageBuffer["data"],
           "binary",
           (err) => {
