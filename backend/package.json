@@ -36,7 +36,7 @@
     "sequelize-cli": "^6.6.1",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.0",
-    "venom-bot": "^5.0.21"
+    "venom-bot": "^5.0.20"
   },
   "devDependencies": {
     "sequelize-auto": "^0.8.8"
